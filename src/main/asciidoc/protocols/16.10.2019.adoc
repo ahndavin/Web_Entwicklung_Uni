@@ -15,11 +15,11 @@ __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
 
 - Tom Morgenstern (Kunde/Tutor)
-- Marcus (Scrum Master)
-- Cyrill
+- Marcus Fiedler (Scrum Master)
+- Cyrill Burth
 - Davin Ahn
-- Igor
-- Jonas
+- Igor Macevic
+- Jonas Hönisch
 - Tobias Neubauer (Schriftführer)
 
 == Bemerkungen
