@@ -59,3 +59,8 @@ Dokumenten.
 |2     |Prototyp Pflichtenheft    |Wir fangen mit dem Pflichtenheft an!           |Wir alle               |offen
 |3     |Videoshop Erweiterung     |Erweiterung des Codes                          |Wir alle               |offen
 |===
+
+== To-Do bis zum nächsten Treffen:
+- mit Videoshop beschäftigen
+- in Salespoint einlesen
+- Aufgaben aufteilen und anfangen, an dem Pflichtenheft zu arbeiten
