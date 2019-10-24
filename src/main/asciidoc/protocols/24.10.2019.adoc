@@ -26,25 +26,25 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 - Festlegung der Commit- und Code-Sprache auf Englisch
 - Aufteilung der Aufgaben bis nächsten Montag wie folgt: (Eingeklammerte werden vorerst zurückgestellt)
 
-(Inhaltsverzeichnis)
-(Zusammenfassung)
-(Aufgabenstellung, Zielsetzung mit Klassen- und Attributnamen)
-Davin: Produktnutzung (Browsermodelle)
-Davin: Stakeholder (Tabelle mit Personengruppe, Priorität, Aufgabe, Erwartung)
-Davin: Kontextdiagramm
-Davin: Top-Level-Architektur
-Jonas: Akteure
-Jonas: Anwendungsfalldiagramm
-Jonas: Anwendungsfallbeschreibungen und Sequenzdiagramme
-Marcus: Muss-Kriterien
-Marcus: Kann-Kriterien
-Marcus: Qualitätsziele
-Marcus: Nicht-funktionale Anforderungen
-Igor: GUI-Prototyp
-Igor: Dialoglandkarte
-Igor: zusätzliche Beschreibung
-Tobias: Klassendiagramm
-Tobias: Akzeptanztestfälle für jeden Anwendungsfall
+(Inhaltsverzeichnis) +
+(Zusammenfassung) +
+(Aufgabenstellung, Zielsetzung mit Klassen- und Attributnamen) +
+Davin: Produktnutzung (Browsermodelle) +
+Davin: Stakeholder (Tabelle mit Personengruppe, Priorität, Aufgabe, Erwartung) +
+Davin: Kontextdiagramm +
+Davin: Top-Level-Architektur +
+Jonas: Akteure +
+Jonas: Anwendungsfalldiagramm +
+Jonas: Anwendungsfallbeschreibungen und Sequenzdiagramme +
+Marcus: Muss-Kriterien +
+Marcus: Kann-Kriterien +
+Marcus: Qualitätsziele +
+Marcus: Nicht-funktionale Anforderungen +
+Igor: GUI-Prototyp +
+Igor: Dialoglandkarte +
+Igor: zusätzliche Beschreibung +
+Tobias: Klassendiagramm +
+Tobias: Akzeptanztestfälle für jeden Anwendungsfall +
 (Glossar)
 
 
