@@ -7,8 +7,8 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 [option="headers"]
 |===
 |Woche |Davin Ahn |Marcus Fiedler |Jonas Hönisch |Igor Macevic |Tobias Neubauer |Meeting
-|1  |…    |…    |120    |60    |360    |60   
-|2  |…    |…    |570    |360    |210   |145    
+|1  |120    |…    |120    |60    |360    |60   
+|2  |240    |…    |570    |360    |210   |145    
 |3  |…    |…    |…    |…    |…    |…    
 |4  |…    |…    |…    |…    |…    |…    
 |5  |…    |…    |…    |…    |…    |…    
