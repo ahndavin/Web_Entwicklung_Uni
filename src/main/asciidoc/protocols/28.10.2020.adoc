@@ -1,0 +1,82 @@
+= Protokoll Gruppe 26
+
+Treffen am 28.10.2019
+
+Ort:      APB +
+Beginn:   16:10 Uhr +
+Ende:     17:30 Uhr
+
+__Schriftführer:__ Tobias Neubauer
+
+*Nächstes Treffen:* +
+4.11.2019, 14:50 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Tom Morgenstern (Tutor, Kunde)
+- Marcus Fiedler (Scrum Master)
+- Davin Ahn
+- Igor Macevic
+- Jonas Hönisch
+- Tobias Neubauer (Schriftführer)
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+- Guestbook Besprechung und Feedback
+- CRC-Karten-Methode besprochen
+- Besprechung der bisher bearbeiteten Aufgaben des Pflichtenhefts: GUI-Entwurf passt, Anwendungsfälle passen, Sequenzdiagramme passen. In allen Diagrammen gehören die Klassen- und Funktionsnamen synchronisiert und in das Pflichtenheft eingebunden
+- erforderliche Veränderungen am Klassendiagramm: Personalverwaltung (mit Übersicht und Erstellung neuer Angestellter), Kalender (Übersicht über Termine, vielleicht auch grafisch zum Draufklicken), Veranstaltungen bearbeitbar, Lageplan soll Räume, Gegenstände und Personal verwalten, Datentypen und Rückgabewerte entfernen, Klasse "Abrechnung", die Kostenaufstellungen übernimmt
+- mehr Akzeptanztestfälle
+- Abrechung auf extra HTML-Seite
+- mehr in "Packages" einteilen, also zusammenhängende Blöcke, die voneinander recht unabhängig sind
+- time recording immer bis zum Treffen Donnerstag für die vorherige Woche eintragen
+- Protokoll immer bis zwei Tage vor nächstem Treffen fertig haben
+- bis Donnerstag 13:00 Uhr Dinge pushen, die noch von Tom überprüft werden sollen
+- alles in Pflichtenheft mit einbinden
+- Besprochen: Stakeholder (Auftraggeber) vs Akteuer (Nutzer der Software)
+- Tobias überarbeitet Klassendiagramm und übernimmt restlichen Textaufgaben im Pflichtenheft
+- Versionierung der Software im Pflichtenheft festhalten
+- Aufteilungen der Aufgabenvorschläge für den Videoshop: Marcus 1, Davin 2, Jonas 3, Tobias 5, Igor 6
+- bis zum nächsten Treffen zusätzlich: in Salespoint und Spring einarbeiten
+
+- nach Abgabe am Sonntag: Entwicklerdoku, Anwendungsprototyp und Testplan erstellen (Beispiele siehe Videoshop, Deadline: 17.11.)
+- Entwicklerdoku = Analysemodell auf die Funktionen und Methoden von Spring und Salespoint angepasst
+- Teile des Anwendungsprototypen werden unabhängig voneinander erstellt: sollte man Werte aus anderen Klassen/Funktionen benötigen --> ausdenken
+- Testplan wird aus den Akzeptanztestfällen erstellt
+- Anwendungsprototyp und Entwicklerdoku wieder aufteilen: jeder programmiert einen Teil der Anwendung und schreibt einen Teil der Doku
+- Die Aufteilung soll bis zum nächsten Spring-Treffen passiert sein
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|1   |guestbook Erweiterung      |geschlossen      |bis Mittwoch, 23.10.2019
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|2     |Prototyp Pflichtenheft    |Wir fangen mit dem Pflichtenheft an!           |Wir alle               |offen
+|3     |Videoshop Erweiterung     |Erweiterung des Codes                          |Wir alle               |offen
+|===
+
+== To-Do bis zum nächsten Treffen:
+- mit Videoshop beschäftigen
+- in Salespoint einlesen
+- Aufgaben abarbeiten
+- in Salespoint und Spring einarbeiten
