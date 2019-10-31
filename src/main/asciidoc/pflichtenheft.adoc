@@ -514,8 +514,8 @@ Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wi
 Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialoglandkarte höhere Priorität hat - sind mit dem Kunden zu treffen.
 
 === Überblick: Dialoglandkarte
-Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird.
-//Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
+image::./models/analysis/Dialoglandkarte.PNG["Dialoglandkarte", 100%, 100%, pdfwidth=100%, align=center]
+
 
 === Dialogbeschreibung
 Für jeden Dialog:
