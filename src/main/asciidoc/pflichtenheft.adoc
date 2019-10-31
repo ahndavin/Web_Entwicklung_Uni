@@ -423,6 +423,13 @@ image::./models/analysis/Sequenzdiagramme/UC7001.svg["UC7001", 100%, 100%, pdfwi
 
 
 == Funktionale Anforderungen
+Die folgende Tabellen zeigen Funktionale Kriterien des Systems auf, sie sind untergliedert in Muss- und Kannkriterien.
+Die Tabellen enthalten:
+
+* eine einzigartige ID für Referenzen
+* Die aktuelle Version der Funktion
+* Den Namen der Funktion
+* Eine Beschreibung der Funktion
 
 === Muss-Kriterien
 [options="header"]
@@ -456,7 +463,7 @@ image::./models/analysis/Sequenzdiagramme/UC7001.svg["UC7001", 100%, 100%, pdfwi
 |F124 | 0.1 | Festival freigeben | Die Tickets für ein Festival müssen zum Verkauf freigegeben können.
 |F125 | 0.1 | Ticket verkaufen | Ein Verkäufer muss ein Ticket als verkauft markieren können. Dieses muss dann aus dem Restbestand entfernt werden.
 |F126 | 0.1 | Ticket drucken | Ein Ticket muss vom Verkäufer ausgedruckt werden können, vorrausgesetzt es wurde als verkauft markiert.
-|F127 | 0.1 | Personal mieten | Personal muss angemietet werden können mit Angabe von Typ des Personals und Anzahl.
+|F127 | 0.1 | Personal mieten | Personal muss angemietet werden können mit Angabe von Typ des Personals, Anzahl und Stundenlohn.
 |F128 | 0.1 | Personal zuordnen | Personal muss einer Arbeitsstelle zugeordnet werden können.
 |F129 | 0.1 | Personal abrechnen | Das Gehalt muss für das Personal berechnet und ausgezahlt werden können.
 |F130 | 0.1 | Veranstaltungsleiter abrechnen  | Das Gehalt muss für den Veranstaltungsleiter berechnet und ausgezahlt werden können.
@@ -464,17 +471,41 @@ image::./models/analysis/Sequenzdiagramme/UC7001.svg["UC7001", 100%, 100%, pdfwi
 |===
 === Kann-Kriterien
 Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
-
+[options="header"]
+[cols="1, 1, 2, 4"]
+|===
+|ID | Version | Name | Beschreibung
+|F201 | 0.1 | Account Berechtigungen ändern | Der Boss und/ oder der Festivalleiter soll die Berechtigungen von existierenden Acounts ändern können
+|F202 | 0.1 | Accounts anzeigen | Der Boss soll sich alle existierenden Accounts und deren zugeordneten Nutzer anzeigen lassen können
+|F203 | 0.1 | Messagesystem | Das Messagesystem soll für alle Mitarbeiter ausgeweitet werden.
+|===
 == Nicht-Funktionale Anforderungen
 
 === Qualitätsziele
 
-Dokumentieren Sie in einer Tabelle die Qualitätsziele, welche das System erreichen soll, sowie deren Priorität.
+Die folgende Tabelle enthält nicht funtionale Qualitätsziele und eine Einstufung ihrer wichtigkeit.
+1 = nicht wichtig ... 5 = sehr wichtig
+
+[options="header"]
+[cols="4,1,1,1,1,1"]
+|===
+|Qualitätsziel | 1 | 2 | 3 | 4 | 5
+|Maintainability | | | |x |
+|Security | | | | | x
+|Usability | | | x | |
+|===
 
 === Konkrete Nicht-Funktionale Anforderungen
 
-Beschreiben Sie Nicht-Funktionale Anforderungen, welche dazu dienen, die zuvor definierten Qualitätsziele zu erreichen.
-Achten Sie darauf, dass deren Erfüllung (mindestens theoretisch) messbar sein muss.
+[options="header"]
+[cols="1, 1, 2, 4"]
+|===
+|ID | Version | Name | Beschreibung
+|NF301 | 0.1 | uptime | Das System soll 99,5% der Zeit erreichbar sein
+|NF302 | 0.1 | Mehrsprachig | Das System soll die Möglichkeit haben in mehreren Sprachen benutzt zu werden
+|NF303 | 0.1 | Security - Accounts | Die Accountdaten sollen ein Mindestlevel an Sicherheit haben durch Mindestlänge und Benutzen von Groß- u. Kleinbuchstaben, Zahlen sowie Sonderzeichen
+|NF304 | 0.1 | Security - Data | Die Betriebswirtschaftlichendaten sollen nur verschlüsselt gespeichert werden
+|===
 
 == GUI Prototyp
 
