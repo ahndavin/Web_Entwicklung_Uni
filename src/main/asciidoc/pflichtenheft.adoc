@@ -436,38 +436,38 @@ Die Tabellen enthalten:
 [cols="1, 1, 2, 4"]
 |===
 |ID | Version | Name | Beschreibung
-|F100 | 0.1 | Login | Ein nicht angemeldeter Benutzer muss sich durch Eingabe von Nutzername und Passwort Einloggen können um erweiterte Berechtigungen nutzen zu können.
-|F101 | 0.1 | Logout | Ein angemeldeter Benutzer muss sich abmelden können sodass nur noch die öffentlichen Teile der App zugänglich sind.
-|F102 | 0.1 | Account erstellen | Der Boss muss einen Nutzeraccount erstellen können indem er die Berechtigungen, Nutzername und Passwort angibt.
-|F103 | 0.1 | Festival anzeigen | Das System muss alle Informationen zu einem Festival zum Teil graphisch darstellen können.
-|F104 | 0.1 | Festival anlegen | Der Boss muss neue Festivals erstellen können unter Angabe von Zeitraum und Ort. Ist nur möglich wenn der Ort zu dieser Zeit noch nicht belegt ist.
-|F105 | 0.1 | Lageplan anzeigen | Das System muss zu einem gegeben Festival den Lageplan visualisieren können.
-|F106 | 0.1 | Bereich anpassen | Der Festivalleiter muss die Belegung und den Typ eines Bereiches sowie die Anordnung von Toiletten und Cateringständen ändern können.
-|F107 | 0.1 | Bereiche sperren | Der Festivalleiter muss Bereiche sperren können.
-|F108 | 0.1 | Bühnenposition ändern | Der Festivalleiter muss die Bühnenpositionen ändern können.
-|F109 | 0.1 | Toilettenbestückung ändern | Der Festivalleiter muss die Toilettenbestückung ändern können.
-|F110 | 0.1 | Cateringstände anpassen | Der Festivalleiter muss die Ausstattung der Cateringstände ändern können.
-|F111 | 0.1 | Lineup erstellen | Der Festivalleiter muss aus verfügbaren Künstlern ein Linup für eine Bühne erstellen können.
-|F112 | 0.1 | Lineup anzeigen | Das System muss jedes Lineup mit Angabe der Bühne und des Festivals ausgeben können.
-|F113 | 0.1 | Angebot einholen | Angebote müssen von Künstlern eingeholt und gespeichert werden können.
-|F114 | 0.1 | Angebot annehmen | Ein Angebot eines Künstlers muss bestätigt werden können.
-|F115 | 0.1 | Bühnenbelegung abrufen | Der Festivalleiter muss jede Bühnenbelegung abrufen können.
-|F116 | 0.1 | Besucherzahlen abrufen | Der Festivalleiter muss die Besucherzahlene abrufen können.
-|F117 | 0.1 | Lagerbestand einsehen | Der Festivalleiter muss den Lagerbestand einsehen können.
-|F118 | 0.1 | Produkte nachbestellen | Der Festivalleiter muss Produkte nachbestellen können.
-|F119 | 0.1 | Produkt hinzufügen | Der Festivalleiter muss dem Lager ein neues Produkt hinzufügen können.
-|F120 | 0.1 | Mindestbestand festlegen | Der Festivalleiter muss für ein Produkt den Mindestbestand festlegen können.
-|F121 | 0.1 | Nachrichten einsehen | Der Festivalleiter muss Nachrichten von anderen Mitarbeitern einsehen können.
-|F122 | 0.1 | Nachricht versenden | Jeder authentifizierte User muss Nachrichten an den Festivalleiter versenden können.
-|F123 | 0.1 | Ticketpreis festlegen | Für ein Festival muss der Ticketpreis für jeden Typ getrennt festgelegt werden können.
-|F124 | 0.1 | Festival freigeben | Die Tickets für ein Festival müssen zum Verkauf freigegeben können.
-|F125 | 0.1 | Ticket verkaufen | Ein Verkäufer muss ein Ticket als verkauft markieren können. Dieses muss dann aus dem Restbestand entfernt werden.
-|F126 | 0.1 | Ticket drucken | Ein Ticket muss vom Verkäufer ausgedruckt werden können, vorrausgesetzt es wurde als verkauft markiert.
-|F127 | 0.1 | Personal mieten | Personal muss angemietet werden können mit Angabe von Typ des Personals, Anzahl und Stundenlohn.
-|F128 | 0.1 | Personal zuordnen | Personal muss einer Arbeitsstelle zugeordnet werden können.
-|F129 | 0.1 | Personal abrechnen | Das Gehalt muss für das Personal berechnet und ausgezahlt werden können.
-|F130 | 0.1 | Veranstaltungsleiter abrechnen  | Das Gehalt muss für den Veranstaltungsleiter berechnet und ausgezahlt werden können.
-|F131 | 0.1 | Gegenstände mieten | Gegenstände müssen unter Angabe des Typs und der Anzahl bestellt, zugeordnet und bezahlt werden können.
+|[[F100]] <<F100>> | 0.1 | Login | Ein nicht angemeldeter Benutzer muss sich durch Eingabe von Nutzername und Passwort Einloggen können um erweiterte Berechtigungen nutzen zu können.
+|[[F101]] <<F101>> | 0.1 | Logout | Ein angemeldeter Benutzer muss sich abmelden können sodass nur noch die öffentlichen Teile der App zugänglich sind.
+|[[F102]] <<F102>> | 0.1 | Account erstellen | Der Boss muss einen Nutzeraccount erstellen können indem er die Berechtigungen, Nutzername und Passwort angibt.
+|[[F103]] <<F103>> | 0.1 | Festival anzeigen | Das System muss alle Informationen zu einem Festival zum Teil graphisch darstellen können.
+|[[F104]] <<F104>> | 0.1 | Festival anlegen | Der Boss muss neue Festivals erstellen können unter Angabe von Zeitraum und Ort. Ist nur möglich wenn der Ort zu dieser Zeit noch nicht belegt ist.
+|[[F105]] <<F105>> | 0.1 | Lageplan anzeigen | Das System muss zu einem gegeben Festival den Lageplan visualisieren können.
+|[[F106]] <<F106>> | 0.1 | Bereich anpassen | Der Festivalleiter muss die Belegung und den Typ eines Bereiches sowie die Anordnung von Toiletten und Cateringständen ändern können.
+|[[F107]] <<F107>> | 0.1 | Bereiche sperren | Der Festivalleiter muss Bereiche sperren können.
+|[[F108]] <<F108>> | 0.1 | Bühnenposition ändern | Der Festivalleiter muss die Bühnenpositionen ändern können.
+|[[F109]] <<F109>> | 0.1 | Toilettenbestückung ändern | Der Festivalleiter muss die Toilettenbestückung ändern können.
+|[[F110]] <<F110>> | 0.1 | Cateringstände anpassen | Der Festivalleiter muss die Ausstattung der Cateringstände ändern können.
+|[[F111]] <<F111>> | 0.1 | Lineup erstellen | Der Festivalleiter muss aus verfügbaren Künstlern ein Linup für eine Bühne erstellen können.
+|[[F112]] <<F112>> | 0.1 | Lineup anzeigen | Das System muss jedes Lineup mit Angabe der Bühne und des Festivals ausgeben können.
+|[[F113]] <<F113>> | 0.1 | Angebot einholen | Angebote müssen von Künstlern eingeholt und gespeichert werden können.
+|[[F114]] <<F114>> | 0.1 | Angebot annehmen | Ein Angebot eines Künstlers muss bestätigt werden können.
+|[[F115]] <<F115>> | 0.1 | Bühnenbelegung abrufen | Der Festivalleiter muss jede Bühnenbelegung abrufen können.
+|[[F116]] <<F116>> | 0.1 | Besucherzahlen abrufen | Der Festivalleiter muss die Besucherzahlene abrufen können.
+|[[F117]] <<F117>> | 0.1 | Lagerbestand einsehen | Der Festivalleiter muss den Lagerbestand einsehen können.
+|[[F118]] <<F118>> | 0.1 | Produkte nachbestellen | Der Festivalleiter muss Produkte nachbestellen können.
+|[[F119]] <<F119>> | 0.1 | Produkt hinzufügen | Der Festivalleiter muss dem Lager ein neues Produkt hinzufügen können.
+|[[F120]] <<F120>> | 0.1 | Mindestbestand festlegen | Der Festivalleiter muss für ein Produkt den Mindestbestand festlegen können.
+|[[F121]] <<F121>> | 0.1 | Nachrichten einsehen | Der Festivalleiter muss Nachrichten von anderen Mitarbeitern einsehen können.
+|[[F122]] <<F122>> | 0.1 | Nachricht versenden | Jeder authentifizierte User muss Nachrichten an den Festivalleiter versenden können.
+|[[F123]] <<F123>> | 0.1 | Ticketpreis festlegen | Für ein Festival muss der Ticketpreis für jeden Typ getrennt festgelegt werden können.
+|[[F124]] <<F124>> | 0.1 | Festival freigeben | Die Tickets für ein Festival müssen zum Verkauf freigegeben können.
+|[[F125]] <<F125>> | 0.1 | Ticket verkaufen | Ein Verkäufer muss ein Ticket als verkauft markieren können. Dieses muss dann aus dem Restbestand entfernt werden.
+|[[F126]] <<F126>> | 0.1 | Ticket drucken | Ein Ticket muss vom Verkäufer ausgedruckt werden können, vorrausgesetzt es wurde als verkauft markiert.
+|[[F127]] <<F127>> | 0.1 | Personal mieten | Personal muss angemietet werden können mit Angabe von Typ des Personals, Anzahl und Stundenlohn.
+|[[F128]] <<F128>> | 0.1 | Personal zuordnen | Personal muss einer Arbeitsstelle zugeordnet werden können.
+|[[F129]] <<F129>> | 0.1 | Personal abrechnen | Das Gehalt muss für das Personal berechnet und ausgezahlt werden können.
+|[[F130]] <<F130>> | 0.1 | Veranstaltungsleiter abrechnen  | Das Gehalt muss für den Veranstaltungsleiter berechnet und ausgezahlt werden können.
+|[[F131]] <<F131>> | 0.1 | Gegenstände mieten | Gegenstände müssen unter Angabe des Typs und der Anzahl bestellt, zugeordnet und bezahlt werden können.
 |===
 === Kann-Kriterien
 Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
@@ -475,24 +475,25 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 [cols="1, 1, 2, 4"]
 |===
 |ID | Version | Name | Beschreibung
-|F201 | 0.1 | Account Berechtigungen ändern | Der Boss und/ oder der Festivalleiter soll die Berechtigungen von existierenden Acounts ändern können
-|F202 | 0.1 | Accounts anzeigen | Der Boss soll sich alle existierenden Accounts und deren zugeordneten Nutzer anzeigen lassen können
-|F203 | 0.1 | Messagesystem | Das Messagesystem soll für alle Mitarbeiter ausgeweitet werden.
+|[[F201]] <<F201>> | 0.1 | Account Berechtigungen ändern | Der Boss und/ oder der Festivalleiter soll die Berechtigungen von existierenden Accounts ändern können
+|[[F202]] <<F202>> | 0.1 | Accounts anzeigen | Der Boss soll sich alle existierenden Accounts und deren zugeordneten Nutzer anzeigen lassen können
+|[[F203]] <<F203>> | 0.1 | Messagesystem | Das Messagesystem soll für alle Mitarbeiter ausgeweitet werden.
+|[[F204]] <<F204>> | 0.1 | Mehrsprachigkeit | Das System soll in mehreren Sprachen nutzbar sein.
 |===
 == Nicht-Funktionale Anforderungen
 
 === Qualitätsziele
 
-Die folgende Tabelle enthält nicht funtionale Qualitätsziele und eine Einstufung ihrer wichtigkeit.
+Die folgende Tabelle enthält nicht funtionale Qualitätsziele und eine Einstufung ihrer Wichtigkeit.
 1 = nicht wichtig ... 5 = sehr wichtig
 
 [options="header"]
 [cols="4,1,1,1,1,1"]
 |===
 |Qualitätsziel | 1 | 2 | 3 | 4 | 5
-|Maintainability | | | |x |
-|Security | | | | | x
-|Usability | | | x | |
+|Wartbarkeit | | | |x |
+|Sicherheit | | | | | x
+|Nutzerfreundlichkeit | | | x | |
 |===
 
 === Konkrete Nicht-Funktionale Anforderungen
@@ -501,10 +502,10 @@ Die folgende Tabelle enthält nicht funtionale Qualitätsziele und eine Einstufu
 [cols="1, 1, 2, 4"]
 |===
 |ID | Version | Name | Beschreibung
-|NF301 | 0.1 | uptime | Das System soll 99,5% der Zeit erreichbar sein
-|NF302 | 0.1 | Mehrsprachig | Das System soll die Möglichkeit haben in mehreren Sprachen benutzt zu werden
-|NF303 | 0.1 | Security - Accounts | Die Accountdaten sollen ein Mindestlevel an Sicherheit haben durch Mindestlänge und Benutzen von Groß- u. Kleinbuchstaben, Zahlen sowie Sonderzeichen
-|NF304 | 0.1 | Security - Data | Die Betriebswirtschaftlichendaten sollen nur verschlüsselt gespeichert werden
+|[[NF301]] <<NF301>> | 0.1 | uptime | Das System soll 99,5% der Zeit erreichbar sein
+|[[NF302]] <<NF302>> | 0.1 | Mehrsprachig | Das System soll die Möglichkeit haben in mehreren Sprachen benutzt zu werden
+|[[NF303]] <<NF303>> | 0.1 | Sicherheit - Accounts | Die Accountdaten sollen ein Mindestlevel an Sicherheit haben durch Mindestlänge und Benutzen von Groß- u. Kleinbuchstaben, Zahlen sowie Sonderzeichen
+|[[NF304]] <<NF304>> | 0.1 | Sicherheit - Data | Die betriebswirtschaftlichen Daten sollen nur verschlüsselt gespeichert werden
 |===
 
 == GUI Prototyp
