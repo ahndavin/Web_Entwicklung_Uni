@@ -88,7 +88,7 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 3. User klickt "Login"
 4. Daten werden überprüft und User wird bei korrekten Daten auf Startseite weitergeleitet
 
-|Funktionale Anforderungen   |<<F1000>>
+|Funktionale Anforderungen   |<<F100>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC1000.svg["U1000", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -106,7 +106,7 @@ image::./models/analysis/Sequenzdiagramme/UC1000.svg["U1000", 100%, 100%, pdfwid
 User klickt "Ausloggen" in der Navigation
 User ist jetz unauthentifiziert und die Startseite wird angezeigt
 
-|Funktionale Anforderungen   |<<F1001>>
+|Funktionale Anforderungen   |<<F102>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC1001.svg["UC1001", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -128,7 +128,7 @@ image::./models/analysis/Sequenzdiagramme/UC1001.svg["UC1001", 100%, 100%, pdfwi
 4. Account wird angelegt
 5. Boss wird auf "Organisation" weitergeleitet
 
-|Funktionale Anforderungen   |<<F2000>>
+|Funktionale Anforderungen   |<<F103>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC2000.svg["UC2000", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -146,7 +146,7 @@ image::./models/analysis/Sequenzdiagramme/UC2000.svg["UC2000", 100%, 100%, pdfwi
 
 1. Boss klickt "Organisation" in der Navigation
 
-|Funktionale Anforderungen   |<<F2000>>
+|Funktionale Anforderungen   |<<F132>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC2001.svg["UC2001", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -164,7 +164,7 @@ image::./models/analysis/Sequenzdiagramme/UC2001.svg["UC2001", 100%, 100%, pdfwi
 
 1. Boss klickt "Organisation" in der Navigation
 
-|Funktionale Anforderungen   |<<F2002>>
+|Funktionale Anforderungen   |<<F133>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC2002.svg["UC2002", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -186,7 +186,7 @@ image::./models/analysis/Sequenzdiagramme/UC2002.svg["UC2002", 100%, 100%, pdfwi
 4. Caterer bestätigt und wird weitergeleitet
 5. Abrechnung wird bearbeitet und Caterer wird auf "Catering" weitergeleitet
 
-|Funktionale Anforderungen   |<<F3000>>
+|Funktionale Anforderungen   |<<F134>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC3000.svg["UC3000", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -204,7 +204,7 @@ image::./models/analysis/Sequenzdiagramme/UC3000.svg["UC3000", 100%, 100%, pdfwi
 
 1. Festivalleiter klickt "Catering" in Navigation
 
-|Funktionale Anforderungen   |<<F3000>>
+|Funktionale Anforderungen   |<<F117>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC3001.svg["UC3001", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -226,7 +226,7 @@ image::./models/analysis/Sequenzdiagramme/UC3001.svg["UC3001", 100%, 100%, pdfwi
 4. Ticketverkäufer bestätigt und wird weitergeleitet
 5. Ticketkauf wird bearbeitet und Ticketverkäufer wird auf auf eine Seite weitergeleitet, auf der er das Ticket ausdrucken kann.
 
-|Funktionale Anforderungen   |<<F4000>>
+|Funktionale Anforderungen   |<<F125>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC4000.svg["UC4000", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -244,7 +244,7 @@ image::./models/analysis/Sequenzdiagramme/UC4000.svg["UC4000", 100%, 100%, pdfwi
 
 1. Ticketverkäufer klickt "Ausdrucken"
 
-|Funktionale Anforderungen   |<<F4001>>
+|Funktionale Anforderungen   |<<F126>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC4001.svg["UC4001", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -262,7 +262,7 @@ image::./models/analysis/Sequenzdiagramme/UC4001.svg["UC4001", 100%, 100%, pdfwi
 
 1. Planer klickt "Planung" in der Navigation
 
-|Funktionale Anforderungen   |<<F5000>>
+|Funktionale Anforderungen   |<<F131>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC5000.svg["UC5000", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -284,7 +284,7 @@ image::./models/analysis/Sequenzdiagramme/UC5000.svg["UC5000", 100%, 100%, pdfwi
 4. Planer bestätigt Formular un wird weitergeleitet
 5. Änderung wird bearbeitet und Planer wird auf "Festival" weitergeleitet
 
-|Funktionale Anforderungen   |<<F5001>>
+|Funktionale Anforderungen   |<<F106>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC5001.svg["UC5001", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -302,7 +302,7 @@ image::./models/analysis/Sequenzdiagramme/UC5001.svg["UC5001", 100%, 100%, pdfwi
 
 1. User klickt "Festival" in der Navigation
 
-|Funktionale Anforderungen   |<<F6000>>
+|Funktionale Anforderungen   |<<F105>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC6000.svg["UC6000", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -324,7 +324,7 @@ image::./models/analysis/Sequenzdiagramme/UC6000.svg["UC6000", 100%, 100%, pdfwi
 
 1. User klickt "Festival" in der Navigation
 
-|Funktionale Anforderungen   |<<F6001>>
+|Funktionale Anforderungen   |<<F112>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC6001.svg["UC6001", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -342,7 +342,7 @@ image::./models/analysis/Sequenzdiagramme/UC6001.svg["UC6001", 100%, 100%, pdfwi
 
 1. Festivalleiter klickt "Festival" in der Navigation
 
-|Funktionale Anforderungen   |<<F6002>>
+|Funktionale Anforderungen   |<<F121>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC6002.svg["UC6002", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -360,7 +360,7 @@ image::./models/analysis/Sequenzdiagramme/UC6002.svg["UC6002", 100%, 100%, pdfwi
 
 1. Festivalleiter klickt "Festival" in der Navigation
 
-|Funktionale Anforderungen   |<<F6003>>
+|Funktionale Anforderungen   |<<F116>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC6003.svg["UC6003", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -378,7 +378,7 @@ image::./models/analysis/Sequenzdiagramme/UC6003.svg["UC6003", 100%, 100%, pdfwi
 
 1. Festivalleiter klickt "Festival" in der Navigation
 
-|Funktionale Anforderungen   |<<F6004>>
+|Funktionale Anforderungen   |<<F115>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC6004.svg["UC6004", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -399,7 +399,7 @@ image::./models/analysis/Sequenzdiagramme/UC6004.svg["UC6004", 100%, 100%, pdfwi
 3. Festivalleiter bestätigt Formular und wird weitergeleitet
 4. Nachbestellung wird verarbeitet und Festivalleiter wird auf "Lager" weitergeleitet
 
-|Funktionale Anforderungen   |<<F7000>>
+|Funktionale Anforderungen   |<<F118>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC7000.svg["UC7000", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -417,7 +417,7 @@ image::./models/analysis/Sequenzdiagramme/UC7000.svg["UC7000", 100%, 100%, pdfwi
 
 1. Festivalleiter klickt "Lager" in der Navigation
 
-|Funktionale Anforderungen   |<<F7001>>
+|Funktionale Anforderungen   |<<F117>>
 |===
 image::./models/analysis/Sequenzdiagramme/UC7001.svg["UC7001", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -468,6 +468,10 @@ Die Tabellen enthalten:
 |[[F129]] <<F129>> | 0.1 | Personal abrechnen | Das Gehalt muss für das Personal berechnet und ausgezahlt werden können.
 |[[F130]] <<F130>> | 0.1 | Veranstaltungsleiter abrechnen  | Das Gehalt muss für den Veranstaltungsleiter berechnet und ausgezahlt werden können.
 |[[F131]] <<F131>> | 0.1 | Gegenstände mieten | Gegenstände müssen unter Angabe des Typs und der Anzahl bestellt, zugeordnet und bezahlt werden können.
+|[[F132]] <<F132>> | 0.1 | betriebswirtschaftliche Daten anzeigen | Der Boss muss in der Lage sein sich die betriebswirtschaftlichen Daten anzeigen zu lassen.
+|[[F133]] <<F133>> | 0.1 | Aktive Accounts anzeigen | Der Boss muss in der Lage sein alle angemeldeten Accounts sich anzeigen zu lassen.
+|[[F134]] <<F134>> | 0.1 | Produkt abrechnen | Das Cateringpersonal muss am Terminal ein Produkt verkaufen können. Lager und betriebswirtschaftliche Daten müssen entsprechend angepasst werden.
+|[[F135]] <<F135>> | 0.1 | Kostenaufstellung | Das Management muss sich jederzeit eine Kostenaufstellung anzeigen lassen können. Diese muss gegliedert sein in Personal, Gagen, Mieten und sonstiges.
 |===
 === Kann-Kriterien
 Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
@@ -505,7 +509,7 @@ Die folgende Tabelle enthält nicht funtionale Qualitätsziele und eine Einstufu
 |[[NF301]] <<NF301>> | 0.1 | uptime | Das System soll 99,5% der Zeit erreichbar sein
 |[[NF302]] <<NF302>> | 0.1 | Mehrsprachig | Das System soll die Möglichkeit haben in mehreren Sprachen benutzt zu werden
 |[[NF303]] <<NF303>> | 0.1 | Sicherheit - Accounts | Die Accountdaten sollen ein Mindestlevel an Sicherheit haben durch Mindestlänge und Benutzen von Groß- u. Kleinbuchstaben, Zahlen sowie Sonderzeichen
-|[[NF304]] <<NF304>> | 0.1 | Sicherheit - Data | Die betriebswirtschaftlichen Daten sollen nur verschlüsselt gespeichert werden
+|[[NF304]] <<NF304>>   | 0.1 | Sicherheit - Data | Die betriebswirtschaftlichen Daten sollen nur verschlüsselt gespeichert werden
 |===
 
 == GUI Prototyp
