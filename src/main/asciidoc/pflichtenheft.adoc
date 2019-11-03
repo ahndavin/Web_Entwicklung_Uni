@@ -1124,6 +1124,7 @@ Die folgende Tabelle enthält nicht funtionale Qualitätsziele und eine Einstufu
 |===
 
 == GUI Prototyp
+
 Startbildschirm / Index --> ist auf jedem Terminal vor dem Einloggen zu sehen ist.
 
 image::./models/analysis/Index.PNG["Index", 100%, 100%, pdfwidth=100%, align=center]
@@ -1168,6 +1169,7 @@ image::./models/analysis/14. Der Manager angemeldete Mitarbeiter.PNG["14. Der Ma
 
 
 === Überblick: Dialoglandkarte
+
 image::./models/analysis/Dialoglandkarte.PNG["Dialoglandkarte", 100%, 100%, pdfwidth=100%, align=center]
 
 
