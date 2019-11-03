@@ -533,7 +533,11 @@ Bildschirm der Planungsabteilung beim einsehen der Kostenabrechnung --> listet d
 
 image::./models/analysis/5. Planungsabteilung Kostenabrechnung.PNG["5. Planungsabteilung Kostenabrechnung", 100%, 100%, pdfwidth=100%, align=center]
 
+Bildschirm des Terminals beim Kartenkauf --> zeigt was der Kunde sieht beim Kaufen von Karten und was Mitarbeiter sehen beim Verkaufen von Karten
+
 image::./models/analysis/6. Karten Index.PNG["6. Karten Index.PNG", 100%, 100%, pdfwidth=100%, align=center]
+
+Zeigt das Terminal des Catering Personals --> Zeigt Speisen und Getränke und die Abrechnung der individuellen Posten.
 
 image::./models/analysis/7. Catering Index.PNG["7. Catering Index", 100%, 100%, pdfwidth=100%, align=center]
 
