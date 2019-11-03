@@ -1153,17 +1153,31 @@ Zeigt das Terminal des Catering Personals --> Zeigt Speisen und Getränke und di
 
 image::./models/analysis/7. Catering Index.PNG["7. Catering Index", 100%, 100%, pdfwidth=100%, align=center]
 
+Zeigt das Terminal des Festivalleiters --> Zeigt aktuelle Besucherzahlen und eventuell wichtige Informationen
+
 image::./models/analysis/8. Festivalleiter Index.PNG["8. Festivalleiter Index", 100%, 100%, pdfwidth=100%, align=center]
+
+Zeigt das Lager des Festivals --> Ermöglicht dem Festivalleiter Speisen und Getränke nachzubestellen und das Lieferdatum einzusehen.
 
 image::./models/analysis/9. Festivalleiger Lager.PNG["9. Festivalleiger Lager", 100%, 100%, pdfwidth=100%, align=center]
 
+Zeigt die aktuellen Cateringzahlen des Festivals --> Zeigt wieviel jeder Stand erwirtschaftet hat und wieviel pro Stunde verkauft wird.
+
 image::./models/analysis/10. Festivalleiter Catering.PNG["10. Festivalleiter Catering", 100%, 100%, pdfwidth=100%, align=center]
+
+Zeigt den aktuellen Chat des Festivalleiters mit den Mitarbeitern --> Ermöchlicht dem Festivalleiter mit seinen Mitarbeitern zu interagieren.
 
 image::./models/analysis/11. Chat von Mitarbeitern.PNG["11. Chat von Mitarbeitern", 100%, 100%, pdfwidth=100%, align=center]
 
+Zeigt die Datenvisualisierung für den Festivalleiter --> Zeigt die betriebswirtschaftlichen Daten und visualiert diese.
+
 image::./models/analysis/12. Der Manager Datenvisualisierung.PNG["12. Der Manager Datenvisualisierung", 100%, 100%, pdfwidth=100%, align=center]
 
+Zeigt das Interface des Managers beim verteilen der Logins --> Ermöglicht bestimmte Logins für bestimmte Bereiche zu verteilen.
+
 image::./models/analysis/13. Der Manager Loginvergabe.PNG["13. Der Manager Loginvergabe", 100%, 100%, pdfwidth=100%, align=center]
+
+Zeigt das Interface des Managers um einzusehen, wer gerade in welchem Bereich online ist.
 
 image::./models/analysis/14. Der Manager angemeldete Mitarbeiter.PNG["14. Der Manager angemeldete Mitarbeiter", 100%, 100%, pdfwidth=100%, align=center]
 
