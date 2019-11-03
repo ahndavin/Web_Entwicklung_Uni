@@ -533,6 +533,14 @@ image::./models/analysis/9. Festivalleiger Lager.PNG["9. Festivalleiger Lager", 
 
 image::./models/analysis/10. Festivalleiter Catering.PNG["10. Festivalleiter Catering", 100%, 100%, pdfwidth=100%, align=center]
 
+image::./models/analysis/11. Chat von Mitarbeitern.PNG["11. Chat von Mitarbeitern", 100%, 100%, pdfwidth=100%, align=center]
+
+image::./models/analysis/12. Der Manager Datenvisualisierung.PNG["12. Der Manager Datenvisualisierung", 100%, 100%, pdfwidth=100%, align=center]
+
+image::./models/analysis/13. Der Manager Loginvergabe.PNG["13. Der Manager Loginvergabe", 100%, 100%, pdfwidth=100%, align=center]
+
+image::./models/analysis/14. Der Manager angemeldete Mitarbeiter.PNG["14. Der Manager angemeldete Mitarbeiter", 100%, 100%, pdfwidth=100%, align=center]
+
 
 === Überblick: Dialoglandkarte
 image::./models/analysis/Dialoglandkarte.PNG["Dialoglandkarte", 100%, 100%, pdfwidth=100%, align=center]
