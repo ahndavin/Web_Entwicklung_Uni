@@ -1533,8 +1533,8 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 - Die Produkte werden zum Lagerbestand addiert.
 |===
 
-[[AT7001-1]]
 [cols="1h, 4"]
+[[AT7001-1]]
 |===
 |ID                  |<<AT7001-1>>
 |Anwendungsfall      |<<UC7001>>
