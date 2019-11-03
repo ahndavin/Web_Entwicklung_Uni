@@ -570,12 +570,32 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 [options="header"]
 |===
 |Klasse/Enumeration |Beschreibung |
-|…                  |…            |
+|Area                  |Areas sind einzelne Bestandteile einer Festival-Location, die verschiedene Funktionen (Type) einnehmen können.
+|CateringPersonal      |CateringPersonal ist ein Personaltyp, welcher für den Verkauf von Lebensmitteln auf dem Festival zuständig ist.
+|Contract              |Ein Contract beschreibt einen Vertrag mit einem Künstler und hält die ausgehandelten Konditionen fest.
+|ContractManager       |Der ContractManager verwaltet die Contracts und kann eine Kostenaufstellung über diese liefern.
+|EconomicManager       |Der EconomicManager verwaltet die Kosten- und Gewinnpunkte, die mit dem Festival verbunden sind und kann eine Gesamtübersicht erstellen.
+|Festival              |Das Festival beschreibt das gesamte Event und beinhaltet einige Getter-Funktionen, über welche sich allgemeine Informationen über das Festival abfragen lassen.
+||Festivalmanager       |Der Festivalmanager verwaltet die einzelnen Festivals.
+||InventoryManager      |Der InventoryManager dient als Lagersystem, in dem die vorhandenen Items eingesehen, verwaltet und nachbestellt werden können.
+||Item                  |Das Item stellt ein zugekauftes Produkte dar, dabei kann es sich um Lebensmittel oder auch um gemietete Dinge wie Bühnen handeln.
+||Layout                |Das Layout beinhaltet einen graphischen Grundriss des Festivalgeländes.
+||Location              |Die Location fasst alle Areas zusammen und gibt dabei eine Übersicht über die Anzahl der Besucher, Bühnen, etc.|Login                 |Ein Login beschreibt den Login-Vorgang eines Mitarbeiters mit seinen Zugangsdaten in ein Terminal.
+||Manager               |Der Manager ist ein Personaltyp, der das Festival leitet und demtentsprechende Berechtigungen über Personal, Lager und Lineup hat.|Message               |Eine Message beschreibt eine Nachricht von einem Mitarbeiter an einen anderen.
+||MessageController     |Der MessageController verwaltet die Nachrichten und erlaubt es seinen Nutzern, die für ihn bestimmten Messages abzurufen.
+||NegativeAmount        |
+||PositiveAmount        |
+||Security              |
+||Staff                 |
+||Staffmanager          |
+||Stage                 |
+||Sort                  |
+||Ticket                |
+||Ticketmanager         ||TicketSalesman        ||Type                  |
 |===
-
 == Akzeptanztestfälle
 Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt. Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Für jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
-Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
+JJeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
 
 == Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
