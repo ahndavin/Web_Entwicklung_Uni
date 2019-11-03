@@ -96,14 +96,14 @@ Das Systemkontextdiagramm zeigt das geplante System in seiner Umgebung. Dies umf
 
 
 [[context_diagram]]
-image:diagrams/images/festivalmanager_context.svg[context diagram]
+image:models/analysis/Systemgrenze_und_Top-Level-Architektur/festivalmanager_context.svg[context diagram]
 
 === Top-Level-Architektur
 
 Top-Level Ansicht des Systems.
 
 [[TLA]]
-image:diagrams/images/festivalmanager_top-level.svg[top-level architecture]
+image:models/analysis/Systemgrenze_und_Top-Level-Architektur/festivalmanager_top-level.svg[top-level architecture]
 
 == Anwendungsfälle
 
