@@ -22,11 +22,71 @@ Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
 Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht werden sollen.
 
 == Produktnutzung
-In welchem Kontext soll das System später genutzt werden? Welche Rahmenbedingungen gelten?
-Zusätzlich kurze Einleitung für fachfremde Personen
+
+Dieser Abschnitt gibt einen Überblick darüber, wie das Produkt nach Fertigstellung und unter welchen Umständen verwendet werden soll.
+
+Das System wird von einer Firma für Festivals verwendet, damit die Firma sich um seine Festivals zu kümmern. Die Software soll auf einem Server laufen und interessierten Kunden(Festivalbesucher) über das Internet (über einen Browser) rund um die Uhr zur Verfügung stehen.
+
+Das System muss für die folgenden Browser zugänglich und optisch optimiert sein:
+
+- macOS Safari, Version 13.0.3+
+- Google Chrome, Version 78.0.3904.70+
+
+Die Hauptnutzer der Software sind Mitarbeiter in einer Firma, die angeblich typische Website-Navigationsschema kennen.
+
+Alle Daten müssen dauerhaft in einer Datenbank gespeichert sein und über die Application erreichbar sein (z.B. sollten für einen Chef keine SQL-Kenntnisse erforderlich sein).
 
 == Interessensgruppen (Stakeholders)
-Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
+
+Hier ist jede Gruppe oder Einzelperson (real oder juristisch) aufgeführt, welche Einfluss auf die Anforderungen des Systems hat.
+In der nachstehenden Tabelle sind diese Stakeholder aufgelistet, eine Priorität zugewiesen und ihre übergeordneten Ziele beschrieben.
+Die zugewiesenen Prioritäten reichen von 1 (niedrigste Priorität) bis 5 (höchste Priorität).
+
+[options="header", cols="2, ^1, 4, 4"]
+|===
+|Name
+|Priorität (1..5)
+|Beschreibung
+|Ziele
+
+|FVIV GmbH
+|5
+|Der Hauptkunde dieses Projekts
+a|
+- Prozesse automatisieren
+- Fehlerfreies Arbeiten
+
+|Festivalbesucher
+|2
+|Der nicht angemeldete Nutzer dieses Programms
+a|
+- Gutes Anwendererlebnis
+- Übersichtliche Seite
+- Schnelle Reaktion im System
+
+|Mitarbeiter
+|4
+|Die angemeldeten Nutzer des Programms
+a|
+- Fehlerfreies Arbeiten
+- Übersichtliche Anordnung der Funktion
+
+|Administratoren
+|3
+|Benutzer, die das Programm verwalten sowie später für die Unterhaltung verantwortlich sind.
+a|
+- Möglichkeit zur Übersicht aller Daten im System
+- Prozesse verwalten
+- Geringer Unterhaltungsaufwand
+
+|Entwickler
+|3
+|Personen, die entweder das Programm implementieren 
+a|
+- Leicht erweiterbares Programm
+- Gute Debugging-Mechanismen
+
+|===
 
 == Systemgrenze und Top-Level-Architektur
 
