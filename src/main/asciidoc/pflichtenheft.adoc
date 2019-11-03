@@ -61,7 +61,7 @@ Akteure sind Nutzer des Systems oder benachbarter Systeme, die auf das System zu
 [[Festivalleiter]]
 |**<<Festivalleiter>>**  | Jeder registrierte und authentifizierte Nutzer, mit der Rolle "DIRECTOR".
 [[Boss]]
-|**<<Boss>>** | Jeder registrierte und authentifizierte Nutzer, mit der Rolle "BOSS".
+|**<<Boss>>** | Jeder registrierte und authentifizierte Nutzer, mit der Rolle "Boss".
 |===
 
 === Überblick Anwendungsfalldiagramm
@@ -120,7 +120,7 @@ image::./models/analysis/Sequenzdiagramme/UC1001.svg["UC1001", 100%, 100%, pdfwi
 |Beschreibung                |Ein Boss soll Accounts für seine Angestellten erstellen können.
 |Akteure                     |<<Boss>>
 |Auslöser                    |Boss möchte Angestellten Zugriff auf versteckte Funktionen erlauben.
-|Voraussetzung(en)          a|User hat die Rolle "BOSS"
+|Voraussetzung(en)          a|User hat die Rolle "Boss"
 |Wesentliche Schritte       a|
 
 1. Boss klickt "Organisation" in der Navigation
@@ -142,7 +142,7 @@ image::./models/analysis/Sequenzdiagramme/UC2000.svg["UC2000", 100%, 100%, pdfwi
 |Beschreibung                |Ein Boss soll betriebswirtschaftliche Daten abrufen wie Umsatz, Ausgaben, Gewinn abrufen können.
 |Akteure                     |<<Boss>>
 |Auslöser                    |Boss möchte Ein- und Ausgaben einsehen.
-|Voraussetzung(en)          a|User hat die Rolle "BOSS"
+|Voraussetzung(en)          a|User hat die Rolle "Boss"
 |Wesentliche Schritte       a|
 
 1. Boss klickt "Organisation" in der Navigation
@@ -680,7 +680,7 @@ Akteure sind Nutzer des Systems oder benachbarter Systeme, die auf das System zu
 [[Festivalleiter]]
 |**<<Festivalleiter>>**  | Jeder registrierte und authentifizierte Nutzer, mit der Rolle "DIRECTOR".
 [[Boss]]
-|**<<Boss>>** | Jeder registrierte und authentifizierte Nutzer, mit der Rolle "BOSS".
+|**<<Boss>>** | Jeder registrierte und authentifizierte Nutzer, mit der Rolle "Boss".
 |===
 
 === Überblick Anwendungsfalldiagramm
@@ -739,7 +739,7 @@ image::./models/analysis/Sequenzdiagramme/UC1001.svg["UC1001", 100%, 100%, pdfwi
 |Beschreibung                |Ein Boss soll Accounts für seine Angestellten erstellen können.
 |Akteure                     |<<Boss>>
 |Auslöser                    |Boss möchte Angestellten Zugriff auf versteckte Funktionen erlauben.
-|Voraussetzung(en)          a|User hat die Rolle "BOSS"
+|Voraussetzung(en)          a|User hat die Rolle "Boss"
 |Wesentliche Schritte       a|
 
 1. Boss klickt "Organisation" in der Navigation
@@ -761,7 +761,7 @@ image::./models/analysis/Sequenzdiagramme/UC2000.svg["UC2000", 100%, 100%, pdfwi
 |Beschreibung                |Ein Boss soll betriebswirtschaftliche Daten abrufen wie Umsatz, Ausgaben, Gewinn abrufen können.
 |Akteure                     |<<Boss>>
 |Auslöser                    |Boss möchte Ein- und Ausgaben einsehen.
-|Voraussetzung(en)          a|User hat die Rolle "BOSS"
+|Voraussetzung(en)          a|User hat die Rolle "Boss"
 |Wesentliche Schritte       a|
 
 1. Boss klickt "Organisation" in der Navigation
@@ -1226,6 +1226,281 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 
 Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt. Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Für jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
 Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT1000-1>>
+|Anwendungsfall      |<<UC1000>>
+|Voraussetzungen     |Das System hat registrierte Nutzer, Nutzer ist nicht angemeldet.
+|Ereignis            |Der Nutzer gibt gültige Anmeldedaten (Nutzername und Passwort) ein und klickt auf "Login".
+|Erwartetes Ergebnis |
+- Der Nutzer ist mit dem Account entsprechend der Anmeldedaten angemeldet.
+- Der Nutzer hat nun Zugriff auf die Funktionen diese Programms, die für seinen Personaltyp freigeschalten sind.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT1001-1>>
+|Anwendungsfall      |<<UC1001>>
+|Voraussetzungen     |Der Nutzer ist angemeldet.
+|Ereignis            |Der Nutzer klickt auf "Logout".
+|Erwartetes Ergebnis |
+- Der Nutzer ist nun nicht mehr mit seinem Account angemeldet.
+- Ihm stehen nun nur noch die Funktionen zur Verfügung, für die keine Authentifizierung benötigt ist.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT2000-1>>
+|Anwendungsfall      |<<UC2000>>
+|Voraussetzungen     |
+- Der ausführende Benutzer hat die Rolle Boss.
+- Die Nutzerdaten, welche für den neuen Account verwendet werden sollen, sind noch nicht im System verwendet.
+|Ereignis            |Der Boss gibt die neuen Nutzerdaten in das dafür vorgesehene Formular ein und bestätigt mit "Erstellen".
+|Erwartetes Ergebnis |
+- Es wird ein neuer Benutzer mit der angegebenen Rolle (und den damit einhergehenden Berechtigungen) und den eingegebenen Nutzerdaten erstellt.
+- Der Boss wird auf die Personalverwaltungsseite weitergeleitet.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT2000-2>>
+|Anwendungsfall      |<<UC2000>>
+|Voraussetzungen     |
+- Der ausführende Benutzer hat nicht die Rolle Boss.
+- Die Nutzerdaten, welche für den neuen Account verwendet werden sollen, sind noch nicht im System verwendet.
+|Ereignis            |Der Benutzer kann auf das von ihm gesuchte Formular nicht zugreifen.
+|Erwartetes Ergebnis |
+- Es wird ein kein neuer Benutzer erstellt.
+- Der angemeldete Benutzer bekommt eine Fehlerbeldung.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT2000-3>>
+|Anwendungsfall      |<<UC2000>>
+|Voraussetzungen     |
+- Der ausführende Benutzer hat die Rolle Boss.
+- Die Nutzerdaten, welche für den neuen Account verwendet werden sollen, sind schon von einem anderen Nutzer im System belegt.
+|Ereignis            |Der Boss gibt die neuen Nutzerdaten in das dafür vorgesehene Formular ein und bestätigt mit "Erstellen".
+|Erwartetes Ergebnis |
+- Der Boss bekommt eine Mitteilung, dass die von ihm eingegebenen Nutzerdaten bereits belegt sind.
+- Der Boss wird zurück auf das Eingabeformular geleitet.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT2001-1>>
+|Anwendungsfall      |<<UC2001>>
+|Voraussetzungen     |Der Nutzer ist als Boss angemeldet und es gibt das Festival, dessen Daten abgerufen werden sollen.
+|Ereignis            |Der Boss klickt auf den entsprechenden Reiter im Menü. 
+|Erwartetes Ergebnis |Der Boss wird auf eine neue Seite weitergeleitet, auf der alle Ausgaben und Einnahmen aufgelistet und eine Gesamtsumme berechnet wird.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT2002-1>>
+|Anwendungsfall      |<<UC2002>>
+|Voraussetzungen     |Der Nutzer ist als Boss angemeldet, es gibt authentifizierte Nutzer im System.
+|Ereignis            |Der Boss klickt auf den entsprechenden Reiter im Menü.
+|Erwartetes Ergebnis |Der Boss wird auf eine neue Seite weitergeleitet, auf der alle angemeldeten Nutzer des Sytems angzeigt werden.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT2002-2>>
+|Anwendungsfall      |<<UC2002>>
+|Voraussetzungen     |Der Nutzer ist als Boss angemeldet, es gibt außer ihm keine weiteren authentifizierte Nutzer im System.
+|Ereignis            |Der Boss klickt auf den entsprechenden Reiter im Menü.
+|Erwartetes Ergebnis |Der Boss wird auf eine neue Seite weitergeleitet, auf der nur er als angemeldeter Nutzer des Sytems angzeigt wird.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT3000-1>>
+|Anwendungsfall      |<<UC3000>>
+|Voraussetzungen     |
+- Der Nutzer ist als Catering-Mitarbeiter angemeldet 
+- Es gibt noch Artikel im Lagen, die verkauft werden können.
+|Ereignis            |Der Catering-Mitarbeiter wählt auf der Catering-Seite das entsprechende Produkt aus und gibt dazu die gewünschte Menge an.
+|Erwartetes Ergebnis |
+- Die entsprechende Anzahl wurde von dem Produkt im Lager abgezogen.
+- Nach dem Bestätigen des Auftrags wird der Nutzer zurück zur Catering-Seite geleitet.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT3000-2>>
+|Anwendungsfall      |<<UC3000>>
+|Voraussetzungen     |
+- Der Nutzer ist als Catering-Mitarbeiter angemeldet.
+- Es gibt nicht mehr genug von dem gewünsten Artikel im Lager.
+|Ereignis            |Der Catering-Mitarbeiter wählt auf der Catering-Seite das entsprechende Produkt aus und gibt dazu die gewünschte Menge an.
+|Erwartetes Ergebnis |
+- Der Catering-Mitarbeiter bekommt eine Fehlermeldung und die noch verfügbare Anzahl des Produktes, die noch im Lager sind.
+- Der Nutzer wird zurück zur Catering-Seite geleitet.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT3001-1>>
+|Anwendungsfall      |<<UC3000>>
+|Voraussetzungen     |Der Nutzer ist als Boss im System angemeldet.
+|Ereignis            |Der Boss klickt auf den entsprechenden Reiter in der Navigation. 
+|Erwartetes Ergebnis |Der Nutzer wird auf eine neue Seite weitergeleitet, die die verkauften Produkte auflistet, dazu die Anzahl und die Stückzahl der verbleibenden im Lager
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT4000-1>>
+|Anwendungsfall      |<<UC4000>>
+|Voraussetzungen     |
+- Der Ticketverkauf ist freigegeben.
+- Es sind noch mindestens drei Tage bis zum Festivalbeginn.
+- Es sind noch Tickets vom richtigen Typ verfügbar
+|Ereignis            |Der angemeldete Nutzer wählt die gewünschte Art und Anzahl der Tickets.
+|Erwartetes Ergebnis |Die Tickets werden im System als verkaufte Tickets registriert.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT4000-2>>
+|Anwendungsfall      |<<UC4000>>
+|Voraussetzungen     |
+- Der Ticketverkauf ist freigegeben.
+- Es sind weniger als drei Tage bis zum Festivalbeginn.
+|Ereignis            |Der angemeldete Nutzer wählt die gewünschte Art und Anzahl der Tickets.
+|Erwartetes Ergebnis |Der Verkäufer erhält eine Fehlermeldung, welche auf die Abendkasse verweist.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT4000-3>>
+|Anwendungsfall      |<<UC4000>>
+|Voraussetzungen     |
+- Der Ticketverkauf ist freigegeben.
+- Es sind noch mindestens drei Tage bis zum Festivalbeginn.
+- Es sind keine Tickets vom richtigen Typ verfügbar
+|Ereignis            |Der angemeldete Nutzer wählt die gewünschte Art und Anzahl der Tickets.
+|Erwartetes Ergebnis |Der Verkäufer erhält eine Fehlermeldung und wird zurück auf die Verkaufsseite verwiesen.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT4001-1>>
+|Anwendungsfall      |<<UC4001>>
+|Voraussetzungen     |Die Tickets sind als gekauft im System registriert.
+|Ereignis            |Der Verkäufer gibt die Ticketnummer in das System ein und bestätigt die Eingabe.
+|Erwartetes Ergebnis |Der Verkäufer wird auf eine neue Seite geleitet, auf welcher das Ticket angezeigt wird und ausgedruckt werden kann.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT5000-1>>
+|Anwendungsfall      |<<UC5000>>
+|Voraussetzungen     |
+- Ein Festival wurde angelegt.
+- Der Nutzer ist als Management-Mitglied authentifiziert. 
+|Ereignis            |Der Nutzer klickt auf den Button in der Navigation.
+|Erwartetes Ergebnis |Der Nutzer wird auf eine neue Seite geleitet, auf der die Kosten- und Gewinnpunkte aufgelistet sind.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT5001-1>>
+|Anwendungsfall      |<<UC5001>>
+|Voraussetzungen     |Ein Festival wurde erstellt.
+|Ereignis            |Der Planer wählt in der Übersicht den gewünschten Bereich aus, der Verändert werden soll.
+|Erwartetes Ergebnis |Es öffnet sich ein neues Fenster, in dem der Bereich bearbeitet werden kann.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT5001-2>>
+|Anwendungsfall      |<<UC5001>>
+|Voraussetzungen     |Das Fenster zur Bearbeitung eines Bereichs ist geöffnet.
+|Ereignis            |Die Konfiguration des Bereichs wird vom Planer verändert und mit "OK" bestätigt.
+|Erwartetes Ergebnis |
+- Die aktualisierte Konfiguration wird in die Location übernommen.
+- Der Planer wird auf die Übersichts-Seite weitergeleitet.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT6000-1>>
+|Anwendungsfall      |<<UC6000>>
+|Voraussetzungen     |
+- Ein Festival mit einem Lageplan muss erstellt werden.
+- Der Nutzer darf nicht authentifiziert sein.
+|Ereignis            |Der Nutzer ruft den Festivalplan auf.
+|Erwartetes Ergebnis |Der Nutzer wird auf eine Seite weitergeleitet, auf der der Festivalplan angezeigt wird.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT6001-1>>
+|Anwendungsfall      |<<UC6001>>
+|Voraussetzungen     |
+- Ein Festival mit einem Lineup muss erstellt werden.
+- Der Nutzer darf nicht authentifiziert sein.
+|Ereignis            |Der Nutzer ruft das Lineup auf.
+|Erwartetes Ergebnis |Der Nutzer wird auf eine Seite weitergeleitet, auf der das Lineup angezeigt wird.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT6002-1>>
+|Anwendungsfall      |<<UC6002>>
+|Voraussetzungen     |Der Nutzer muss als Festivalleiter eingeloggt sein.
+|Ereignis            |Der Festivalleiter klickt auf den Button "Nachrichten".
+|Erwartetes Ergebnis |Er wird auf eine neue Seite weitergeleitet, auf der die Mitteilungen aufgelistet werden.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT6003-1>>
+|Anwendungsfall      |<<UC6003>>
+|Voraussetzungen     |
+- Der Nutzer muss als Festivalleiter eingeloggt sein.
+- Das Festival muss angelegt sein.
+|Ereignis            |Der Festivalleiter ruft über die Navigationsleiste die Besucherzahlen auf.
+|Erwartetes Ergebnis |Ihm wird die Besucherzahlen angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT6004-1>>
+|Anwendungsfall      |<<UC6004>>
+|Voraussetzungen     |
+- Der Nutzer ist als Festivalleiter angemeldet sein.
+- Es muss ein Festival mit mindestens einer Bühne geben.
+|Ereignis            |Der Festivalleiter klickt auf den Button zur aktuellen Bühnenbelegung.
+|Erwartetes Ergebnis |Ihm wird die Bühnenbelegung präsentiert.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT7000-1>>
+|Anwendungsfall      |<<UC7000>>
+|Voraussetzungen     |
+- Der Nutzer ist als Festivalleiter angemeldet.
+- Es gibt ein Festival mit einem Lager.
+|Ereignis            |Der Festivalleiter gibt in dem entsprechenden Formular das zu bestellende Produkt und die dazugehörige Menge an.
+|Erwartetes Ergebnis |
+- Die Kosten werden als Kostenpunkt der Kostenaufstellung hinzugefügt.
+- Die Produkte werden zum Lagerbestand addiert.
+|===
+
+[cols="1h, 4"]
+|===
+|ID                  |<<AT7001-1>>
+|Anwendungsfall      |<<UC7001>>
+|Voraussetzungen     |
+- Der Nutzer ist als Festivalleiter angemeldet.
+- Es gibt ein Festival mit einem Lager.
+|Ereignis            |Der Festivalleiter ruft über einen Button den Lagerbestand ab.
+|Erwartetes Ergebnis |Er wird auf eine Seite weitergeleitet, auf der ihm alle gelagerten Produkte und ihre Quantität angezeigt wird.
+|===
 
 == Glossar
 
