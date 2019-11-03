@@ -1197,12 +1197,30 @@ image::./models/analysis/Dialoglandkarte.PNG["Dialoglandkarte", 100%, 100%, pdfw
 
 
 === Dialogbeschreibung
-Für jeden Dialog:
 
-1. Kurze textuelle Dialogbeschreibung eingefügt: Was soll der jeweilige Dialog? Was kann man damit tun? Überblick?
-2. Maskenentwürfe (Screenshot, Mockup)
-3. Maskenelemente (Ein/Ausgabefelder, Aktionen wie Buttons, Listen, …)
-4. Evtl. Maskendetails, spezielle Widgets
+-	Vom Index kommt man mittels Login zu der zugehörigen Seite, die je nach Login unterschiedlich ist.
+-	Ohne Login kann man den Festivalgeländeplan Button drücken um den Festivalplan zu sehen.
+Man kann außerdem oben swipen um  die verschiedenen Spielpläne zu sehen.
+-	Außerdem muss es den Besuchern möglich sein mittels Button auf den Karten Index zu kommen um Karten kaufen zu können, die sie bei der FVIV abholen können.
+
+
+-	Loggt man sich als Planungsabteilungsmitarbeiter ein kommt man zum Planungsabteilung Hauptmenü. Dort kann man mit dem Tab Termine anlegen verschiedene Termine planen an verschiedenen Locations und verschiedene Bereiche visuell einsehen.
+-	Außerdem kann die Planungsabteilung auch bestehende Festivals bearbeiten. Dort kann die Planungsabteilung einsehen, wie jede Location aufgebaut ist und gegebenenfalls Bereiche sperren. 
+-	Außerdem muss ein LineUp Button/Menü vorhanden sein um dem Planungsteam die Gelegenheit zu geben Künstler zu kontaktieren und das LineUp für bestimmte Termine zu planen.
+-	Zum Schluss kann die Planungsabteilung auch mittels des Buttons „Kostenaufstellung“ für die individuellen Bereiche die dazugehörigen Kosten einsehen.
+
+-	Den Mitarbeitern, die zuständig sind für den Ticketverkauf ist es möglich mit ihrem Login, Tickets auszudrucken oder zu bestellen, die sich je nach Wunsch unterscheiden zwischen Datum und Campingticket bzw. Tageskarte.
+
+
+-	Das Catering Team werden durch ihren Login zu einer Seite weitergeleitet, die die verschiedensten Speisen und Getränke listet und die dazugehöre Abrechnung aufzeigt.
+
+-	Der Festivalleiter hat auch einen individuellen Login, der ihm nach Login die aktuelle Bühnenbelegung und die aktuellen Besucherzahlen zeigt, neben anderen nützlichen Informationen. Er hat einen Mitarbeiter Chat Button und zwei weitere für Lager und aktuelle Verkaufszahlen.
+-	In dem Lagermenü kann er den aktuellen Lagerbestand einsehen und falls notwendig Lebensmittel oder Sonstiges nachbestellen und das Datum der zu erwartenden Lieferung sehen.
+-	Bei dem aktuelle Verkaufszahlen Menü sieht er die Einnahmen der einzelnen Cateringstände und den Ertrag pro Stunde.
+-	Der Festivalleiter hat einen Chat mit den Mitarbeitern um über die neusten Ereignisse informiert zu sein.
+
+-	Der Manager kommt nach seinem individuellen Login auf eine Seite, wo er entweder verschiedenste Daten für die einzelnen betriebswirtschaftliche Bereiche visualisieren kann, Logins an Mitarbeiter für die einzelnen Bereiche verteilen kann oder ein Fenster sieht, welcher Mitarbeiter in welchem Bereich gerade eingeloggt ist.
+
 
 == Datenmodell
 
