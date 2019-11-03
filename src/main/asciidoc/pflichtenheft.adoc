@@ -513,6 +513,7 @@ Die folgende Tabelle enthält nicht funtionale Qualitätsziele und eine Einstufu
 |===
 
 == GUI Prototyp
+Startbildschirm / Index, der auf jedem Terminal vor dem Einloggen zu sehen ist.
 image::./models/analysis/Index.PNG["Index", 100%, 100%, pdfwidth=100%, align=center]
 
 image::./models/analysis/2. Planungsabteilung Planung.PNG["2. Planungsabteilung Planung", 100%, 100%, pdfwidth=100%, align=center]
