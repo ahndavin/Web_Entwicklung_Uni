@@ -1236,8 +1236,39 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 |===
-|Klasse/Enumeration |Beschreibung |
-|…                  |…            |
+|Klasse/Enumeration |Beschreibung 
+|Area                  |Areas sind einzelne Bestandteile einer Festival-Location, die verschiedene Funktionen (Type) einnehmen können.
+|CateringPersonal      |CateringPersonal ist ein Personaltyp, welcher für den Verkauf von Lebensmitteln auf dem Festival zuständig ist.
+|Contract              |Ein Contract beschreibt einen Vertrag mit einem Künstler und hält die ausgehandelten Konditionen fest.
+|ContractManager       |Der ContractManager verwaltet die Contracts und kann eine Kostenaufstellung über diese liefern.
+|EconomicManager       |Der EconomicManager verwaltet die Kosten- und Gewinnpunkte, die mit dem Festival verbunden sind und kann eine Gesamtübersicht erstellen.
+|Festival              |Das Festival beschreibt das gesamte Event und beinhaltet einige Getter-Funktionen, über welche sich allgemeine Informationen über das Festival abfragen lassen.
+|Festivalmanager       |Der Festivalmanager verwaltet die einzelnen Festivals.
+|InventoryManager      |Der InventoryManager dient als Lagersystem, in dem die vorhandenen Items eingesehen, verwaltet und nachbestellt werden können.
+|Item                  |Das Item stellt ein zugekauftes Produkte dar, dabei kann es sich um Lebensmittel oder auch um gemietete Dinge wie Bühnen handeln.
+|Layout                |Das Layout beinhaltet einen graphischen Grundriss des Festivalgeländes.
+|Location              |Die Location fasst alle Areas zusammen und gibt dabei eine Übersicht über die Anzahl der Besucher, Bühnen, etc.
+|Login                 |Ein Login beschreibt den Login-Vorgang eines Mitarbeiters mit seinen Zugangsdaten in ein Terminal.
+|Manager               |Der Manager ist ein Personaltyp, der das Festival leitet und demtentsprechende Berechtigungen über Personal, Lager und Lineup hat.
+|Message               |Eine Message beschreibt eine Nachricht von einem Mitarbeiter an einen anderen.
+|MessageController     |Der MessageController verwaltet die Nachrichten und erlaubt es seinen Nutzern, die für ihn bestimmten Messages abzurufen.
+|NegativeAmount        |Ein NegativeAmount ist ein Kostenpunkt in der Gesamtübersicht der Ausgaben.
+|PositiveAmount        |Ein PositiveAmount ist eine Gewinnquelle in der Gesamtübersicht der Einnahmen
+|Security              |Ein Security ist ein Personaltyp, der sich um die Sicherheit und Ticketkontrollen kümmert.
+|Staff                 |Staff ist eine Verallgemeinerung der Personaltypen, welche die allgemeinen Eigenschaften für alle Angestellten vordefiniert.
+|Staffmanager          |Der Staffmanager ist das Personalverwaltungstool, worüber Personal angelegt und verwaltet werden kann, welches die Login-Daten abgleicht und die Kommunikation der Angestellten untereinander ermöglicht.
+|Stage                 |Eine Stage ist eine Bühne mit individuellem Programm (Lineup), welches über diese Klasse auch verändert und eingesehen werden kann. 
+|Sort                  |Sort gibt die verschiedenen Arten von Tickets an: +
+_DAYTICKET_: Ermöglicht den Zutritt nur an einem Tag; kein Zutritt zu Camping-Areas. + 
+_CAMPING_: Sind während des gesamten Festivals gültig; ermöglichen Zutritt zu den Camping-Areas.
+|Ticket                |Ein Ticket dient als Eintrittskarte zum Festival. Jedes Ticket ist einzigartig.
+|Ticketmanager         |Der Ticketmanager verwaltet die Tickets beim Verkauf und stellt sicher, dass ein Ticket nicht mehrfach benutzt werden kann.
+|TicketSalesman        |Ein TicketSalesman ist ein Personaltyp, der Tickets an Besucher verkaufen und ausdrucken kann.
+|Type                  |Der Type spezifiziert die Area und damit ihre Funktionen in der Location: + 
+_CAMPING_: Ist ein Bereich für Zelte und andere Schlafmöglichkeiten. +
+_PARK_: Dient zum Abstellen von Fahrzeugen, welche zur An- und Abreise verwendet werden. +
+_CATERING_: In diesem Bereich werden Cateringstände aufgestellt, Essen und Getränke verkauft. +
+_STAGE_: In diesem Bereich stehen eine oder mehrere Bühnen, auf denen die Künstler auftreten.
 |===
 
 == Akzeptanztestfälle
