@@ -513,15 +513,23 @@ Die folgende Tabelle enthält nicht funtionale Qualitätsziele und eine Einstufu
 |===
 
 == GUI Prototyp
-Startbildschirm / Index, der auf jedem Terminal vor dem Einloggen zu sehen ist.
+Startbildschirm / Index --> ist auf jedem Terminal vor dem Einloggen zu sehen ist.
 
 image::./models/analysis/Index.PNG["Index", 100%, 100%, pdfwidth=100%, align=center]
 
+Bildschirm der Planungsabteilung beim planen der Events --> ist nach dem Login der Planungsabteilung zu sehen.
+
 image::./models/analysis/2. Planungsabteilung Planung.PNG["2. Planungsabteilung Planung", 100%, 100%, pdfwidth=100%, align=center]
+
+Bildschirm der Planungsabteilung beim klicken des Anpassen Buttons --> zeigs das Anpassmenü für die einzelnen Events
 
 image::./models/analysis/3. Planungsabteilung Anpassung.PNG["3. Planungsabteilung Anpassung", 100%, 100%, pdfwidth=100%, align=center]
 
+Bildschirm des Planungsabteilung beim  festlegen des LineUps --> zeigs den Chat mit den Künstlern und hilft das LineUp festzulegen.
+
 image::./models/analysis/4. Planungsabteilung LineUp.PNG["4. Planungsabteilung LineUp", 100%, 100%, pdfwidth=100%, align=center]
+
+Bildschirm der Planungsabteilung beim einsehen der Kostenabrechnung --> listet die verschiedenen Kostenpunkte auf und zeigt die einzelnen Kosten davon.
 
 image::./models/analysis/5. Planungsabteilung Kostenabrechnung.PNG["5. Planungsabteilung Kostenabrechnung", 100%, 100%, pdfwidth=100%, align=center]
 
@@ -560,8 +568,6 @@ Für jeden Dialog:
 
 === Überblick: Klassendiagramm
 UML-Analyseklassendiagramm
-
-image::./models/analysis/Klassendiagramm.PNG["UC5000", 100%, 100%, pdfwidth=100%, align=center]
 
 === Klassen und Enumerationen
 Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
