@@ -763,7 +763,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Voraussetzungen     |Das System hat registrierte Nutzer, Nutzer ist nicht angemeldet.
 |Ereignis            |Der Nutzer gibt gültige Anmeldedaten (Nutzername und Passwort) ein und klickt auf "Login".
 |Erwartetes Ergebnis |
-- Der Nutzer ist mit dem Account entsprechend der Anmeldedaten angemeldet.
+- Der Nutzer ist mit dem Account entsprechend der Anmeldedaten angemeldet. +
 - Der Nutzer hat nun Zugriff auf die Funktionen diese Programms, die für seinen Personaltyp freigeschalten sind.
 |===
 
@@ -775,7 +775,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Voraussetzungen     |Der Nutzer ist angemeldet.
 |Ereignis            |Der Nutzer klickt auf "Logout".
 |Erwartetes Ergebnis |
-- Der Nutzer ist nun nicht mehr mit seinem Account angemeldet.
+- Der Nutzer ist nun nicht mehr mit seinem Account angemeldet. +
 - Ihm stehen nun nur noch die Funktionen zur Verfügung, für die keine Authentifizierung benötigt ist.
 |===
 
@@ -785,11 +785,11 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT2000-1>>
 |Anwendungsfall      |<<UC2000>>
 |Voraussetzungen     |
-- Der ausführende Benutzer hat die Rolle Boss.
+- Der ausführende Benutzer hat die Rolle Boss. +
 - Die Nutzerdaten, welche für den neuen Account verwendet werden sollen, sind noch nicht im System verwendet.
 |Ereignis            |Der Boss gibt die neuen Nutzerdaten in das dafür vorgesehene Formular ein und bestätigt mit "Erstellen".
 |Erwartetes Ergebnis |
-- Es wird ein neuer Benutzer mit der angegebenen Rolle (und den damit einhergehenden Berechtigungen) und den eingegebenen Nutzerdaten erstellt.
+- Es wird ein neuer Benutzer mit der angegebenen Rolle (und den damit einhergehenden Berechtigungen) und den eingegebenen Nutzerdaten erstellt. +
 - Der Boss wird auf die Personalverwaltungsseite weitergeleitet.
 |===
 
@@ -799,11 +799,11 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT2000-2>>
 |Anwendungsfall      |<<UC2000>>
 |Voraussetzungen     |
-- Der ausführende Benutzer hat nicht die Rolle Boss.
+- Der ausführende Benutzer hat nicht die Rolle Boss. +
 - Die Nutzerdaten, welche für den neuen Account verwendet werden sollen, sind noch nicht im System verwendet.
 |Ereignis            |Der Benutzer kann auf das von ihm gesuchte Formular nicht zugreifen.
 |Erwartetes Ergebnis |
-- Es wird ein kein neuer Benutzer erstellt.
+- Es wird ein kein neuer Benutzer erstellt. +
 - Der angemeldete Benutzer bekommt eine Fehlerbeldung.
 |===
 
@@ -813,11 +813,11 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT2000-3>>
 |Anwendungsfall      |<<UC2000>>
 |Voraussetzungen     |
-- Der ausführende Benutzer hat die Rolle Boss.
+- Der ausführende Benutzer hat die Rolle Boss. +
 - Die Nutzerdaten, welche für den neuen Account verwendet werden sollen, sind schon von einem anderen Nutzer im System belegt.
 |Ereignis            |Der Boss gibt die neuen Nutzerdaten in das dafür vorgesehene Formular ein und bestätigt mit "Erstellen".
 |Erwartetes Ergebnis |
-- Der Boss bekommt eine Mitteilung, dass die von ihm eingegebenen Nutzerdaten bereits belegt sind.
+- Der Boss bekommt eine Mitteilung, dass die von ihm eingegebenen Nutzerdaten bereits belegt sind. +
 - Der Boss wird zurück auf das Eingabeformular geleitet.
 |===
 
@@ -857,11 +857,11 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT3000-1>>
 |Anwendungsfall      |<<UC3000>>
 |Voraussetzungen     |
-- Der Nutzer ist als Catering-Mitarbeiter angemeldet
+- Der Nutzer ist als Catering-Mitarbeiter angemeldet. +
 - Es gibt noch Artikel im Lagen, die verkauft werden können.
 |Ereignis            |Der Catering-Mitarbeiter wählt auf der Catering-Seite das entsprechende Produkt aus und gibt dazu die gewünschte Menge an.
 |Erwartetes Ergebnis |
-- Die entsprechende Anzahl wurde von dem Produkt im Lager abgezogen.
+- Die entsprechende Anzahl wurde von dem Produkt im Lager abgezogen. +
 - Nach dem Bestätigen des Auftrags wird der Nutzer zurück zur Catering-Seite geleitet.
 |===
 
@@ -871,11 +871,11 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT3000-2>>
 |Anwendungsfall      |<<UC3000>>
 |Voraussetzungen     |
-- Der Nutzer ist als Catering-Mitarbeiter angemeldet.
+- Der Nutzer ist als Catering-Mitarbeiter angemeldet. +
 - Es gibt nicht mehr genug von dem gewünsten Artikel im Lager.
 |Ereignis            |Der Catering-Mitarbeiter wählt auf der Catering-Seite das entsprechende Produkt aus und gibt dazu die gewünschte Menge an.
 |Erwartetes Ergebnis |
-- Der Catering-Mitarbeiter bekommt eine Fehlermeldung und die noch verfügbare Anzahl des Produktes, die noch im Lager sind.
+- Der Catering-Mitarbeiter bekommt eine Fehlermeldung und die noch verfügbare Anzahl des Produktes, die noch im Lager sind. +
 - Der Nutzer wird zurück zur Catering-Seite geleitet.
 |===
 
@@ -895,8 +895,8 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT4000-1>>
 |Anwendungsfall      |<<UC4000>>
 |Voraussetzungen     |
-- Der Ticketverkauf ist freigegeben.
-- Es sind noch mindestens drei Tage bis zum Festivalbeginn.
+- Der Ticketverkauf ist freigegeben. +
+- Es sind noch mindestens drei Tage bis zum Festivalbeginn. +
 - Es sind noch Tickets vom richtigen Typ verfügbar
 |Ereignis            |Der angemeldete Nutzer wählt die gewünschte Art und Anzahl der Tickets.
 |Erwartetes Ergebnis |Die Tickets werden im System als verkaufte Tickets registriert.
@@ -908,7 +908,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT4000-2>>
 |Anwendungsfall      |<<UC4000>>
 |Voraussetzungen     |
-- Der Ticketverkauf ist freigegeben.
+- Der Ticketverkauf ist freigegeben. +
 - Es sind weniger als drei Tage bis zum Festivalbeginn.
 |Ereignis            |Der angemeldete Nutzer wählt die gewünschte Art und Anzahl der Tickets.
 |Erwartetes Ergebnis |Der Verkäufer erhält eine Fehlermeldung, welche auf die Abendkasse verweist.
@@ -920,8 +920,8 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT4000-3>>
 |Anwendungsfall      |<<UC4000>>
 |Voraussetzungen     |
-- Der Ticketverkauf ist freigegeben.
-- Es sind noch mindestens drei Tage bis zum Festivalbeginn.
+- Der Ticketverkauf ist freigegeben. +
+- Es sind noch mindestens drei Tage bis zum Festivalbeginn. +
 - Es sind keine Tickets vom richtigen Typ verfügbar
 |Ereignis            |Der angemeldete Nutzer wählt die gewünschte Art und Anzahl der Tickets.
 |Erwartetes Ergebnis |Der Verkäufer erhält eine Fehlermeldung und wird zurück auf die Verkaufsseite verwiesen.
@@ -943,7 +943,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT5000-1>>
 |Anwendungsfall      |<<UC5000>>
 |Voraussetzungen     |
-- Ein Festival wurde angelegt.
+- Ein Festival wurde angelegt. +
 - Der Nutzer ist als Management-Mitglied authentifiziert.
 |Ereignis            |Der Nutzer klickt auf den Button in der Navigation.
 |Erwartetes Ergebnis |Der Nutzer wird auf eine neue Seite geleitet, auf der die Kosten- und Gewinnpunkte aufgelistet sind.
@@ -967,7 +967,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Voraussetzungen     |Das Fenster zur Bearbeitung eines Bereichs ist geöffnet.
 |Ereignis            |Die Konfiguration des Bereichs wird vom Planer verändert und mit "OK" bestätigt.
 |Erwartetes Ergebnis |
-- Die aktualisierte Konfiguration wird in die Location übernommen.
+- Die aktualisierte Konfiguration wird in die Location übernommen. +
 - Der Planer wird auf die Übersichts-Seite weitergeleitet.
 |===
 
@@ -977,7 +977,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT6000-1>>
 |Anwendungsfall      |<<UC6000>>
 |Voraussetzungen     |
-- Ein Festival mit einem Lageplan muss erstellt werden.
+- Ein Festival mit einem Lageplan muss erstellt werden. +
 - Der Nutzer darf nicht authentifiziert sein.
 |Ereignis            |Der Nutzer ruft den Festivalplan auf.
 |Erwartetes Ergebnis |Der Nutzer wird auf eine Seite weitergeleitet, auf der der Festivalplan angezeigt wird.
@@ -989,7 +989,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT6001-1>>
 |Anwendungsfall      |<<UC6001>>
 |Voraussetzungen     |
-- Ein Festival mit einem Lineup muss erstellt werden.
+- Ein Festival mit einem Lineup muss erstellt werden. +
 - Der Nutzer darf nicht authentifiziert sein.
 |Ereignis            |Der Nutzer ruft das Lineup auf.
 |Erwartetes Ergebnis |Der Nutzer wird auf eine Seite weitergeleitet, auf der das Lineup angezeigt wird.
@@ -1011,7 +1011,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT6003-1>>
 |Anwendungsfall      |<<UC6003>>
 |Voraussetzungen     |
-- Der Nutzer muss als Festivalleiter eingeloggt sein.
+- Der Nutzer muss als Festivalleiter eingeloggt sein. +
 - Das Festival muss angelegt sein.
 |Ereignis            |Der Festivalleiter ruft über die Navigationsleiste die Besucherzahlen auf.
 |Erwartetes Ergebnis |Ihm wird die Besucherzahlen angezeigt.
@@ -1023,7 +1023,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT6004-1>>
 |Anwendungsfall      |<<UC6004>>
 |Voraussetzungen     |
-- Der Nutzer ist als Festivalleiter angemeldet sein.
+- Der Nutzer ist als Festivalleiter angemeldet sein. +
 - Es muss ein Festival mit mindestens einer Bühne geben.
 |Ereignis            |Der Festivalleiter klickt auf den Button zur aktuellen Bühnenbelegung.
 |Erwartetes Ergebnis |Ihm wird die Bühnenbelegung präsentiert.
@@ -1039,7 +1039,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 - Es gibt ein Festival mit einem Lager.
 |Ereignis            |Der Festivalleiter gibt in dem entsprechenden Formular das zu bestellende Produkt und die dazugehörige Menge an.
 |Erwartetes Ergebnis |
-- Die Kosten werden als Kostenpunkt der Kostenaufstellung hinzugefügt.
+- Die Kosten werden als Kostenpunkt der Kostenaufstellung hinzugefügt. +
 - Die Produkte werden zum Lagerbestand addiert.
 |===
 
@@ -1049,7 +1049,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT7001-1>>
 |Anwendungsfall      |<<UC7001>>
 |Voraussetzungen     |
-- Der Nutzer ist als Festivalleiter angemeldet.
+- Der Nutzer ist als Festivalleiter angemeldet. +
 - Es gibt ein Festival mit einem Lager.
 |Ereignis            |Der Festivalleiter ruft über einen Button den Lagerbestand ab.
 |Erwartetes Ergebnis |Er wird auf eine Seite weitergeleitet, auf der ihm alle gelagerten Produkte und ihre Quantität angezeigt wird.
@@ -1060,6 +1060,34 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
 Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
 Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
+
+[options="header", cols="1h, 4"]
+|===
+|Begriff                   |Erklärung
+|Boss          | Eventuell verwendete Synonyme sind Festivalleiter oder Manager, also die Person, der die Leitung über ein Festival übertragen wurde.
+|Festival(-Besucher)                 |Kunde der FVIV GmbH, welcher über eine Eintrittskarte Zugang zu einem Festival ersteht.
+|Personal                   | Unter Personal werden alle Personen zusammengefasst, welche mit ihrer Arbeitskraft zum Erfolg des Festivals beitragen.
+|Lineup               |Fasst mehrere Bühnenauftritte zu einem kompletten Bühnenprogramm zusammen.
+|Vertrag             |Wird zwischen Festivalleitung und Künstler geschlossen, regelt die Rahmenbedingungen für einen Auftritt.
+|Location                 |Fasst alle Aspekte des Veranstaltungsortes zusammen, von der Fläche, über die Bühnenpositionierung, bis zu den Sanitäranlagen.
+|Ticket                | Ermöglicht den Eintritt in das Festivalgelände als Kunde bzw. Besucher.
+|Camping             | Ermöglicht es den Besuchern, über Nacht auf dem Gelände zu bleiben und dort in selbst mitgebrachten Zelten zu schlafen.
+|Catering                    |Bezeichnet die Lebensmittelversorgung: An festgelegten Ständen werden Lebensmittel und Getränke vom Personal verkauft. 
+|Login              |Erfolgreiches Anmelden eines Mitarbeiters im System. 
+|Inventar          |Bezeichnet alle zugekauften Dinge, welche zur Verwendung zur Verfügung stehen.
+|Security                  |Sicherheitspersonal, welches für die Sicherheit des Publikums und der Künstler und die Eingangskontrollen zuständig ist.
+|Order                  | {domain_ref}
+|OrderLine              | {domain_ref}
+|OrderManager           | {domain_ref}
+|OrderStatus            | {domain_ref}
+|Product                | Abstraction of a disc. Every disc is a product.
+|Register/Registration  | Process of creating a new account in the system (i.e. a new user representation)
+|ROLE/Role              | {domain_ref}
+|Stock                  | Amount of discs of one type that are available
+|System                 | General term for the software system that has to be implemented during this project.
+|User                   | {domain_ref}
+|Videoshop              | {Videoshop_Description}
+|===
 
 == 13. Offene Punkte
 
