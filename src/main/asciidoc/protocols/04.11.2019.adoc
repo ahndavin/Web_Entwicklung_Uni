@@ -52,7 +52,7 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 [option="headers"]
 |===
 |Klassen                           |Verantwortlicher 
-|HTML-Umsetzung des GUI-Prototyp   |     
+|HTML-Umsetzung des GUI-Prototyp   |Igor     
 |
 - Location
 - Layout
