@@ -15,7 +15,9 @@
 toc::[]
 
 == 1. Zusammenfassung
-Eine kurze Beschreibung des Dokuments. Wenige Absätze.
+Dieses Dokument stellt die Software Requirements Specification (SRS, deutsch: Pflichtenheft) des Projekts Festivalmanager dar. Es soll einen Überblick über das zu erstellende Softwareprodukt geben und dient als Grundlage für die Kommunikation zwischen den Interessengruppen des Projekts, insbesondere dem Kunden und dem Entwicklungsteam. Es ist erwünscht, dieses Dokument als Grundlage für einen Vertrag zwischen dem Auftraggeber und dem Auftragnehmer zu haben, und sollte daher validiert und auf Konsistenz überprüft werden. Das Pflichtenheft beschreibt, was das gewünschte System zu erfüllen hat und teilweise, wie der Auftragnehmer die Lösung umsetzen will.
+
+Dieses Programm bietet mehrere Funktionen. Sie können mehr als ein Festival verwalten und die Finanz-, Lager-, Personal- und Veranstaltungsortverwaltung sowie den Ticketverkauf jedes Festivals in deinem Programm verwalten.
 
 == 2. Aufgabenstellung und Zielsetzung
 
