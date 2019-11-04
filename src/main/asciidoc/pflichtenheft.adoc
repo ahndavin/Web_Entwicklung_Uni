@@ -18,8 +18,34 @@ toc::[]
 Eine kurze Beschreibung des Dokuments. Wenige Absätze.
 
 == 2. Aufgabenstellung und Zielsetzung
-Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
-Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht werden sollen.
+
+Das System soll unter anderem in der Planungsabteilung eingesetzt werden, in der Festivals (_Festival_) angelegt werden.
+Dazu muss ein Termin (_Festival.Date_ ) festgelegt werden und die passende Location (_Location_) zu diesem Zeitpunkt gebucht werden.
+Doppelbuchungen dieser Locations sind unter allen Umständen zu vermeiden. Jede Location bietet Platz für eine maximale Anzahl von Besuchern (_Festival.MaxVisitors_) und Bühnen (_Festival.MaxStages_).
+Außerdem ist jede Location in verschiedene, eindeutig gekennzeichnete Bereiche (_Area_) unterteilt, die wiederum einen Teil der maximalen Besucherzahl (_Area.MaxVisitors_) fassen können und sich außerdem in Camping-, Park-, Catering- und Stage-Bereiche (_Type_) einordnen.
+Um dem Planungsteam einen guten Überblick zu verschaffen, ist es zwingend notwendig, dass das Gelände und die Bereiche visualisiert werden können (_Layout_). Sobald die Location gebucht ist, können für dieses Festival Anpassungen durchgeführt werden,
+wie die Bühnenpositionierung, Toilettenbestückung und Cateringstände, und es muss möglich sein,bestimmte Bereiche zu sperren. Die genannten Gegenstände (Bühnen, usw.) werden von externen Anbietern gemietet (_InventoryManager_).
+
+In der nächsten Stufe muss das „Line-Up“ (_LineUp_) zusammengestellt werden. Dazu müssen Angebote bei verschiedenen Künstlern eingeholt werden. Anschließend werden aus diesen Angeboten Künstler ausgewählt und es muss ein Spielplan für jede Bühne erstellt werden.
+Neben den genannten Künstlern ist weiteres Personal erforderlich, wie Sicherheitspersonal (_Security_) (mindestens einer pro 100 Besuchern), Bedienungen an den Cateringständen (_CateringPersonal_), Bühnentechniker (Anzahl wird durch die Band bestimmt), sowie ein Veranstaltungsleiter (_Manager_).
+Jede Arbeitskraft wird dabei auf Stundenbasis bezahlt (_ContractManager_).
+
+Zu jedem Zeitpunkt während der Planung muss der Planungsabteilung als auch dem Management eine automatische Kostenaufstellung (_EconomicManager_) zur Verfügung gestellt werden können, in der Kosten für Mieten, Gagen, Personal und Sonstigem aufgelistet und aggregiert werden.
+
+Schon während der Planungsphase kann ein Event freigegeben werden, und es kann ein Kartenpreis festgelegt werden (_TicketManager_). Es gibt dabei Camping-Tickets (_camping_), die das ganze Festival über gültig sind und Tageskarten (_dayticket_).
+Diese Tickets werden bis 3 Tage vor Veranstaltungsbeginn in den Filialen der „FVIV GmbH“ verkauft und danach nur noch an der Abendkasse. Es muss den Verkaufsmitarbeitern möglich sein, bei noch vorhandenen Tickets diese zu verkaufen (_saleTicket_) und auszudrucken (_print_).
+Auf jedes Ticket wird ein Barcode bzw. eine eindeutige Nummer (_ticket.number_) aufgedruckt, mit dem es dem Personal am Festivaleingang möglich ist, das Ticket auf Gültigkeit hin zu überprüfen und zu vermeiden, dass verschiedene Personen das Gelände mit derselben Karte betreten.
+
+Eine weitere Nutzergruppe ist das Cateringpersonal, das sich an entsprechenden Terminals am Verkaufsstand mit gültigem Login (_Login_) anmeldet. Dort können Getränke und vorgefertigte Speisen ausgewählt und abgerechnet werden (_sellFood_). Dabei wird das Gekaufte vom verfügbaren Lagerbestand (_InventoryManager_) abgezogen.
+Sollte ein gewisser Mindestbestand unterschritten werden erfolgt eine Mittteilung an die Festivalleitung (_Message_).
+
+Der Festivalleiter besitzt ebenfalls ein persönliches Terminal, an dem es ihm möglich ist, das Lager einzusehen und Nachbestellungen zu tätigen. Weiterhin sieht er dort aktuelle Besucherzahlen, Nachrichten von anderen Mitarbeitern, sowie Verkaufszahlen des Caterings und die aktuelle Bühnenbelegung.
+
+Überall auf dem Festivalgelände verteilt befinden sich Terminals, die für jeden frei nutzbar sind. Dort sieht man neben einem Plan (_Layout_) vom Festivalgelände auch den Spielplan (_Lineup_) für alle Festivaltage.
+
+Der Manager der „FVIV GmbH“ sorgt für die Verteilung der Logins an die Mitarbeiter und kann sehen, welcher Mitarbeiter momentan am System angemeldet ist (_StaffManager_). Weiterhin soll es ihm möglich sein, betriebswirtschaftliche Daten, wie Umsatz, Ausgaben,... , abzurufen und grafisch zu visualiseren (_EconomicManager_).
+
+Nach der Fertigstellung der Software sollen alle in <<7. Funktionale Anforderungen, Funktionale Anforderungen>> beschriebenen Muss-Kriterien verfügbar und die <<8.1. Qualitätsziele, Qualitätsziele>> erreicht sein.
 
 == 3. Produktnutzung
 
@@ -81,7 +107,7 @@ a|
 
 |Entwickler
 |3
-|Personen, die entweder das Programm implementieren 
+|Personen, die entweder das Programm implementieren
 a|
 - Leicht erweiterbares Programm
 - Gute Debugging-Mechanismen
@@ -656,7 +682,7 @@ Man kann außerdem oben swipen um  die verschiedenen Spielpläne zu sehen.
 
 
 -	Loggt man sich als Planungsabteilungsmitarbeiter ein kommt man zum Planungsabteilung Hauptmenü. Dort kann man mit dem Tab Termine anlegen verschiedene Termine planen an verschiedenen Locations und verschiedene Bereiche visuell einsehen.
--	Außerdem kann die Planungsabteilung auch bestehende Festivals bearbeiten. Dort kann die Planungsabteilung einsehen, wie jede Location aufgebaut ist und gegebenenfalls Bereiche sperren. 
+-	Außerdem kann die Planungsabteilung auch bestehende Festivals bearbeiten. Dort kann die Planungsabteilung einsehen, wie jede Location aufgebaut ist und gegebenenfalls Bereiche sperren.
 -	Außerdem muss ein LineUp Button/Menü vorhanden sein um dem Planungsteam die Gelegenheit zu geben Künstler zu kontaktieren und das LineUp für bestimmte Termine zu planen.
 -	Zum Schluss kann die Planungsabteilung auch mittels des Buttons „Kostenaufstellung“ für die individuellen Bereiche die dazugehörigen Kosten einsehen.
 
@@ -687,7 +713,7 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 |===
-|Klasse/Enumeration |Beschreibung 
+|Klasse/Enumeration |Beschreibung
 |Area                  |Areas sind einzelne Bestandteile einer Festival-Location, die verschiedene Funktionen (Type) einnehmen können.
 |CateringPersonal      |CateringPersonal ist ein Personaltyp, welcher für den Verkauf von Lebensmitteln auf dem Festival zuständig ist.
 |Contract              |Ein Contract beschreibt einen Vertrag mit einem Künstler und hält die ausgehandelten Konditionen fest.
@@ -708,14 +734,14 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 |Security              |Ein Security ist ein Personaltyp, der sich um die Sicherheit und Ticketkontrollen kümmert.
 |Staff                 |Staff ist eine Verallgemeinerung der Personaltypen, welche die allgemeinen Eigenschaften für alle Angestellten vordefiniert.
 |Staffmanager          |Der Staffmanager ist das Personalverwaltungstool, worüber Personal angelegt und verwaltet werden kann, welches die Login-Daten abgleicht und die Kommunikation der Angestellten untereinander ermöglicht.
-|Stage                 |Eine Stage ist eine Bühne mit individuellem Programm (Lineup), welches über diese Klasse auch verändert und eingesehen werden kann. 
+|Stage                 |Eine Stage ist eine Bühne mit individuellem Programm (Lineup), welches über diese Klasse auch verändert und eingesehen werden kann.
 |Sort                  |Sort gibt die verschiedenen Arten von Tickets an: +
-_DAYTICKET_: Ermöglicht den Zutritt nur an einem Tag; kein Zutritt zu Camping-Areas. + 
+_DAYTICKET_: Ermöglicht den Zutritt nur an einem Tag; kein Zutritt zu Camping-Areas. +
 _CAMPING_: Sind während des gesamten Festivals gültig; ermöglichen Zutritt zu den Camping-Areas.
 |Ticket                |Ein Ticket dient als Eintrittskarte zum Festival. Jedes Ticket ist einzigartig.
 |Ticketmanager         |Der Ticketmanager verwaltet die Tickets beim Verkauf und stellt sicher, dass ein Ticket nicht mehrfach benutzt werden kann.
 |TicketSalesman        |Ein TicketSalesman ist ein Personaltyp, der Tickets an Besucher verkaufen und ausdrucken kann.
-|Type                  |Der Type spezifiziert die Area und damit ihre Funktionen in der Location: + 
+|Type                  |Der Type spezifiziert die Area und damit ihre Funktionen in der Location: +
 _CAMPING_: Ist ein Bereich für Zelte und andere Schlafmöglichkeiten. +
 _PARK_: Dient zum Abstellen von Fahrzeugen, welche zur An- und Abreise verwendet werden. +
 _CATERING_: In diesem Bereich werden Cateringstände aufgestellt, Essen und Getränke verkauft. +
@@ -799,7 +825,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT2001-1>>
 |Anwendungsfall      |<<UC2001>>
 |Voraussetzungen     |Der Nutzer ist als Boss angemeldet und es gibt das Festival, dessen Daten abgerufen werden sollen.
-|Ereignis            |Der Boss klickt auf den entsprechenden Reiter im Menü. 
+|Ereignis            |Der Boss klickt auf den entsprechenden Reiter im Menü.
 |Erwartetes Ergebnis |Der Boss wird auf eine neue Seite weitergeleitet, auf der alle Ausgaben und Einnahmen aufgelistet und eine Gesamtsumme berechnet wird.
 |===
 
@@ -829,7 +855,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT3000-1>>
 |Anwendungsfall      |<<UC3000>>
 |Voraussetzungen     |
-- Der Nutzer ist als Catering-Mitarbeiter angemeldet 
+- Der Nutzer ist als Catering-Mitarbeiter angemeldet
 - Es gibt noch Artikel im Lagen, die verkauft werden können.
 |Ereignis            |Der Catering-Mitarbeiter wählt auf der Catering-Seite das entsprechende Produkt aus und gibt dazu die gewünschte Menge an.
 |Erwartetes Ergebnis |
@@ -857,7 +883,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID                  |<<AT3001-1>>
 |Anwendungsfall      |<<UC3000>>
 |Voraussetzungen     |Der Nutzer ist als Boss im System angemeldet.
-|Ereignis            |Der Boss klickt auf den entsprechenden Reiter in der Navigation. 
+|Ereignis            |Der Boss klickt auf den entsprechenden Reiter in der Navigation.
 |Erwartetes Ergebnis |Der Nutzer wird auf eine neue Seite weitergeleitet, die die verkauften Produkte auflistet, dazu die Anzahl und die Stückzahl der verbleibenden im Lager
 |===
 
@@ -916,7 +942,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Anwendungsfall      |<<UC5000>>
 |Voraussetzungen     |
 - Ein Festival wurde angelegt.
-- Der Nutzer ist als Management-Mitglied authentifiziert. 
+- Der Nutzer ist als Management-Mitglied authentifiziert.
 |Ereignis            |Der Nutzer klickt auf den Button in der Navigation.
 |Erwartetes Ergebnis |Der Nutzer wird auf eine neue Seite geleitet, auf der die Kosten- und Gewinnpunkte aufgelistet sind.
 |===
