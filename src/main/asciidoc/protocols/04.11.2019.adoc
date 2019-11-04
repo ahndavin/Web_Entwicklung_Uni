@@ -41,7 +41,7 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 |Randbedingungen                   |Davin     
 |Kontextabgrenzung                 |Davin     
 |Erfüllung der Qualitätsziele      |Marcus     
-|Softwarearchitektur               |
+|Softwarearchitektur               |Igor
 |Entwurfsentscheidungen            |Tobias
 |Bausteinsicht                     |
 |Laufzeitsicht                     |
