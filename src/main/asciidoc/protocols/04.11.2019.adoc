@@ -43,9 +43,9 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 |Erfüllung der Qualitätsziele      |Marcus     
 |Softwarearchitektur               |Igor
 |Entwurfsentscheidungen            |Tobias
-|Bausteinsicht                     |
-|Laufzeitsicht                     |
-|Technische Schulden               |
+|Bausteinsicht                     |Jonas
+|Laufzeitsicht                     |Jonas
+|Technische Schulden               |Jonas
 |===
 
 - Anwendungsprototyp, Aufgaben aufgeteilt wie folgt:
@@ -82,7 +82,7 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 - Festival
 - FestivalManager
 - Item
-- InventoryManager                 |
+- InventoryManager                 |Jonas
 |===
 
 - Testplan + 
