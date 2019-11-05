@@ -9,7 +9,7 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 |Woche |Davin Ahn |Marcus Fiedler |Jonas Hönisch |Igor Macevic |Tobias Neubauer |Meeting
 |1  |120    |90    |120    |60    |360    |60   
 |2  |240    |240    |570    |360    |210   |145    
-|3  |470    |…    |…    |240  |900    |80   
+|3  |470    |…    |630    |240  |900    |80   
 |4  |…    |…    |…    |420    |120   |30    
 |5  |…    |…    |…    |…    |…    |…    
 |6  |…    |…    |…    |…    |…    |…    
