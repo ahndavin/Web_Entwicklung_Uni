@@ -53,7 +53,3 @@
 
 == Laufzeitsicht
 * Komponentenbezogene Sequenzdiagramme, welche darstellen, wie die Anwendung mit externen Frameworks (zB. Salespoint, Spring) interagiert.
-
-== Technische Schulden
-* Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues
-
