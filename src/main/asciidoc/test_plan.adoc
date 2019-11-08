@@ -40,6 +40,6 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|…  |…              |…              |…       |…
+|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe |Verantwortlicher
+|…  |…              |…              |…       |…       |...
 |===
