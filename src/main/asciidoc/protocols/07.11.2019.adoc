@@ -109,10 +109,10 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 // See http://asciidoctor.org/docs/user-manual/=tables
 [option="headers"]
 |===
-|Issue |Titel |Beschreibung |Verantwortlicher |Status
-|4     |Entwickler-Dokumentation  |-                          |Wir alle               |offen
-|5     |Test Plan  |-                          |Tobias Neubauer               |offen
-|6     |Prototyp  |-                          |Wir alle               |offen
+|Issue |Titel                      |Beschreibung        |Verantwortlicher |Status
+|4     |Entwickler-Dokumentation   |-                   |Wir alle         |offen
+|5     |Testplan                   |-                   |Tobias Neubauer  |offen
+|6     |Prototyp                   |-                   |Wir alle         |offen
 |===
 
 == To-Do bis zum nächsten Treffen:
