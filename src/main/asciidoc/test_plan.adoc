@@ -3,36 +3,42 @@
 Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
 
 == Einführung
-Wozu dient das Dokument? Zielgruppe?
+Dieses Dokument dient zur Zusammenfassung der Tests, mit der diese Software geprüft wird. Dies dient der Nachverfolgung für nachfolgende Entwickler, sollte das Programm in Zukunft von einem anderen Team weiterentwickelt und nachverfolgt werden.
+Zum Anderen dient es natürlich auch als Nachweis, dass dieses Programm während seiner Entwicklung ausreichend auf die  richtige Funktionalität geprüft wurde und alle Funktionen zur vollen Zufriedenheit des Kunden ausgearbeitet wurden. 
 
 == Aufbau der Testbezeichner
-Nach welchem Schema sind die Tests benannt?
 
-*Bsp.*
+Die ID eines Tests ergibt sich aus einem Großbuchstaben und drei Zahlen (getrennt von einem Bindestrich), dabei kann der Buchstabe entweder ein I (für Integrationstest) oder ein U (für Unit Test) sein. Dies wird im Folgenden weiter erläutert.
 
-*U - Unit Test, I - Integrationstest*
+Die drei Zahlen erlauben eine genauere Einordnung der Tests: haben zwei Tests zwei identische Zahlen an der zweiten Stelle von links, so testen sie das selbe Package bzw. die selbe Klasse. Stimmen hingegen die Zahlen an der letzten stelle überein, dann testen die Tests die selbe Funktion. Dadurch lassen sich grobe und feinere Unterscheidungen zwischen den Tests einfacher bestimmen.
 
-*U-1, U-2, I-1*
+Beispiele für die Bezeichner wären also U-204 oder I-101.
 
 == Test Gegenstände
 
+In den hier beschriebenen Tests liegt der Fokus auf den von unserem Team programmierten Komponenten. Diese sollen sowohl als einzelne Einheiten, als auch zusammen als Einheit betrachtet und ausgiebig getestet.
+
 == Zu testende Funktionalitäten
 
+Getestet werden sowohl die Funktionalitäten der einzelnen Klassen wie zum Beispiel das Erstellen, Verändern und richtige Zuweisen von Objekten, als auch die gesamte Funktionalität im Zusammenspiel mit dem Aufruf der richtigen GUI-Seiten und Anpassung der Datenbank.
+
 == Nicht zu testende Funktionalitäten
-z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
+Eingebundene Bibliotheken von Drittanbietern werden nicht weiter getestet (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel). 
+Die folgenden Bibliotheken und deren Funktionen werden somit von den Tests ausgschlossen:
+
+* Spring
+* Salespoint
+* iText
 
 == Herangehensweise
-*Bsp.:*
 
-*Klassen werden mit JUnit getestet.*
-
-*Integrationstest nach Bottom-Up Prinzip*
+Die Tests erfolgen nach dem Bottom-Up-Prinzip. Das bedeutet, dass zu Beginn wird mit Unit Tests sicher gestellt, dass die einzelnen kleinen Blöcke isoliert ihren Zweck erfüllen. Ist dies erfolgreich, dann kann darüber hinaus das Zusammenspiel mehrerer Komponenten mit Integrationstests getestet werden. 
 
 == Umgebungsvoraussetzungen
-* Wird spezielle Hardware benötigt?
-* Welche Daten müssen bereitgestellt werden? Wie werden die Daten bereitgestellt?
-* Wird zusätzliche Software für das Testen benötigt?
-* Wie kommuniziert die Software während des Testens? Internet? Netzwerk?
+* Spezielle Hardware wird nicht vorausgesetzt, jedoch wird das Programm primär auf den Terminals laufen, weshalb diese explizit getestet werden.
+* Jeder Test benötigt andere Startbedingungen und Daten, um durchgeführt zu werden. Deshalb werden die Test so konzipiert, dass die entsprechenden Bedingungen im Vorhinein geschaffen werden. So muss vom Ausführenden nicht auf die Existenz bestimmten Daten zum Testen geachtet werden.
+* Zur Durchführung ist neben der Software und Java 11 auch noch JUnit 5 benötigt. Außerdem wird die aktuelle Version der Browser benötigt, für die manuell die Funktionalität getestet werden soll. 
+* Die Software wird lokal auf den Maschinen getestet, besondere Infrastrukur ist also nicht von Nöten. 
 
 == Testfälle und Verantwortlichkeit
 Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
