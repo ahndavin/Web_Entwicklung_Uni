@@ -33,6 +33,13 @@
 Um die erstellten Festivals und die zugehörigen Informationen persistent zu speichern, verwenden wir eine eingebettete H2-Datenbank. Um mit unseren Objekten arbeiten zu können, wird objektrelationales Mapping mit Hilfe von Hibernate realisiert. Um den Verlust von Daten von Vorn herein auszuschließen wird die persistente Speicherung von Beginn an aktiviert. 
 
 ==== 4.3.3 Benutzeroberfläche
+Die Benutzeroberfläche unserer Applikation wird hauptsächlich über HTML und CSS realisiert. Optional werden wir JavaScript einsetzen, un das Nutzererlebnis so ansprechend wie möglich zu gestalten. Hierbei ist uns jedoch wichtig, dass die Oberfläche sowohl mit, als auch ohne JavaScript genutzt werden kann. 
+Um das Programm weiterhin möglichst browserunspezifisch zu testen und die größtmögliche Flexibilität zu bieten, wird die Software für die folgenden Browsern optimiert: 
+
+* Google Chrome, Version 78.0.3904.97
+* Mozilla Firefox, Version 70.0.1
+* Apple Safari, Version 13.0.3
+
 ==== 4.3.4 Verwendung externer Frameworks
 
 [options="header", cols="1,3,3"]
