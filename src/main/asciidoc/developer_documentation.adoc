@@ -48,7 +48,24 @@ Die Folgende Tabelle zeigt wie hoch die Priorität der einzelnen Ziele ist. Höh
 [options="header"]
 |=== 
 |Qualitätsziel |Lösungsansatz
-|... |...
+|Wartbarkeit a|
+* Modularität Das System wird in voneinander unabhängige Komponenten gegliedert, sodass Änderung innerhalb einer Komponenten
+keine Veränderung an der Interaktion mit anderen Komponenten haben.
+
+* Modifizierbarkeit Es wird sichergestellt, dass das System  modifiert und erweitert werden kann
+ohne Einschränkungen in der aktuellen Funktionsweise
+
+|Nutzerfreundlichkeit a|
+* Erlernbarkeit Das System ist leicht zu verstehen und zu benutze. Dies wird erreicht durch Beschreibungen.
+* Fehlerbehandlung Ein Fehler durch Nutzereingabe führt nicht zum Absturz der Software/ Fehler verursachende Eingabe wird verhindert.
+* Nutzeroberfläche Das System hat eine angenehme Intuitive grafische Nutzeroberfläche
+|Sicherheit a|
+* Verantwortlichkeit Aktionen können zurückverfolgt werden zu einer eindeutigen Person oder Gruppe. Um dies zu erreichen wird jede Eingabe mit einem Nutzerkonto verbunden.
+* Berechtigungen Das Verändern von Daten ist nur mit entsprechenden Berechtigungen möglich.
+* Vetraulichkeit Der Zugriff auf Daten ist nur mögclih mit entsprechenden Berechtigungen.
+| Effizienz a|
+* Speichereffizienz Verringern der Speichernutzung von Daten, Funktionen durch verwenden von geplanter Softwarestruktur
+* Geschwindigkeit Erreichen einer hohen Geschwindigkeit durch Nutzen von effizienten Algorhithmen und Datenstrukturen.
 |===
 
 === 4.2 Softwarearchitektur
