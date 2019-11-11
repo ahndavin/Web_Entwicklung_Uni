@@ -2,8 +2,38 @@
 = Entwicklerdokumentation
 
 == 1. Einführung und Ziele
-* Aufgabenstellung
-* Qualitätsziele
+=== 1.1 Aufgabenstellung
+=== 1.2 Qualitätsziele
+Um die Qualität der Software messen zu können, müssen Qualitätsziele definiert werden.
+Diese werden in diesem Abschnitt festgelegt und beschrieben.
+
+==== Wartbarkeit
+
+Dieses Ziel beschreibt den Aufwand der nötig ist um die Software anzupassen
+um sie zu verbessern, an neue Umstände anzupassen oder Fehler zu beheben.
+
+==== Nutzerfreundlichkeit
+
+Dieses Ziel beschreibt den Grad mit dem bestimmte Nutzer klar definierte Ziele effektiv und zufriedenstellend erreichen können.
+
+==== Sicherheit
+
+Dieses Ziel beschreibt die Sicherheit der Softwarefunktion sowie der Daten, gegenüber Angreifern.
+
+==== Effizienz
+
+Dieses Ziel beschreibt die notwendige Zeit und Hardwareressourcen die notwendig sind um diese Software zu benutzen.
+
+Die Folgende Tabelle zeigt wie hoch die Priorität der einzelnen Ziele ist. Höhere Zahl bedeutet höhere Priorität.
+[options="header"]
+[cols="4,1,1,1,1,1"]
+|===
+|Qualitätsziel | 1 | 2 | 3 | 4 | 5
+|Wartbarkeit | | | | x |
+|Nutzerfreundlichkeit | | | x | |
+|Sicherheit | | | | | x
+|Effizienz | | |  |  x |
+|===
 
 == 2. Randbedingungen
 * Hardware-Vorgaben
