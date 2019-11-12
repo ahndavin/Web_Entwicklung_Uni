@@ -36,12 +36,46 @@ Die Folgende Tabelle zeigt wie hoch die Priorität der einzelnen Ziele ist. Höh
 |===
 
 == 2. Randbedingungen
-* Hardware-Vorgaben
-* Software-Vorgaben
-* Vorgaben zum Betrieb des Software
+=== Hardware-Vorgaben
+Eine Liste der notwendigen devices / Hardware, um die Anwendung auszuführen und zu nutzen.
+
+* Server
+* Computer
+* Bildschirm
+* Tastatur
+* Maus
+
+=== Software-Vorgaben
+Eine Liste der notwendigen Software zum Ausführen und Verwenden der Anwendung.
+
+Die folgende (oder neuere) Java-Version ist notwendig, um die Anwendung auszuführen:
+
+* Java 11
+
+Die folgende (oder neuere) Maven-Version ist notwendig, um die Anwendung auszuführen:
+
+* Apache Maven 3.6.2
+
+Die folgende (oder neuere) Browser-Versionen sind notwendig, um die Anwendung auszuführen:
+
+* Internet Explorer / Edge 11.0
+* macOS Safari, Version 13.0.3
+* Firefox 70.0.1
+* Google Chrome 78.0.3904.70
+* Opera 64.0.3417.92
+
+=== Vorgaben zum Betrieb des Software
+Dieser Abschnitt gibt einen Überblick darüber, wie das Produkt nach Fertigstellung und unter welchen Umständen verwendet werden soll.
+
+Das System wird von FVIV GmbH verwendet, damit die Firma sich um seine Festivals zu kümmern. Die Software soll auf einem Server laufen und interessierten Kunden(Festivalbesucher) über das Internet (über einen Browser) rund um die Uhr zur Verfügung stehen.
+
+Die Hauptnutzer der Software sind Mitarbeiter in einer Firma, die angeblich typische Website-Navigationsschema kennen.
+
+Alle Daten müssen dauerhaft auf Git gespeichert sein und lokal unter localhost:8080 abrufbar sein.
 
 == 3. Kontextabgrenzung
-* Kontextdiagramm
+=== Kontextdiagramm
+image:models/analysis/Systemgrenze_und_Top-Level-Architektur/festivalmanager_context.svg[context diagram]
 
 == 4. Lösungsstrategie
 === 4.1 Erfüllung der Qualitätsziele
