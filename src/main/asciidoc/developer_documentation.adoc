@@ -194,17 +194,17 @@ image::./models/design/Bausteinsicht_ContractManager.png["BausteinsichtContractM
 
 == 6. Laufzeitsicht
 
-=== 6.1. EconomicManager
+=== 6.1 EconomicManager
 
 image::./models/design/Laufzeitsicht_EconomicManager.PNG["Laufzeitsicht EconomicManager", 100%, 100%, pdfwidth=100%, align=center]
 
-=== 6.2. TicketManager
+=== 6.2 TicketManager
 
 image::./models/design/Laufzeitsicht_TicketManager.PNG["Laufzeitsicht TicketManager", 100%, 100%, pdfwidth=100%, align=center]
 
-=== 6.3. ContractManager
+=== 6.3 ContractManager
 
 Placeholder
 
-=== 6.4. 
+=== 6.4
 
