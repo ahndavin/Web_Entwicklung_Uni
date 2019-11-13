@@ -233,5 +233,10 @@ image::./models/design/Laufzeitsicht_TicketManager.PNG["Laufzeitsicht TicketMana
 
 Placeholder
 
-=== 6.4
+=== 6.4 Inventory
 
+image::./models/design/seq_inventory.svg["Laufzeitsicht Inventory", 100%, 100%, pdfwidth=100%, align=center]
+
+=== 6.5 Festival
+
+image::./models/design/seq_festival.svg["Laufzeitsicht Festival", 100%, 100%, pdfwidth=100%, align=center]
