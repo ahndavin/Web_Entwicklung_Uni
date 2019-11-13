@@ -108,6 +108,8 @@ Der Client enthält nur HTML- und CSS-Dateien. Die Anwendungslogik ist auf dem S
 
 HTML-Templates werden clientseitig mit den entsprechenden CSS-Stylesheets dargestellt. Die in den Vorlagen angezeigten Daten werden von Thymeleaf bereitgestellt. Thymeleaf erhält die notwendigen Daten von den Controller-Klassen, die im Backend implementiert sind. Diese Controller-Klassen hingegen verwenden Instanzen und Methoden der Modellklassen. Standardmäßig speichert eine zugrunde liegende H2-Datenbank die Daten persistent.
 
+=== 4.2.1 Client-Server-Diagram
+
 
 === 4.3 Entwurfsentscheidungen
 ==== 4.3.1 Verwendete Muster
