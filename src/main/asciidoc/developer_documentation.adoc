@@ -36,12 +36,46 @@ Die Folgende Tabelle zeigt wie hoch die Priorität der einzelnen Ziele ist. Höh
 |===
 
 == 2. Randbedingungen
-* Hardware-Vorgaben
-* Software-Vorgaben
-* Vorgaben zum Betrieb des Software
+=== Hardware-Vorgaben
+Eine Liste der notwendigen devices / Hardware, um die Anwendung auszuführen und zu nutzen.
+
+* Server
+* Computer
+* Bildschirm
+* Tastatur
+* Maus
+
+=== Software-Vorgaben
+Eine Liste der notwendigen Software zum Ausführen und Verwenden der Anwendung.
+
+Die folgende (oder neuere) Java-Version ist notwendig, um die Anwendung auszuführen:
+
+* Java 11
+
+Die folgende (oder neuere) Maven-Version ist notwendig, um die Anwendung auszuführen:
+
+* Apache Maven 3.6.2
+
+Die folgende (oder neuere) Browser-Versionen sind notwendig, um die Anwendung auszuführen:
+
+* Internet Explorer / Edge 11.0
+* macOS Safari, Version 13.0.3
+* Firefox 70.0.1
+* Google Chrome 78.0.3904.70
+* Opera 64.0.3417.92
+
+=== Vorgaben zum Betrieb des Software
+Dieser Abschnitt gibt einen Überblick darüber, wie das Produkt nach Fertigstellung und unter welchen Umständen verwendet werden soll.
+
+Das System wird von FVIV GmbH verwendet, damit die Firma sich um seine Festivals zu kümmern. Die Software soll auf einem Server laufen und interessierten Kunden(Festivalbesucher) über das Internet (über einen Browser) rund um die Uhr zur Verfügung stehen.
+
+Die Hauptnutzer der Software sind Mitarbeiter in einer Firma, die angeblich typische Website-Navigationsschema kennen.
+
+Alle Daten müssen dauerhaft auf Git gespeichert sein und lokal unter localhost:8080 abrufbar sein.
 
 == 3. Kontextabgrenzung
-* Kontextdiagramm
+=== Kontextdiagramm
+image:models/analysis/Systemgrenze_und_Top-Level-Architektur/festivalmanager_context.svg[context diagram]
 
 == 4. Lösungsstrategie
 === 4.1 Erfüllung der Qualitätsziele
@@ -69,7 +103,16 @@ ohne Einschränkungen in der aktuellen Funktionsweise
 |===
 
 === 4.2 Softwarearchitektur
-* Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
+Client-Server-Modell der Anwendung.
+Der Client enthält nur HTML- und CSS-Dateien. Die Anwendungslogik ist auf dem Server implementiert.
+
+HTML-Templates werden clientseitig mit den entsprechenden CSS-Stylesheets dargestellt. Die in den Vorlagen angezeigten Daten werden von Thymeleaf bereitgestellt. Thymeleaf erhält die notwendigen Daten von den Controller-Klassen, die im Backend implementiert sind. Diese Controller-Klassen hingegen verwenden Instanzen und Methoden der Modellklassen. Standardmäßig speichert eine zugrunde liegende H2-Datenbank die Daten persistent.
+
+=== 4.2.1 Client-Server-Diagram
+
+image::./models/design/NetworkPng.png["NetworkPng", 100%, 100%, pdfwidth=100%, align=center]
+
+
 
 === 4.3 Entwurfsentscheidungen
 ==== 4.3.1 Verwendete Muster
@@ -120,7 +163,18 @@ image::./models/design/Bausteinsicht_TicketManager.PNG["Bausteinsicht TicketMana
 |EconomicManager    |Der Verkauf von Tickets ist eine Einnahmequelle, die Beträge werden in die Kosten/Ertrag-Übersicht übergeben.
 |===
 
-=== 5.1.3 ...
+=== 5.1.3 ContractsManager
+
+image::./models/design/Bausteinsicht_ContractManager.png["BausteinsichtContractManager", 100%, 100%, pdfwidth=100%, align=center]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Beschreibung
+|ContractController |Der Contractcontroller dient zur Ausgabe aller notwendigen Daten an das Thymeleaf Template zur Einarbeitung der Daten in die notwendige HTML-Page.
+|ContractManager    |Der ContractManager kann Contracts erstellen und die passenren Stages dazu speichern.
+|Contract               |Die Contractklasse dient dazu Contracts zwischen Künstlern und der FVIV zu erstellen, welche dann an den ContractsManager übergeben werden können und gespeichert werden.
+|===
+
 
 === 5.2 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
@@ -133,14 +187,24 @@ image::./models/design/Bausteinsicht_TicketManager.PNG["Bausteinsicht TicketMana
 |EconomicManager                    |EconomicManager
 |PositiveAmount                     |AccountencyEntry
 |NegativeAmount                     |AccountencyEntry
+|ContractsManager                   |ContractManager
+|Contract                           |Contract
+|                                   |ContractController erstellt.
 |===
 
 == 6. Laufzeitsicht
 
-=== 6.1. EconomicManager
+=== 6.1 EconomicManager
 
 image::./models/design/Laufzeitsicht_EconomicManager.PNG["Laufzeitsicht EconomicManager", 100%, 100%, pdfwidth=100%, align=center]
 
-=== 6.2. TicketManager
+=== 6.2 TicketManager
 
 image::./models/design/Laufzeitsicht_TicketManager.PNG["Laufzeitsicht TicketManager", 100%, 100%, pdfwidth=100%, align=center]
+
+=== 6.3 ContractManager
+
+Placeholder
+
+=== 6.4
+
