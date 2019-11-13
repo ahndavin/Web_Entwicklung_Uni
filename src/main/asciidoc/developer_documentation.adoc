@@ -110,6 +110,9 @@ HTML-Templates werden clientseitig mit den entsprechenden CSS-Stylesheets darges
 
 === 4.2.1 Client-Server-Diagram
 
+image::./models/design/NetworkPng.png["NetworkPng", 100%, 100%, pdfwidth=100%, align=center]
+
+
 
 === 4.3 Entwurfsentscheidungen
 ==== 4.3.1 Verwendete Muster
