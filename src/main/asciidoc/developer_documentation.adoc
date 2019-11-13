@@ -176,6 +176,33 @@ image::./models/design/Bausteinsicht_ContractManager.png["BausteinsichtContractM
 |===
 
 
+=== 5.1.4 Inventory
+
+image::./models/design/InventoryPackage.svg["InventoryPackage", 100%, 100%, pdfwidth=100%, align=center]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration     |Beschreibung
+|InventoryController    |Der InventoryController dient zur Ausgabe aller notwendigen Daten an das Thymeleaf Template zur Einarbeitung der Daten in die notwendige HTML-Page.
+|InventoryManager       |Der InventoryManager ist die Schnittstelle zum auslesen und nachbestellen von Items im Inventar.
+|Item                   |Die Item Klasse stellt die Produkte dar die vom Cateringpersonal verkauft werden können.
+|CatalogInitializer     |Der CatalogInitializer erstellt zum Beginn des Programmablaufs alle Items im Katalog.
+|InventoryInitializer   |Der InventoryInitializer erstellt zum Beginn des Programmablaufs alle Items im Inventar aus den Daten des Katalogs.
+|===
+
+=== 5.1.5 Festival
+
+image::./models/design/FestivalPackage.svg["FestivalPackage", 100%, 100%, pdfwidth=100%, align=center]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration     |Beschreibung
+|FestivalController     |Der FestivalController dient zur Ausgabe aller notwendigen Daten an das Thymeleaf Template zur Einarbeitung der Daten in die notwendige HTML-Page.
+|FestivalInitializer    |Der FestivalInitializer erstellt zum Beginn des Programmablaufs alle Festivals zu Testzwecken in der Datenbank.
+|Festival               |Die Festival Klasse repräsentiert die stattfindenden Festivals.
+|===
+
+
 === 5.2 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
 [options="header"]
