@@ -163,7 +163,18 @@ image::./models/design/Bausteinsicht_TicketManager.PNG["Bausteinsicht TicketMana
 |EconomicManager    |Der Verkauf von Tickets ist eine Einnahmequelle, die Beträge werden in die Kosten/Ertrag-Übersicht übergeben.
 |===
 
-=== 5.1.3 ...
+=== 5.1.3 ContractsManager
+
+image::./models/design/Bausteinsicht_ContractManager.png["BausteinsichtContractManager", 100%, 100%, pdfwidth=100%, align=center]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Beschreibung
+|ContractController |Der Contractcontroller dient zur Ausgabe aller notwendigen Daten an das Thymeleaf Template zur Einarbeitung der Daten in die notwendige HTML-Page.
+|ContractManager    |Der ContractManager kann Contracts erstellen und die passenren Stages dazu speichern.
+|Contract               |Die Contractklasse dient dazu Contracts zwischen Künstlern und der FVIV zu erstellen, welche dann an den ContractsManager übergeben werden können und gespeichert werden.
+|===
+
 
 === 5.2 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
@@ -176,6 +187,9 @@ image::./models/design/Bausteinsicht_TicketManager.PNG["Bausteinsicht TicketMana
 |EconomicManager                    |EconomicManager
 |PositiveAmount                     |AccountencyEntry
 |NegativeAmount                     |AccountencyEntry
+|ContractsManager                   |ContractManager
+|Contract                           |Contract
+|                                   |ContractController erstellt.
 |===
 
 == 6. Laufzeitsicht
