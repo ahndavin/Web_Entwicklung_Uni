@@ -202,6 +202,24 @@ image::./models/design/FestivalPackage.svg["FestivalPackage", 100%, 100%, pdfwid
 |Festival               |Die Festival Klasse repräsentiert die stattfindenden Festivals.
 |===
 
+=== 5.1.6 Location
+
+image:./models/design/Bausteinsicht_Location.svg[class design diagram - location]
+
+[options="header"]
+|===
+|Klasse/Enumeration |Beschreibung
+|Location   |Die Location fasst alle Areas zusammen und gibt dabei eine Übersicht über die Anzahl der Besucher, Bühnen, etc.
+|Area       |Areas sind einzelne Bestandteile einer Festival-Location, die verschiedene Funktionen (Type) einnehmen können.
+|Stage      |Eine Stage ist eine Bühne mit individuellem Programm (Lineup), welches über diese Klasse auch verändert und eingesehen werden kann.
+|Layout     |Das Layout beinhaltet einen graphischen Grundriss des Festivalgeländes.
+|Type       |Der Type spezifiziert die Area und damit ihre Funktionen in der Location: +
+ +
+- CAMPING: Ist ein Bereich für Zelte und andere Schlafmöglichkeiten. +
+- PARK: Dient zum Abstellen von Fahrzeugen, welche zur An- und Abreise verwendet werden. +
+- CATERING: In diesem Bereich werden Cateringstände aufgestellt, Essen und Getränke verkauft. +
+- STAGE: In diesem Bereich stehen eine oder mehrere Bühnen, auf denen die Künstler auftreten.
+|===
 
 === 5.2 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
@@ -240,3 +258,6 @@ image::./models/design/seq_inventory.svg["Laufzeitsicht Inventory", 100%, 100%, 
 === 6.5 Festival
 
 image::./models/design/seq_festival.svg["Laufzeitsicht Festival", 100%, 100%, pdfwidth=100%, align=center]
+
+=== 6.6 Location
+image:./models/design/Laufzeitsicht_Location.svg[sequence diagram - location]
