@@ -32,6 +32,7 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 - Tests sollen von Anfang an mitgeschrieben werden
 - Auch die Zweisprachigkeit ist einfacher, wenn dies von Anfang an erfolgt
 - Bis zum Ende werden noch Javadocs erstellt
+- Testplan wird von Tobias und Jonas zusammen erstellt.
 
 
 === Bisheriger Fortschritt der Entwickler Dokumentation:
