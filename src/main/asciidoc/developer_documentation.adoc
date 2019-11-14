@@ -150,7 +150,7 @@ image::./models/design/Bausteinsicht_EconomicManager.PNG["Bausteinsicht Economic
 |EconomicManager    |Diese Klasse dient zur zentralen Verwaltung aller Einnahmen und Ausgaben, um eine Übersicht zu ermöglichen.
 |===
 
-=== 5.1.2 EconomicsManager
+=== 5.1.2 TicketManager
 
 image::./models/design/Bausteinsicht_TicketManager.PNG["Bausteinsicht TicketManager", 100%, 100%, pdfwidth=100%, align=center]
 
