@@ -249,7 +249,7 @@ image::./models/design/Laufzeitsicht_TicketManager.PNG["Laufzeitsicht TicketMana
 
 === 6.3 ContractManager
 
-Placeholder
+image::./models/design/Laufzeitsicht_ContractManager.png["Laufzeitsicht ContractManager", 100%, 100%, pdfwidth=100%, align=center]
 
 === 6.4 Inventory
 
