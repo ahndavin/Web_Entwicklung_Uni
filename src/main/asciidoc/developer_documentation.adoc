@@ -38,8 +38,6 @@ Der Festivalleiter besitzt ebenfalls ein persönliches Terminal, an dem es ihm m
 ==== Logins
 Der Manager der „FVIV GmbH“ sorgt für die Verteilung der Logins an die Mitarbeiter und kann sehen, welcher Mitarbeiter momentan am System angemeldet ist (_StaffManager_). Weiterhin soll es ihm möglich sein, betriebswirtschaftliche Daten, wie Umsatz, Ausgaben,... , abzurufen und grafisch zu visualiseren (_EconomicManager_).
 
-Nach der Fertigstellung der Software sollen alle in <<7. Funktionale Anforderungen, Funktionale Anforderungen>> beschriebenen Muss-Kriterien verfügbar und die <<8.1. Qualitätsziele, Qualitätsziele>> erreicht sein.
-
 
 === 1.2 Qualitätsziele
 Um die Qualität der Software messen zu können, müssen Qualitätsziele definiert werden.
