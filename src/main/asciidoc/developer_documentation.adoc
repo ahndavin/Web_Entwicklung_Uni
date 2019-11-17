@@ -276,11 +276,13 @@ image:./models/design/Bausteinsicht_Location.svg[class design diagram - location
 - PARK: Dient zum Abstellen von Fahrzeugen, welche zur An- und Abreise verwendet werden. +
 - CATERING: In diesem Bereich werden Cateringstände aufgestellt, Essen und Getränke verkauft. +
 - STAGE: In diesem Bereich stehen eine oder mehrere Bühnen, auf denen die Künstler auftreten.
+|LocationManager   |Diese Klasse verwaltet mehrere Locations.
+|LocationController   |Controller-Klasse für Spring
 |===
 
 === 5.1.7 Staff
 
-image:./models/design/Bausteinsicht_StaffManager.png["BausteinsichtStaffManager", 100%, 100%, pdfwidth=100%, align=center]
+image::./models/design/Bausteinsicht_StaffManager.svg["StaffManager", 100%, 100%, pdfwidth=100%, align=center]
 
 [options="header"]
 |=== 
