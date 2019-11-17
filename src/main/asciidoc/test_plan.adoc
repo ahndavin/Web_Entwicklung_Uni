@@ -49,19 +49,21 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe |Verantwortlicher
 |U101-1  |Ein Festival wird erstellt.             |Es gibt einen FestivalManager und der Nutzer ist als Manager angemeldet.              |Name des neuen Festivals.      |Ein neues Festival wurde erstellt.      |Jonas Hönisch
 |U101-2 |Ein Festival wird erstellt.             |Es gibt einen FestivalManager und der Nutzer ist nicht als Manager angemeldet.              |Name des neuen Festivals.      |Fehlermeldung, da die nötigen Berechtigungen fehlen.     |Jonas Hönisch
-|U102-1 |Die Gesamtzahl der Besucher wird abgerufen. |Ein Festival wurde erstellt, der Nutzer ist als Manager angemeldet und es sind noch keine Besucher erfasst. |Klick auf einen Button. |"0" |Jonas Hönsch
-|U102-2 |Die Gesamtzahl der Besucher wird abgerufen. |Ein Festival wurde erstellt, der Nutzer ist nicht als Manager angemeldet. |Klick auf einen Button. |Fehlermeldung, da die nötigen Berechtigungen fehlen. |Jonas Hönsch
-|U102-3 |Die Gesamtzahl der Besucher wird abgerufen. |Ein Festival wurde erstellt, der Nutzer ist als Manager angemeldet und es sind Besucher erfasst. |Klick auf einen Button. |Anzahl der Besucher. |Jonas Hönsch
-|U103 |To-Do-Liste eines Festivals wird abgerufen. |Ein Festival wurde erstellt und der Nutzer ist als Manager angemeldet. |Klick auf einen Button. |To-Do-Liste des Festivals |Jonas Hönsch
+|U102-1 |Die Gesamtzahl der Besucher wird abgerufen. |Ein Festival wurde erstellt, der Nutzer ist als Manager angemeldet und es sind noch keine Besucher erfasst. |Klick auf einen Button. |"0" |Jonas Hönisch
+|U102-2 |Die Gesamtzahl der Besucher wird abgerufen. |Ein Festival wurde erstellt, der Nutzer ist nicht als Manager angemeldet. |Klick auf einen Button. |Fehlermeldung, da die nötigen Berechtigungen fehlen. |Jonas Hönisch
+|U102-3 |Die Gesamtzahl der Besucher wird abgerufen. |Ein Festival wurde erstellt, der Nutzer ist als Manager angemeldet und es sind Besucher erfasst. |Klick auf einen Button. |Anzahl der Besucher. |Jonas Hönisch
+|U103 |To-Do-Liste eines Festivals wird abgerufen. |Ein Festival wurde erstellt und der Nutzer ist als Manager angemeldet. |Klick auf einen Button. |To-Do-Liste des Festivals |Jonas Hönisch
 
-|U201 |Inventar wird automatisch mit Festival erstellt. |Es gibt ein Festival und der Nutzer ist als Manager angemeldet. |- |Es gibt ein Inventar zu dem Festival |Jonas Hönsch
-|U202|Item zum Inventar hinzufügen. |Es gibt ein Festival mit einem leeren Inventar, der Nutzer ist als Manager angemeldet.  |Das zu kaufende Item wird zusammen mit einer Quantität ausgewählt und mit einem Button bestätigt.|Die Items sind nun im Inventar enthalten. |Jonas Hönsch
-|U203-1 |Items werden aus dem Lager herausgenommen. |Es sind Items im Lager vorhanden und der Nutzer ist entweder als Manager oder als CateringPersonal angemeldet. |Das entsprechende Item wird mit einer entsprechenden Quantität ausgewählt und verkauft. |Im Inventar sind nun um diese Quantität weniger Items enthalten. |Jonas Hönsch
-|U203-2 |Items werden aus dem Lager herausgenommen. |Es sind Items im Lager vorhanden und der Nutzer ist entweder als Manager oder als CateringPersonal angemeldet. |Das entsprechende Item wird mit einer entsprechenden Quantität ausgewählt, welche aber größer ist als der Lagerbestand und verkauft. |Fehlermeldung, da nicht genug Items im Inventar sind. |Jonas Hönsch
-|U204-1 |Lagerübersicht wird angefordert. |Es sind Items im Lager vorhanden und der Nutzer ist entweder als Manager angemeldet. |Über einen entsprechenden Button wird eine Lagerübersicht angefordert. |Die gelagerter Items werden aufgelistet. |Jonas Hönsch
-|U204-2 |Lagerübersicht wird angefordert. |Es sind keine Items im Lager vorhanden und der Nutzer ist entweder als Manager angemeldet. |Über einen entsprechenden Button wird eine Lagerübersicht angefordert. |Es wird eine leere Liste angezeigt. |Jonas Hönsch
+|I104 |Maximale Besucherzahl wird abgerufen. |Es gibt ein Festival und der Nutzer ist als Manager angemeldet. | Klick auf Button. | Die maximale Besucheranzahl wird berechnet und ausgegeben. |Jonas Hönisch
 
-|I205 |Mitteilung bei kritischem Lagerbestand. |Es sind Items über die minimale Menge hinaus im Inventar gelagert. |Es werden so viele eines Items aus dem Lager genommen, dass die kritische Grenze überschritten wird. |Der Manager bekommt eine Mitteilung. |Jonas Hönsch
+|U201 |Inventar wird automatisch mit Festival erstellt. |Es gibt ein Festival und der Nutzer ist als Manager angemeldet. |- |Es gibt ein Inventar zu dem Festival |Jonas Hönisch
+|U202|Item zum Inventar hinzufügen. |Es gibt ein Festival mit einem leeren Inventar, der Nutzer ist als Manager angemeldet.  |Das zu kaufende Item wird zusammen mit einer Quantität ausgewählt und mit einem Button bestätigt.|Die Items sind nun im Inventar enthalten. |Jonas Hönisch
+|U203-1 |Items werden aus dem Lager herausgenommen. |Es sind Items im Lager vorhanden und der Nutzer ist entweder als Manager oder als CateringPersonal angemeldet. |Das entsprechende Item wird mit einer entsprechenden Quantität ausgewählt und verkauft. |Im Inventar sind nun um diese Quantität weniger Items enthalten. |Jonas Hönisch
+|U203-2 |Items werden aus dem Lager herausgenommen. |Es sind Items im Lager vorhanden und der Nutzer ist entweder als Manager oder als CateringPersonal angemeldet. |Das entsprechende Item wird mit einer entsprechenden Quantität ausgewählt, welche aber größer ist als der Lagerbestand und verkauft. |Fehlermeldung, da nicht genug Items im Inventar sind. |Jonas Hönisch
+|U204-1 |Lagerübersicht wird angefordert. |Es sind Items im Lager vorhanden und der Nutzer ist entweder als Manager angemeldet. |Über einen entsprechenden Button wird eine Lagerübersicht angefordert. |Die gelagerter Items werden aufgelistet. |Jonas Hönisch
+|U204-2 |Lagerübersicht wird angefordert. |Es sind keine Items im Lager vorhanden und der Nutzer ist entweder als Manager angemeldet. |Über einen entsprechenden Button wird eine Lagerübersicht angefordert. |Es wird eine leere Liste angezeigt. |Jonas Hönisch
+
+|I205 |Mitteilung bei kritischem Lagerbestand. |Es sind Items über die minimale Menge hinaus im Inventar gelagert. |Es werden so viele eines Items aus dem Lager genommen, dass die kritische Grenze überschritten wird. |Der Manager bekommt eine Mitteilung. |Jonas Hönisch
 
 |U301 |EconomicManager wird beim Erstellen eines Festivals miterstellt. |Es gibt ein Festival und der Nutzer ist als Manager angemeldet. |- |Es gibt einen EconomicManager |Tobias Neubauer
 |U302 |Kostenpunkt wird hinzugefügt. |Es gibt einen EconomicManager. |Ein Kostenpunkt wird erstellt. |Der Kostenpunkt ist in der Übersicht enthalten. |Tobias Neubauer
@@ -76,11 +78,23 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 |U402-2 |Contract-Übersicht wird abgerufen. |Es wurden keine Contracts erstellt. |Die Aufforderung wird mit einem Klick auf eine Button bestätigt. |Es wird eine leere Liste angezeigt. |Igor Macevic
 |U403 |Gesamtkosten eines Contracts werden berechnet. |Es wurde ein Contract angelegt. |Die Aufforderung wird mit einem Klick auf eine Button bestätigt. |Der Zahlenwert wird angezeigt. |Igor Macevic
 
-|U501-1 |Tickets werden erstellt. |Es gibt ein Festial, welches Tickets verkauft und der Nutzer ist als TicketSalesman angemeldet. |Das Auswahlformular für Tickets wird ausgefüllt. |Das Ticket wurde erstellt und ist nun als verwendetes Ticket abgelegt. |Tobias Neubauer
 |U501-2 |Tickets werden erstellt. |Es gibt ein Festial, welches Tickets verkauft und der Nutzer ist nicht als TicketSalesman angemeldet. |Das Auswahlformular für Tickets wird ausgefüllt. |Fehlermeldung, da die nötigen Berechtigungen fehlen. |Tobias Neubauer
 |U501-3 |Tickets werden erstellt. |Es gibt ein Festial, welches keine Tickets mehr verkauft. |Das Auswahlformular für Tickets wird ausgefüllt. |Fehlermeldung, es wird auf die Abendkasse verwiesen. |Tobias Neubauer
 |U501-4 |Tickets werden erstellt. |Es gibt ein Festial, wessen Karten ausverkauft sind. |Das Auswahlformular für Tickets wird ausgefüllt. |Fehlermeldung, es gibt keine Karten mehr. |Tobias Neubauer
 |U502 |Ticket finden. |Das Ticket wurde erstellt. |Ticketnummer. |Das richige Ticket wird ausgegeben. |Tobias Neubauer
 
+|I503 |Tickets werden erstellt. |Es gibt ein Festial, welches Tickets verkauft und der Nutzer ist als TicketSalesman angemeldet. |Das Auswahlformular für Tickets wird ausgefüllt. |Das Ticket wurde erstellt und abgerechnet und ist nun als verwendetes Ticket abgelegt. |Tobias Neubauer
+
+|U601-1 |Besucherzahlen abrufen. |Es gibt einen Festival und der Nutzer ist als Manager angemeldet.       |Klick auf einen Button. |Die Besucherzahl wird berechnet und angezeigt. |Davin Ahn
+|U601-2 |Besucherzahlen abrufen. |Es gibt einen FestivalManager und der Nutzer ist nicht als Manager angemeldet. |Klick auf einen Button. |Fehlermeldung, da die nötigen Berechtigungen fehlen. |Davin Ahn
+|U602-1 |Bühnenbelegung abrufen. |Es gibt ein Festival mit einer Location und der Nutzer ist als Manager angemeldet.       |Klick auf einen Button. |Die Bühnenbelegung wird abgerufen und angezeigt. |Davin Ahn
+|U602-2 |Bühnenbelegung abrufen. |Es gibt ein Festival ohne Location und der Nutzer ist als Manager angemeldet. |Klick auf einen Button. |Fehlermeldung, da es keine Location gibt für die die Bühnenbelegung angezeigt werden kann. |Davin Ahn
+|U603-1 |Area editieren. |Es gibt eine Area und der Nutzer ist als Manager angemeldet. |Ausfüllung eines Formulars und klick auf einen Button. |Die Änderungen werden übernommen und in der Datenbank gespeichert. |Davin Ahn
+|U603-2 |Area editieren. |Es gibt eine Area und der Nutzer ist als Manager angemeldet. |Keine Ausfüllung eines Formulars und klick auf einen Button.|Fehlermeldung, da keine Daten zum Ändern angegeben wurden. |Davin Ahn
+|U603-3 |Area editieren. |Es gibt keine Area und der Nutzer ist als Manager angemeldet. |Ausfüllung eines Formulars und klick auf einen Button.|Fehlermeldung, da es keine Area gibt. |Davin Ahn
+
+|I704-1 |Waren verkaufen. |Das ausgewähle Produkt ist verfügbar, es werden weniger Items gekauft als maximal verfügbar und der Nutzer ist als Cateringpersonal angemeldet. |Ausfüllung eines Formulars und Klick auf Button.  |Die Menge des Items wird um die gekaufte Anzahl verringert. |Marcus Fiedler, Jonas Hönisch
+|I704-2 |Waren verkaufen. |Das ausgewähle Produkt ist verfügbar, es werden mehr Items gekauft als maximal verfügbar und der Nutzer ist als Cateringpersonal angemeldet. |Ausfüllung eines Formulars und Klick auf Button.  |Es wird eine Fehlermeldung angezeigt da nicht genügend Items vorhanden sind. |Marcus Fiedler, Jonas Hönisch
+|I704-3 |Waren verkaufen. |Das ausgewähle Produkt ist nicht verfügbar und der Nutzer ist als Cateringpersonal angemeldet. |Ausfüllung eines Formulars und Klick auf Button.  |Es wird eine Fehlermeldung angezeigt da das Item nicht auf Lager ist. |Marcus Fiedler, Jonas Hönisch
 
 |===
