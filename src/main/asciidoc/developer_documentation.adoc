@@ -264,7 +264,7 @@ image:./models/design/Bausteinsicht_Location.svg[class design diagram - location
 
 === 5.1.7 Staff
 
-image:./models/design/Bausteinsicht_StaffManager.png["BausteinsichtStaffManager", 100%, 100%, pdfwidth=100%, align=center]
+image::./models/design/Bausteinsicht_StaffManager.png[100%, 100%, pdfwidth=100%, align=center]
 
 [options="header"]
 |=== 
