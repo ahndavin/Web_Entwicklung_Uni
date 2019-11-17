@@ -3,6 +3,44 @@
 
 == 1. Einführung und Ziele
 === 1.1 Aufgabenstellung
+==== Festival
+Das System soll unter anderem in der Planungsabteilung eingesetzt werden, in der Festivals (_Festival_) angelegt werden.
+Dazu muss ein Termin (_Festival.Date_ ) festgelegt werden und die passende Location (_Location_) zu diesem Zeitpunkt gebucht werden.
+Doppelbuchungen dieser Locations sind unter allen Umständen zu vermeiden. Jede Location bietet Platz für eine maximale Anzahl von Besuchern (_Festival.MaxVisitors_) und Bühnen (_Festival.MaxStages_).
+Außerdem ist jede Location in verschiedene, eindeutig gekennzeichnete Bereiche (_Area_) unterteilt, die wiederum einen Teil der maximalen Besucherzahl (_Area.MaxVisitors_) fassen können und sich außerdem in Camping-, Park-, Catering- und Stage-Bereiche (_Type_) einordnen.
+Um dem Planungsteam einen guten Überblick zu verschaffen, ist es zwingend notwendig, dass das Gelände und die Bereiche visualisiert werden können (_Layout_). Sobald die Location gebucht ist, können für dieses Festival Anpassungen durchgeführt werden,
+wie die Bühnenpositionierung, Toilettenbestückung und Cateringstände, und es muss möglich sein,bestimmte Bereiche zu sperren. Die genannten Gegenstände (Bühnen, usw.) werden von externen Anbietern gemietet (_InventoryManager_).
+
+==== Line-Up
+In der nächsten Stufe muss das „Line-Up“ (_LineUp_) zusammengestellt werden. Dazu müssen Angebote bei verschiedenen Künstlern eingeholt werden. Anschließend werden aus diesen Angeboten Künstler ausgewählt und es muss ein Spielplan für jede Bühne erstellt werden.
+
+==== Betriebswirtschaftliche Funktion
+Neben den genannten Künstlern ist weiteres Personal erforderlich, wie Sicherheitspersonal (_Security_) (mindestens einer pro 100 Besuchern), Bedienungen an den Cateringständen (_CateringPersonal_), Bühnentechniker (Anzahl wird durch die Band bestimmt), sowie ein Veranstaltungsleiter (_Manager_).
+Jede Arbeitskraft wird dabei auf Stundenbasis bezahlt (_ContractManager_).
+
+Zu jedem Zeitpunkt während der Planung muss der Planungsabteilung als auch dem Management eine automatische Kostenaufstellung (_EconomicManager_) zur Verfügung gestellt werden können, in der Kosten für Mieten, Gagen, Personal und Sonstigem aufgelistet und aggregiert werden.
+
+==== Tickets
+Schon während der Planungsphase kann ein Event freigegeben werden, und es kann ein Kartenpreis festgelegt werden (_TicketManager_). Es gibt dabei Camping-Tickets (_camping_), die das ganze Festival über gültig sind und Tageskarten (_dayticket_).
+Diese Tickets werden bis 3 Tage vor Veranstaltungsbeginn in den Filialen der „FVIV GmbH“ verkauft und danach nur noch an der Abendkasse. Es muss den Verkaufsmitarbeitern möglich sein, bei noch vorhandenen Tickets diese zu verkaufen (_saleTicket_) und auszudrucken (_print_).
+Auf jedes Ticket wird ein Barcode bzw. eine eindeutige Nummer (_ticket.number_) aufgedruckt, mit dem es dem Personal am Festivaleingang möglich ist, das Ticket auf Gültigkeit hin zu überprüfen und zu vermeiden, dass verschiedene Personen das Gelände mit derselben Karte betreten.
+
+==== Catering
+Eine weitere Nutzergruppe ist das Cateringpersonal, das sich an entsprechenden Terminals am Verkaufsstand mit gültigem Login (_Login_) anmeldet. Dort können Getränke und vorgefertigte Speisen ausgewählt und abgerechnet werden (_sellFood_). Dabei wird das Gekaufte vom verfügbaren Lagerbestand (_InventoryManager_) abgezogen.
+Sollte ein gewisser Mindestbestand unterschritten werden erfolgt eine Mittteilung an die Festivalleitung (_Message_).
+
+==== Management
+Der Festivalleiter besitzt ebenfalls ein persönliches Terminal, an dem es ihm möglich ist, das Lager einzusehen und Nachbestellungen zu tätigen. Weiterhin sieht er dort aktuelle Besucherzahlen, Nachrichten von anderen Mitarbeitern, sowie Verkaufszahlen des Caterings und die aktuelle Bühnenbelegung.
+
+==== Terminals
+Überall auf dem Festivalgelände verteilt befinden sich Terminals, die für jeden frei nutzbar sind. Dort sieht man neben einem Plan (_Layout_) vom Festivalgelände auch den Spielplan (_Lineup_) für alle Festivaltage.
+
+==== Logins
+Der Manager der „FVIV GmbH“ sorgt für die Verteilung der Logins an die Mitarbeiter und kann sehen, welcher Mitarbeiter momentan am System angemeldet ist (_StaffManager_). Weiterhin soll es ihm möglich sein, betriebswirtschaftliche Daten, wie Umsatz, Ausgaben,... , abzurufen und grafisch zu visualiseren (_EconomicManager_).
+
+Nach der Fertigstellung der Software sollen alle in <<7. Funktionale Anforderungen, Funktionale Anforderungen>> beschriebenen Muss-Kriterien verfügbar und die <<8.1. Qualitätsziele, Qualitätsziele>> erreicht sein.
+
+
 === 1.2 Qualitätsziele
 Um die Qualität der Software messen zu können, müssen Qualitätsziele definiert werden.
 Diese werden in diesem Abschnitt festgelegt und beschrieben.
