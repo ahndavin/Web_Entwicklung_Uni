@@ -343,3 +343,6 @@ image::./models/design/seq_festival.svg["Laufzeitsicht Festival", 100%, 100%, pd
 
 === 6.6 Location
 image:./models/design/Laufzeitsicht_Location.svg[sequence diagram - location]
+
+=== 6.7 Staff
+image:./models/design/seq_staff.svg["Laufzeitsicht Staff", 100%, 100%, pdfwidth=100%, align=center]
