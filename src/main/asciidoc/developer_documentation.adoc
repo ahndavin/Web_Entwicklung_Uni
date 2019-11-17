@@ -140,6 +140,9 @@ Um das Programm weiterhin möglichst browserunspezifisch zu testen und die grö�
 
 == 5. Bausteinsicht
 
+===5.1 Package Diagram
+image:./models/design/Package_Diagram[package diagram]
+
 === 5.1.1 EconomicsManager
 
 image::./models/design/Bausteinsicht_EconomicManager.PNG["Bausteinsicht EconomicManager", 100%, 100%, pdfwidth=100%, align=center]
