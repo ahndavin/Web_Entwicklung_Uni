@@ -238,6 +238,15 @@ image:./models/design/Bausteinsicht_Location.svg[class design diagram - location
 |ContractsManager                   |ContractManager
 |Contract                           |Contract
 |                                   |ContractController erstellt.
+|Item                               |Item
+|InventoryManager                   |InventoryManager
+|                                   |InventoryController erstellt.
+|                                   |InventoryInitializer erstellt.
+|                                   |CatalogInitializer erstellt.
+|Festival                           |Festival
+|Festivalmanager                    |FestivalManager
+|                                   |FestivalController erstellt.
+|                                   |FestivalInitializer erstellt.
 |===
 
 == 6. Laufzeitsicht
