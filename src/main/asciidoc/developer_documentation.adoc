@@ -262,6 +262,26 @@ image:./models/design/Bausteinsicht_Location.svg[class design diagram - location
 - STAGE: In diesem Bereich stehen eine oder mehrere Bühnen, auf denen die Künstler auftreten.
 |===
 
+=== 5.1.7 Staff
+
+image:./models/design/Bausteinsicht_StaffManager.png["BausteinsichtStaffManager", 100%, 100%, pdfwidth=100%, align=center]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration     		|Beschreibung
+|Account     				|Modelliert die Zugangsdaten und betriebswirtschaftlichen Daten der Mitarbeiter. Jeder Mitarbeiter entspricht einer Instanz.
+|AccountController    			|Nimmt Html request entgegen und gibt die Entsprechende Template zurück.
+|AccountDataInitializer               	|Initialisiert die Daten in der Datenbank.
+|AccountManager				|Ist die Klasse in der Accounts erstellt / verändert werden.
+|AccountRepository			|Ist die Datenbank zur Speicherung aller Accounts.
+|CreationForm 				|Ist das Formular, dass zur Erstellung neuer Accounts ausgefüllt werden muss.
+|Message				|Modelliert die Nachrichten zwischen zwei Accounts. 
+|Type 					|Beschreibt den Zustand der Nachricht ob versandt, empfangen u.ä..
+|===
+
+
+
+
 === 5.2 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
 [options="header"]
@@ -285,6 +305,16 @@ image:./models/design/Bausteinsicht_Location.svg[class design diagram - location
 |Festivalmanager                    |FestivalManager
 |                                   |FestivalController erstellt.
 |                                   |FestivalInitializer erstellt.
+|StaffManager 			    |AccountManager
+|Staff				    |Account
+|Login 				    |Account
+|CateringPersonal		    |Account
+|Security				|Account
+|Manager				|Account
+|TicketSalesman				|Account
+|MessageController 			|Account
+|Message           			|Message
+|					|Type
 |===
 
 == 6. Laufzeitsicht
