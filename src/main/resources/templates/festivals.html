@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Festivals</title>
+    </head>
+    <body>
+        <div th:each="festival : ${festivals}">
+            <p th:text="${festival.location}"></p>
+        </div>
+    </body>
+</html>
