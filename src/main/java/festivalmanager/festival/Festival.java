@@ -16,9 +16,41 @@ public class Festival {
 
 	private final List<String> plan = new ArrayList<>();
 
-	public Festival(int maxVisitors, boolean sellingTickets) {
+	private String location;
+	private String date;
+
+	public Festival(String location, String date, int maxVisitors, boolean sellingTickets) {
+		this.location = location;
+		this.date = date;
+
 		this.maxVisitors = maxVisitors;
 
 		this.sellingTickets = sellingTickets;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public int getMaxVisitors() {
+		return maxVisitors;
+	}
+
+	public int getVisitorCount() {
+		return currentVisitors;
+	}
+
+	public Iterable<String> getPlan() {
+		return plan;
+	}
+
+	public void editPlan(int index, String newValue) {
+		if(plan.size() >= index) {
+			plan.set(index, newValue);
+		}
 	}
 }
