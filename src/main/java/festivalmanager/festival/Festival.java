@@ -9,15 +9,17 @@ import java.util.List;
 @Entity
 public class Festival {
 	private @Id @GeneratedValue long id;
-	private final int maxVisitors;
+	private int maxVisitors;
 	private int currentVisitors;
 
 	private boolean sellingTickets;
 
-	private final List<String> plan = new ArrayList<>();
+	//private final List<String> plan = new ArrayList<>();
 
 	private String location;
 	private String date;
+
+	private Festival() {}
 
 	public Festival(String location, String date, int maxVisitors, boolean sellingTickets) {
 		this.location = location;
@@ -44,7 +46,7 @@ public class Festival {
 		return currentVisitors;
 	}
 
-	public Iterable<String> getPlan() {
+	/*public Iterable<String> getPlan() {
 		return plan;
 	}
 
@@ -52,5 +54,5 @@ public class Festival {
 		if(plan.size() >= index) {
 			plan.set(index, newValue);
 		}
-	}
+	}*/
 }
