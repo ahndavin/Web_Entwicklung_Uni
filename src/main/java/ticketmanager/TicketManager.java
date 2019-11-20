@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TicketManager{
     public HashMap<String, Ticket> usedTickets;
-    public ArrayList<String> usedNumbers;
+    public static ArrayList<String> usedNumbers;
     private int remainingTicketsCamping;
     private int remainingTicketsDayticket;
     private boolean isStillSellingTickets;
@@ -55,5 +55,14 @@ public class TicketManager{
 
     public void addNumber (String number){
         usedNumbers.add(number);
+    }
+
+    public static boolean checkNumber(String number){
+        if(usedNumbers.contains(number) == true){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

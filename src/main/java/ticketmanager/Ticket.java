@@ -23,12 +23,15 @@ public class Ticket{
            this.price = priceCamping;
          }
 
-         int i;
+         int random;
+         String random_str;
 
         do {
-             
-         } while (condition);
-        this.number = number;
+             random = (int) (Math.random()*1000000);
+             random_str = intToString(random);
+         } while (TicketManager.checkNumber(random_str) == true);
+
+        this.number = random_str;
     }
 
     public static String sortToString(Sort sort){
@@ -78,5 +81,9 @@ public class Ticket{
 
     public void setSort(Sort sort) {
         this.sort = sort;
+    }
+
+    public static String intToString(int integer){
+        return ""+integer;
     }
 }
