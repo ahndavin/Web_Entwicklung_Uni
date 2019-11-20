@@ -65,4 +65,9 @@ public class TicketManager{
             return false;
         }
     }
+
+    public Ticket findTicket(String string){
+        Ticket ticket = usedTickets.get(string);
+        return ticket;
+    }
 }
