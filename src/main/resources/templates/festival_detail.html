@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Festivals</title>
+    </head>
+    <body>
+        <p th:text="${festival.name + ' in ' + festival.location + ' von, bis ' + festival.formattedDate}"></p>
+
+        <ul>
+            <li th:each="item : ${festival.plan}" th:text="${item}"></li>
+        </ul>
+    </body>
+</html>

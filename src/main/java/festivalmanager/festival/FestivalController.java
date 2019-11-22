@@ -37,8 +37,8 @@ public class FestivalController {
 		}
 
 		model.addAttribute("festival", festival);
-		
-		return "festival";
+
+		return "festival_detail";
 	}
 
 	@GetMapping("/festival/add")
