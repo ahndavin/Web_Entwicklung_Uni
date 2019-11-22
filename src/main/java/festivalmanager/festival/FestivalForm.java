@@ -1,11 +1,24 @@
 package festivalmanager.festival;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class FestivalForm {
+	@NotEmpty
 	private String name;
+
+	@NotEmpty
 	private String location;
+
+	@NotEmpty
 	private String startDate;
+
 	private String endDate;
+
+	@Min(0)
 	private int maxVisitors;
+
 	private boolean sellingTickets;
 
 	public FestivalForm() {}

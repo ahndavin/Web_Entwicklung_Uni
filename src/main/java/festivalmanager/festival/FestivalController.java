@@ -2,7 +2,12 @@ package festivalmanager.festival;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
+import java.util.Arrays;
 
 @Controller
 public class FestivalController {
@@ -47,9 +52,16 @@ public class FestivalController {
 	}
 
 	@PostMapping("/festival/add")
-	String addFestival(@ModelAttribute FestivalForm festivalForm) {
+	String addFestival(@ModelAttribute @Valid FestivalForm festivalForm, Errors errors, RedirectAttributes redirectAttributes) {
+		boolean result = false;
 
-		festivals.save(festivalForm.toFestival());
+		if(!errors.hasErrors()) {
+			result = festivals.save(festivalForm.toFestival());
+		}
+
+		if(!result) {
+			redirectAttributes.addFlashAttribute("error", "Fehler beim erstellen des Festivals.");
+		}
 
 		return "redirect:/festivals";
 	}
