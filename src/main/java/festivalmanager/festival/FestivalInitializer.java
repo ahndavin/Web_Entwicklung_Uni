@@ -2,15 +2,16 @@ package festivalmanager.festival;
 
 import org.salespointframework.core.DataInitializer;
 import org.springframework.core.annotation.Order;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 @Component
 @Order(10)
 public class FestivalInitializer implements DataInitializer {
-	private FestivalRepository festivals;
+	private FestivalManager festivals;
 
-	public FestivalInitializer(FestivalRepository festivals) {
+	public FestivalInitializer(FestivalManager festivals) {
 		this.festivals = festivals;
 	}
 
@@ -20,7 +21,13 @@ public class FestivalInitializer implements DataInitializer {
 			return;
 		}
 
-		festivals.save(new Festival("Test1", "heute", 2, true));
-		festivals.save(new Festival("Test2", "morgen", 2, true));
+		Festival f = new Festival("Test1", "19.12.2019","20.12.2019", 2, true);
+
+		f.editPlan(-1, "blabla");
+		f.editPlan(-1, "lalala");
+
+		System.out.println(festivals.save(f));
+
+		System.out.println(festivals.save(new Festival("Test1", "18.12.2019", 2, true)));
 	}
 }
