@@ -70,6 +70,10 @@ public class Festival {
 		return this.name;
 	}
 
+	public String getUrlName() {
+		return this.name.replaceAll(" ", "%20");
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
