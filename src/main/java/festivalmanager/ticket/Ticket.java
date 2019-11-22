@@ -1,4 +1,4 @@
-package ticketmanager;
+package festivalmanager.ticket;
 
 public class Ticket{
     private String sort_str;

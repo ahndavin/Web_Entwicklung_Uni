@@ -1,4 +1,4 @@
-package ticketmanager;
+package festivalmanager.ticket;
 
 import java.util.ArrayList;
 import java.util.HashMap;
