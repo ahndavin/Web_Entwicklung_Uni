@@ -2,10 +2,7 @@ package festivalmanager.festival;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class FestivalController {
@@ -20,6 +17,28 @@ public class FestivalController {
 		model.addAttribute("festivals", festivals.findAll());
 
 		return "festivals";
+	}
+
+	@GetMapping("/festival/{festivalName}")
+	String festival(@PathVariable String festivalName, Model model) {
+		festivalName = festivalName.replaceAll("_", " ");
+
+		Festival festival = null;
+
+		for(Festival f : festivals.findAll()) {
+			if(f.getName().equals(festivalName)) {
+				festival = f;
+				break;
+			}
+		}
+
+		if(festival == null) {
+			return "redirect:/404";
+		}
+
+		model.addAttribute("festival", festival);
+		
+		return "festival";
 	}
 
 	@GetMapping("/festival/add")
