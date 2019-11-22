@@ -63,6 +63,10 @@ public class Festival {
 		return location;
 	}
 
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	public Date[] getDate() {
 		return festivalDate;
 	}
@@ -85,8 +89,20 @@ public class Festival {
 		return maxVisitors;
 	}
 
+	public void setMaxVisitors(int maxVisitors) {
+		this.maxVisitors = maxVisitors;
+	}
+
 	public int getVisitorCount() {
 		return currentVisitors;
+	}
+
+	public boolean isSellingTickets() {
+		return sellingTickets;
+	}
+
+	public void setSellingTickets(boolean sellingTickets) {
+		this.sellingTickets = sellingTickets;
 	}
 
 	public Iterable<String> getPlan() {
