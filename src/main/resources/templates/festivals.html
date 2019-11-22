@@ -6,7 +6,9 @@
     </head>
     <body>
         <div th:each="festival : ${festivals}">
-            <p th:text="${festival.name + ' in ' + festival.location + ' von, bis ' + festival.formattedDate}"></p>
+            <a th:href="${'/festival/' + festival.name + '-' + festival.id}">
+                <p th:text="${festival.name + ' in ' + festival.location + ' von, bis ' + festival.formattedDate}"></p>
+            </a>
 
             <ul>
                 <li th:each="item : ${festival.plan}" th:text="${item}"></li>

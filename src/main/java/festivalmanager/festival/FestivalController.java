@@ -19,14 +19,12 @@ public class FestivalController {
 		return "festivals";
 	}
 
-	@GetMapping("/festival/{festivalName}")
-	String festival(@PathVariable String festivalName, Model model) {
-		festivalName = festivalName.replaceAll("_", " ");
-
+	@GetMapping("/festival/{festivalName}-{festivalId}")
+	String festival(@PathVariable String festivalName, @PathVariable long festivalId, Model model) {
 		Festival festival = null;
 
 		for(Festival f : festivals.findAll()) {
-			if(f.getName().equals(festivalName)) {
+			if(f.getName().equals(festivalName) && f.getId() == festivalId) {
 				festival = f;
 				break;
 			}
