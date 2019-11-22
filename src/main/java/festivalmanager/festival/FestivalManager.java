@@ -18,10 +18,8 @@ public class FestivalManager {
 		Iterable<Festival> festivals = festivalRepository.findAll();
 
 		for(Festival f : festivals) {
-			if(f.getLocation().equals(festival.getLocation())) {
-				if(Festival.areAtTheSameTime(festival, f)) {
-					return false;
-				}
+			if(Festival.areAtTheSameTimeAndPlace(festival, f)) {
+				return false;
 			}
 		}
 
