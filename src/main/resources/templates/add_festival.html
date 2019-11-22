@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Festival hinzufügen</title>
+    </head>
+
+    <body>
+        <form th:action="@{/festival/add}" th:object="${festival_form}" method="POST">
+            Location: <input type="text" name="location" th:field="*{location}">
+            Start: <input type="text" name="startDate" th:field="*{startDate}">
+            Ende: <input type="text" name="endDate" th:field="*{endDate}">
+            maximale Besucher: <input type="number" name="maxVisitors" th:field="*{maxVisitors}">
+            Tickets verfügbar: <input type="checkbox" name="sellingTickets" th:field="*{sellingTickets}">
+
+            <input type="submit" value="ok">
+        </form>
+    </body>
+</html>
