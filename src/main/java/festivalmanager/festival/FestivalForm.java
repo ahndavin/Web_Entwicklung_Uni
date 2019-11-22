@@ -1,6 +1,7 @@
 package festivalmanager.festival;
 
 public class FestivalForm {
+	private String name;
 	private String location;
 	private String startDate;
 	private String endDate;
@@ -8,6 +9,14 @@ public class FestivalForm {
 	private boolean sellingTickets;
 
 	public FestivalForm() {}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getLocation() {
 		return location;
@@ -30,6 +39,10 @@ public class FestivalForm {
 	}
 
 	public void setEndDate(String endDate) {
+		if(endDate.equals("")) {
+			endDate = null;
+		}
+
 		this.endDate = endDate;
 	}
 
@@ -50,6 +63,6 @@ public class FestivalForm {
 	}
 
 	public Festival toFestival() {
-		return new Festival(location, startDate, endDate, maxVisitors, sellingTickets);
+		return new Festival(name, location, startDate, endDate, maxVisitors, sellingTickets);
 	}
 }

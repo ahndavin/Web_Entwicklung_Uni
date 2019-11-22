@@ -21,13 +21,13 @@ public class FestivalInitializer implements DataInitializer {
 			return;
 		}
 
-		Festival f = new Festival("Test1", "19.12.2019","20.12.2019", 2, true);
+		Festival f = new Festival("Cooles Festival", "Dresden", "19.12.2019","20.12.2019", 2, true);
 
 		f.editPlan(-1, "blabla");
 		f.editPlan(-1, "lalala");
 
-		System.out.println(festivals.save(f));
+		festivals.save(f);
 
-		System.out.println(festivals.save(new Festival("Test1", "18.12.2019", 2, true)));
+		festivals.save(new Festival("Uncooles Festival", "Berlin", "18.12.2019", null, 2, true));
 	}
 }

@@ -14,6 +14,8 @@ public class Festival {
 	private static final int END_DATE = 1;
 
 	private @Id @GeneratedValue long id;
+
+	private String name;
 	private int maxVisitors;
 	private int currentVisitors;
 
@@ -32,12 +34,13 @@ public class Festival {
 
 	private Festival() {}
 
-	public Festival(String location, String date, int maxVisitors, boolean sellingTickets) {
-		this(location, date, date, maxVisitors, sellingTickets);
-	}
-
-	public Festival(String location, String startDate, String endDate, int maxVisitors, boolean sellingTickets) {
+	public Festival(String name, String location, String startDate, String endDate, int maxVisitors, boolean sellingTickets) {
+		this.name = name;
 		this.location = location;
+
+		if(endDate == null) {
+			endDate = startDate;
+		}
 
 		setDate(START_DATE, startDate);
 		setDate(END_DATE, endDate);
@@ -57,6 +60,14 @@ public class Festival {
 		boolean sameLocation = f1.getLocation().equals(f2.getLocation());
 
 		return sameDate && sameLocation;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getLocation() {

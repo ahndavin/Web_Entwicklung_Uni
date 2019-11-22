@@ -6,7 +6,7 @@
     </head>
     <body>
         <div th:each="festival : ${festivals}">
-            <p th:text="${festival.location + ' ' + festival.formattedDate + ' / ' + festival.sellingTickets}"></p>
+            <p th:text="${festival.name + ' in ' + festival.location + ' von, bis ' + festival.formattedDate}"></p>
 
             <ul>
                 <li th:each="item : ${festival.plan}" th:text="${item}"></li>
