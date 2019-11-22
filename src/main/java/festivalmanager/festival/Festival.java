@@ -1,41 +1,84 @@
 package festivalmanager.festival;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Festival {
+	private static final int START_DATE = 0;
+	private static final int END_DATE = 1;
+
 	private @Id @GeneratedValue long id;
 	private int maxVisitors;
 	private int currentVisitors;
 
 	private boolean sellingTickets;
 
-	//private final List<String> plan = new ArrayList<>();
+	@ElementCollection
+	private final List<String> plan = new ArrayList<>();
 
 	private String location;
-	private String date;
+
+	@Transient
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+	private Date[] festivalDate = new Date[2];
+
 
 	private Festival() {}
 
 	public Festival(String location, String date, int maxVisitors, boolean sellingTickets) {
+		this(location, date, date, maxVisitors, sellingTickets);
+	}
+
+	public Festival(String location, String startDate, String endDate, int maxVisitors, boolean sellingTickets) {
 		this.location = location;
-		this.date = date;
+
+		setDate(START_DATE, startDate);
+		setDate(END_DATE, endDate);
 
 		this.maxVisitors = maxVisitors;
-
 		this.sellingTickets = sellingTickets;
+	}
+
+	public static boolean areAtTheSameTimeAndPlace(Festival f1, Festival f2) {
+		Date[] d1 = f1.getDate();
+		Date[] d2 = f2.getDate();
+
+		boolean sameDate =
+			(d1[START_DATE].getTime() <= d2[START_DATE].getTime() && d2[START_DATE].getTime() <= d1[END_DATE].getTime()) ||
+			(d2[START_DATE].getTime() <= d1[START_DATE].getTime() && d1[START_DATE].getTime() <= d2[END_DATE].getTime());
+
+		boolean sameLocation = f1.getLocation().equals(f2.getLocation());
+
+		return sameDate && sameLocation;
 	}
 
 	public String getLocation() {
 		return location;
 	}
 
-	public String getDate() {
-		return date;
+	public Date[] getDate() {
+		return festivalDate;
+	}
+
+	public String[] getFormattedDate() {
+		return new String[] { dateFormat.format(festivalDate[START_DATE]), dateFormat.format(festivalDate[END_DATE]) };
+	}
+
+	public void setDate(int dateType, String date) {
+		try {
+			festivalDate[dateType] = dateFormat.parse(date);
+		} catch (ParseException | ArrayIndexOutOfBoundsException e) {
+			e.printStackTrace();
+
+			// TODO show error somehow
+		}
 	}
 
 	public int getMaxVisitors() {
@@ -46,13 +89,15 @@ public class Festival {
 		return currentVisitors;
 	}
 
-	/*public Iterable<String> getPlan() {
+	public Iterable<String> getPlan() {
 		return plan;
 	}
 
 	public void editPlan(int index, String newValue) {
-		if(plan.size() >= index) {
+		if(index == -1) {
+			plan.add(newValue);
+		} else if(plan.size() >= index) {
 			plan.set(index, newValue);
 		}
-	}*/
+	}
 }
