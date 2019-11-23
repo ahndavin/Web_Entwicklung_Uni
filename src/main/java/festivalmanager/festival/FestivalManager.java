@@ -24,6 +24,8 @@ public class FestivalManager {
 		Iterable<Festival> festivals = festivalRepository.findAll();
 
 		for(Festival f : festivals) {
+			if(festival.getId() == f.getId()) continue;
+
 			if(Festival.areAtTheSameTimeAndPlace(festival, f)) {
 				return false;
 			}
