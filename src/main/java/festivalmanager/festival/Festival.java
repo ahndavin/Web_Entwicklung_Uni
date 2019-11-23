@@ -10,8 +10,8 @@ import java.util.List;
 
 @Entity
 public class Festival {
-	private static final int START_DATE = 0;
-	private static final int END_DATE = 1;
+	public static final int START_DATE = 0;
+	public static final int END_DATE = 1;
 
 	private @Id @GeneratedValue long id;
 
@@ -66,6 +66,10 @@ public class Festival {
 		return id;
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return this.name;
 	}
@@ -92,6 +96,14 @@ public class Festival {
 
 	public String[] getFormattedDate() {
 		return new String[] { dateFormat.format(festivalDate[START_DATE]), dateFormat.format(festivalDate[END_DATE]) };
+	}
+
+	public String getStartDate() {
+		return getFormattedDate()[START_DATE];
+	}
+
+	public String getEndDate() {
+		return getFormattedDate()[END_DATE];
 	}
 
 	public void setDate(int dateType, String date) {
@@ -134,5 +146,9 @@ public class Festival {
 		} else if(plan.size() >= index) {
 			plan.set(index, newValue);
 		}
+	}
+
+	public String toString() {
+		return this.id + ": " + this.name + " in " + this.location + " from " + this.getStartDate() + " to " + this.getEndDate();
 	}
 }
