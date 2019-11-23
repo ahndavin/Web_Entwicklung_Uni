@@ -2,6 +2,8 @@ package festivalmanager.festival;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class FestivalManager {
 	private final FestivalRepository festivalRepository;
@@ -12,6 +14,10 @@ public class FestivalManager {
 
 	public Iterable<Festival> findAll() {
 		return festivalRepository.findAll();
+	}
+
+	public Optional<Festival> findById(long id) {
+		return festivalRepository.findById(id);
 	}
 
 	public boolean save(Festival festival) {
