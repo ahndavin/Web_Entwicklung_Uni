@@ -5,6 +5,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class FestivalForm {
+	@NotNull
+	private long id;
+
 	@NotEmpty
 	private String name;
 
@@ -22,6 +25,14 @@ public class FestivalForm {
 	private boolean sellingTickets;
 
 	public FestivalForm() {}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -76,6 +87,23 @@ public class FestivalForm {
 	}
 
 	public Festival toFestival() {
-		return new Festival(name, location, startDate, endDate, maxVisitors, sellingTickets);
+		Festival festival = new Festival(name, location, startDate, endDate, maxVisitors, sellingTickets);
+		festival.setId(id);
+
+		return festival;
+	}
+
+	public static FestivalForm fromFestival(Festival festival) {
+		FestivalForm festivalForm = new FestivalForm();
+
+		festivalForm.setId(festival.getId());
+		festivalForm.setName(festival.getName());
+		festivalForm.setLocation(festival.getLocation());
+		festivalForm.setStartDate(festival.getStartDate());
+		festivalForm.setEndDate(festival.getEndDate());
+		festivalForm.setMaxVisitors(festival.getMaxVisitors());
+		festivalForm.setSellingTickets(festival.isSellingTickets());
+
+		return festivalForm;
 	}
 }
