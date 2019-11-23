@@ -92,18 +92,4 @@ public class FestivalForm {
 
 		return festival;
 	}
-
-	public static FestivalForm fromFestival(Festival festival) {
-		FestivalForm festivalForm = new FestivalForm();
-
-		festivalForm.setId(festival.getId());
-		festivalForm.setName(festival.getName());
-		festivalForm.setLocation(festival.getLocation());
-		festivalForm.setStartDate(festival.getStartDate());
-		festivalForm.setEndDate(festival.getEndDate());
-		festivalForm.setMaxVisitors(festival.getMaxVisitors());
-		festivalForm.setSellingTickets(festival.isSellingTickets());
-
-		return festivalForm;
-	}
 }

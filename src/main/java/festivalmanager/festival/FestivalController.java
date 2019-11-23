@@ -87,8 +87,6 @@ public class FestivalController {
 
 		model.addAttribute("festival_form", festival.get());
 
-		System.out.println(festival.get().toString());
-
 		return "festival_edit";
 	}
 
