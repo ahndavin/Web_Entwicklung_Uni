@@ -140,12 +140,8 @@ public class Festival {
 		return plan;
 	}
 
-	public void editPlan(int index, String newValue) {
-		if(index == -1) {
-			plan.add(newValue);
-		} else if(plan.size() >= index) {
-			plan.set(index, newValue);
-		}
+	public List<String> editPlan() {
+		return plan;
 	}
 
 	public String toString() {

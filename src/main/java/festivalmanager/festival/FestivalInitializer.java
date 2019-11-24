@@ -23,8 +23,8 @@ public class FestivalInitializer implements DataInitializer {
 
 		Festival f = new Festival("Beispiel Festival 2019", "Dresden", "19.12.2019","20.12.2019", 2, true);
 
-		f.editPlan(-1, "blabla");
-		f.editPlan(-1, "lalala");
+		f.editPlan().add("blabla");
+		f.editPlan().add("lalala");
 
 		festivals.save(f);
 
