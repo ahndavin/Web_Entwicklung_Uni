@@ -3,6 +3,7 @@ package festivalmanager.festival;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 public class FestivalForm {
 	@NotNull
@@ -23,6 +24,8 @@ public class FestivalForm {
 	private int maxVisitors;
 
 	private boolean sellingTickets;
+
+	private List<String> plan = null;
 
 	public FestivalForm() {}
 
@@ -90,6 +93,14 @@ public class FestivalForm {
 		Festival festival = new Festival(name, location, startDate, endDate, maxVisitors, sellingTickets);
 		festival.setId(id);
 
+		if(plan != null) {
+			festival.editPlan().addAll(plan);
+		}
+
 		return festival;
+	}
+
+	public void setPlan(List<String> plan) {
+		this.plan = plan;
 	}
 }
