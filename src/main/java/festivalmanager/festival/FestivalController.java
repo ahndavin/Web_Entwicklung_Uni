@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -96,7 +96,10 @@ public class FestivalController {
 	 * @param errors: errors from validation of the festival data
 	 */
 	@PostMapping("/festival/edit")
-	String editFestival(@ModelAttribute @Valid FestivalForm festivalForm, Errors errors, RedirectAttributes redirectAttributes) {
+	String editFestival(@ModelAttribute("festival_form") @Valid FestivalForm festivalForm, Errors errors, RedirectAttributes redirectAttributes) {
+		Optional<Festival> unupdatedFestival = festivals.findById(festivalForm.getId());
+		unupdatedFestival.ifPresent(value -> festivalForm.setPlan((List<String>) value.getPlan()));
+
 		boolean result = saveOrUpdate(festivalForm, errors);
 
 		if(!result) {
