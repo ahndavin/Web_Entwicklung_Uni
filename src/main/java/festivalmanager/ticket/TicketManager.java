@@ -21,11 +21,11 @@ public class TicketManager{
         isStillSellingTickets = bool;
     }
 
-    public void setRemainingTicketsCamping(int remaining){
+    public static void setRemainingTicketsCamping(int remaining){
         this.remainingTicketsCamping = remaining;
     }
 
-    public void setRemainingTicketsDayticket(int remaining){
+    public static void setRemainingTicketsDayticket(int remaining){
         this.remainingTicketsDayticket = remaining;
     }
 
@@ -33,11 +33,11 @@ public class TicketManager{
         return isStillSellingTickets;
     }
 
-    public int getRemainingTicketsCamping(){
+    public static int getRemainingTicketsCamping(){
         return this.remainingTicketsCamping;
     }
 
-    public int getRemainingTicketsDayticket(){
+    public static int getRemainingTicketsDayticket(){
         return this.remainingTicketsDayticket;
     }
 
