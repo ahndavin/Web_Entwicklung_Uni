@@ -1,5 +1,11 @@
 package festivalmanager.ticket;
 
+import org.salespointframework.accountancy.Accountancy;
+import org.salespointframework.accountancy.AccountancyEntry;
+
+import festivalmanager.economics.EconomicEntry;
+import festivalmanager.economics.EconomicManager;
+
 public class Ticket{
     private String sort_str;
     private String number;
@@ -18,6 +24,8 @@ public class Ticket{
         this.sort = stringToSort(sort_str);
          if(this.sort == Sort.DAYTICKET){
            this.price = priceDayticket;
+           //EconomicEntry ticket = new EconomicEntry(priceDayticket, "Ticket Tagesticket");
+           //Accountancy.add(ticket);
          }
          if(this.sort == Sort.CAMPING){
            this.price = priceCamping;
