@@ -24,11 +24,13 @@ public class Ticket{
         this.sort = stringToSort(sort_str);
          if(this.sort == Sort.DAYTICKET){
            this.price = priceDayticket;
+           TicketManager.setRemainingTicketsDayticket(TicketManager.getRemainingTicketsDayticket() - 1);
            //EconomicEntry ticket = new EconomicEntry(priceDayticket, "Ticket Tagesticket");
            //Accountancy.add(ticket);
          }
          if(this.sort == Sort.CAMPING){
            this.price = priceCamping;
+           TicketManager.setRemainingTicketsCamping(TicketManager.getRemainingTicketsCamping() - 1);
          }
 
          int random;
