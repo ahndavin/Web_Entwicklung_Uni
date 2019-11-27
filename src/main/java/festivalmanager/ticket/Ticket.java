@@ -4,7 +4,6 @@ import org.salespointframework.accountancy.Accountancy;
 import org.salespointframework.accountancy.AccountancyEntry;
 
 import festivalmanager.economics.EconomicEntry;
-import festivalmanager.economics.EconomicManager;
 
 public class Ticket{
     private String sort_str;

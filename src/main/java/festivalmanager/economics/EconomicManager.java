@@ -1,4 +1,4 @@
-package festivalmanager.economics;
+/* package festivalmanager.economics;
 
 import org.salespointframework.accountancy.Accountancy;
 
@@ -10,3 +10,5 @@ public class EconomicManager(){
         
     }
 }
+
+*/

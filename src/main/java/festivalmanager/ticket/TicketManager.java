@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 public class TicketManager{
     public HashMap<String, Ticket> usedTickets;
     public static ArrayList<String> usedNumbers;
-    private int remainingTicketsCamping;
-    private int remainingTicketsDayticket;
+    private static int remainingTicketsCamping;
+    private static int remainingTicketsDayticket;
     private boolean isStillSellingTickets;
 
     public TicketManager(){
@@ -22,11 +22,11 @@ public class TicketManager{
     }
 
     public static void setRemainingTicketsCamping(int remaining){
-        this.remainingTicketsCamping = remaining;
+        remainingTicketsCamping = remaining;
     }
 
     public static void setRemainingTicketsDayticket(int remaining){
-        this.remainingTicketsDayticket = remaining;
+        remainingTicketsDayticket = remaining;
     }
 
     public boolean getIsStillSellingTickets(){
@@ -34,11 +34,11 @@ public class TicketManager{
     }
 
     public static int getRemainingTicketsCamping(){
-        return this.remainingTicketsCamping;
+        return remainingTicketsCamping;
     }
 
     public static int getRemainingTicketsDayticket(){
-        return this.remainingTicketsDayticket;
+        return remainingTicketsDayticket;
     }
 
     public HashMap<String, Ticket> getAllTickets(){
