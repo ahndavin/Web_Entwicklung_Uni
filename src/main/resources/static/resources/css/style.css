@@ -1,19 +1,108 @@
-/* CSS RESET */
-
-* {
-	margin: 0;
-	padding: 0;
-}
-
 body {
-	margin: 0 auto;
-	width: 940px;
-	font: 13px/22px Helvetica, Arial, sans-serif;
-	background: #f0f0f0;
-}
-
-h1 {
-	font-size: 3em;
-	line-height: 3.2em;
-	text-align:center;
-}
+	background: white;
+	
+  }
+  
+  .navbar {
+	background: black;
+	opacity: 0.8;
+	font-weight: 100;
+  }
+  .navbar-brand h3{
+	font-weight: 100;
+  }
+  .nav-item{
+	font-size: 1.3rem;
+  }
+  .nav-link:hover{
+	border-bottom: 1px solid white;
+  }
+  
+  #home-section {
+	background: url(../img/home.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	min-height: 700px;
+  }
+  
+  #home-section .dark-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 700px;
+	background: rgba(0, 0, 0, 0.7);
+  }
+  
+  #home-section .home-inner {
+	padding-top: 150px;
+  }
+  
+  #home-section .card-form {
+	opacity: 0.8;
+  }
+  
+  #home-section .fas,
+  #create-section .fas {
+	color: #008ed6;
+	background: #fff;
+	padding: 5px;
+	border-radius: 5px;
+  }
+  
+  #explore-section .fas,
+  #share-section .fas {
+	background: #333;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+  }
+  
+  #showcase{
+	background: url("https://cdn.pixabay.com/photo/2015/07/30/17/24/audience-868074_1280.jpg") bottom center / cover no-repeat;
+	min-height: 500px;
+	position: relative;
+  }
+  #showcase h1{
+	line-height: 1;
+  }
+  #overlay{
+	background: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+  }
+  #header{
+	z-index: 2;
+  }
+  #btn{
+	font-size: 1.5rem;
+	border-radius: 2rem;
+	
+  }
+  .img-fluid{
+	width: 150px;
+	height: auto;
+  }
+  #wrapper {
+	width: 500px;
+  } 
+  #wrapper .container {
+	max-width: 100%; display: block;
+  }
+  
+  
+  
+  @media(max-width: 768px){
+	.navbar{
+	  background: #1f1f1f;
+	}
+	.nav-link:hover{
+	  border-bottom: none;
+	}
+  }
+  
