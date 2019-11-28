@@ -1,4 +1,7 @@
+/*
+
 package festivalmanager.festival;
+
 
 import org.salespointframework.core.DataInitializer;
 import org.springframework.core.annotation.Order;
@@ -31,3 +34,5 @@ public class FestivalInitializer implements DataInitializer {
 		festivals.save(new Festival("Test Festival 2019", "Berlin", "18.12.2019", null, 2, true));
 	}
 }
+
+ */
