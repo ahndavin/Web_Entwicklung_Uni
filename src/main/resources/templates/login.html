@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-    <title>Marcus Prototype</title>
+    <title>Login Page</title>
 </head>
 
 <body>
@@ -34,7 +34,13 @@
                 <a href="/createAccount" class="nav-link active">Create an Account</a>
             </li>
             <li class="nav-item">
-                <a href="/logout" class="nav-link"> logout</a>
+                <a href="/createContract" class="nav-link">Create Contract</a>
+            </li>
+            <li class="nav-item">
+                <a href="/createTicket" class="nav-link">Create Ticket</a>
+            </li>
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">Logout</a>
             </li>
         </ul>
     </div>
@@ -42,7 +48,10 @@
 
 
 
-<!--  ImputField -->
+<!--  InputField -->
+
+
+
 <section>
     <div>
         <form class="ui form" role="form" th:action="@{/login}" method="post">

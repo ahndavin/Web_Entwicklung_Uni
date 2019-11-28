@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-  <title>Igor Prototype</title>
+  <title>Create a Contract</title>
 </head>
 
 <body>
@@ -51,14 +51,15 @@
     </div>
   </section>
 
-  <!--  ImputField -->
+  <!--  InputField -->
   <section>
 
     <div id="wrapper" class="container text-center">
       <h1 class="mb-3 mt-5"> Contractform </h1>
       <form method="POST" th:action="@{/createContract}" th:object="${contract}">
         <label for="price">Price to hire the Artist</label>
-        <input type="text" step="any" min="0" max="100000" required="required" th:field="*{price}" class="form-control" />
+        <input type="text" step="any" min="0" max="100000" required="required" th:field="*{price}"
+          class="form-control" />
         <br />
         <label for="artist">Artist</label>
         <input type="text" required="required" th:field="*{artist}" class="form-control" />
@@ -67,13 +68,16 @@
         <input type="checkbox" required="required" th:field="*{accepted}" class="form-control" />
         <br />
         <label for="techniciansCount">Technicians Count</label>
-        <input type="text" step="any" min="0" max="10000" required="required" th:field="*{techniciansCount}" class="form-control" />
+        <input type="text" step="any" min="0" max="10000" required="required" th:field="*{techniciansCount}"
+          class="form-control" />
         <br />
         <label for="techniciansWorkingHours">Technicians Workinghours</label>
-        <input type="text" step="any" min="0" max="10000" required="required" th:field="*{techniciansWorkingHours}" class="form-control" />
+        <input type="text" step="any" min="0" max="10000" required="required" th:field="*{techniciansWorkingHours}"
+          class="form-control" />
         <br />
         <label for="techniciansHourlyWage">Technicians Hourlywage</label>
-        <input type="text" step="any" min="0" max="10000" required="required" th:field="*{techniciansHourlyWage}" class="form-control" />
+        <input type="text" step="any" min="0" max="10000" required="required" th:field="*{techniciansHourlyWage}"
+          class="form-control" />
         <br />
 
         <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">
