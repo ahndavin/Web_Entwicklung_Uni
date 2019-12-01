@@ -1,11 +1,8 @@
 package festivalmanager.ticket;
 
-import org.salespointframework.accountancy.Accountancy;
-import org.salespointframework.accountancy.AccountancyEntry;
+import festivalmanager.economics.EconomicManager;
 
-import festivalmanager.economics.EconomicEntry;
-
-public class Ticket{
+public class Ticket {
     private String sort_str;
     private String number;
     private int priceCamping;
@@ -14,22 +11,20 @@ public class Ticket{
     private Sort sort;
 
     public static enum Sort {
-        DAYTICKET, 
-        CAMPING, 
-        EMPTY
+        DAYTICKET, CAMPING, EMPTY
     }
-    
-    public Ticket (String sort){
+
+    public Ticket(String sort) {
         this.sort = stringToSort(sort_str);
-         if(this.sort == Sort.DAYTICKET){
-           this.price = priceDayticket;
-           TicketManager.setRemainingTicketsDayticket(TicketManager.getRemainingTicketsDayticket() - 1);
-           //EconomicEntry ticket = new EconomicEntry(priceDayticket, "Ticket Tagesticket");
-           //Accountancy.add(ticket);
+        if (this.sort == Sort.DAYTICKET) {
+            this.price = priceDayticket;
+            TicketManager.setRemainingTicketsDayticket(TicketManager.getRemainingTicketsDayticket() - 1);
+            EconomicManager.addEntry(priceDayticket, "Ticket Tagesticket");
          }
          if(this.sort == Sort.CAMPING){
            this.price = priceCamping;
            TicketManager.setRemainingTicketsCamping(TicketManager.getRemainingTicketsCamping() - 1);
+           EconomicManager.addEntry(priceCamping, "Ticket Campingticket");
          }
 
          int random;
