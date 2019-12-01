@@ -8,19 +8,19 @@ public class Location {
 	private boolean isBooked;
 	private Integer currVisitors;
 	private Integer maxVisitors;
-	private Layout groundPlan;
+	private String outsideView;
 	private List<Area> areas;
 	
-	public Location(String name, Integer maxVisitors, Layout groundPlan) {
+	public Location(String name, Integer maxVisitors, String outsideView) {
 		this.name = name;
 		this.maxVisitors = maxVisitors;
-		this.groundPlan = groundPlan;
+		this.outsideView = outsideView;
 		this.isBooked = false;
 		this.currVisitors = 0;
 		this.areas = new LinkedList<Area>();
 	}
 	
-	public String getName() {
+	public String getName() {		
 		return name;
 	}
 	
@@ -44,13 +44,13 @@ public class Location {
 		return maxVisitors;
 	}
 	
-	public Layout editGroundPlan() {
+	public String editOutsideView() {
 		//TODO
 		return null;
 	}
 	
-	public Layout getGroundPlan() {
-		return groundPlan;
+	public String getOutsideView() {
+		return outsideView;
 	}
 		
 	public List<Area> addArea(Area area){

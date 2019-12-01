@@ -37,4 +37,11 @@ public class LocationController {
 
 		return "createLocation";
 	}
+	
+	@GetMapping("/location/{location}")
+	public String detailLocation(Model model, Location location) {
+		model.addAttribute("location", location);
+
+		return "detailLocation";
+	}
 }

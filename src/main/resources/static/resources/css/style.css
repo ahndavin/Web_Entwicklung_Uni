@@ -64,9 +64,17 @@ body {
 	min-height: 500px;
 	position: relative;
   }
+  
+  #Location-panorama{
+  background: url("../../img/location/example.jpg") bottom center / cover no-repeat;
+  min-height: 500px;
+  position: relative;
+  }
+  
   #showcase h1{
 	line-height: 1;
   }
+  
   #overlay{
 	background: rgba(0, 0, 0, 0.5);
 	position: absolute;

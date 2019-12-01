@@ -19,7 +19,7 @@
 
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
-    <a href="" class="navbar-brand">
+    <a href="/" class="navbar-brand">
       <h3 class="mb-0">FVIV FESTIVAL</h3>
     </a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
@@ -31,7 +31,7 @@
           <a href="/" class="nav-link ">Home</a>
         </li>
         <li class="nav-item">
-          <a href="/createLocation active" class="nav-link">Create a Location</a>
+          <a href="/createLocation" class="nav-link active">Create a Location</a>
         </li>
         <li class="nav-item">
           <a href="/location" class="nav-link">See all existing Locations</a>
@@ -63,11 +63,10 @@
         <label for="maxVisitors">Max Visitors</label>
         <input type="text" required="required" th:field="*{maxVisitors}" class="form-control" />
         <br />
-        <!-- 
-        <label for="groundPlan">Ground Plan</label>
-        <input type="image" required="required" th:field="*{groundPlan}" class="form-control" />
+        <label for="outsideView">outside view of the building</label><br/>
+        <input type="file" required="required" th:field="*{outsideView}" name="outside view" accept="image/*"/>
         <br />
-        -->
+		<br />
 		
         <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">
           Create Location
