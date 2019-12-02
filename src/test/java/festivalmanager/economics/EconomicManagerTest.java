@@ -13,7 +13,6 @@ public class EconomicManagerTest{
     @Test
 
     //U302
-    @Disabled
     public void shouldCreateEconomicEntry(){
         EconomicManager ecoManager = new EconomicManager();
 
