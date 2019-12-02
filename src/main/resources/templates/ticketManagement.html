@@ -55,36 +55,33 @@
   </section>
 
   <!--  Table, which gets created uppon creating a new Ticket -->
-  <div id="wrapper" class="container">
-    <h1 class="text-center mb-05">Current Tickets</h1>
-    <div class="container text-center">
-      <ul class="list-group" th:each="ticket, iStat: ${ticketList} ">
-        <h3 th:text="${iStat.index+1} + '. Ticket' ">
-        </h3>
+  <div class="ui grid">
+    <div class="three wide column"></div>
+    <div class="ten wide column" style="padding-top: 50px">
 
-        <li class="list-group-item">
-          <label for="sort">Sort: </label>
-          <label th:text="${ticket.sort}"></label>
-        </li>
-        <li class="list-group-item">
-          <label for="number">Number: </label>
-          <label th:text="${ticket.number}"></label>
-        </li>
-        <br>
-        <br>
-      </ul>
+        <h4 class="ui dividing header" >Tickets</h4>
+        <table class="ui celled table">
+            <thead>
+            <tr>
+                <th>Festival</th>
+                <th>Tagesticket</th>
+                <th>Campingticket</th>
+            </tr>
+            </thead>
+            <tbody th:remove="all-but-first">
+              <tr th:each="festival : ${festivallist}">
+                <td th:text="${festival.name}">Beispiel-Festival</td>
+                <td class="selectable">
+                  <a th:href="'/festival/'+${festival.id}">Kaufen</a>
+                </td> 
+                <td class="selectable">
+                  <a th:href="'/festival/'+${festival.id}">Kaufen</a>
+                </td>            
+              </tr>
+            </tbody>
+        </table>
     </div>
   </div>
-  <br>
-  <br>
-  <section class="d-flex align-items-center mb-02">
-    <div id="header" class="container text-white text-center">
-      <button id="btn" class="btn btn-lg btn-dark">
-        <a class="text-light" href="/createTicket">Create a new Ticket</a>
-      </button>
-    </div>
-  </section>
-
 
   <!-- BOOTSTRAP SCRIPTS -->
   <script src="http://code.jquery.com/jquery-3.3.1.min.js"

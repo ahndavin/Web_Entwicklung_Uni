@@ -1,42 +1,27 @@
 package festivalmanager.ticket;
 
-import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class TicketController {
 
-	private TicketManager ticketManager;
+	private final TicketManagement ticketManagement;
 
-	public TicketController(TicketManager ticketManager){
-		this.ticketManager = ticketManager;
+	public TicketController(TicketManagement ticketManagement){
+		Assert.notNull(ticketManagement, "TicketManagement must not be null!");
+		this.ticketManagement = ticketManagement;
 	}
 
-
-	@GetMapping("/ticketManagement")
-	public String ticketManagement(Model model){
-		model.addAttribute("ticketList", ticketManager.getAllTickets());
+	//GetMapping
+	@GetMapping(path = "/ticketManagement")
+	public String ticketOverview(Model model){
+		model.addAttribute("festivallist", ticketManagement.findAll());
 		return "ticketManagement";
 	}
 
-
-	@PostMapping("/createTicket")
-	public String addProduct(@Valid Ticket ticket) {
-
-		ticketManager.addTicket(ticket);
-
-		return "redirect:/ticketManagement";
-	}
-
-	@GetMapping("/createTicket")
-	public String addProduct(Model model, Ticket ticket) {
-
-		model.addAttribute("ticket", ticket);
-
-		return "createTicket";
-	}
+	//PostMapping
 
 }
