@@ -12,8 +12,6 @@ public class Dayticket{
     private javax.money.MonetaryAmount price;
     private Sort sort;
 
-    public enum Sort {DAYTICKET, CAMPING};
-
     public Dayticket(String name, javax.money.MonetaryAmount price){
         this.name = name;
         this.price = price;
