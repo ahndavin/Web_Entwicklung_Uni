@@ -1,8 +1,12 @@
 package festivalmanager.festival;
 
+import javax.money.MonetaryAmount;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.javamoney.moneta.Money;
+
 import java.util.List;
 
 public class FestivalForm {
@@ -19,6 +23,18 @@ public class FestivalForm {
 	private String startDate;
 
 	private String endDate;
+
+	@NotEmpty
+	private int amountDaytickets;
+
+	@NotEmpty
+	private int amountCampingtickets;
+
+	@NotEmpty
+	private float priceDayticket;
+
+	@NotEmpty
+	private float priceCampingticket;
 
 	@Min(0)
 	private int maxVisitors;
@@ -102,5 +118,37 @@ public class FestivalForm {
 
 	public void setPlan(List<String> plan) {
 		this.plan = plan;
+	}
+
+	public int getAmountDaytickets(){
+		return this.amountDaytickets;
+	}
+
+	public int getAmountCampingtickets(){
+		return this.amountCampingtickets;
+	}
+
+	public javax.money.MonetaryAmount getPriceDayticket(){
+		return Money.of(priceDayticket, "EUR");
+	}
+
+	public javax.money.MonetaryAmount getPriceCampingticket(){
+		return Money.of(priceCampingticket, "EUR");
+	}
+
+	public void setAmountDaytickets(int amount){
+		this.amountDaytickets = amount;
+	}
+
+	public void setAmountCampingtickets(int amount){
+		this.amountCampingtickets = amount;
+	}
+
+	public void setPriceDayticket(float price){
+		this.priceDayticket = price;
+	}
+
+	public void setPriceCampingticket(float price){
+		this.priceCampingticket = price;
 	}
 }

@@ -1,6 +1,9 @@
 package festivalmanager.festival;
 
 import javax.persistence.*;
+
+import org.javamoney.moneta.Money;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +23,10 @@ public class Festival {
 	private int currentVisitors;
 
 	private boolean sellingTickets;
+	private int amountDaytickets;
+	private int amountCampingtickets;
+	private float priceDayticket;
+	private float priceCampingticket;
 
 	@ElementCollection
 	private final List<String> plan = new ArrayList<>();
@@ -34,9 +41,13 @@ public class Festival {
 
 	private Festival() {}
 
-	public Festival(String name, String location, String startDate, String endDate, int maxVisitors, boolean sellingTickets) {
+	public Festival(String name, String location, String startDate, String endDate, int amountDaytickets, int amountCampingtickets, float priceDayticket, float priceCampingticket, int maxVisitors, boolean sellingTickets) {
 		this.name = name;
 		this.location = location;
+		this.amountDaytickets = amountDaytickets;
+		this.amountCampingtickets = amountCampingtickets;
+		this.priceDayticket = priceDayticket;
+		this.priceCampingticket = priceCampingticket;
 
 		if(endDate == null) {
 			endDate = startDate;
@@ -130,6 +141,38 @@ public class Festival {
 
 	public boolean isSellingTickets() {
 		return sellingTickets;
+	}
+
+	public int getAmountDaytickets(){
+		return this.amountDaytickets;
+	}
+
+	public int getAmountCampingtickets(){
+		return this.amountCampingtickets;
+	}
+
+	public javax.money.MonetaryAmount getPriceDayticket(){
+		return Money.of(priceDayticket, "EUR");
+	}
+
+	public javax.money.MonetaryAmount getPriceCampingticket(){
+		return Money.of(priceCampingticket, "EUR");
+	}
+
+	public void setAmountDaytickets(int amount){
+		this.amountDaytickets = amount;
+	}
+
+	public void setAmountCampingtickets(int amount){
+		this.amountCampingtickets = amount;
+	}
+
+	public void setPriceDayticket(float price){
+		this.priceDayticket = price;
+	}
+
+	public void setPriceCampingticket(float price){
+		this.priceCampingticket = price;
 	}
 
 	public void setSellingTickets(boolean sellingTickets) {
