@@ -18,7 +18,7 @@ public class EconomicManager{
     }
 
     public static void addEntry(int value, String description){
-        javax.money.MonetaryAmount amount = Money.of(value, "EURO");
+        javax.money.MonetaryAmount amount = Money.of(value, "EUR");
         EconomicEntry ecoentry = new EconomicEntry(amount, description);
         allEntrys.add(ecoentry);
     }
