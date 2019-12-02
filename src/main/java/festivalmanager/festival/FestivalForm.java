@@ -106,7 +106,8 @@ public class FestivalForm {
 	}
 
 	public Festival toFestival() {
-		Festival festival = new Festival(name, location, startDate, endDate, maxVisitors, sellingTickets);
+		Festival festival = new Festival(name, location, startDate, endDate, amountDaytickets, amountCampingtickets, priceDayticket, priceCampingticket, maxVisitors, sellingTickets) {
+
 		festival.setId(id);
 
 		if(plan != null) {
