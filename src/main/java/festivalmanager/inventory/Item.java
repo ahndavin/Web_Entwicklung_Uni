@@ -12,6 +12,8 @@ public class Item extends Product {
 	private Money cost;
 	private Quantity minimalQuantity;
 
+	private Item() {}
+
 	public Item(String name, Money price, Money cost, Quantity minimalQuantity, String[] categories) {
 		super(name, price, Metric.UNIT);
 
