@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import festivalmanager.festival.Festival;
@@ -29,24 +30,46 @@ public class TicketController {
 		return "ticketManagement";
 	}
 
-	//PostMapping
-	@PostMapping(path = "/ticketManagement")
-	public String buyTicket(@Valid FestivalIdForm festivalIdForm, Errors result, Sort sort){
+	@PostMapping(path = "/ticketCamping")
+	public String buyCampingticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
+
 		Festival festival = ticketManagement.findById(festivalIdForm.getId());
 		if(result.hasErrors()){
 			return "ticketManagement";
 		}
 		else{
-			if(ticketManagement.isAvailable(sort, festival) == true){
-				if(sort == Sort.CAMPINGTICKET){
+			if(ticketManagement.isAvailable(festivalIdForm.getSort(), festival) == true){
+				if(festivalIdForm.getSort() == Sort.CAMPINGTICKET){
 					ticketManagement.buyCampingticket(festival);
 				}
-				if(sort == Sort.DAYTICKET){
+				if(festivalIdForm.getSort() == Sort.DAYTICKET){
 					ticketManagement.buyDayticket(festival);
 				}
 			}
-			return "ticketManagement";
+
+			model.addAttribute("festivallist", ticketManagement.findAll());
+			return "redirect:/ticketManagement";
 		}
 	}
 
+		@PostMapping(path = "/ticketDay")
+		public String buyDayticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
+			Festival festival = ticketManagement.findById(festivalIdForm.getId());
+			if(result.hasErrors()){
+				return "ticketManagement";
+			}
+			else{
+				if(ticketManagement.isAvailable(festivalIdForm.getSort(), festival) == true){
+					if(festivalIdForm.getSort() == Sort.CAMPINGTICKET){
+						ticketManagement.buyCampingticket(festival);
+					}
+					if(festivalIdForm.getSort() == Sort.DAYTICKET){
+						ticketManagement.buyDayticket(festival);
+					}
+				}
+	
+			model.addAttribute("festivallist", ticketManagement.findAll());
+			return "redirect:/ticketManagement";
+		} 
+	} 
 }
