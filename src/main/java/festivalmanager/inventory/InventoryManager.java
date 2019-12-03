@@ -1,5 +1,7 @@
 package festivalmanager.inventory;
 
+import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -12,15 +14,15 @@ public class InventoryManager {
 		this.inventory = inventory;
 	}
 
-	public void save(Item item) {
-		inventory.save(item);
+	public void save(Item item, Quantity quantity) {
+		inventory.save(new UniqueInventoryItem(item, quantity));
 	}
 
-	public Iterable<Item> findAll() {
+	public Iterable<UniqueInventoryItem> findAll() {
 		return inventory.findAll();
 	}
 
-	public Optional<Item> findById(Long id) {
-		return inventory.findById(id);
+	public Optional<UniqueInventoryItem> findByItem(Item item) {
+		return inventory.findByProduct(item);
 	}
 }
