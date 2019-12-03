@@ -64,19 +64,31 @@
             <thead>
             <tr>
                 <th>Festival</th>
+                <th>Anzahl / Preis</th>
                 <th>Tagesticket</th>
+                <th>Anzahl / Preis</th>
                 <th>Campingticket</th>
             </tr>
             </thead>
             <tbody th:remove="all-but-first">
               <tr th:each="festival : ${festivallist}">
                 <td th:text="${festival.name}">Beispiel-Festival</td>
-                <td class="selectable">
-                  <a th:href="'/festival/'+${festival.id}">Kaufen</a>
-                </td> 
-                <td class="selectable">
-                  <a th:href="'/festival/'+${festival.id}">Kaufen</a>
-                </td>            
+                <td th:text="${festival.amountDaytickets} + ' / ' + ${festival.priceDayticket}">Anzahl / Preis</td>
+                <td>
+                  <form method="post" role="form" class="ui form" id="form" th:action="@{/ticketManagement}" th:object="${form}">
+                    <input type="hidden" th:value="${festival.getId()}" name="id">
+                    <input type="hidden" th:value="${Sort.DAYTICKET}" name="id">
+                    <button type="submit" class="ui button">Kaufen</button>
+                  </form>
+                </td>              
+                <td th:text="${festival.amountCampingtickets} + ' / ' + ${festival.priceCampingticket}">Anzahl / Preis</td>
+                <td>
+                  <form method="post" role="form" class="ui form" id="form" th:action="@{/ticketManagement}" th:object="${form}">
+                    <input type="hidden" th:value="${festival.getId()}" name="id">
+                    <input type="hidden" th:value="${Sort.CAMPINGTICKET}" name="id">
+                    <button type="submit" class="ui button">Kaufen</button>
+                  </form>
+                </td>              
               </tr>
             </tbody>
         </table>
