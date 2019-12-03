@@ -1,6 +1,7 @@
 package festivalmanager.inventory;
 
-import org.springframework.data.repository.CrudRepository;
+import org.salespointframework.inventory.UniqueInventory;
+import org.salespointframework.inventory.UniqueInventoryItem;
 
-public interface InventoryRepository extends CrudRepository<Item, Long> {
+public interface InventoryRepository extends UniqueInventory<UniqueInventoryItem> {
 }
