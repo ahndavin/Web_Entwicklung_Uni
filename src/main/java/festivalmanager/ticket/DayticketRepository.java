@@ -1,12 +1,12 @@
-package festivalmanager.festival;
+package festivalmanager.ticket;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FestivalRepository extends CrudRepository<Festival, Long> {
+public interface DayticketRepository extends CrudRepository<Dayticket, Long> {
 
     @Override
-    Streamable<Festival> findAll();
+    Streamable<Dayticket> findAll();
 }
