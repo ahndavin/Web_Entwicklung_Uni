@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import festivalmanager.festival.FestivalManager;
 
+@Controller
 public class EconomicController{
 
     public final EconomicManager economicManager;
     public final FestivalManager festivalManager;
 
-    @Controller
     public EconomicController(EconomicManager economicManager, FestivalManager festivalManager){
         Assert.notNull(economicManager, "TicketManagement must not be null!");
         Assert.notNull(festivalManager, "FestivalManager must not be null!");
