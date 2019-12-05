@@ -1,4 +1,4 @@
-package festivalmanager.location;
+/* package festivalmanager.location;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,3 +10,4 @@ class StageTest {
 		fail("Not yet implemented");
 	}
 }
+*/

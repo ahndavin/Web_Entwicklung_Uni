@@ -1,4 +1,4 @@
-package festivalmanager.ticket;
+/*package festivalmanager.ticket;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,4 +35,4 @@ public class TicketTest{
 
         assertEquals(ticket1, ticketManager.findTicket(ticket1.getNumber()), "Ticket should be found by TicketManager");
     }
-}
+} */
