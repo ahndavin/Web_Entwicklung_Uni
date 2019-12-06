@@ -33,4 +33,13 @@ public class FestivalManager {
 
 		return festivalRepository.save(festival);
 	}
+
+	public int getCount() {
+		int counter = 0;
+		for (Festival ignored : findAll()) {
+			counter++;
+		}
+
+		return counter;
+	}
 }
