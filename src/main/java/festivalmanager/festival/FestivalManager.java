@@ -20,19 +20,17 @@ public class FestivalManager {
 		return festivalRepository.findById(id);
 	}
 
-	public boolean save(Festival festival) {
+	public Festival save(Festival festival) {
 		Iterable<Festival> festivals = festivalRepository.findAll();
 
 		for(Festival f : festivals) {
 			if(festival.getId() == f.getId()) continue;
 
 			if(Festival.areAtTheSameTimeAndPlace(festival, f)) {
-				return false;
+				return null;
 			}
 		}
 
-		festivalRepository.save(festival);
-
-		return true;
+		return festivalRepository.save(festival);
 	}
 }
