@@ -118,7 +118,7 @@ public class FestivalController {
 		Festival festival = festivalForm.toFestival();
 
 		if(!errors.hasErrors()) {
-			result = festivals.save(festival);
+			result = festivals.save(festival) != null;
 		}
 
 		return result;
