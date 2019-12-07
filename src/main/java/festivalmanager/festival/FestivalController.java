@@ -67,7 +67,13 @@ public class FestivalController {
 					   Errors errors,
 					   RedirectAttributes redirectAttributes) {
 
-		boolean result = saveOrUpdate(festivalForm, errors);
+		boolean result = false;
+
+		Festival festival = festivalForm.toFestival();
+
+		if(!errors.hasErrors()) {
+			result = festivals.save(festival) != null;
+		}
 
 		if(!result) {
 			redirectAttributes.addFlashAttribute("error", "Fehler beim erstellen des Festivals.");
@@ -103,10 +109,13 @@ public class FestivalController {
 						Errors errors,
 						RedirectAttributes redirectAttributes) {
 
-		Optional<Festival> unupdatedFestival = festivals.findById(festivalForm.getId());
-		unupdatedFestival.ifPresent(value -> festivalForm.setPlan((List<String>) value.getPlan()));
+		boolean result = false;
 
-		boolean result = saveOrUpdate(festivalForm, errors);
+		Festival festival = festivalForm.toFestival();
+
+		if(!errors.hasErrors()) {
+			result = festivals.update(festival) != null;
+		}
 
 		if(!result) {
 			redirectAttributes.addFlashAttribute("error", "Fehler beim editieren des Festivals.");
@@ -115,18 +124,23 @@ public class FestivalController {
 		return "redirect:/festival/" + festivalForm.getName() + "-" + festivalForm.getId();
 	}
 
+
 	/**
-	 * helper method to reduce duplicate code
+	 *
+	 * @param festivalId id of the festival
 	 */
-	private boolean saveOrUpdate(FestivalForm festivalForm, Errors errors) {
-		boolean result = false;
+	@GetMapping("/festival/{festivalName}-{festivalId}/inventory")
+	String festivalInventory(@PathVariable long festivalId, Model model) {
+		Optional<Festival> festivalOptional = festivals.findById(festivalId);;
 
-		Festival festival = festivalForm.toFestival();
-
-		if(!errors.hasErrors()) {
-			result = festivals.save(festival) != null;
+		if(festivalOptional.isEmpty()) {
+			return "redirect:/404";
 		}
 
-		return result;
+		Festival festival = festivalOptional.get();
+
+		model.addAttribute("inventory", festival.getInventory());
+
+		return "festival_inventory";
 	}
 }
