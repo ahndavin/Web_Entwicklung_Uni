@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Festival Lager</title>
+    </head>
+
+    <body>
+        <ul>
+            <li th:each="inventoryItem: ${inventory}">
+                <p th:text="${inventoryItem.product}"></p>
+                <p th:text="${inventoryItem.quantity}"></p>
+            </li>
+        </ul>
+    </body>
+</html>
