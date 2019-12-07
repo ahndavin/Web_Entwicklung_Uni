@@ -63,7 +63,10 @@ public class FestivalController {
 	 * @param errors: errors from validation of festival data
 	 */
 	@PostMapping("/festival/add")
-	String addFestival(@ModelAttribute @Valid FestivalForm festivalForm, Errors errors, RedirectAttributes redirectAttributes) {
+	String addFestival(@ModelAttribute @Valid FestivalForm festivalForm,
+					   Errors errors,
+					   RedirectAttributes redirectAttributes) {
+
 		boolean result = saveOrUpdate(festivalForm, errors);
 
 		if(!result) {
@@ -96,7 +99,10 @@ public class FestivalController {
 	 * @param errors: errors from validation of the festival data
 	 */
 	@PostMapping("/festival/edit")
-	String editFestival(@ModelAttribute("festival_form") @Valid FestivalForm festivalForm, Errors errors, RedirectAttributes redirectAttributes) {
+	String editFestival(@ModelAttribute("festival_form") @Valid FestivalForm festivalForm,
+						Errors errors,
+						RedirectAttributes redirectAttributes) {
+
 		Optional<Festival> unupdatedFestival = festivals.findById(festivalForm.getId());
 		unupdatedFestival.ifPresent(value -> festivalForm.setPlan((List<String>) value.getPlan()));
 

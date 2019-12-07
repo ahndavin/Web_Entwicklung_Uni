@@ -1,6 +1,5 @@
 package festivalmanager.festival;
 
-import javax.money.MonetaryAmount;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -42,8 +41,6 @@ public class FestivalForm {
 	private boolean sellingTickets;
 
 	private List<String> plan = null;
-
-	public FestivalForm() {}
 
 	public long getId() {
 		return id;
@@ -106,7 +103,19 @@ public class FestivalForm {
 	}
 
 	public Festival toFestival() {
-		Festival festival = new Festival(name, location, startDate, endDate, amountDaytickets, amountCampingtickets, priceDayticket, priceCampingticket, maxVisitors, sellingTickets);
+		Festival festival =
+				new Festival(
+						name,
+						location,
+						startDate,
+						endDate,
+						amountDaytickets,
+						amountCampingtickets,
+						priceDayticket,
+						priceCampingticket,
+						maxVisitors,
+						sellingTickets
+				);
 
 		festival.setId(id);
 

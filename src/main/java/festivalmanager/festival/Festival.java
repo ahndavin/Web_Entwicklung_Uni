@@ -41,7 +41,12 @@ public class Festival {
 
 	private Festival() {}
 
-	public Festival(String name, String location, String startDate, String endDate, int amountDaytickets, int amountCampingtickets, float priceDayticket, float priceCampingticket, int maxVisitors, boolean sellingTickets) {
+	public Festival(String name, String location,
+					String startDate, String endDate,
+					int amountDaytickets, int amountCampingtickets,
+					float priceDayticket, float priceCampingticket,
+					int maxVisitors, boolean sellingTickets) {
+
 		this.name = name;
 		this.location = location;
 		this.amountDaytickets = amountDaytickets;
@@ -188,6 +193,10 @@ public class Festival {
 	}
 
 	public String toString() {
-		return this.id + ": " + this.name + " in " + this.location + " from " + this.getStartDate() + " to " + this.getEndDate();
+		return 	this.id + ": " +
+				this.name + " in " +
+				this.location + " from " +
+				this.getStartDate() + " to " +
+				this.getEndDate();
 	}
 }

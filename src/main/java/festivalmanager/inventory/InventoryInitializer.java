@@ -20,7 +20,9 @@ public class InventoryInitializer implements DataInitializer {
 
 	@Override
 	public void initialize() {
-		if(inventory.findAll().iterator().hasNext()) return;
+		if(inventory.findAll().iterator().hasNext()) {
+			return;
+		}
 
 		Iterable<Item> items =  catalog.findAll();
 
