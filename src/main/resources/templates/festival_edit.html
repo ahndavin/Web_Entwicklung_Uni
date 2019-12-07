@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Festival hinzufügen</title>
+    </head>
+
+    <body>
+        <form th:action="@{/festival/edit}" th:object="${festival_form}" method="POST">
+                               <input type="hidden"   th:field="*{id}" >
+            Name:              <input type="text"     th:field="*{name}" >
+            Location:          <input type="text"     th:field="*{location}" >
+            Start:             <input type="text"     th:field="*{startDate}" >
+            Ende:              <input type="text"     th:field="*{endDate}" >
+            maximale Besucher: <input type="number"   th:field="*{maxVisitors}" >
+            Tickets verfügbar: <input type="checkbox" th:field="*{sellingTickets}" >
+
+            <input type="submit" value="ok">
+        </form>
+    </body>
+</html>
