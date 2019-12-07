@@ -5,6 +5,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.javamoney.moneta.Money;
+import org.salespointframework.inventory.UniqueInventory;
+import org.salespointframework.inventory.UniqueInventoryItem;
 
 import java.util.List;
 
@@ -23,24 +25,22 @@ public class FestivalForm {
 
 	private String endDate;
 
-	@NotEmpty
+	@NotNull
 	private int amountDaytickets;
 
-	@NotEmpty
+	@NotNull
 	private int amountCampingtickets;
 
-	@NotEmpty
+	@NotNull
 	private float priceDayticket;
 
-	@NotEmpty
+	@NotNull
 	private float priceCampingticket;
 
 	@Min(0)
 	private int maxVisitors;
 
 	private boolean sellingTickets;
-
-	private List<String> plan = null;
 
 	public long getId() {
 		return id;
@@ -119,16 +119,9 @@ public class FestivalForm {
 
 		festival.setId(id);
 
-		if(plan != null) {
-			festival.editPlan().addAll(plan);
-		}
-
 		return festival;
 	}
 
-	public void setPlan(List<String> plan) {
-		this.plan = plan;
-	}
 
 	public int getAmountDaytickets(){
 		return this.amountDaytickets;
