@@ -3,6 +3,7 @@ package festivalmanager.festival;
 import javax.persistence.*;
 
 import org.javamoney.moneta.Money;
+import org.salespointframework.inventory.UniqueInventoryItem;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,24 +20,29 @@ public class Festival {
 	private @Id @GeneratedValue long id;
 
 	private String name;
-	private int maxVisitors;
-	private int currentVisitors;
+	private String location;
 
-	private boolean sellingTickets;
+	private Date[] festivalDate = new Date[2];
+
+
 	private int amountDaytickets;
 	private int amountCampingtickets;
 	private float priceDayticket;
 	private float priceCampingticket;
 
+	private int maxVisitors;
+	private int currentVisitors;
+
+	private boolean sellingTickets;
+
 	@ElementCollection
 	private final List<String> plan = new ArrayList<>();
 
-	private String location;
+	@ElementCollection
+	private final List<UniqueInventoryItem> inventory = new ArrayList<>();
 
 	@Transient
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-
-	private Date[] festivalDate = new Date[2];
 
 
 	private Festival() {}
@@ -190,6 +196,14 @@ public class Festival {
 
 	public List<String> editPlan() {
 		return plan;
+	}
+
+	public Iterable<UniqueInventoryItem> getInventory() {
+		return inventory;
+	}
+
+	public List<UniqueInventoryItem> editInventory() {
+		return inventory;
 	}
 
 	public String toString() {
