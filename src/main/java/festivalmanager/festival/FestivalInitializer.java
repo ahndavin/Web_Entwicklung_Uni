@@ -3,19 +3,21 @@
 package festivalmanager.festival;
 
 
+import festivalmanager.inventory.InventoryRepository;
+import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Component
-@Order(10)
+@Order(30)
 public class FestivalInitializer implements DataInitializer {
 	private FestivalManager festivals;
+	private InventoryRepository inventory;
 
-	public FestivalInitializer(FestivalManager festivals) {
+	public FestivalInitializer(FestivalManager festivals, InventoryRepository inventory) {
 		this.festivals = festivals;
+		this.inventory = inventory;
 	}
 
 	@Override
@@ -28,6 +30,8 @@ public class FestivalInitializer implements DataInitializer {
 
 		f.editPlan().add("blabla");
 		f.editPlan().add("lalala");
+
+		f.editInventory().add(inventory.findAll().iterator().next());
 
 		festivals.save(f);
 
