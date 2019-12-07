@@ -2,13 +2,12 @@ package festivalmanager.festival;
 
 import javax.persistence.*;
 
-import org.javamoney.moneta.Money;
+import festivalmanager.ticket.TicketBuilder;
 import org.salespointframework.inventory.UniqueInventoryItem;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -24,11 +23,8 @@ public class Festival {
 
 	private Date[] festivalDate = new Date[2];
 
-
-	private int amountDaytickets;
-	private int amountCampingtickets;
-	private float priceDayticket;
-	private float priceCampingticket;
+	@Embedded
+	private TicketBuilder ticketBuilder;
 
 	private int maxVisitors;
 	private int currentVisitors;
@@ -55,10 +51,8 @@ public class Festival {
 
 		this.name = name;
 		this.location = location;
-		this.amountDaytickets = amountDaytickets;
-		this.amountCampingtickets = amountCampingtickets;
-		this.priceDayticket = priceDayticket;
-		this.priceCampingticket = priceCampingticket;
+
+		this.ticketBuilder = new TicketBuilder(id, amountDaytickets, amountCampingtickets, priceDayticket, priceCampingticket);
 
 		if(endDate == null) {
 			endDate = startDate;
@@ -154,37 +148,6 @@ public class Festival {
 		return sellingTickets;
 	}
 
-	public int getAmountDaytickets(){
-		return this.amountDaytickets;
-	}
-
-	public int getAmountCampingtickets(){
-		return this.amountCampingtickets;
-	}
-
-	public javax.money.MonetaryAmount getPriceDayticket(){
-		return Money.of(priceDayticket, "EUR");
-	}
-
-	public javax.money.MonetaryAmount getPriceCampingticket(){
-		return Money.of(priceCampingticket, "EUR");
-	}
-
-	public void setAmountDaytickets(int amount){
-		this.amountDaytickets = amount;
-	}
-
-	public void setAmountCampingtickets(int amount){
-		this.amountCampingtickets = amount;
-	}
-
-	public void setPriceDayticket(float price){
-		this.priceDayticket = price;
-	}
-
-	public void setPriceCampingticket(float price){
-		this.priceCampingticket = price;
-	}
 
 	public void setSellingTickets(boolean sellingTickets) {
 		this.sellingTickets = sellingTickets;
@@ -204,6 +167,14 @@ public class Festival {
 
 	public List<UniqueInventoryItem> editInventory() {
 		return inventory;
+	}
+
+	public TicketBuilder getTicketBuilder() {
+		return ticketBuilder;
+	}
+
+	public void setTicketBuilder(TicketBuilder ticketBuilder) {
+		this.ticketBuilder = ticketBuilder;
 	}
 
 	public String toString() {

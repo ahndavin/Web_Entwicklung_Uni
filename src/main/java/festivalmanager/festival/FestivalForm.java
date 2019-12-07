@@ -4,12 +4,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.javamoney.moneta.Money;
-import org.salespointframework.inventory.UniqueInventory;
-import org.salespointframework.inventory.UniqueInventoryItem;
-
-import java.util.List;
-
 public class FestivalForm {
 	@NotNull
 	private long id;
@@ -131,12 +125,12 @@ public class FestivalForm {
 		return this.amountCampingtickets;
 	}
 
-	public javax.money.MonetaryAmount getPriceDayticket(){
-		return Money.of(priceDayticket, "EUR");
+	public float getPriceDayticket(){
+		return priceDayticket;
 	}
 
-	public javax.money.MonetaryAmount getPriceCampingticket(){
-		return Money.of(priceCampingticket, "EUR");
+	public float getPriceCampingticket(){
+		return priceCampingticket;
 	}
 
 	public void setAmountDaytickets(int amount){

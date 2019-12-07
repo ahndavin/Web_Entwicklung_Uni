@@ -1,5 +1,6 @@
 package festivalmanager.ticket;
 
+import org.salespointframework.quantity.Quantity;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +41,7 @@ public class TicketManagement{
         }
         else{
             if(sort == Sort.DAYTICKET){
-                if(festival.getAmountDaytickets() > 0){
+                if(festival.getTicketBuilder().getAmountDaytickets().isGreaterThan(Quantity.NONE)){
                     return true;
                 }
                 else{
@@ -48,7 +49,7 @@ public class TicketManagement{
                 }
             }
             if(sort == Sort.CAMPINGTICKET){
-                if(festival.getAmountCampingtickets() > 0){
+                if(festival.getTicketBuilder().getAmountCampingtickets().isGreaterThan(Quantity.NONE)){
                     return true;
                 }
                 else{
@@ -60,15 +61,19 @@ public class TicketManagement{
     }
 
     public Dayticket buyDayticket(Festival festival){
-        festival.setAmountDaytickets(festival.getAmountDaytickets() -1);
-        Dayticket ticket = new Dayticket(festival.getName(), festival.getPriceDayticket());
+		Quantity newQuantity = festival.getTicketBuilder().getAmountCampingtickets().subtract(Quantity.of(1));
+
+		festival.getTicketBuilder().setAmountDaytickets(newQuantity);
+        Dayticket ticket = new Dayticket(festival.getName(), festival.getTicketBuilder().getPriceDayticket());
         dayticketRepository.save(ticket);
         return ticket;
     }
 
     public Campingticket buyCampingticket(Festival festival){
-        festival.setAmountCampingtickets(festival.getAmountCampingtickets() -1);
-        Campingticket ticket = new Campingticket(festival.getName(), festival.getPriceCampingticket());
+		Quantity newQuantity = festival.getTicketBuilder().getAmountCampingtickets().subtract(Quantity.of(1));
+
+        festival.getTicketBuilder().setAmountCampingtickets(newQuantity);
+        Campingticket ticket = new Campingticket(festival.getName(), festival.getTicketBuilder().getPriceCampingticket());
         campingticketRepository.save(ticket);
         return ticket;
     }
