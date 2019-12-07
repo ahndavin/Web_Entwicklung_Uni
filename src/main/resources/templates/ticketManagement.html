@@ -73,7 +73,7 @@
             <tbody th:remove="all-but-first">
               <tr th:each="festival : ${festivallist}">
                 <td th:text="${festival.name}">Beispiel-Festival</td>
-                <td th:text="${festival.amountDaytickets} + ' / ' + ${festival.priceDayticket}">Anzahl / Preis</td>
+                <td th:text="${festival.ticketBuilder.amountDaytickets} + ' / ' + ${festival.ticketBuilder.priceDayticket}">Anzahl / Preis</td>
                 <td>
                   <form method="post" role="form" class="ui form" name="form" th:action="@{/ticketDay}">
                     <input type="hidden" th:value="${festival.getId()}" name="id"/>
@@ -81,7 +81,7 @@
                     <button type="submit" class="ui button">Kaufen</button>
                   </form>
                 </td>              
-                <td th:text="${festival.amountCampingtickets} + ' / ' + ${festival.priceCampingticket}">Anzahl / Preis</td>
+                <td th:text="${festival.ticketBuilder.amountCampingtickets} + ' / ' + ${festival.ticketBuilder.priceCampingticket}">Anzahl / Preis</td>
                 <td>
                   <form method="post" role="form" class="ui form" name="form" th:action="@{/ticketCamping}">
                     <input type="hidden" th:value="${festival.getId()}" name="id"/>
