@@ -47,7 +47,6 @@
       <h3 class="display-5 mb-0">Amazing Location here!</h3>
       <h1 class="display-3">For real! This Location is glorious!!</h1>
       <p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
-
     </div>
   </section>
 
@@ -61,10 +60,10 @@
 				<li class="list-group-item">
 					<a th:href="@{/location/{name}(name=${location.getName()})}">
 						<!--
-						<img class="thumbnail" th:src="@{/resources/img/location/{image}.jpg(image=${location.getOutsideView()})}"
-							src="../static/img/location/example.jpg" width="100%" height="100%"/>
+						<img class="thumbnail" th:src="@{/img/location/{image}.jpg(image=${location.getOutsideView()})}"
+							src="/img/location/example.jpg" width="100%" height="100%"/>
 						-->
-						<img class="thumbnail" src="../static/img/location/example.jpg" width="100%" height="100%"/>
+						<img class="thumbnail" src="/img/location/example.jpg" width="100%" height="100%"/>
 					</a>
 				</li>
 				

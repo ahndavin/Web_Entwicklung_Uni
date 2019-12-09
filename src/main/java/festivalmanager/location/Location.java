@@ -11,6 +11,9 @@ public class Location {
 	private String outsideView;
 	private List<Area> areas;
 	
+	@SuppressWarnings("unused")
+	private Location() {}
+	
 	public Location(String name, Integer maxVisitors, String outsideView) {
 		this.name = name;
 		this.maxVisitors = maxVisitors;
