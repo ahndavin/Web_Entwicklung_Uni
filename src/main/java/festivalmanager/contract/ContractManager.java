@@ -42,7 +42,9 @@ public class ContractManager {
 
 	}
 	public void bindContractToStage(String stage, Contract contract){
-		this.contractsPerStage.put(stage, contract);
+		if(contract.getAccepted() == true){
+			this.contractsPerStage.put(stage, contract);
+		}
 	}
 	public void removeContractFromStage(String stage, Contract contract){
 		this.contractsPerStage.remove(stage, contract);

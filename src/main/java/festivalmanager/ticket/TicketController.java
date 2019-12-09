@@ -36,8 +36,7 @@ public class TicketController {
 		Festival festival = ticketManagement.findById(festivalIdForm.getId());
 		if(result.hasErrors()){
 			return "ticketManagement";
-		}
-		else{
+		} else{
 			if(ticketManagement.isAvailable(festivalIdForm.getSort(), festival) == true){
 				if(festivalIdForm.getSort() == Sort.CAMPINGTICKET){
 					ticketManagement.buyCampingticket(festival);
@@ -57,8 +56,7 @@ public class TicketController {
 			Festival festival = ticketManagement.findById(festivalIdForm.getId());
 			if(result.hasErrors()){
 				return "ticketManagement";
-			}
-			else{
+			} else{
 				if(ticketManagement.isAvailable(festivalIdForm.getSort(), festival) == true){
 					if(festivalIdForm.getSort() == Sort.CAMPINGTICKET){
 						ticketManagement.buyCampingticket(festival);

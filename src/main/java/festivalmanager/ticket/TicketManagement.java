@@ -36,29 +36,21 @@ public class TicketManagement{
       }
 
     public boolean isAvailable(Sort sort, Festival festival){
-        if(festival.isSellingTickets() == false){
-            return false;
-        }
-        else{
+        if(festival.isSellingTickets() != false){
             if(sort == Sort.DAYTICKET){
                 if(festival.getTicketBuilder().getAmountDaytickets().isGreaterThan(Quantity.NONE)){
                     return true;
-                }
-                else{
-                    return false;
                 }
             }
             if(sort == Sort.CAMPINGTICKET){
                 if(festival.getTicketBuilder().getAmountCampingtickets().isGreaterThan(Quantity.NONE)){
                     return true;
                 }
-                else{
-                    return false;
-                }
             }
-            return false;
         }
+        return false;
     }
+    
 
     public Dayticket buyDayticket(Festival festival){
 		Quantity newQuantity = festival.getTicketBuilder().getAmountCampingtickets().subtract(Quantity.of(1));

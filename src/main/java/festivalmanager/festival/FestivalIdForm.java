@@ -19,8 +19,7 @@ public class FestivalIdForm {
     public Sort stringToSort(String string){
       if("CAMPINGTICKET".equals(string)){
         return Sort.CAMPINGTICKET;
-      }
-      else{
+      } else{
         return Sort.DAYTICKET;
       }
     }

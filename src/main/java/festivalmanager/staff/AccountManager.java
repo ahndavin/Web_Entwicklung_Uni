@@ -13,10 +13,10 @@ import org.springframework.validation.Errors;
 @Transactional
 public class AccountManager {
 
-	public static Role CATERING_ROLE = Role.of("CATERING");
-	public static Role MANAGER_ROLE = Role.of("MANAGER");
-	public static Role SECURITY_ROLE = Role.of("SECURITY");
-	public static Role TICKET_SALESMAN_ROLE = Role.of("TICKET_SALESMAN");
+	public static final Role CATERING_ROLE = Role.of("CATERING");
+	public static final Role MANAGER_ROLE = Role.of("MANAGER");
+	public static final Role SECURITY_ROLE = Role.of("SECURITY");
+	public static final Role TICKET_SALESMAN_ROLE = Role.of("TICKET_SALESMAN");
 
 	public final AccountRepository accounts;
 	public final UserAccountManager userAccounts;
