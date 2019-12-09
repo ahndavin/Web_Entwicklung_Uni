@@ -11,6 +11,7 @@ public class Dayticket{
     private String name;
     private javax.money.MonetaryAmount price;
     private Sort sort;
+    private boolean used = false;
 
     public Dayticket(String name, javax.money.MonetaryAmount price){
         this.name = name;
@@ -32,5 +33,13 @@ public class Dayticket{
 
     public Long getId(){
         return this.id;
+    }
+
+    public boolean getUsed(){
+        return this.used;
+    }
+
+    public void setUsed(boolean used){
+        this.used = used;
     }
 }

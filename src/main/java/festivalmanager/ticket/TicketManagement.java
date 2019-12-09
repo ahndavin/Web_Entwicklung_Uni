@@ -53,7 +53,6 @@ public class TicketManagement{
         return false;
 
     }
-    
 
     public Dayticket buyDayticket(Festival festival){
 		Quantity newQuantity = festival.getTicketBuilder().getAmountDaytickets().subtract(Quantity.of(1));
@@ -71,5 +70,15 @@ public class TicketManagement{
         Campingticket ticket=new Campingticket(festival.getName(), festival.getTicketBuilder().getPriceCampingticket());
         campingticketRepository.save(ticket);
         return ticket;
+    }
+
+    public boolean checkTicket(String sort_str, Long id){
+        if(sort_str.equals("Campingticket")){
+            Campingticket ticket = campingticketRepository.findById(id).isPresent() ? campingticketRepository.findById(id).get() : null;
+            return ticket.getUsed();    
+        } else{
+            Dayticket ticket = dayticketRepository.findById(id).isPresent() ? dayticketRepository.findById(id).get() : null;
+            return ticket.getUsed();    
+        }
     }
 }
