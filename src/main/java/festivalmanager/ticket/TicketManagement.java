@@ -37,11 +37,15 @@ public class TicketManagement{
 
     public boolean isAvailable(Sort sort, Festival festival){
         if(festival.isSellingTickets() != false){
-            if(sort == Sort.DAYTICKET && festival.getTicketBuilder().getAmountDaytickets().isGreaterThan(Quantity.NONE)){
-                return true;
+            if(sort == Sort.DAYTICKET){
+                if(festival.getTicketBuilder().getAmountDaytickets().isGreaterThan(Quantity.NONE)){
+                    return true;
+                }
             }
-            if(sort == Sort.CAMPINGTICKET && festival.getTicketBuilder().getAmountCampingtickets().isGreaterThan(Quantity.NONE)){
-                return true;
+            if(sort == Sort.CAMPINGTICKET){
+                if(festival.getTicketBuilder().getAmountCampingtickets().isGreaterThan(Quantity.NONE)){
+                    return true;
+                }
             }
         }
         return false;

@@ -3,7 +3,7 @@ package festivalmanager.contract;
 public class Contract {
 	private String price;
 	private String artist;
-	private Boolean accepted;
+	Boolean accepted;
 	private String techniciansCount;
 	private String techniciansWorkingHours;
 	private String techniciansHourlyWage;
@@ -14,7 +14,6 @@ public class Contract {
 		this.techniciansCount = techniciansCount;
 		this.techniciansWorkingHours = techniciansWorkingHours;
 		this.techniciansHourlyWage = techniciansHourlyWage;
-		this.accepted = accepted;
 	}
 
 	public void setPrice(String price) {
