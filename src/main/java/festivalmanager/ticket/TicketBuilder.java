@@ -26,6 +26,8 @@ public class TicketBuilder {
 	private Money priceDayticket;
 	private Money priceCampingticket;
 
+	public TicketBuilder(){}
+
 	public TicketBuilder(long id, int amountDaytickets , int amountCampingticket, double priceDayticket, double priceCampingticket) {
 		this.id = id;
 		this.amountDaytickets = Quantity.of(amountDaytickets, Metric.UNIT);
