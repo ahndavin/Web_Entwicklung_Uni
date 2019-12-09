@@ -53,7 +53,7 @@ public class TicketManagement{
     
 
     public Dayticket buyDayticket(Festival festival){
-		Quantity newQuantity = festival.getTicketBuilder().getAmountCampingtickets().subtract(Quantity.of(1));
+		Quantity newQuantity = festival.getTicketBuilder().getAmountDaytickets().subtract(Quantity.of(1));
 
 		festival.getTicketBuilder().setAmountDaytickets(newQuantity);
         Dayticket ticket = new Dayticket(festival.getName(), festival.getTicketBuilder().getPriceDayticket());
