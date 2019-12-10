@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Festival Lager</title>
+    </head>
+
+    <body>
+        <ul>
+            <li th:each="inventoryItem: ${festivalInventory}">
+                <form th:action="@{/festival/inventory/edit}" method="POST">
+                    <input type="hidden" name="festivalId" th:value="${festivalId}">
+                    <input type="hidden" name="festivalName" th:value="${festivalName}">
+
+                    <p th:text="${inventoryItem.product.name}"></p>
+                    <input name="quantity" th:value="${inventoryItem.quantity}" >
+                    <p th:text="${stock.findByItem(inventoryItem.product).get().quantity}"></p>
+                </form>
+            </li>
+        </ul>
+    </body>
+</html>
