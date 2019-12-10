@@ -12,7 +12,7 @@ public class LocationManager {
 		this.locations = new LinkedList<Location>();
 	}
 	
-	public List<Location> addLocation(Location location) {
+	public List<Location> save(Location location) {
 		if(locations.contains(location))
 			return null;
 		
@@ -36,7 +36,7 @@ public class LocationManager {
 		return locations;
 	}
 	
-	public List<Location> getAllLocations() {
+	public List<Location> findAll() {
 		return locations;
 	}
 }

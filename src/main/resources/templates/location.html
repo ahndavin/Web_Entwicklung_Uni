@@ -59,17 +59,16 @@
 
 				<li class="list-group-item">
 					<a th:href="@{/location/{name}(name=${location.getName()})}">
-						<!--
-						<img class="thumbnail" th:src="@{/img/location/{image}.jpg(image=${location.getOutsideView()})}"
-							src="/img/location/example.jpg" width="100%" height="100%"/>
-						-->
-						<img class="thumbnail" src="/img/location/example.jpg" width="100%" height="100%"/>
+						<img class="thumbnail"
+							th:src="@{/resources/img/location/thumbnail/{image}.jpg(image=${location.getName()})}"
+							width="100%" height="100%"
+						/>
 					</a>
 				</li>
 				
 				<li class="list-group-item">
-					<label for="maxVisitors">Maximum number of visitors: </label>
-					<label th:text="${location.getMaxVisitors()}"></label>
+					<label for="address"></label>
+					<label th:text="${location.getAddress()}"></label>
 				</li>
 
 				<br>
