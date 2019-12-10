@@ -84,6 +84,12 @@
                     <label for="sellingTickets">Are Tickets available: </label>
                     <label th:text="${festival.sellingTickets}"></label>
                 </li>
+                <li class="list-group-item">
+                    <form method="post" role="form" class="ui form" name="form" th:action="@{/welcome}">
+                        <input type="hidden" th:value="${festival.getId()}" name="id"/>
+                        <button type="submit" class="ui button">To the Accountancy</button>
+                    </form>
+                </li>
                 <br>
                 <br>
             </ul>
