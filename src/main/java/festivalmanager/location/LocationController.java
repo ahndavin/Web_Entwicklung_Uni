@@ -20,14 +20,14 @@ public class LocationController {
 
 	@GetMapping("/location")
 	public String locationManagement(Model model){
-		model.addAttribute("locationList", locationManager.getAllLocations());
+		model.addAttribute("locationList", locationManager.findAll());
 		
 		return "location";
 	}
 
 	@PostMapping("/createLocation")
 	public String addLocation(@Valid Location location) {
-		locationManager.addLocation(location);
+		locationManager.save(location);
 
 		return "redirect:location";
 	}
@@ -43,7 +43,7 @@ public class LocationController {
 	public String detailLocation(Model model, @PathVariable("location") String name) {
 		int i = 0;
 		Location location = null;
-		List<Location> locations = locationManager.getAllLocations();
+		List<Location> locations = locationManager.findAll();
 		
 		while(i < locations.size()) {
 			if(locations.get(i).getName().equals(name))

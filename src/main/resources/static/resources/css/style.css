@@ -65,12 +65,6 @@ body {
 	position: relative;
   }
   
-  #Location-panorama{
-  background: url("../../img/location/example.jpg") bottom center / cover no-repeat;
-  min-height: 500px;
-  position: relative;
-  }
-  
   #showcase h1{
 	line-height: 1;
   }

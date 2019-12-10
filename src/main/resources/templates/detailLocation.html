@@ -42,10 +42,11 @@
   </nav>
 
   <!--  Overlay -->
-  <section class="d-flex align-items-center" id="Location-panorama">
+  <section class="d-flex align-items-center" id="showcase" >
     <div id="overlay"></div>
     <div id="header" class="container text-white text-center">
       <h1 th:text="${location.getName()}" class="display-3"></h1>
+      <h5 th:text="${location.getAddress()}"></h5>
     </div>
   </section>
 
@@ -55,25 +56,46 @@
       <h2 class="mt-4">Yoo, Plan-team, go ahead and get some Bands in here!</h2>
       <div class="row mt-5">
         <div class="col-md-4">
-          <img class="img img-fluid" src="https://image.flaticon.com/icons/svg/864/864857.svg" alt="">
-          <h3>Plan your Stage!</h3>
-          <p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+          <h3><b>Information</b></h3>
+          </br>
+		  <li class="list-group-item">
+		  	<b>Name: </b>
+			<label th:text="${location.getName()}"></label>
+		  </li>
+		  <li class="list-group-item">
+			<b>Address: </b>
+			<label th:text="${location.getAddress()}"></label>
+		  </li>
+		  <li class="list-group-item">
+			<b>Max Visitors: </b>
+			<label th:text="${location.getMaxVisitors()}"></label>
+		  </li>
+		  <li class="list-group-item">
+			<b>Status: </b>
+			<label th:text="${location.getStatus()}"></label>
+		  </li>
+		  <li class="list-group-item">
+			<b>Current Visitors: </b>
+			<label th:text="${location.getCurrVisitors()}"></label>
+		  </li>
         </div>
         <div class="col-md-4">
-          <img class="img img-fluid" src="https://image.flaticon.com/icons/svg/3/3774.svg" alt="">
-          <h3>Get the Line-Up</h3>
-          <p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+          <img class="thumbnail" th:src="@{/resources/img/location/ground_plan/{image}.jpg(image=${location.getName()})}" width="100%" height="100%">
         </div>
         <div class="col-md-4">
-          <img class="img img-fluid" src="https://image.flaticon.com/icons/svg/684/684831.svg" alt="">
-          <h3>See all Locations</h3>
-          <p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+          <h3><b>Festivals</b></h3>
+          </br>
+          <li class="list-group-item">
+			<a href="/festivals">
+				<label>Hier muss eine Liste von Festivals gesehen werden!</label>
+			</a>
+		  </li>
         </div>
       </div>
     </div>
+    </br>
+    </br>
+    </br>
   </section>
 
 
