@@ -66,7 +66,7 @@
     <h1 class="text-center mb-05">Current Areas</h1>
     <div class="container text-center">
       <ul class="list-group" th:each="area : ${areaList}">
-				<h3 th:text="${area.getName()} "></h3>
+      			<h3 th:text="${area.getZone()} "></h3>
 				
 				<li class="list-group-item">
 					<label for="blocked"><b>Blocked: </b></label>
@@ -93,8 +93,10 @@
 					<label th:text="${area.getType()}"></label>
 				</li>
 				
-				<li th:if="${area.getType()}=='STAGE'" class="list-group-item">	<!--왜 작동이 안되는 거지?-->
-					<b>STAGE!</b>
+				<li th:if="${area.getAllStages()!=null}" class="list-group-item">
+					<button id="btn_" class="btn btn-lg btn-dark">
+	       		 		<a href="#" onclick="goToCreateArea()" class="text-light">Overview of Stage</a>
+	      			</button>
 				</li>
 				
 				<br>

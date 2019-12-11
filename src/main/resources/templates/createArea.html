@@ -70,8 +70,8 @@
     <div id="wrapper" class="container text-center">
       <h1 class="mb-3 mt-5"> Create Area </h1>
       <form method="POST" th:action="${currentURL}" th:object="${area}">
-      	<label for="name">Name</label>
-        <input type="text" required="required" th:field="*{name}" class="form-control" />
+      	<label for="zone">Zone</label>
+        <input type="text" required="required" th:field="*{zone}" class="form-control" />
         <br />
         <label for="maxVisitors">Max Visitors</label>
         <input type="number" required="required" th:field="*{maxVisitors}" class="form-control" />

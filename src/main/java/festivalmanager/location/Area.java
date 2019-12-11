@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.LinkedList;
 
 public class Area {
-	private String name;
+	private String zone;
 	private boolean blocked;
 	private Integer currVisitors;
 	private Integer maxVisitors;
@@ -12,20 +12,21 @@ public class Area {
 	private Type type;
 	private List<Stage> stages;
 	
-	public Area(String name, Integer maxVisitors, Integer maxStages, Type type) {
-		this.name = name;
+	public Area(String zone, Integer maxVisitors, Integer maxStages, Type type) {
+		this.zone = zone;
 		this.maxVisitors = maxVisitors;
 		this.maxStages = maxStages;
 		this.blocked = false;
 		this.currVisitors = 0;
 		this.type = type;
 		
+		this.stages = null;
 		if(this.type == Type.STAGE)
 			this.stages = new LinkedList<Stage>();
 	}
 	
-	public String getName() {
-		return name;
+	public String getZone() {
+		return zone;
 	}
 	
 	public boolean toggleLock() {
