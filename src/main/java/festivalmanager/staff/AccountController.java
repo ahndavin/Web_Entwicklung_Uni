@@ -42,6 +42,12 @@ class 	AccountController {
 			return "createAccount";
 		}
 
+		@GetMapping("/allAccounts")
+		String allAccounts(Model model){
+			model.addAttribute("accountList", accountManager.findAll());
+
+			return "allAccounts";
+		}
 }
 
 
