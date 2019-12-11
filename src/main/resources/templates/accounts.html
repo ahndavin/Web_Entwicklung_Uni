@@ -5,7 +5,9 @@
     <title>accounts</title>
 </head>
 <body>
-
-if you are here, you are a manager
+    <h2> Currently logged in accounts</h2>
+    <div th:each="account : ${account}">
+        <p th:text="$account">account</p>
+    </div>
 </body>
 </html>

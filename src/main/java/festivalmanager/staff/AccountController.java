@@ -4,8 +4,10 @@ package festivalmanager.staff;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
@@ -18,6 +20,9 @@ import java.util.ArrayList;
 class 	AccountController {
 
 		private final AccountManager accountManager;
+		@Autowired
+		ActiveAccountsStore activeAccountsStore;
+
 
 		AccountController(AccountManager accountManager){
 			Assert.notNull(accountManager, "kickstart.account.AccountManager must be not null");
@@ -48,6 +53,13 @@ class 	AccountController {
 
 			return "allAccounts";
 		}
+
+		@GetMapping(value = "/loggedaccounts")
+		public String getLoggedAccounts(Model model){
+			model.addAttribute("accounts", activeAccountsStore.getAccounts());
+			return "accounts";
+		}
+
 }
 
 
