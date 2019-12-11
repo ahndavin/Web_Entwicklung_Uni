@@ -55,17 +55,17 @@ public class Location {
 		return maxVisitors;
 	}
 	
-	public String editOutsideView() {
-		//TODO
-		return null;
-	}
-	
 	public String getThumbnail() {
 		return thumbnail;
 	}
 	
 	public String getGroundPlan() {
 		return groundPlan;
+	}
+	
+	public String editGroundPlan() {
+		//TODO
+		return null;
 	}
 		
 	public List<Area> addArea(Area area){

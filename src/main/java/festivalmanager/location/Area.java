@@ -19,7 +19,9 @@ public class Area {
 		this.blocked = false;
 		this.currVisitors = 0;
 		this.type = type;
-		this.stages = new LinkedList<Stage>();
+		
+		if(this.type == Type.STAGE)
+			this.stages = new LinkedList<Stage>();
 	}
 	
 	public String getName() {
@@ -43,8 +45,16 @@ public class Area {
 		return currVisitors += visitors;
 	}
 	
+	public Integer getCurrVisitors() {
+		return currVisitors;
+	}
+	
 	public Integer getMaxVisitors() {
 		return maxVisitors;
+	}
+	
+	public Integer getMaxStages() {
+		return maxStages;
 	}
 	
 	public Type getType() {

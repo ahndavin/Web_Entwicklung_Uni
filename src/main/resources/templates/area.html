@@ -2,30 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-
   <!--  BOOTSTRAP STUFF  -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
     integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
     integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/style.css" />
-
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-  <title>Prototype_Davin</title>
+  <title>Areas</title>
 </head>
 
 <body>
-  <!--  START HERE  -->  
+
+  <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
-        function goToAreaList() {
-        	var currURL = location.pathname;
-        	currURL += "/area";
-        	location.href = currURL;
-        }
+		function goToOverview() {
+		    var currURL = location.pathname;
+		    currURL = currURL.replace("/area", "");
+			location.href = currURL;
+		}
         function goToCreateArea() {
             var currURL = location.pathname;
-            currURL += "/createArea";
+           	currURL = currURL.replace("/area", "/createArea");
             location.href = currURL;
         }
   </script>
@@ -40,76 +39,80 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href="" class="nav-link active">Overview of Location</a>
+          <a href="#" onclick="goToOverview()" class="nav-link ">Overview of Location</a>
         </li>
         <li class="nav-item">
           <a href="#" onclick="goToCreateArea()" class="nav-link">Create an Area</a>
         </li>
         <li class="nav-item">
-          <a href="#" onclick="goToAreaList()" class="nav-link">See all existing Areas</a>
+          <a href="" class="nav-link active">See all existing Areas</a>
         </li>
       </ul>
     </div>
   </nav>
 
   <!--  Overlay -->
-  <section class="d-flex align-items-center" id="showcase" >
+  <section class="d-flex align-items-center" id="showcase">
     <div id="overlay"></div>
     <div id="header" class="container text-white text-center">
-      <h1 th:text="${location.getName()}" class="display-3"></h1>
-      <h5 th:text="${location.getAddress()}"></h5>
+      <h3 class="display-5 mb-0">Amazing Location here!</h3>
+      <h1 class="display-3">For real! This Location is glorious!!</h1>
+      <p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
     </div>
   </section>
 
-  <!--  3 Row Column -->
-  <section>
+  
+  <div id="wrapper" class="container">
+    <h1 class="text-center mb-05">Current Areas</h1>
     <div class="container text-center">
-      <h2 class="mt-4">Yoo, Plan-team, go ahead and get some Bands in here!</h2>
-      <div class="row mt-5">
-        <div class="col-md-4">
-          <h3><b>Information</b></h3>
-          </br>
-		  <li class="list-group-item">
-		  	<b>Name: </b>
-			<label th:text="${location.getName()}"></label>
-		  </li>
-		  <li class="list-group-item">
-			<b>Address: </b>
-			<label th:text="${location.getAddress()}"></label>
-		  </li>
-		  <li class="list-group-item">
-			<b>Max Visitors: </b>
-			<label th:text="${location.getMaxVisitors()}"></label>
-		  </li>
-		  <li class="list-group-item">
-			<b>Status: </b>
-			<label th:text="${location.getStatus()}"></label>
-		  </li>
-		  <li class="list-group-item">
-			<b>Current Visitors: </b>
-			<label th:text="${location.getCurrVisitors()}"></label>
-		  </li>
-        </div>
-        <div class="col-md-4">
-          <a href="#" onclick="goToAreaList()">
-          	<img class="thumbnail" th:src="@{/resources/img/location/ground_plan/{image}.jpg(image=${location.getName()})}" width="100%" height="100%">
-          </a>
-        </div>
-        <div class="col-md-4">
-          <h3><b>Festivals</b></h3>
-          </br>
-          <li class="list-group-item">
-			<a href="/festivals">
-				<label>Hier muss eine Liste von Festivals gesehen werden!</label>
-			</a>
-		  </li>
-        </div>
-      </div>
+      <ul class="list-group" th:each="area : ${areaList}">
+				<h3 th:text="${area.getName()} "></h3>
+				
+				<li class="list-group-item">
+					<label for="blocked"><b>Blocked: </b></label>
+					<label th:text="${area.getStatus()}"></label>
+				</li>
+				
+				<li class="list-group-item">
+					<label for="currVisitors"><b>Current Visitors: </b></label>
+					<label th:text="${area.getCurrVisitors()}"></label>
+				</li>
+				
+				<li class="list-group-item">
+					<label for="maxVisitors"><b>Maximum Visitors: </b></label>
+					<label th:text="${area.getMaxVisitors()}"></label>
+				</li>
+				
+				<li class="list-group-item">
+					<label for="maxStages"><b>Maximum Stages: </b></label>
+					<label th:text="${area.getMaxStages()}"></label>
+				</li>
+				
+				<li class="list-group-item">
+					<label for="type"><b>Type: </b></label>
+					<label th:text="${area.getType()}"></label>
+				</li>
+				
+				<li th:if="${area.getType()}=='STAGE'" class="list-group-item">	<!--왜 작동이 안되는 거지?-->
+					<b>STAGE!</b>
+				</li>
+				
+				<br>
+				<br>
+			</ul>
     </div>
-    </br>
-    </br>
-    </br>
+  </div>
+  <br>
+  <br>
+  <section class="d-flex align-items-center mb-02">
+    <div id="header" class="container text-white text-center">
+      <button id="btn" class="btn btn-lg btn-dark">
+        <a href="#" onclick="goToCreateArea()" class="text-light">Create a new Areas</a>
+      </button>
+    </div>
   </section>
+  <br>
+  <br>
 
 
 
