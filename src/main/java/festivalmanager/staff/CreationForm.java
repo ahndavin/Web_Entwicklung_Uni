@@ -22,19 +22,19 @@ class CreationForm {
 
 		private Boolean security;
 
-		private Boolean manager;
+		//private Boolean manager;
 
 		private Boolean ticketSalesman;
 
 
-		public CreationForm(String usrName, String password, String firstName, String lastName, Boolean catering, Boolean security, Boolean manager, Boolean ticketSalesman) {
+		public CreationForm(String usrName, String password, String firstName, String lastName, Boolean catering, Boolean security, Boolean ticketSalesman) {
 			this.usrName = usrName;
 			this.password = password;
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.catering = catering;
 			this.security = security;
-			this.manager = manager;
+			//this.manager = manager;
 			this.ticketSalesman = ticketSalesman;
 		}
 
@@ -62,9 +62,9 @@ class CreationForm {
 			return security;
 		}
 
-		public Boolean getManager() {
+		/*public Boolean getManager() {
 			return manager;
-		}
+		}*/
 
 		public Boolean getTicketSalesman() {
 			return ticketSalesman;
