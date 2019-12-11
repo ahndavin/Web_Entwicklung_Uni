@@ -49,10 +49,10 @@ public class AccountManager {
 			if (Boolean.TRUE.equals(form.getSecurity())){
 				userAccount.add(SECURITY_ROLE);
 			}
-			if (Boolean.TRUE.equals(form.getManager())){
+			/*if (Boolean.TRUE.equals(form.getManager())){
 
 				userAccount.add(MANAGER_ROLE);
-			}
+			}*/
 			if (Boolean.TRUE.equals(form.getTicketSalesman())){
 				userAccount.add(TICKET_SALESMAN_ROLE);
 			}
