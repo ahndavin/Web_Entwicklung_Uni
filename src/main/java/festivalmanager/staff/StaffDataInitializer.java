@@ -39,11 +39,11 @@ public class StaffDataInitializer implements DataInitializer{
 		var password = "123";
 
 		accountManager.createAccount(new CreationForm("CATERING", "123", "CATERING", "CATERING",
-				true, false, false, false), null);
+				true, false, false), null);
 		accountManager.createAccount(new CreationForm("SECURITY", "123", "SECURITY", "SECURITY",
-				false, true, false, false), null);
+				false, true, false), null);
 		accountManager.createAccount(new CreationForm("TICKET_SALESMAN", "123", "TICKET_SALESMAN", "TICKET_SALESMAN",
-				false, false, false, true), null);
+				false, false, true), null);
 
 	}
 
