@@ -23,9 +23,9 @@
         	currURL += "/area";
         	location.href = currURL;
         }
-        function goToCreateArea() {
+        function goToStageList() {
             var currURL = location.pathname;
-            currURL += "/createArea";
+            currURL += "/stage";
             location.href = currURL;
         }
   </script>
@@ -43,10 +43,10 @@
           <a href="" class="nav-link active">Overview of Location</a>
         </li>
         <li class="nav-item">
-          <a href="#" onclick="goToCreateArea()" class="nav-link">Create an Area</a>
+          <a href="#" onclick="goToAreaList()" class="nav-link">See all existing Areas</a>
         </li>
         <li class="nav-item">
-          <a href="#" onclick="goToAreaList()" class="nav-link">See all existing Areas</a>
+          <a href="#" onclick="goToStageList()" class="nav-link">See all existing Stages</a>
         </li>
       </ul>
     </div>

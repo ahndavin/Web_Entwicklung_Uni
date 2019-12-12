@@ -1,9 +1,10 @@
 package festivalmanager.location;
 
 import festivalmanager.contract.*;
-import java.util.Date;
+
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Date;
 
 public class Stage {
 	private String name;

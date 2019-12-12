@@ -63,9 +63,9 @@ public class Location {
 		return groundPlan;
 	}
 	
-	public String editGroundPlan() {
-		//TODO
-		return null;
+	public String editGroundPlan(String gp) {
+		groundPlan = gp;
+		return groundPlan;
 	}
 		
 	public List<Area> addArea(Area area){
