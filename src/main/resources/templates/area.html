@@ -14,17 +14,26 @@
 </head>
 
 <body>
-
   <!--  START HERE  -->
-  <script type="text/javascript" language="javascript">
+  <script type="text/javascript" language="javascript">  
 		function goToOverview() {
 		    var currURL = location.pathname;
 		    currURL = currURL.replace("/area", "");
 			location.href = currURL;
 		}
+		function goToStageList() {
+            var currURL = location.pathname;
+            currURL = currURL.replace("/area", "/stage");
+            location.href = currURL;
+        }
         function goToCreateArea() {
             var currURL = location.pathname;
            	currURL = currURL.replace("/area", "/createArea");
+            location.href = currURL;
+        }
+        function goToCreateStage() {
+            var currURL = location.pathname;
+           	currURL = currURL.replace("/area", "/createStage");
             location.href = currURL;
         }
   </script>
@@ -42,10 +51,10 @@
           <a href="#" onclick="goToOverview()" class="nav-link ">Overview of Location</a>
         </li>
         <li class="nav-item">
-          <a href="#" onclick="goToCreateArea()" class="nav-link">Create an Area</a>
+          <a href="" class="nav-link active">See all existing Areas</a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link active">See all existing Areas</a>
+          <a href="#" onclick="goToStageList()" class="nav-link">See all existing Stages</a>
         </li>
       </ul>
     </div>
@@ -66,7 +75,12 @@
     <h1 class="text-center mb-05">Current Areas</h1>
     <div class="container text-center">
       <ul class="list-group" th:each="area : ${areaList}">
-      			<h3 th:text="${area.getZone()} "></h3>
+      			<h3 th:text="${area.getZone()}"></h3>
+				
+				<li class="list-group-item">
+					<label for="type"><b>Type: </b></label>
+					<label th:text="${area.getType()}"></label>
+				</li>
 				
 				<li class="list-group-item">
 					<label for="blocked"><b>Blocked: </b></label>
@@ -83,22 +97,17 @@
 					<label th:text="${area.getMaxVisitors()}"></label>
 				</li>
 				
-				<li class="list-group-item">
+				<li th:if="${area.getAllStages()!=null}" class="list-group-item">
 					<label for="maxStages"><b>Maximum Stages: </b></label>
 					<label th:text="${area.getMaxStages()}"></label>
 				</li>
 				
-				<li class="list-group-item">
-					<label for="type"><b>Type: </b></label>
-					<label th:text="${area.getType()}"></label>
-				</li>
-				
 				<li th:if="${area.getAllStages()!=null}" class="list-group-item">
 					<button id="btn_" class="btn btn-lg btn-dark">
-	       		 		<a href="#" onclick="goToCreateArea()" class="text-light">Overview of Stage</a>
+	       		 		<a href="#" onclick="goToCreateStage()" class="text-light">Add Stage</a>
 	      			</button>
 				</li>
-				
+
 				<br>
 				<br>
 			</ul>

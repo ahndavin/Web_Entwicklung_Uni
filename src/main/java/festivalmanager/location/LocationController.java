@@ -1,6 +1,7 @@
 package festivalmanager.location;
 
 import java.util.List;
+import java.util.LinkedList;
 import javax.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class LocationController {
 	private final LocationManager locationManager;
+	private Area currArea;
 	
 	public LocationController(LocationManager locationManager){
 		Assert.notNull(locationManager, "Location must not be null!");
@@ -42,7 +44,7 @@ public class LocationController {
 	@GetMapping("/location/{location}")
 	public String detailLocation(Model model, @PathVariable("location") String name) {
 		model.addAttribute("location", findLocation(name));
-
+		
 		return "detailLocation";
 	}
 	
@@ -54,10 +56,8 @@ public class LocationController {
 	}
 	
 	@PostMapping("/location/{location}/createArea")
-	public String addArea(@PathVariable("location") String name, @Valid Area area) {
+	public String addArea(@Valid Area area, @PathVariable("location") String name) {
 		findLocation(name).addArea(area);
-		
-		System.out.println(name);
 		
 		return "redirect:area";
 	}
@@ -67,6 +67,47 @@ public class LocationController {
 		model.addAttribute("area", area);
 
 		return "createArea";
+	}
+	
+	@GetMapping("/location/{location}/stage")
+	public String stageManagement(Model model, @PathVariable("location") String name) {
+		int i = 0, j = 0, k = 0;
+		List<Area> stageAreas = new LinkedList<Area>();
+		List<Area> areas = findLocation(name).getAllAreas();
+		List<Stage> allStages = new LinkedList<Stage>();
+		
+		while(i < areas.size()) {
+			if(areas.get(i).getType().equals(Type.STAGE))
+				stageAreas.add(areas.get(i));
+			
+			i++;
+		}
+		
+		while(j < stageAreas.size()) {
+			while(k < stageAreas.get(j).getAllStages().size()) {
+				allStages.add(stageAreas.get(j).getAllStages().get(k));
+				k++;
+			}
+			j++;
+		}
+		
+		model.addAttribute("stageList", allStages);
+		
+		return "stage";
+	}
+	
+	@PostMapping("/location/{location}/createStage")
+	public String addStage(@Valid Stage stage, @PathVariable("location") String name) {
+		findLocation(name).getArea(currArea).addStage(stage);
+		
+		return "redirect:stage";
+	}
+
+	@GetMapping("/location/{location}/createStage")
+	public String addStage(Model model, Stage stage) {
+		model.addAttribute("stage", stage);
+
+		return "createStage";
 	}
 	
 	private Location findLocation(String name) {	// Um wiederholten Code zu vermeiden

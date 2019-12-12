@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-  <title>Create Area</title>
+  <title>Create Stage</title>
 </head>
 
 <body>
@@ -21,17 +21,17 @@
         
   		function goToOverview() {
 		    var currURL = location.pathname;
-		    currURL = currURL.replace("/createArea", "");
+		    currURL = currURL.replace("/createStage", "");
 			location.href = currURL;
 		}
   		function goToAreaList() {
         	var currURL = location.pathname;
-        	currURL = currURL.replace("/createArea", "/area");
+        	currURL = currURL.replace("/createStage", "/area");
         	location.href = currURL;
         }
   		function goToStageList() {
             var currURL = location.pathname;
-            currURL = currURL.replace("/createArea", "/stage");
+            currURL = currURL.replace("/createStage", "/stage");
             location.href = currURL;
         }
   </script>
@@ -62,7 +62,7 @@
   <section class="d-flex align-items-center" id="showcase">
     <div id="overlay"></div>
     <div id="header" class="container text-white text-center">
-      <h3 class="display-5 mb-0">Creating the awesome Area?!</h3>
+      <h3 class="display-5 mb-0">Creating the awesome Stage?!</h3>
       <h1 class="display-3">Where should it be?</h1>
       <p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
 
@@ -71,41 +71,22 @@
 
   <!--  ImputField -->
   <section>
-
     <div id="wrapper" class="container text-center">
-      <h1 class="mb-3 mt-5"> Create Area </h1>
-      <form method="POST" th:action="${currentURL}" th:object="${area}">
-      	<label for="zone">Zone</label>
-        <input type="text" required="required" th:field="*{zone}" class="form-control" />
+      <h1 class="mb-3 mt-5"> Create Stage </h1>
+      <form method="POST" th:action="${currentURL}" th:object="${stage}">
+      	<label for="name">Name</label>
+        <input type="text" required="required" th:field="*{name}" class="form-control"/>
         <br />
-        <label for="maxVisitors">Max Visitors</label>
-        <input type="number" required="required" th:field="*{maxVisitors}" class="form-control" />
+        <!-- 
+        <label for="lineup">Lineup</label>
+        <input type="text" th:field="*{lineup}" class="form-control"/>
+        -->
         <br />
-        <label for="type">Type</label><br/>	
-		<label class="box-radio-input">
-		<input type="radio" name="chk_info" th:field="*{type}" value="CAMPING"><span>Camping</span></label>
-		<label class="box-radio-input">
-		<input type="radio" name="chk_info" th:field="*{type}" value="PARK"><span>Park</span></label>
-		<label class="box-radio-input">
-		<input type="radio" name="chk_info" th:field="*{type}" value="CATERING"><span>Catering</span></label>
-		<label class="box-radio-input">
-		<input type="radio" name="chk_info" th:field="*{type}" value="STAGE"><span>Stage</span></label>
-		<br />
-		<br />
-		<label for="maxStages">Max Stages</label>
-        <input type="number" th:field="*{maxStages}" class="form-control" />
         <br />
-		<br />
-		
-		
-        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">
-          Create Area
-        </button>
-
+        
+        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Create Stage</button>
       </form>
-
     </div>
-
   </section>
   <br>
   <br>
