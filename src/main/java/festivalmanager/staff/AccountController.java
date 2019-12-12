@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Locale;
 
 @Controller
 class 	AccountController {
@@ -22,6 +23,8 @@ class 	AccountController {
 		private final AccountManager accountManager;
 		@Autowired
 		ActiveAccountsStore activeAccountsStore;
+
+		@Autowired
 
 
 		AccountController(AccountManager accountManager){
@@ -55,10 +58,12 @@ class 	AccountController {
 		}
 
 		@GetMapping(value = "/loggedaccounts")
-		public String getLoggedAccounts(Model model){
-			model.addAttribute("accounts", activeAccountsStore.getAccounts());
+		public String getLoggedAccounts(Locale locale, Model model){
+			model.addAttribute( "accounts", activeAccountsStore.getAccounts());
+
 			return "accounts";
 		}
+
 
 }
 

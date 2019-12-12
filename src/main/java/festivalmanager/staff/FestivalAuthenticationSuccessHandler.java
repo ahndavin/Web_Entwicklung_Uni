@@ -1,5 +1,7 @@
 package festivalmanager.staff;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -25,7 +27,11 @@ public class FestivalAuthenticationSuccessHandler implements AuthenticationSucce
 		if (session != null) {
 			LoggedAccount account = new LoggedAccount(authentication.getName(), activeAccountsStore);
 			session.setAttribute("account", account);
+			LOG.info("adding one account to logged in accounts");
 		}
+		LOG.info("session was null");
 	}
+
+	private static final Logger LOG = LoggerFactory.getLogger(FestivalAuthenticationSuccessHandler.class);
 }
 
