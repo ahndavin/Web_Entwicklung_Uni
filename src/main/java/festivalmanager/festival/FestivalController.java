@@ -2,6 +2,8 @@ package festivalmanager.festival;
 
 import festivalmanager.inventory.InventoryManager;
 import festivalmanager.inventory.Item;
+import org.salespointframework.catalog.ProductIdentifier;
+import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -169,14 +171,19 @@ public class FestivalController {
 	@PostMapping("/festival/inventory/edit")
 	String editFestivalInventory(@RequestParam long festivalId,
 								 @RequestParam String festivalName,
+								 @RequestParam InventoryItemIdentifier itemId,
 								 @RequestParam long quantity,
 								 Model model) {
 
-		System.out.println(festivalId);
-		System.out.println(festivalName);
+		Optional<Festival> festivalOptional = festivals.findById(festivalId);
 
-		System.out.println(quantity);
+		if(festivalOptional.isEmpty()) {
+			return "redirect:/404";
+		}
 
+		Festival festival = festivalOptional.get();
+
+		Festival result = festivals.updateInventoryItem(festival, itemId, Quantity.of(quantity));
 
 		return "redirect:/festival/" + festivalName + "-" + festivalId + "/inventory/edit";
 	}
