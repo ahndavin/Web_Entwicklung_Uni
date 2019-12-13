@@ -9,11 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LocationController {
 	private final LocationManager locationManager;
-	private Area currArea;
 	
 	public LocationController(LocationManager locationManager){
 		Assert.notNull(locationManager, "Location must not be null!");
@@ -50,6 +50,7 @@ public class LocationController {
 	
 	@GetMapping("/location/{location}/area")
 	public String areaManagement(Model model, @PathVariable("location") String name) {
+		model.addAttribute("location", findLocation(name));
 		model.addAttribute("areaList", findLocation(name).getAllAreas());
 
 		return "area";
@@ -63,48 +64,33 @@ public class LocationController {
 	}
 
 	@GetMapping("/location/{location}/createArea")
-	public String addArea(Model model, Area area) {
+	public String addArea(Model model, Area area, @PathVariable("location") String name) {
+		model.addAttribute("location", findLocation(name));
 		model.addAttribute("area", area);
 
 		return "createArea";
 	}
 	
-	@GetMapping("/location/{location}/stage")
-	public String stageManagement(Model model, @PathVariable("location") String name) {
-		int i = 0, j = 0, k = 0;
-		List<Area> stageAreas = new LinkedList<Area>();
-		List<Area> areas = findLocation(name).getAllAreas();
-		List<Stage> allStages = new LinkedList<Stage>();
-		
-		while(i < areas.size()) {
-			if(areas.get(i).getType().equals(Type.STAGE))
-				stageAreas.add(areas.get(i));
-			
-			i++;
-		}
-		
-		while(j < stageAreas.size()) {
-			while(k < stageAreas.get(j).getAllStages().size()) {
-				allStages.add(stageAreas.get(j).getAllStages().get(k));
-				k++;
-			}
-			j++;
-		}
-		
-		model.addAttribute("stageList", allStages);
+	@GetMapping("/location/{location}/area/{area}/stage")
+	public String stageManagement(Model model, @PathVariable("location") String name, @PathVariable("area") String area) {
+		model.addAttribute("location", findLocation(name));
+		model.addAttribute("area", findArea(findLocation(name), area));
+		model.addAttribute("stageList", findStages(findLocation(name).getAllAreas(), area));
 		
 		return "stage";
 	}
 	
-	@PostMapping("/location/{location}/createStage")
-	public String addStage(@Valid Stage stage, @PathVariable("location") String name) {
-		findLocation(name).getArea(currArea).addStage(stage);
+	@PostMapping("/location/{location}/area/{area}/createStage")
+	public String addStage(@Valid Stage stage, @PathVariable("location") String name, @PathVariable("area") String area) {
+		System.out.println(area);
+		findArea(findLocation(name), area).addStage(stage);
 		
 		return "redirect:stage";
 	}
 
-	@GetMapping("/location/{location}/createStage")
-	public String addStage(Model model, Stage stage) {
+	@GetMapping("/location/{location}/area/{area}/createStage")
+	public String addStage(Model model, Stage stage, @PathVariable("location") String name, @PathVariable("area") String zone) {
+		model.addAttribute("location", findLocation(name));
 		model.addAttribute("stage", stage);
 
 		return "createStage";
@@ -125,5 +111,35 @@ public class LocationController {
 		}
 		
 		return location;
+	}
+	
+	private Area findArea(Location location, String name) {	// Um wiederholten Code zu vermeiden
+		int i = 0;
+		Area area = null;
+		List<Area> areas = location.getAllAreas();
+		
+		while(i < areas.size()) {
+			if(areas.get(i).getZone().equals(name)) {
+				area = areas.get(i);
+				break;
+			}
+			
+			i++;
+		}
+		
+		return area;
+	}
+	
+	private List<Stage> findStages(List<Area> areas, String area) {	// Um wiederholten Code zu vermeiden
+		int i = 0;
+		
+		while(i < areas.size()) {
+			if(areas.get(i).getZone().equals(area))
+				return areas.get(i).getAllStages();
+			
+			i++;
+		}
+		
+		return null;
 	}
 }

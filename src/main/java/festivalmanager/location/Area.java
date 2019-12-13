@@ -90,4 +90,8 @@ public class Area {
 	public List<Stage> getAllStages() {
 		return stages;
 	}
+	
+	public String toString() {
+		return zone;
+	}
 }
