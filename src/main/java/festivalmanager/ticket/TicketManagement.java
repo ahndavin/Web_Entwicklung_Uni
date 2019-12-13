@@ -62,18 +62,22 @@ public class TicketManagement{
 		Quantity newQuantity = festival.getTicketBuilder().getAmountDaytickets().subtract(Quantity.of(1));
         System.out.println("Before adding the entry to the Ecomanager");
 
-        economicManager.add(festival.getTicketBuilder().getPriceDayticket(), "Day Ticket", festival);
+        //economicManager.add(festival.getTicketBuilder().getPriceDayticket(), "Day Ticket", festival);
 
-		festival.getTicketBuilder().setAmountDaytickets(newQuantity);
+        System.out.println("After adding the entry to the Ecomanager");
+        festival.getTicketBuilder().setAmountDaytickets(newQuantity);
+        System.out.println("After updating the Ticketcount");
         Dayticket ticket = new Dayticket(festival.getName(), festival.getTicketBuilder().getPriceDayticket());
+        System.out.println("After creating new Ticket");
         dayticketRepository.save(ticket);
+        System.out.println("After adding the ticket to the repository");
         return ticket;
     }
 
     public Campingticket buyCampingticket(Festival festival){
         Quantity newQuantity = festival.getTicketBuilder().getAmountCampingtickets().subtract(Quantity.of(1));
 
-        economicManager.add(festival.getTicketBuilder().getPriceCampingticket(), "Camping Ticket", festival);
+        //economicManager.add(festival.getTicketBuilder().getPriceCampingticket(), "Camping Ticket", festival);
 
         festival.getTicketBuilder().setAmountCampingtickets(newQuantity);
         Campingticket ticket=new Campingticket(festival.getName(), festival.getTicketBuilder().getPriceCampingticket());
