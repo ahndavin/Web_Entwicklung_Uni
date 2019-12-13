@@ -16,17 +16,12 @@
 <body>
 
   <!--  START HERE  -->
-<script type="text/javascript" language="javascript">
-  		function goToOverview() {
-		    var currURL = location.pathname;
-		    currURL = currURL.replace("/stage", "");
-			location.href = currURL;
-		}
-  		function goToAreaList() {
-        	var currURL = location.pathname;
-        	currURL = currURL.replace("/stage", "/area");
-        	location.href = currURL;
-        }
+  <script type="text/javascript" language="javascript">
+  	function goToCreateStage() {
+		var currURL = location.pathname
+		currURL = currURL.replace("/stage", "/createStage");
+		location.href = currURL;
+	}
   </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
@@ -39,13 +34,10 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href="#" onclick="goToOverview()" class="nav-link ">Overview of Location</a>
+          <a th:href="@{'/location/' + ${location.getName()}}" class="nav-link ">Overview of Location</a>
         </li>
         <li class="nav-item">
-          <a href="#" onclick="goToAreaList()" class="nav-link">See all existing Areas</a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link active">See all existing Stages</a>
+          <a th:href="@{'/location/' + ${location.getName()} + '/area'}" class="nav-link">See all existing Areas</a>
         </li>
       </ul>
     </div>
@@ -63,13 +55,21 @@
 
   
   <div id="wrapper" class="container">
-    <h1 class="text-center mb-05">Current Stages</h1>
+    <h1 th:text="'Area: ' + ${area.getZone()}" class="text-center mb-05">Current Stages</h1>
     <div class="container text-center">
       <ul class="list-group" th:each="stage : ${stageList}">
-      			<h3 th:text="${stage.getName()} "></h3>				
+      			<h3 th:text="'Stage: ' + ${stage.getName()}"></h3>				
 				<li class="list-group-item">
 					<label for="lineup"><b>Lineup: </b></label>
 					<label th:text="${stage.getLineup()}"></label>
+				</li>
+				<li class="list-group-item">
+					<button id="btn_" class="btn btn-lg btn-dark">
+						<!-- TO DO 
+						Der Festivalleiter muss aus verfügbaren Künstlern ein Lineup für eine Bühne erstellen können.
+						-->
+	       		 		<a href="#" onclick="" class="text-light">Edit Lineup</a>
+	      			</button>
 				</li>
 				<br>
 				<br>
@@ -77,8 +77,16 @@
     </div>
   </div>
   <br>
+  <section class="d-flex align-items-center mb-02">
+    <div id="header" class="container text-white text-center">
+      <button id="btn" class="btn btn-lg btn-dark">
+      	<!--TODO maxStages <= stages.size()    =>    message! -->
+        <a href="#" onclick="goToCreateStage()" class="text-light">Create a new Stage</a>
+      </button>
+    </div>
+  </section>
   <br>
-
+  <br>
 
 
   <!-- BOOTSTRAP SCRIPTS -->

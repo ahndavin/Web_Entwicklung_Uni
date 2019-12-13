@@ -15,27 +15,12 @@
 
 <body>
   <!--  START HERE  -->
-  <script type="text/javascript" language="javascript">  
-		function goToOverview() {
-		    var currURL = location.pathname;
-		    currURL = currURL.replace("/area", "");
-			location.href = currURL;
-		}
-		function goToStageList() {
-            var currURL = location.pathname;
-            currURL = currURL.replace("/area", "/stage");
-            location.href = currURL;
-        }
-        function goToCreateArea() {
-            var currURL = location.pathname;
-           	currURL = currURL.replace("/area", "/createArea");
-            location.href = currURL;
-        }
-        function goToCreateStage() {
-            var currURL = location.pathname;
-           	currURL = currURL.replace("/area", "/createStage");
-            location.href = currURL;
-        }
+  <script type="text/javascript" language="javascript">
+  	function goToCreateArea() {
+		var currURL = location.pathname
+		currURL = currURL.replace("/area", "/createArea");
+		location.href = currURL;
+	}
   </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
@@ -48,13 +33,10 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href="#" onclick="goToOverview()" class="nav-link ">Overview of Location</a>
+          <a th:href="@{'/location/' + ${location.getName()}}" class="nav-link ">Overview of Location</a>
         </li>
         <li class="nav-item">
           <a href="" class="nav-link active">See all existing Areas</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" onclick="goToStageList()" class="nav-link">See all existing Stages</a>
         </li>
       </ul>
     </div>
@@ -75,7 +57,7 @@
     <h1 class="text-center mb-05">Current Areas</h1>
     <div class="container text-center">
       <ul class="list-group" th:each="area : ${areaList}">
-      			<h3 th:text="${area.getZone()}"></h3>
+      			<h3 th:text="'Area: ' + ${area.getZone()}"></h3>
 				
 				<li class="list-group-item">
 					<label for="type"><b>Type: </b></label>
@@ -84,7 +66,12 @@
 				
 				<li class="list-group-item">
 					<label for="blocked"><b>Blocked: </b></label>
-					<label th:text="${area.getStatus()}"></label>
+					<button id="btn__">
+						<!-- TO DO 
+						Der Festivalleiter muss Bereiche sperren können.
+						-->
+	       		 		<a href="" th:text="${area.getStatus()}"></a>
+	      			</button>
 				</li>
 				
 				<li class="list-group-item">
@@ -102,23 +89,30 @@
 					<label th:text="${area.getMaxStages()}"></label>
 				</li>
 				
-				<li th:if="${area.getAllStages()!=null}" class="list-group-item">
+				<li class="list-group-item">
 					<button id="btn_" class="btn btn-lg btn-dark">
-	       		 		<a href="#" onclick="goToCreateStage()" class="text-light">Add Stage</a>
+						<!-- TO DO 
+						Der Festivalleiter muss die Belegung und den Typ eines Bereiches sowie
+						die Anordnung von Toiletten und Cateringständen ändern können.
+						
+						Der Festivalleiter muss die Bühnenpositionen ändern können.
+						-->
+<!-- TODO!!!!!!!!!!! --><a href="#" onclick="goToCreateArea()" class="text-light">Edit Area</a>
+	      			</button>
+					<button th:if="${area.getAllStages()!=null}" id="btn_" class="btn btn-lg btn-dark">
+	       		 		<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage'" class="text-light">View Stages</a>
 	      			</button>
 				</li>
-
 				<br>
 				<br>
 			</ul>
     </div>
   </div>
   <br>
-  <br>
   <section class="d-flex align-items-center mb-02">
     <div id="header" class="container text-white text-center">
       <button id="btn" class="btn btn-lg btn-dark">
-        <a href="#" onclick="goToCreateArea()" class="text-light">Create a new Areas</a>
+        <a href="#" onclick="goToCreateArea()" class="text-light">Create a new Area</a>
       </button>
     </div>
   </section>
