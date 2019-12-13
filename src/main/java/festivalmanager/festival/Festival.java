@@ -2,7 +2,10 @@ package festivalmanager.festival;
 
 import javax.persistence.*;
 
+import festivalmanager.economics.EconomicList;
 import festivalmanager.ticket.TicketBuilder;
+
+import org.salespointframework.accountancy.AccountancyEntry;
 import org.salespointframework.inventory.UniqueInventoryItem;
 
 import java.text.ParseException;
@@ -25,6 +28,8 @@ public class Festival {
 
 	@Embedded
 	private TicketBuilder ticketBuilder;
+
+	private EconomicList economicList = new EconomicList();
 
 	private int maxVisitors;
 	private int currentVisitors;
@@ -175,6 +180,14 @@ public class Festival {
 
 	public void setTicketBuilder(TicketBuilder ticketBuilder) {
 		this.ticketBuilder = ticketBuilder;
+	}
+
+	public ArrayList<AccountancyEntry> getEconomicList(){
+		return this.economicList.getList();
+	}
+
+	public void setEconomicList(EconomicList economicList){
+		this.economicList = economicList;
 	}
 
 	public String toString() {
