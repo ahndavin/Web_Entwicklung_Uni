@@ -31,7 +31,7 @@
           <a href="/" class="nav-link ">Home</a>
         </li>
         <li class="nav-item">
-          <a href="/createLocation" class="nav-link active">Create a Location</a>
+          <a href="" class="nav-link active">Create a Location</a>
         </li>
         <li class="nav-item">
           <a href="/location" class="nav-link">See all existing Locations</a>
@@ -64,7 +64,7 @@
         <input type="text" required="required" th:field="*{address}" class="form-control" />
         <br />
         <label for="maxVisitors">Max Visitors</label>
-        <input type="text" required="required" th:field="*{maxVisitors}" class="form-control" />
+        <input type="number" required="required" th:field="*{maxVisitors}" class="form-control" />
         <br />
         <label for="outsideView">Thumbnail</label><br/>
         <input type="file" required="required" th:field="*{thumbnail}" name="thumbnail" accept="image/*"/>

@@ -10,13 +10,31 @@
   <link rel="stylesheet" href="css/style.css" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-  <title>Locations</title>
+  <title>Create Stage</title>
 </head>
 
 <body>
 
   <!--  START HERE  -->
-
+  <script type="text/javascript" language="javascript">
+  		var currentURL = "@{" + location.pathname + "}";
+        
+  		function goToOverview() {
+		    var currURL = location.pathname;
+		    currURL = currURL.replace("/createStage", "");
+			location.href = currURL;
+		}
+  		function goToAreaList() {
+        	var currURL = location.pathname;
+        	currURL = currURL.replace("/createStage", "/area");
+        	location.href = currURL;
+        }
+  		function goToStageList() {
+            var currURL = location.pathname;
+            currURL = currURL.replace("/createStage", "/stage");
+            location.href = currURL;
+        }
+  </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
     <a href="/" class="navbar-brand">
@@ -28,13 +46,13 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href="/" class="nav-link ">Home</a>
+          <a href="#" onclick="goToOverview()" class="nav-link ">Overview of Location</a>
         </li>
         <li class="nav-item">
-          <a href="/createLocation" class="nav-link">Create a Location</a>
+          <a href="#" onclick="goToAreaList()" class="nav-link">See all existing Areas</a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link active">See all existing Locations</a>
+          <a href="#" onclick="goToStageList()" class="nav-link">See all existing Stages</a>
         </li>
       </ul>
     </div>
@@ -44,50 +62,34 @@
   <section class="d-flex align-items-center" id="showcase">
     <div id="overlay"></div>
     <div id="header" class="container text-white text-center">
-      <h3 class="display-5 mb-0">Amazing Location here!</h3>
-      <h1 class="display-3">For real! This Location is glorious!!</h1>
+      <h3 class="display-5 mb-0">Creating the awesome Stage?!</h3>
+      <h1 class="display-3">Where should it be?</h1>
       <p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
+
     </div>
   </section>
 
-  
-  <div id="wrapper" class="container">
-    <h1 class="text-center mb-05">Current Locations</h1>
-    <div class="container text-center">
-      <ul class="list-group" th:each="location : ${locationList}">
-				<h3 th:text="${location.getName()} "></h3>
-
-				<li class="list-group-item">
-					<a th:href="@{/location/{name}(name=${location.getName()})}">
-						<img class="thumbnail"
-							th:src="@{/resources/img/location/thumbnail/{image}.jpg(image=${location.getName()})}"
-							width="100%" height="100%"
-						/>
-					</a>
-				</li>
-				
-				<li class="list-group-item">
-					<label for="address"></label>
-					<label th:text="${location.getAddress()}"></label>
-				</li>
-
-				<br>
-				<br>
-			</ul>
-    </div>
-  </div>
-  <br>
-  <br>
-  <section class="d-flex align-items-center mb-02">
-    <div id="header" class="container text-white text-center">
-      <button id="btn" class="btn btn-lg btn-dark">
-        <a class="text-light" href="/createLocation">Create a new Location</a>
-      </button>
+  <!--  ImputField -->
+  <section>
+    <div id="wrapper" class="container text-center">
+      <h1 class="mb-3 mt-5"> Create Stage </h1>
+      <form method="POST" th:action="${currentURL}" th:object="${stage}">
+      	<label for="name">Name</label>
+        <input type="text" required="required" th:field="*{name}" class="form-control"/>
+        <br />
+        <!-- 
+        <label for="lineup">Lineup</label>
+        <input type="text" th:field="*{lineup}" class="form-control"/>
+        -->
+        <br />
+        <br />
+        
+        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Create Stage</button>
+      </form>
     </div>
   </section>
   <br>
   <br>
-
 
 
   <!-- BOOTSTRAP SCRIPTS -->

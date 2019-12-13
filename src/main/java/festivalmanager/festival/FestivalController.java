@@ -1,5 +1,8 @@
 package festivalmanager.festival;
 
+import festivalmanager.inventory.InventoryManager;
+import festivalmanager.inventory.Item;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -7,15 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class FestivalController {
 	private FestivalManager festivals;
+	private InventoryManager stock;
 
-	public FestivalController(FestivalManager festivals) {
+	public FestivalController(FestivalManager festivals, InventoryManager stock) {
 		this.festivals = festivals;
+		this.stock = stock;
 	}
 
 	/**
@@ -30,11 +34,10 @@ public class FestivalController {
 
 	/**
 	 *
-	 * @param festivalName: name of the festival, passed in the URL
 	 * @param festivalId:	id of the festival, passed in the URL
 	 */
 	@GetMapping("/festival/{festivalName}-{festivalId}")
-	String festival(@PathVariable String festivalName, @PathVariable long festivalId, Model model) {
+	String festival(@PathVariable long festivalId, Model model) {
 		Optional<Festival> festival = festivals.findById(festivalId);
 
 		if(festival.isEmpty()) {
@@ -142,5 +145,39 @@ public class FestivalController {
 		model.addAttribute("inventory", festival.getInventory());
 
 		return "festival_inventory";
+	}
+
+	@GetMapping("/festival/{festivalName}-{festivalId}/inventory/edit")
+	String editFestivalInventory(@PathVariable long festivalId, Model model) {
+		Optional<Festival> festivalOptional = festivals.findById(festivalId);
+
+		if(festivalOptional.isEmpty()) {
+			return "redirect:/404";
+		}
+
+		Festival festival = festivalOptional.get();
+
+		model.addAttribute("festivalId", festivalId);
+		model.addAttribute("festivalName", festival.getName());
+		model.addAttribute("festivalInventory", festival.getInventory());
+
+		model.addAttribute("stock", stock);
+
+		return "festival_inventory_edit";
+	}
+
+	@PostMapping("/festival/inventory/edit")
+	String editFestivalInventory(@RequestParam long festivalId,
+								 @RequestParam String festivalName,
+								 @RequestParam long quantity,
+								 Model model) {
+
+		System.out.println(festivalId);
+		System.out.println(festivalName);
+
+		System.out.println(quantity);
+
+
+		return "redirect:/festival/" + festivalName + "-" + festivalId + "/inventory/edit";
 	}
 }

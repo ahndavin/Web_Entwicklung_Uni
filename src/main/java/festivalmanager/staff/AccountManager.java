@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class AccountManager {
@@ -47,12 +49,14 @@ public class AccountManager {
 			if (Boolean.TRUE.equals(form.getSecurity())){
 				userAccount.add(SECURITY_ROLE);
 			}
-			if (Boolean.TRUE.equals(form.getManager())){
+			/*if (Boolean.TRUE.equals(form.getManager())){
+
 				userAccount.add(MANAGER_ROLE);
-			}
+			}*/
 			if (Boolean.TRUE.equals(form.getTicketSalesman())){
 				userAccount.add(TICKET_SALESMAN_ROLE);
 			}
+
 			return accounts.save(new Account(userAccount, form.getFirstName(), form.getLastName()));
 		}
 	}
