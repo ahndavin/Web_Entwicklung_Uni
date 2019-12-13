@@ -85,7 +85,7 @@
                     <label th:text="${festival.sellingTickets}"></label>
                 </li>
                 <li class="list-group-item">
-                    <form method="post" role="form" class="ui form" name="form" th:action="@{/welcome}">
+                    <form method="get" role="form" class="ui form" name="form" th:action="@{/accountancy}">
                         <input type="hidden" th:value="${festival.getId()}" name="id"/>
                         <button type="submit" class="ui button">To the Accountancy</button>
                     </form>

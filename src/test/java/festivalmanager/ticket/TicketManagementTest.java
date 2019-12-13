@@ -12,14 +12,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class TicketManagementTest{
 
-    @Test
+   /* @Test
     //501
     public void shouldCreateAndSaveDaytickets(){
         MonetaryAmount price = Money.of(15, "EUR");
         Dayticket dayticket = new Dayticket("Test", price);
         private final DayticketRepository dayticketRepository;
         dayticketRepository.save(dayticket);
-    }
+    } */
 
     @Test
     public void shouldCreateAndSaveCampingtickets(){

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import festivalmanager.economics.EconomicManager;
 import festivalmanager.festival.Festival;
 import festivalmanager.festival.FestivalRepository;;
 
@@ -16,16 +17,19 @@ public class TicketManagement{
     private final FestivalRepository festivalrepository;
     private final DayticketRepository dayticketRepository;
     private final CampingticketRepository campingticketRepository;
+    private final EconomicManager economicManager;
 
     public TicketManagement(FestivalRepository festivalrepository, 
-    DayticketRepository dayticketRepository, CampingticketRepository campingticketRepository){
+    DayticketRepository dayticketRepository, CampingticketRepository campingticketRepository, EconomicManager economicManager){
 		Assert.notNull(festivalrepository, "FestivalRepository must not be null!");
 		Assert.notNull(dayticketRepository, "TagesticketRepository must not be null!");
 		Assert.notNull(campingticketRepository, "CampingticketRepository must not be null!");
+		Assert.notNull(economicManager, "EconomicManager must not be null!");
         
         this.festivalrepository = festivalrepository;
         this.dayticketRepository = dayticketRepository;
         this.campingticketRepository = campingticketRepository;
+        this.economicManager = economicManager;
     }
 
     public Streamable<Festival> findAll(){
@@ -56,6 +60,9 @@ public class TicketManagement{
 
     public Dayticket buyDayticket(Festival festival){
 		Quantity newQuantity = festival.getTicketBuilder().getAmountDaytickets().subtract(Quantity.of(1));
+        System.out.println("Before adding the entry to the Ecomanager");
+
+        economicManager.add(festival.getTicketBuilder().getPriceDayticket(), "Day Ticket", festival);
 
 		festival.getTicketBuilder().setAmountDaytickets(newQuantity);
         Dayticket ticket = new Dayticket(festival.getName(), festival.getTicketBuilder().getPriceDayticket());
@@ -64,7 +71,9 @@ public class TicketManagement{
     }
 
     public Campingticket buyCampingticket(Festival festival){
-		Quantity newQuantity = festival.getTicketBuilder().getAmountCampingtickets().subtract(Quantity.of(1));
+        Quantity newQuantity = festival.getTicketBuilder().getAmountCampingtickets().subtract(Quantity.of(1));
+
+        economicManager.add(festival.getTicketBuilder().getPriceCampingticket(), "Camping Ticket", festival);
 
         festival.getTicketBuilder().setAmountCampingtickets(newQuantity);
         Campingticket ticket=new Campingticket(festival.getName(), festival.getTicketBuilder().getPriceCampingticket());

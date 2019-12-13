@@ -17,32 +17,63 @@
 
   <!--  START HERE  -->
 
-  <!--  NavBar -->
-  <nav class="navbar navbar-expand-md navbar-dark">
-    <a href="" class="navbar-brand">
-      <h3 class="mb-0">FVIV FESTIVAL</h3>
-    </a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a href="/" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item">
-          <a href="/createTicket" class="nav-link">Create a Ticket</a>
-        </li>
-        <li class="nav-item">
-          <a href="/ticketManagement" class="nav-link active">See all existing Tickets</a>
-        </li>
-        <!-- li class="nav-item">
-          <a href="/economicManager" class="nav-link">See your economic Data</a>
-        </li -->
-      </ul>
-    </div>
-  </nav>
-
+	<!--  NavBar -->
+	<nav class="navbar navbar-expand-md navbar-dark">
+      <a href="" class="navbar-brand">
+        <h3 class="mb-0">FVIV FESTIVAL</h3>
+      </a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="/" class="nav-link active">Home</a>
+          </li>
+  
+          <li class="nav-item">
+            <a th:href="@{/createAccount}" class="nav-link"> Create an Account </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/login}" class="nav-link" sec:authorize="!isAuthenticated()" th:text="#{nav.login}">Login</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" sec:authorize="isAuthenticated()" href="/contractManagement">Contracts</a>
+            <form name="Contracts" th:action="@{/contractManagement}" method="post" th:hidden="true">
+            </form>
+          </li>
+  
+  
+          <li class="nav-item">
+            <a class="nav-link" sec:authorize="isAuthenticated()" href="/location">Locations</a>
+            <form name="Location" th:action="@{/location.html}" method="post" th:hidden="true">
+            </form>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" sec:authorize="isAuthenticated()" href="/ticketManagement">Tickets</a>
+            <form name="Ticket" th:action="@{/ticketManagement.html}" method="post" th:hidden="true">
+            </form>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" sec:authorize="isAuthenticated()" href="/festivals">Festivals</a>
+            <form name="Ticket" th:action="@{/festivals.html}" method="post" th:hidden="true">
+            </form>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()"
+              role="menuitem"> Logout </a>
+            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+              <input hidden type="submit" value="Sign Out" />
+            </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  
   <!--  Overlay -->
   <section class="d-flex align-items-center" id="showcase">
     <div id="overlay"></div>
@@ -54,34 +85,49 @@
     </div>
   </section>
 
-  <!--  Table, which gets created uppon creating a new Ticket -->
+  <!--  Table, which lists the accountancy data -->
   <div class="ui grid">
     <div class="three wide column"></div>
     <div class="ten wide column" style="padding-top: 50px">
 
-        <h4 class="ui dividing header" >Tickets</h4>
-        <table class="ui celled table">
-            <thead>
-            <tr>
-                <th>Festival</th>
-                <th>Anzahl / Preis</th>
-                <th>Tagesticket</th>
-                <th>Anzahl / Preis</th>
-                <th>Campingticket</th>
-            </tr>
-            </thead>
-            <tbody th:remove="all-but-first">
-              <tr th:each="festival : ${festivallist}">
-                <td th:text="${festival.name}">Beispiel-Festival</td>
-                <td>
-                  <form method="post" role="form" class="ui form" name="form" th:action="@{/accountancyDetail}">
-                    <input type="hidden" th:value="${festival.getId()}" name="id"/>
-                    <button type="submit" class="ui button">Übersicht</button>
-                  </form>
-                </td>              
+        <h4 class="ui dividing header" >Accountancy</h4>
+        <table width=100% height=100%><tr><td width=40%>
+          <!-- Left part --> 
+          <table class="ui celled table">
+              <thead>
+              <tr>
+                  <th>Expenses</th>
+                  <th>Amount</th>
               </tr>
-            </tbody>
-        </table>
+              </thead>
+              <tbody th:remove="all-but-first">
+                <tr th:each="accountancyEntry : ${entrylist}" th:if="${accountancyEntry.isExpense()}">
+                  <td th:text="${accountancyEntry.description}">Beschreibung</td>
+                  <td th:text="${accountancyEntry.amount}">Betrag</td>
+                </tr>
+              </tbody>
+          </table>
+  
+        </td><td width=40%>
+          <!-- Right part-->
+
+          <table class="ui celled table">
+              <thead>
+              <tr>
+                  <th>Revenues</th>
+                  <th>Amount</th>
+              </tr>
+              </thead>
+              <tbody th:remove="all-but-first">
+                <tr th:each="accountancyEntry : ${entrylist}" th:if="${accountancyEntry.isRevenue()}">
+                  <td th:text="${accountancyEntry.description}">Beschreibung</td>
+                  <td th:text="${accountancyEntry.amount}">Betrag</td>
+                  </tr>
+              </tbody>
+          </table>
+
+        </td></tr></table>
+
     </div>
   </div>
 
