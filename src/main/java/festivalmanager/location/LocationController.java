@@ -55,6 +55,14 @@ public class LocationController {
 
 		return "area";
 	}
+
+	
+	@GetMapping("/location/{location}/area/changeStatus")
+	public String changeAreaStatus(@PathVariable("location") String name, @RequestParam("area") String area) {
+		findArea(findLocation(name), area).toggleLock();
+		
+		return "redirect:";
+	}
 	
 	@PostMapping("/location/{location}/createArea")
 	public String addArea(@Valid Area area, @PathVariable("location") String name) {
@@ -82,18 +90,44 @@ public class LocationController {
 	
 	@PostMapping("/location/{location}/area/{area}/createStage")
 	public String addStage(@Valid Stage stage, @PathVariable("location") String name, @PathVariable("area") String area) {
-		System.out.println(area);
 		findArea(findLocation(name), area).addStage(stage);
 		
 		return "redirect:stage";
 	}
 
 	@GetMapping("/location/{location}/area/{area}/createStage")
-	public String addStage(Model model, Stage stage, @PathVariable("location") String name, @PathVariable("area") String zone) {
+	public String addStage(Model model, Stage stage, @PathVariable("location") String name, @PathVariable("area") String area) {
 		model.addAttribute("location", findLocation(name));
+		model.addAttribute("area", findArea(findLocation(name), area));
 		model.addAttribute("stage", stage);
 
 		return "createStage";
+	}
+	
+	@GetMapping("/location/{location}/area/{area}/stage/{stage}/lineup")
+	public String detailLineup(Model model, @PathVariable("location") String name, @PathVariable("area") String area, @PathVariable("stage") String stage) {
+		model.addAttribute("location", findLocation(name));
+		model.addAttribute("area", findArea(findLocation(name), area));
+		model.addAttribute("stage", findStage(findStages(findLocation(name).getAllAreas(), area), stage));
+		model.addAttribute("lineupList", findLineups(findStages(findLocation(name).getAllAreas(), area), stage));
+		
+		return "detailLineup";
+	}
+	
+	@PostMapping("/location/{location}/area/{area}/stage/{stage}/createLineup")
+	public String addLineup(@Valid Lineup lineup, @PathVariable("location") String name, @PathVariable("area") String area, @PathVariable("stage") String stage) {
+		findLineups(findStages(findLocation(name).getAllAreas(), area), stage).add(lineup);
+		
+		return "redirect:detailLineup";
+	}
+
+	@GetMapping("/location/{location}/area/{area}/stage/{stage}/createLineup")
+	public String addLineup(Model model, Lineup lineup, @PathVariable("location") String name, @PathVariable("area") String zone, @PathVariable("stage") String stage) {
+		model.addAttribute("location", findLocation(name));
+		model.addAttribute("area", findArea(findLocation(name), zone));
+		model.addAttribute("lineup", lineup);
+
+		return "createLineup";
 	}
 	
 	private Location findLocation(String name) {	// Um wiederholten Code zu vermeiden
@@ -136,6 +170,36 @@ public class LocationController {
 		while(i < areas.size()) {
 			if(areas.get(i).getZone().equals(area))
 				return areas.get(i).getAllStages();
+			
+			i++;
+		}
+		
+		return null;
+	}
+	
+	private Stage findStage(List<Stage> stages, String name) {	// Um wiederholten Code zu vermeiden
+		int i = 0;
+		Stage stage = null;
+		
+		while(i < stages.size()) {
+			if(stages.get(i).getName().equals(name)) {
+				stage = stages.get(i);
+				break;
+			}
+				
+			i++;
+		}
+		
+		return stage;
+	}
+	
+	private List<Lineup> findLineups(List<Stage> stages, String stage) {	// Um wiederholten Code zu vermeiden
+		int i = 0;
+		
+		while(i < stages.size()) {
+			System.out.println(stages.get(i));
+			if(stages.get(i).getName().equals(stage))
+				return stages.get(i).getLineups();
 			
 			i++;
 		}

@@ -17,6 +17,7 @@ public class LocationDataInitializer implements DataInitializer {
 		this.locationManager = locationManager;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void initialize() {
 		if (locationManager.findAll().iterator().hasNext()) {
@@ -27,14 +28,14 @@ public class LocationDataInitializer implements DataInitializer {
 		locationManager.findAll().get(0).addArea(new Area("D", 1000, 0, Type.CAMPING));
 		
 		locationManager.findAll().get(0).addArea(new Area("B", 700, 4, Type.STAGE));
-		locationManager.findAll().get(0).getAllAreas().get(1).addStage(new Stage("first"));
-		locationManager.findAll().get(0).getAllAreas().get(1).getAllStages().get(0).addArtist
-		(
-			new Contract("500", "John", true, "5", "50", "1000"),
-			new Date()
-		);
-		locationManager.findAll().get(0).getAllAreas().get(1).addStage(new Stage("second"));
-		locationManager.findAll().get(0).getAllAreas().get(1).addStage(new Stage("third"));
+		locationManager.findAll().get(0).getAllAreas().get(1).addStage(new Stage("first", "/img/location/lineup_poster/first.jpg"));
+		locationManager.findAll().get(0).getAllAreas().get(1).getAllStages().get(0).addLineup(new Lineup(new Date(2019, 12, 22, 18, 00), 
+				new Contract("500", "Max", true, "5", "50", "1000")));
+		locationManager.findAll().get(0).getAllAreas().get(1).getAllStages().get(0).addLineup(new Lineup(new Date(2019, 12, 22, 19, 00), 
+				new Contract("1000", "John", true, "10", "100", "2000")));
+		
+		locationManager.findAll().get(0).getAllAreas().get(1).addStage(new Stage("second", "/img/location/lineup_poster/second.jpg"));
+		locationManager.findAll().get(0).getAllAreas().get(1).addStage(new Stage("third", "/img/location/lineup_poster/third.jpg"));
 		
 		locationManager.findAll().get(0).addArea(new Area("EW", 500, 0, Type.PARK));
 		locationManager.findAll().get(0).addArea(new Area("C", 1500, 0, Type.CATERING));
@@ -42,15 +43,9 @@ public class LocationDataInitializer implements DataInitializer {
 		
 		locationManager.save(new Location("Berlin", "blablastr. 50, 01069, Berlin", 2000, "/img/location/thumbnail/Berlin.jpg", "/img/location/ground_plan/Berlin.jpg"));
 		locationManager.findAll().get(1).addArea(new Area("6-10", 500, 5, Type.STAGE));
-		locationManager.findAll().get(1).getAllAreas().get(0).addStage(new Stage("Erste"));
-		locationManager.findAll().get(1).getAllAreas().get(0).addStage(new Stage("Zweite"));
-		locationManager.findAll().get(1).getAllAreas().get(0).getAllStages().get(0).addArtist
-		(
-			new Contract("500", "John", true, "5", "50", "1000"),
-			new Date()
-		);
-		
-		
-		
+		locationManager.findAll().get(1).getAllAreas().get(0).addStage(new Stage("Erste", "/img/location/lineup_poster/Erste.jpg"));
+		locationManager.findAll().get(1).getAllAreas().get(0).addStage(new Stage("Zweite", "/img/location/lineup_poster/Zweite.jpg"));
+		locationManager.findAll().get(1).getAllAreas().get(0).getAllStages().get(0).addLineup(new Lineup(new Date(), 
+				new Contract("500", "John", true, "5", "50", "1000")));
 	}
 }

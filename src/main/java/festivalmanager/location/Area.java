@@ -20,9 +20,10 @@ public class Area {
 		this.currVisitors = 0;
 		this.type = type;
 		
-		this.stages = null;
 		if(this.type == Type.STAGE)
 			this.stages = new LinkedList<Stage>();
+		else
+			this.stages = null;
 	}
 	
 	public String getZone() {

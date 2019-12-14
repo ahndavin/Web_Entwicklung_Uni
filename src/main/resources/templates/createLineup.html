@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-  <title>Create Stage</title>
+  <title>Create Lineup</title>
 </head>
 
 <body>
@@ -56,17 +56,17 @@
   <!--  ImputField -->
   <section>
     <div id="wrapper" class="container text-center">
-      <h1 class="mb-3 mt-5">Create Stage</h1>
-      <form method="POST" th:action="${currentURL}" th:object="${stage}">
-      	<label for="name">Name</label>
-        <input type="text" required="required" th:field="*{name}" class="form-control"/>
+      <h1 class="mb-3 mt-5">Create Lineup</h1>
+      <form method="POST" th:action="${currentURL}" th:object="${lineup}">
+      	<label for="name">date</label>
+        <input type="datetime-local" required="required" th:field="*{date}" class="form-control"/>
         <br />
-        <label for="outsideView">Lineup Poster</label><br/>
-        <input type="file" required="required" th:field="*{poster}" name="poster" accept="image/*"/>
+        <!-- Contract으로부터 데이터를 가져와서 여기서 선택할 수 있게 해야 함. -->
+        <label for="outsideView">Artist</label><br/>
         <br />
         <br />
         
-        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Create Stage</button>
+        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Create Lineup</button>
       </form>
     </div>
   </section>

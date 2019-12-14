@@ -1,50 +1,41 @@
 package festivalmanager.location;
 
-import festivalmanager.contract.*;
-
-import java.util.Map;
-import java.util.HashMap;
 import java.util.Date;
+import java.util.List;
+import java.util.LinkedList;
 
 public class Stage {
 	private String name;
-	private Map<Contract, Date> lineup;
+	private String poster;
+	private List<Lineup> lineups;
 	
-	public Stage(String name) {
+	public Stage(String name, String poster) {
 		this.name = name;
-		this.lineup = new HashMap<Contract, Date>();
+		this.poster = poster;
+		this.lineups = new LinkedList<Lineup>();
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public Map<Contract, Date> getLineup() {
-		return lineup;
+	public String getPoster() {
+		return poster;
 	}
 	
-	public Map<Contract, Date> changeTime(Contract contract, Date time) {
-		if(lineup.containsKey(contract)) {
-			lineup.put(contract, time);
-			return lineup;
-		}
-		
-		return null;
+	public List<Lineup> getLineups(){
+		return lineups;
 	}
 	
-	public Map<Contract, Date> addArtist(Contract contract, Date time) {
-		if(lineup.containsKey(contract))
-			return null;
-		
-		lineup.put(contract, time);
-		
-		return lineup;
+	public boolean addLineup(Lineup lineup) {
+		return lineups.add(lineup);
 	}
 	
-	public Contract removeArtist(Contract contract) {
-		if(lineup.remove(contract) == null)
-			return null;
-		
-		return contract;
-	}
+//	public boolean editLineup(Lineup lineup) {
+//		//Iterator
+//	}
+//	
+//	public Date removeLineup(Date date) {
+//		//Iterator
+//	}
 }
