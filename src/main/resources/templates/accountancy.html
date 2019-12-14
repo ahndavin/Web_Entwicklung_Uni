@@ -18,61 +18,7 @@
   <!--  START HERE  -->
 
 	<!--  NavBar -->
-	<nav class="navbar navbar-expand-md navbar-dark">
-      <a href="" class="navbar-brand">
-        <h3 class="mb-0">FVIV FESTIVAL</h3>
-      </a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a href="/" class="nav-link active">Home</a>
-          </li>
-  
-          <li class="nav-item">
-            <a th:href="@{/createAccount}" class="nav-link"> Create an Account </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/login}" class="nav-link" sec:authorize="!isAuthenticated()" th:text="#{nav.login}">Login</a>
-          </li>
-  
-          <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" href="/contractManagement">Contracts</a>
-            <form name="Contracts" th:action="@{/contractManagement}" method="post" th:hidden="true">
-            </form>
-          </li>
-  
-  
-          <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" href="/location">Locations</a>
-            <form name="Location" th:action="@{/location.html}" method="post" th:hidden="true">
-            </form>
-          </li>
-  
-          <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" href="/ticketManagement">Tickets</a>
-            <form name="Ticket" th:action="@{/ticketManagement.html}" method="post" th:hidden="true">
-            </form>
-          </li>
-  
-          <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" href="/festivals">Festivals</a>
-            <form name="Ticket" th:action="@{/festivals.html}" method="post" th:hidden="true">
-            </form>
-          </li>
-  
-          <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()"
-              role="menuitem"> Logout </a>
-            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-              <input hidden type="submit" value="Sign Out" />
-            </form>
-          </li>
-        </ul>
-      </div>
-    </nav>
+  <nav th:include="navigation :: navigation"></nav>
   
   <!--  Overlay -->
   <section class="d-flex align-items-center" id="showcase">
@@ -103,7 +49,7 @@
               <tbody th:remove="all-but-first">
                 <tr th:each="accountancyEntry : ${entrylist}" th:if="${accountancyEntry.isExpense()}">
                   <td th:text="${accountancyEntry.description}">Beschreibung</td>
-                  <td th:text="${accountancyEntry.amount}">Betrag</td>
+                  <td th:text="${accountancyEntry.value}">Betrag</td>
                 </tr>
               </tbody>
           </table>
@@ -121,7 +67,7 @@
               <tbody th:remove="all-but-first">
                 <tr th:each="accountancyEntry : ${entrylist}" th:if="${accountancyEntry.isRevenue()}">
                   <td th:text="${accountancyEntry.description}">Beschreibung</td>
-                  <td th:text="${accountancyEntry.amount}">Betrag</td>
+                  <td th:text="${accountancyEntry.value}">Betrag</td>
                   </tr>
               </tbody>
           </table>
