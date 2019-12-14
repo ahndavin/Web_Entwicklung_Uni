@@ -18,22 +18,6 @@
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
   		var currentURL = "@{" + location.pathname + "}";
-        
-  		function goToOverview() {
-		    var currURL = location.pathname;
-		    currURL = currURL.replace("/createStage", "");
-			location.href = currURL;
-		}
-  		function goToAreaList() {
-        	var currURL = location.pathname;
-        	currURL = currURL.replace("/createStage", "/area");
-        	location.href = currURL;
-        }
-  		function goToStageList() {
-            var currURL = location.pathname;
-            currURL = currURL.replace("/createStage", "/stage");
-            location.href = currURL;
-        }
   </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
@@ -46,13 +30,10 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href="#" onclick="goToOverview()" class="nav-link ">Overview of Location</a>
+          <a th:href="@{'/location/' + ${location.getName()}}" class="nav-link ">Overview of Location</a>
         </li>
         <li class="nav-item">
-          <a href="#" onclick="goToAreaList()" class="nav-link">See all existing Areas</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" onclick="goToStageList()" class="nav-link">See all existing Stages</a>
+          <a th:href="@{'/location/' + ${location.getName()} + '/area'}" class="nav-link">See all existing Areas</a>
         </li>
       </ul>
     </div>
@@ -72,15 +53,13 @@
   <!--  ImputField -->
   <section>
     <div id="wrapper" class="container text-center">
-      <h1 class="mb-3 mt-5"> Create Stage </h1>
+      <h1 class="mb-3 mt-5">Create Stage</h1>
       <form method="POST" th:action="${currentURL}" th:object="${stage}">
       	<label for="name">Name</label>
         <input type="text" required="required" th:field="*{name}" class="form-control"/>
         <br />
-        <!-- 
         <label for="lineup">Lineup</label>
         <input type="text" th:field="*{lineup}" class="form-control"/>
-        -->
         <br />
         <br />
         

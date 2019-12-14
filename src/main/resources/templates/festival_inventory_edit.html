@@ -7,16 +7,31 @@
 
     <body>
         <ul>
-            <li th:each="inventoryItem: ${festivalInventory}">
+            <li th:each="inventoryItem : ${festivalInventory}">
                 <form th:action="@{/festival/inventory/edit}" method="POST">
-                    <input type="hidden" name="festivalId" th:value="${festivalId}">
+                    <input type="hidden" name="festivalId"   th:value="${festivalId}">
                     <input type="hidden" name="festivalName" th:value="${festivalName}">
+                    <input type="hidden" name="itemId"       th:value="${inventoryItem.key}">
 
-                    <p th:text="${inventoryItem.product.name}"></p>
-                    <input name="quantity" th:value="${inventoryItem.quantity}" >
-                    <p th:text="${stock.findByItem(inventoryItem.product).get().quantity}"></p>
+                    <p th:text="${stock.findById(inventoryItem.key).get().product.name}"></p>
+                    <input type="number" name="quantity" th:value="${inventoryItem.value}" >
+                    <p th:text="${stock.findById(inventoryItem.key).get().quantity}"></p>
+
+                    <input type="submit" value="Speichern" >
                 </form>
             </li>
+
+            <form th:if="${stock.findAllExcept(festivalInventory.keySet()).iterator().hasNext()}" th:action="@{/festival/inventory/edit}" method="POST">
+                <input type="hidden" name="festivalId"   th:value="${festivalId}">
+                <input type="hidden" name="festivalName" th:value="${festivalName}">
+
+                <select name="itemId">
+                    <option th:each="item : ${stock.findAllExcept(festivalInventory.keySet())}" th:text="${item.product.name + ' (' + item.quantity + ')'}" th:value="${item.id}"></option>
+                </select>
+                <input type="number" name="quantity" min="0">
+
+                <input type="submit" value="Hinzufügen">
+            </form>
         </ul>
     </body>
 </html>

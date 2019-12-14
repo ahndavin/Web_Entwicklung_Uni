@@ -3,9 +3,10 @@
 package festivalmanager.festival;
 
 
-import festivalmanager.inventory.InventoryRepository;
-import org.javamoney.moneta.Money;
+import festivalmanager.inventory.InventoryManager;
+import festivalmanager.inventory.Item;
 import org.salespointframework.core.DataInitializer;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +14,9 @@ import org.springframework.stereotype.Component;
 @Order(30)
 public class FestivalInitializer implements DataInitializer {
 	private FestivalManager festivals;
-	private InventoryRepository inventory;
+	private InventoryManager inventory;
 
-	public FestivalInitializer(FestivalManager festivals, InventoryRepository inventory) {
+	public FestivalInitializer(FestivalManager festivals, InventoryManager inventory) {
 		this.festivals = festivals;
 		this.inventory = inventory;
 	}
@@ -31,7 +32,7 @@ public class FestivalInitializer implements DataInitializer {
 		f.editPlan().add("blabla");
 		f.editPlan().add("lalala");
 
-		f.editInventory().add(inventory.findAll().iterator().next());
+		f.editInventory().put(inventory.findAll().iterator().next().getId(), Quantity.of(5));
 
 		festivals.save(f);
 

@@ -1,5 +1,12 @@
 package festivalmanager.festival;
 
+import festivalmanager.inventory.InventoryManager;
+import festivalmanager.inventory.Item;
+import org.salespointframework.catalog.ProductIdentifier;
+import org.salespointframework.inventory.InventoryItemIdentifier;
+import org.salespointframework.inventory.UniqueInventory;
+import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -8,9 +15,11 @@ import java.util.Optional;
 @Component
 public class FestivalManager {
 	private final FestivalRepository festivalRepository;
+	private final InventoryManager inventory;
 
-	public FestivalManager(FestivalRepository festivalRepository) {
+	public FestivalManager(FestivalRepository festivalRepository, InventoryManager inventory) {
 		this.festivalRepository = festivalRepository;
+		this.inventory = inventory;
 	}
 
 	public Iterable<Festival> findAll() {
@@ -44,7 +53,7 @@ public class FestivalManager {
 			Festival f = festivalOptional.get();
 
 			festival.editPlan().addAll(f.editPlan());
-			festival.editInventory().addAll(f.editInventory());
+			festival.editInventory().putAll(f.editInventory());
 
 			return save(festival);
 		}
@@ -67,27 +76,40 @@ public class FestivalManager {
 		return null;
 	}
 
-	public Festival updateInventory(Festival festival) {
-		Optional<Festival> festivalOptional = festivalRepository.findById(festival.getId());
-
-		if(festivalOptional.isPresent()) {
-			Festival f = festivalOptional.get();
-
-			f.editInventory().clear();
-			f.editInventory().addAll(festival.editInventory());
-
-			return save(f);
+	public Festival updateInventoryItem(Festival festival, InventoryItemIdentifier itemId, Quantity newQuantity) {
+		if(newQuantity.isLessThan(Quantity.NONE)) {
+			return null;
 		}
 
-		return null;
+		Quantity oldQuantity = festival.editInventory().getOrDefault(itemId, Quantity.NONE);
+
+		festival.editInventory().put(itemId, newQuantity);
+
+		Optional<UniqueInventoryItem> itemOptional = inventory.findById(itemId);
+
+		if(itemOptional.isPresent()) {
+			UniqueInventoryItem item = itemOptional.get();
+
+			if(item.getQuantity().add(oldQuantity).isLessThan(newQuantity)) {
+				return null;
+			} else if(newQuantity.equals(Quantity.NONE)) {
+				festival.editInventory().remove(itemId);
+			}
+
+			if(oldQuantity.isLessThan(newQuantity)) {
+				item.decreaseQuantity(newQuantity.subtract(oldQuantity));
+			} else if(oldQuantity.isGreaterThan(newQuantity)) {
+				item.increaseQuantity(oldQuantity.subtract(newQuantity));
+			}
+
+		} else {
+			return null;
+		}
+
+		return save(festival);
 	}
 
-	public int getCount() {
-		int counter = 0;
-		for (Festival ignored : findAll()) {
-			counter++;
-		}
-
-		return counter;
+	public long getCount() {
+		return festivalRepository.count();
 	}
 }
