@@ -15,11 +15,15 @@
  */
 package festivalmanager;
 
+import festivalmanager.staff.ActiveAccountsStore;
 import org.salespointframework.EnableSalespoint;
 import org.salespointframework.SalespointSecurityConfiguration;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 
 @EnableSalespoint
 public class Application {
@@ -36,6 +40,17 @@ public class Application {
 			http.authorizeRequests().antMatchers("/**").permitAll().and()
 					.formLogin().loginProcessingUrl("/login").and()
 					.logout().logoutUrl("/logout").logoutSuccessUrl("/");
+
+		}
+		@Bean
+		public SessionRegistry sessionRegistry() {
+			return new SessionRegistryImpl();
+		}
+
+		@Bean
+		public ActiveAccountsStore activeUserStore(){
+			return new ActiveAccountsStore();
 		}
 	}
+
 }

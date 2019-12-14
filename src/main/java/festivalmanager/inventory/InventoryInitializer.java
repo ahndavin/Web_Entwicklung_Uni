@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Order(20)
 public class InventoryInitializer implements DataInitializer {
 	private Catalog<Item> catalog;
-	private InventoryRepository inventory;
+	private InventoryManager inventory;
 
-	public InventoryInitializer(Catalog<Item> catalog, InventoryRepository inventory) {
+	public InventoryInitializer(Catalog<Item> catalog, InventoryManager inventory) {
 		this.catalog = catalog;
 		this.inventory = inventory;
 	}

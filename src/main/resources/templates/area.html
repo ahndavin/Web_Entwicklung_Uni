@@ -10,12 +10,18 @@
   <link rel="stylesheet" href="css/style.css" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-  <title>Locations</title>
+  <title>Areas</title>
 </head>
 
 <body>
-
   <!--  START HERE  -->
+  <script type="text/javascript" language="javascript">
+  	function goToCreateArea() {
+		var currURL = location.pathname
+		currURL = currURL.replace("/area", "/createArea");
+		location.href = currURL;
+	}
+  </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
     <a href="/" class="navbar-brand">
@@ -27,13 +33,10 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href="/" class="nav-link ">Home</a>
+          <a th:href="@{'/location/' + ${location.getName()}}" class="nav-link ">Overview of Location</a>
         </li>
         <li class="nav-item">
-          <a href="/createLocation" class="nav-link">Create a Location</a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link active">See all existing Locations</a>
+          <a href="" class="nav-link active">See all existing Areas</a>
         </li>
       </ul>
     </div>
@@ -51,36 +54,65 @@
 
   
   <div id="wrapper" class="container">
-    <h1 class="text-center mb-05">Current Locations</h1>
+    <h1 class="text-center mb-05">Current Areas</h1>
     <div class="container text-center">
-      <ul class="list-group" th:each="location : ${locationList}">
-				<h3 th:text="${location.getName()} "></h3>
-
+      <ul class="list-group" th:each="area : ${areaList}">
+      			<h3 th:text="'Area: ' + ${area.getZone()}"></h3>
+				
 				<li class="list-group-item">
-					<a th:href="@{/location/{name}(name=${location.getName()})}">
-						<img class="thumbnail"
-							th:src="@{/resources/img/location/thumbnail/{image}.jpg(image=${location.getName()})}"
-							width="100%" height="100%"
-						/>
-					</a>
+					<label for="type"><b>Type: </b></label>
+					<label th:text="${area.getType()}"></label>
 				</li>
 				
 				<li class="list-group-item">
-					<label for="address"></label>
-					<label th:text="${location.getAddress()}"></label>
+					<label for="blocked"><b>Blocked: </b></label>
+					<button id="btn__">
+						<!-- TO DO 
+						Der Festivalleiter muss Bereiche sperren können.
+						-->
+	       		 		<a href="" th:text="${area.getStatus()}"></a>
+	      			</button>
 				</li>
-
+				
+				<li class="list-group-item">
+					<label for="currVisitors"><b>Current Visitors: </b></label>
+					<label th:text="${area.getCurrVisitors()}"></label>
+				</li>
+				
+				<li class="list-group-item">
+					<label for="maxVisitors"><b>Maximum Visitors: </b></label>
+					<label th:text="${area.getMaxVisitors()}"></label>
+				</li>
+				
+				<li th:if="${area.getAllStages()!=null}" class="list-group-item">
+					<label for="maxStages"><b>Maximum Stages: </b></label>
+					<label th:text="${area.getMaxStages()}"></label>
+				</li>
+				
+				<li class="list-group-item">
+					<button id="btn_" class="btn btn-lg btn-dark">
+						<!-- TO DO 
+						Der Festivalleiter muss die Belegung und den Typ eines Bereiches sowie
+						die Anordnung von Toiletten und Cateringständen ändern können.
+						
+						Der Festivalleiter muss die Bühnenpositionen ändern können.
+						-->
+<!-- TODO!!!!!!!!!!! --><a href="#" onclick="goToCreateArea()" class="text-light">Edit Area</a>
+	      			</button>
+					<button th:if="${area.getAllStages()!=null}" id="btn_" class="btn btn-lg btn-dark">
+	       		 		<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage'" class="text-light">View Stages</a>
+	      			</button>
+				</li>
 				<br>
 				<br>
 			</ul>
     </div>
   </div>
   <br>
-  <br>
   <section class="d-flex align-items-center mb-02">
     <div id="header" class="container text-white text-center">
       <button id="btn" class="btn btn-lg btn-dark">
-        <a class="text-light" href="/createLocation">Create a new Location</a>
+        <a href="#" onclick="goToCreateArea()" class="text-light">Create a new Area</a>
       </button>
     </div>
   </section>

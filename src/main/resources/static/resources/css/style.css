@@ -65,12 +65,6 @@ body {
 	position: relative;
   }
   
-  #Location-panorama{
-  background: url("../../img/location/example.jpg") bottom center / cover no-repeat;
-  min-height: 500px;
-  position: relative;
-  }
-  
   #showcase h1{
 	line-height: 1;
   }
@@ -113,4 +107,28 @@ body {
 	  border-bottom: none;
 	}
   }
+  
+  
+.box-radio-input input[type="radio"]{
+    display:none;
+}
+
+.box-radio-input input[type="radio"] + span{
+    display:inline-block;
+    background:none;
+    border:1px solid #dfdfdf;    
+    padding:0px 10px;
+    text-align:center;
+    height:35px;
+    line-height:33px;
+    font-weight:500;
+    cursor:pointer;
+}
+
+.box-radio-input input[type="radio"]:checked + span{
+    border:1px solid #23a3a7;
+    background:#23a3a7;
+    color:#fff;
+}
+  
   

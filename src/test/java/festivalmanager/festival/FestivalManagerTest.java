@@ -38,7 +38,7 @@ public class FestivalManagerTest {
 
 	@Test
 	public void canPreventCreationOfTwoFestivalsAtSameDateAndLocation() {
-		int startFestivalCount = festivals.getCount();
+		long startFestivalCount = festivals.getCount();
 
 		Festival f1 = new Festival(
 				"test 1",
@@ -69,7 +69,7 @@ public class FestivalManagerTest {
 		festivals.save(f1);
 		Festival savedF2 = festivals.save(f2);
 
-		int endFestivalCount = festivals.getCount();
+		long endFestivalCount = festivals.getCount();
 
 		assertNull(savedF2);
 		assertEquals(1, endFestivalCount - startFestivalCount);

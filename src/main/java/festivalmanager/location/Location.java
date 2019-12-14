@@ -5,16 +5,23 @@ import java.util.LinkedList;
 
 public class Location {
 	private String name;
+	private String address;
 	private boolean isBooked;
 	private Integer currVisitors;
 	private Integer maxVisitors;
-	private String outsideView;
+	private String thumbnail;
+	private String groundPlan;
 	private List<Area> areas;
 	
-	public Location(String name, Integer maxVisitors, String outsideView) {
+	@SuppressWarnings("unused")
+	private Location() {}
+	
+	public Location(String name, String address, Integer maxVisitors, String thumbnail, String groundPlan) {
 		this.name = name;
+		this.address = address;
 		this.maxVisitors = maxVisitors;
-		this.outsideView = outsideView;
+		this.thumbnail = thumbnail;
+		this.groundPlan = groundPlan;
 		this.isBooked = false;
 		this.currVisitors = 0;
 		this.areas = new LinkedList<Area>();
@@ -22,6 +29,10 @@ public class Location {
 	
 	public String getName() {		
 		return name;
+	}
+	
+	public String getAddress() {
+		return address;
 	}
 	
 	public boolean toggleBook() {
@@ -44,13 +55,17 @@ public class Location {
 		return maxVisitors;
 	}
 	
-	public String editOutsideView() {
-		//TODO
-		return null;
+	public String getThumbnail() {
+		return thumbnail;
 	}
 	
-	public String getOutsideView() {
-		return outsideView;
+	public String getGroundPlan() {
+		return groundPlan;
+	}
+	
+	public String editGroundPlan(String gp) {
+		groundPlan = gp;
+		return groundPlan;
 	}
 		
 	public List<Area> addArea(Area area){

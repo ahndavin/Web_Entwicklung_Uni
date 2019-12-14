@@ -2,14 +2,19 @@ package festivalmanager.festival;
 
 import javax.persistence.*;
 
+import festivalmanager.economics.EconomicList;
+import festivalmanager.inventory.Item;
 import festivalmanager.ticket.TicketBuilder;
+
+import org.salespointframework.accountancy.AccountancyEntry;
+import org.salespointframework.catalog.ProductIdentifier;
+import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.quantity.Quantity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Festival {
@@ -26,6 +31,8 @@ public class Festival {
 	@Embedded
 	private TicketBuilder ticketBuilder;
 
+	private EconomicList economicList = new EconomicList();
+
 	private int maxVisitors;
 	private int currentVisitors;
 
@@ -35,7 +42,7 @@ public class Festival {
 	private final List<String> plan = new ArrayList<>();
 
 	@ElementCollection
-	private final List<UniqueInventoryItem> inventory = new ArrayList<>();
+	private final Map<InventoryItemIdentifier, Quantity> inventory = new HashMap<>();
 
 	@Transient
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -161,11 +168,11 @@ public class Festival {
 		return plan;
 	}
 
-	public Iterable<UniqueInventoryItem> getInventory() {
+	public Map<InventoryItemIdentifier, Quantity> getInventory() {
 		return inventory;
 	}
 
-	public List<UniqueInventoryItem> editInventory() {
+	public Map<InventoryItemIdentifier, Quantity> editInventory() {
 		return inventory;
 	}
 
@@ -175,6 +182,14 @@ public class Festival {
 
 	public void setTicketBuilder(TicketBuilder ticketBuilder) {
 		this.ticketBuilder = ticketBuilder;
+	}
+
+	public List<AccountancyEntry> getEconomicList(){
+		return this.economicList.getList();
+	}
+
+	public void setEconomicList(EconomicList economicList){
+		this.economicList = economicList;
 	}
 
 	public String toString() {

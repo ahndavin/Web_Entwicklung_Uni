@@ -1,0 +1,30 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class="ui celled table">
+    <thead>
+    <tr>
+        <th>name</th>
+        <th>first name</th>
+        <th>last name </th>
+        <th>roles </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account:${accountList}" >
+        <td th:text="${account.getUserAccount().username}"></td>
+        <td th:text="${account.firstName}"></td>
+        <td th:text="${account.lastName}"></td>
+        <td th:text="${account.getUserAccount().roles.toList()}"></td>
+
+
+    </tr>
+    </tbody>
+
+</table>
+</body>
+</html>
