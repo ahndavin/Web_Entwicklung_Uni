@@ -1,54 +1,41 @@
-/* package festivalmanager.economics;
+package festivalmanager.economics;
+/*
+import javax.money.MonetaryAmount;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.ArrayList;
+import static org.assertj.core.api.Assertions.*;
 
 import org.javamoney.moneta.Money;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.salespointframework.accountancy.Accountancy;
+import org.salespointframework.accountancy.AccountancyEntry;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import festivalmanager.festival.Festival;
+
+@SpringBootTest
 public class EconomicManagerTest{
+    @Autowired EconomicManager economicManager;
+    @Autowired Accountancy accountancy;
+    @Autowired Festival festival;
 
     @Test
+    public void canAddEntrysWithInt(){
+        MonetaryAmount value = Money.of(20, "EUR");
+        AccountancyEntry entry = new AccountancyEntry(value, "Zwanzig");
+        accountancy.add(entry);
+        festival.getEconomicList().add(entry);
 
-    //U302
-    public void shouldCreateEconomicEntry(){
-        EconomicManager ecoManager = new EconomicManager();
+        assertThat(festival.getEconomicList().getList());
 
-        javax.money.MonetaryAmount value = Money.of(15, "EUR");
-        ecoManager.addEntry(value, "15");
 
-        ArrayList<EconomicEntry> result = new ArrayList<EconomicEntry>();
-        EconomicEntry element = new EconomicEntry(value, "15");
-        result.add(element);
-
-        assertEquals(result, ecoManager.getAll(), "EconomicEntry should be added");
     }
 
     @Test
-
-    public void shouldCreateEntryWithInteger(){
-        EconomicManager ecoManager = new EconomicManager();
-
-        ecoManager.addEntry(15, "15");
-
-        ArrayList<EconomicEntry> result = new ArrayList<EconomicEntry>();
-        javax.money.MonetaryAmount value = Money.of(15, "EUR");
-        EconomicEntry element = new EconomicEntry(value, "15");
-        result.add(element);
-
-        assertEquals(result, ecoManager.getAll(), "EconomicEntry should be added");
-    }
-
-    @Test
-
-    //U303
-    public void shouldShowEmptyOverview(){
-        EconomicManager ecoManager = new EconomicManager();
-        ArrayList<EconomicEntry> result = new ArrayList<EconomicEntry>();
-
-        assertEquals(result, ecoManager.getAll(), "EconomicEntry should be added");
+    public void canAddEntrysWithMoney(){
+        AccountancyEntry entry = new AccountancyEntry(value, description);
+        accountency.add(entry);
+        festival.getEconomicList().add(entry);
 
     }
 
