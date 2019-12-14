@@ -182,7 +182,7 @@ public class Festival {
 		this.ticketBuilder = ticketBuilder;
 	}
 
-	public ArrayList<AccountancyEntry> getEconomicList(){
+	public List<AccountancyEntry> getEconomicList(){
 		return this.economicList.getList();
 	}
 

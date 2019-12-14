@@ -2,12 +2,11 @@ package festivalmanager.economics;
 
 import javax.money.MonetaryAmount;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.accountancy.Accountancy;
 import org.salespointframework.accountancy.AccountancyEntry;
-import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,19 +37,17 @@ public class EconomicManager{
     }
 
     public void add(Money value, String description, Festival festival){
-        System.out.println("Before adding the entry");
         AccountancyEntry entry = new AccountancyEntry(value, description);
         accountency.add(entry);
         festival.getEconomicList().add(entry);
-        System.out.println("After adding the entry");
     }
 
-    public ArrayList<AccountancyEntry> getAll(Festival festival){
+    public List<AccountancyEntry> getAll(Festival festival){
         return festival.getEconomicList();
     }
 
     public MonetaryAmount getRevenues(Festival festival){
-        ArrayList<AccountancyEntry> entrys = festival.getEconomicList();
+        List<AccountancyEntry> entrys = festival.getEconomicList();
         MonetaryAmount sum = Money.of(0, "EUR");
         for (AccountancyEntry entry : entrys){
             if(entry.isRevenue() == true){
@@ -61,7 +58,7 @@ public class EconomicManager{
     }
 
     public MonetaryAmount getExpenses(Festival festival){
-        ArrayList<AccountancyEntry> entrys = festival.getEconomicList();
+        List<AccountancyEntry> entrys = festival.getEconomicList();
         MonetaryAmount sum = Money.of(0, "EUR");
         for (AccountancyEntry entry : entrys){
             if(entry.isExpense() == true){
