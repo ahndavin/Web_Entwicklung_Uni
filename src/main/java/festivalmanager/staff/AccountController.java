@@ -4,6 +4,7 @@ package festivalmanager.staff;
 
 import javax.validation.Valid;
 
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -62,6 +63,12 @@ class 	AccountController {
 			model.addAttribute( "accounts", activeAccountsStore.getAccounts());
 
 			return "accounts";
+		}
+
+		@GetMapping("/myProfile/{ID}")
+		String profile(@LoggedIn Account account, Model model){
+			model.addAttribute("account", account);
+			return "myProfile";
 		}
 
 

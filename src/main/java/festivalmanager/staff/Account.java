@@ -58,4 +58,5 @@ public class Account {
 	public UserAccount getUserAccount() {
 		return userAccount;
 	}
+
 }
