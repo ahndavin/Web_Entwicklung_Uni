@@ -34,7 +34,7 @@
                     </li>
             
                     <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/contractManagement">Contracts</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/contracts/list">Contracts</a>
                     <form name="Contracts" th:action="@{/contractManagement}" method="post" th:hidden="true">
                     </form>
                     </li>
