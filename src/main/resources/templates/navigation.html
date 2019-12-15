@@ -56,13 +56,18 @@
                     <form name="Ticket" th:action="@{/ticketManagement.html}" method="post" th:hidden="true">
                     </form>
                     </li>
+
             
                     <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/festivals">Festivals</a>
                     <form name="Ticket" th:action="@{/festivals.html}" method="post" th:hidden="true">
                     </form>
                     </li>
-            
+
+                    <li class="nav-item" sec:authorize="hasRole('MANAGER')">
+                    <a class="nav-link"  href="/allAccounts" th:text="all Accounts"></a>
+                    </li>
+
                     <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()"
                         role="menuitem"> Logout </a>
