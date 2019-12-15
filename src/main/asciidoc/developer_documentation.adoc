@@ -21,7 +21,7 @@ Jede Arbeitskraft wird dabei auf Stundenbasis bezahlt (_ContractManager_).
 Zu jedem Zeitpunkt während der Planung muss der Planungsabteilung als auch dem Management eine automatische Kostenaufstellung (_EconomicManager_) zur Verfügung gestellt werden können, in der Kosten für Mieten, Gagen, Personal und Sonstigem aufgelistet und aggregiert werden.
 
 ==== Tickets
-Schon während der Planungsphase kann ein Event freigegeben werden, und es kann ein Kartenpreis festgelegt werden (_TicketManager_). Es gibt dabei Camping-Tickets (_camping_), die das ganze Festival über gültig sind und Tageskarten (_dayticket_).
+Schon während der Planungsphase kann ein Event freigegeben werden, und es kann ein Kartenpreis festgelegt werden (_TicketManagement_). Es gibt dabei Camping-Tickets (_camping_), die das ganze Festival über gültig sind und Tageskarten (_dayticket_).
 Diese Tickets werden bis 3 Tage vor Veranstaltungsbeginn in den Filialen der „FVIV GmbH“ verkauft und danach nur noch an der Abendkasse. Es muss den Verkaufsmitarbeitern möglich sein, bei noch vorhandenen Tickets diese zu verkaufen (_saleTicket_) und auszudrucken (_print_).
 Auf jedes Ticket wird ein Barcode bzw. eine eindeutige Nummer (_ticket.number_) aufgedruckt, mit dem es dem Personal am Festivaleingang möglich ist, das Ticket auf Gültigkeit hin zu überprüfen und zu vermeiden, dass verschiedene Personen das Gelände mit derselben Karte betreten.
 
@@ -172,22 +172,29 @@ Um das Programm weiterhin möglichst browserunspezifisch zu testen und die grö�
 |===
 |Externe Klasse |Pfad der externen Klasse |Verwendet von (Klasse der eigenen Anwendung)
 |Accountency |org.salespointframework.accountancy |EconomicManager
-|AccountencyEntry |org.salespointframework.accountancy |EconomicManager
-|Assert |org.springframework.util|EconomicManager, TicketManager, Location, Staff
+|AccountencyEntry |org.salespointframework.accountancy |EconomicList, EconomicManager
+|Assert |org.springframework.util|EconomicController, TicketController, TicketManagementLocation, Staff
 |Catalog |org.salespointframework.catalog|Inventory, Location
-|CrudRepository |org.springframework.data.repository |EconomicManager, TicketManager, Festival, Staff
+|CrudRepository |org.springframework.data.repository |CampingticketRepository, DayticketRepository, Festival, Staff
 |DataInitializer |org.salespointframework.core |Inventory, Staff
-|Errors |org.springframework.validation |TicketManager, Staff
-|Model |org.springframework.ui |EconomicManager, TicketManager, ContractManager, Inventory, Festival, Location, Staff
+|Errors |org.springframework.validation |EconomicController, TicketController, Staff
+|GetMapping |org.springframework.web.bind.annotation.GetMapping |EconomicController, TicketController
+|Metric |org.salespointframework.quantity.Metric| TicketBuilder
+|Model |org.springframework.ui |EconomicController, TicketController, ContractManager, Inventory, Festival, Location, Staff
+|ModelAttribute |org.springframework.web.bind.annotation.ModelAttribute| EconomicController, TicketController
+|MonetaryAmount |javax.money.MonetaryAmount |EconomicManager
+|Money |org.javamoney.moneta.Money |EconomicManager, TicketBuilder
+|PostMapping |org.springframework.web.bind.annotation.PostMapping |TicketController
 |Product |org.salespointframework.catalog |Inventory
-|Quantity |org.salespointframework.quantity |Inventory
-|Role |org.salespointframework.useraccount |TicketManager, Staff
+|Quantity |org.salespointframework.quantity |Inventory, TicketBuilder, TicketManagement
+|Role |org.salespointframework.useraccount |Staff
 |StereoType Controller |org.springframework.stereotype |ContractManager
 |Streamable |org.springframework.data.util |Staff
 |UniqueInventory |org.salespointframework.inventory | Inventory
 |UniqueInventoryItem |org.salespointframework.inventory |Inventory
 |UserAccount |org.salespointframework.useraccount |Staff
 |UserAccountManager |org.salespointframework.useraccount |Staff
+|Valid |javax.validation.Valid |EconomicController, TicketController
 |===
 
 == 5. Bausteinsicht
