@@ -209,18 +209,25 @@ image::./models/design/Bausteinsicht_EconomicManager.PNG["Bausteinsicht Economic
 [options="header"]
 |=== 
 |Klasse/Enumeration |Beschreibung
+|EconomicController |Der EconomicController dient zum Parsen zwischen HTML und Java
+|EconomicList       |Die EconomicList ermöglicht die Herstellung eines Zusammenhangs von Ausgaben und Einnahmen zu bestimmten Festivals
 |EconomicManager    |Diese Klasse dient zur zentralen Verwaltung aller Einnahmen und Ausgaben, um eine Übersicht zu ermöglichen.
 |===
 
-=== 5.1.2 TicketManager
+=== 5.1.2 TicketManagement
 
 image::./models/design/Bausteinsicht_TicketManager.PNG["Bausteinsicht TicketManager", 100%, 100%, pdfwidth=100%, align=center]
 
 [options="header"]
 |=== 
 |Klasse/Enumeration |Beschreibung
-|TicketManager      |Der Ticketmanager dient der Speicherung aller ausgegebenen Tickets, um einen späteren Ausdruck und die Kontrolle zu ermöglichen und das doppelte Verwenden einer Eintrittskarte zu verhindern.
-|Ticket             |Das Ticket dient zum Erstellen einzelner, indvidueller Tickets
+|TicketController   |Der TicketControler dient zum Parsen zwischen HTML und Java
+|TicketBuilder      |Der TicketBuilder ermöglicht es, Tickets bestimmten Festivals zuzuordnen
+|TicketManagement   |Das TicketManagement dient der Speicherung aller ausgegebenen Tickets, um einen späteren Ausdruck und die Kontrolle zu ermöglichen und das doppelte Verwenden einer Eintrittskarte zu verhindern.
+|Campingticket      |Das Ticket dient zum Erstellen einzelner, indvidueller Campingtickets
+|Dayticket          |Das Ticket dient zum Erstellen einzelner, indvidueller Tagestickets
+|CampingticketRepository |Das Repository dient zum Speichern der Campingtickets
+|DayticketRepository        |Das Repository dient zum Speichern der Tagstickets     
 |Sort               |Enumeration um das Ticket als DAYTICKET oder CAMPING zu kategorisieren und so Berechtigungen für die Besucher festzulegen.
 |EconomicManager    |Der Verkauf von Tickets ist eine Einnahmequelle, die Beträge werden in die Kosten/Ertrag-Übersicht übergeben.
 |===
