@@ -1,0 +1,20 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p> username </p>
+    <p  th:text="${'Hallo ' + #authentication?.name }" th:size="${16}">Hallo
+    Nutzer</p>
+    <p>first name </p>
+    <p>
+    placeholder</p>
+
+
+
+</body>
+</html>
