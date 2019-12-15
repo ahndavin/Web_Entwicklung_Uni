@@ -144,7 +144,8 @@ public class FestivalController {
 
 		Festival festival = festivalOptional.get();
 
-		model.addAttribute("inventory", festival.getInventory());
+		model.addAttribute("festival", festival);
+		model.addAttribute("stock", stock);
 
 		return "festival_inventory";
 	}
