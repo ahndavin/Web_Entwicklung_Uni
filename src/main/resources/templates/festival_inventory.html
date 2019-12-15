@@ -7,10 +7,12 @@
 
     <body>
         <ul>
-            <li th:each="inventoryItem: ${inventory}">
-                <p th:text="${inventoryItem.product}"></p>
-                <p th:text="${inventoryItem.quantity}"></p>
+            <li th:each="inventoryItem: ${festival.inventory}">
+                <p th:text="${stock.findById(inventoryItem.key).get().product}"></p>
+                <p th:text="${inventoryItem.value}"></p>
             </li>
         </ul>
+
+        <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory/edit'}">Lager editieren</a>
     </body>
 </html>

@@ -56,8 +56,10 @@
         <h1 class="text-center mb-05">Current Festivals</h1>
         <div class="container text-center">
             <ul class="list-group" th:each="festival, iStat: ${festivals} ">
-                <h3 th:text="${iStat.index+1} + '. Festival' ">
-                </h3>
+                <a th:href="${'/festival/' + festival.name + '-' + festival.id}">
+                    <h3 th:text="${iStat.index+1} + '. Festival' ">
+                    </h3>
+                </a>
 
                 <li class="list-group-item">
 

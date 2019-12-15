@@ -10,5 +10,9 @@
         <ul>
             <li th:each="item : ${festival.plan}" th:text="${item}"></li>
         </ul>
+
+        <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/edit'}">Festival editieren</a>
+
+        <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}">Lager anzeigen</a>
     </body>
 </html>
