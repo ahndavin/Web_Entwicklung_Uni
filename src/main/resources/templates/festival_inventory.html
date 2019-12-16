@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Festival Lager</title>
+    </head>
+
+    <body>
+        <ul>
+            <li th:each="inventoryItem: ${festival.inventory}">
+                <p th:text="${stock.findById(inventoryItem.key).get().product}"></p>
+                <p th:text="${inventoryItem.value}"></p>
+            </li>
+        </ul>
+
+        <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory/edit'}">Lager editieren</a>
+    </body>
+</html>

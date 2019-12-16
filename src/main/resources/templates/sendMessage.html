@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" role="form" class="ui form" id="form" th:action="@{/sendMessage}" th:object="${form}">
+        <div class="field">
+            <label th:text="#{createMessage.sender}" for="sender">sender</label>
+            <input id="sender" name="sender" th:field="*{sender}" th:errorclass="fieldError" type="text" required="required"/>
+        </div>
+        <br/>
+
+        <div class="field">
+            <label th:text="#{createMessage.reciever}" for="receiver">reciever</label>
+            <input id="receiver" name="receiver" th:field="*{receiver}" th:errorclass="fieldError" type="text" required="required"/>
+        </div>
+        <br/>
+
+        <div class="field">
+            <label th:text="#{createMessage.message}" for="message">message</label>
+            <input id="message" name="message" th:field="*{message}" th:errorclass="fieldError" type="text" required="required"/>
+        </div>
+        <br/>
+
+        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light" th:text="#{createMessage.submit}">
+            Send
+        </button>
+    </form>
+</body>
+</html>

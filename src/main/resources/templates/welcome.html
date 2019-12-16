@@ -1,11 +1,150 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-		<title>Welcome</title>
-	</head>
-	<body>
-		<h1>Welcome!</h1>
-	</body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+	<!--  BOOTSTRAP STUFF  -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+	<link rel="stylesheet" href="css/style.css" />
+
+	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+	<title>FVIV FESTIVAL</title>
+</head>
+
+<body>
+	<!--  START HERE  -->
+<nav th:include="navigation :: navigation"></nav>
+	<!--  NavBar -->
+<!--
+	<nav class="navbar navbar-expand-md navbar-dark">
+		<a href="" class="navbar-brand">
+			<h3 class="mb-0">FVIV FESTIVAL</h3>
+		</a>
+		<button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="mainNavbar">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a href="/" class="nav-link active">Home</a>
+				</li>
+
+				<li class="nav-item">
+					<a th:href="@{/createAccount}" class="nav-link"> Create an Account </a>
+				</li>
+				<li class="nav-item">
+					<a th:href="@{/login}" class="nav-link" sec:authorize="!isAuthenticated()" th:text="#{nav.login}">Login</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAuthenticated()" href="/contractManagement">Contracts</a>
+					<form name="Contracts" th:action="@{/contractManagement}" method="post" th:hidden="true">
+					</form>
+				</li>
+
+
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAuthenticated()" href="/location">Locations</a>
+					<form name="Location" th:action="@{/location.html}" method="post" th:hidden="true">
+					</form>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAuthenticated()" href="/ticketManagement">Tickets</a>
+					<form name="Ticket" th:action="@{/ticketManagement.html}" method="post" th:hidden="true">
+					</form>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/myProfile/{id}(id=${account.getId()})}">Profile</a>
+
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAuthenticated()" href="/ticketManagement">Tickets</a>
+					<form name="Ticket" th:action="@{/ticketManagement.html}" method="post" th:hidden="true">
+					</form>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()"
+						role="menuitem"> Logout </a>
+					<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+						<input hidden type="submit" value="Sign Out" />
+					</form>
+				</li>
+
+
+			</ul>
+		</div>
+	</nav>
+-->
+	<!--  Overlay -->
+	<section class="d-flex align-items-center" id="showcase">
+		<div id="overlay"></div>
+		<div id="header" class="container text-white text-center">
+			<h1 class="display-5 mb-0">Welcome to the FVIV GANG, where we create awesome Festivals, yo!</h1>
+			<h3 class="display-3">Like really cool Festivals!</h3>
+			<br>
+			<p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
+			<button id="btn" class="btn btn-lg btn-light">
+				<a class="text-dark" href="/createAccount">Create an Account!</a>
+			</button>
+		</div>
+	</section>
+
+	<!--  3 Row Column -->
+	<section>
+		<div class="container text-center" sec:authorize="!isAuthenticated()">
+			<h2 class="mt-4">Yooo, sign up, we got cookies!</h2>
+			<div class="row mt-5">
+				<div class="col-md-4">
+					<img class="img img-fluid" src="https://image.flaticon.com/icons/svg/864/864857.svg" alt="">
+					<h3>Plan your Stage!</h3>
+					<p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+						invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+				</div>
+				<div class="col-md-4">
+					<img class="img img-fluid" src="https://image.flaticon.com/icons/svg/3/3774.svg" alt="">
+					<h3>Get the Line-Up</h3>
+					<p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+						invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+				</div>
+				<div class="col-md-4">
+					<img class="img img-fluid" src="https://image.flaticon.com/icons/svg/684/684831.svg" alt="">
+					<h3>See all Contracts</h3>
+
+				</div>
+			</div>
+		</div>
+		<div class="container text-center" sec:authorize="isAuthenticated()">
+			<p sec:authorize="isAuthenticated()" th:text="${'Hallo ' + #authentication?.name }" th:size="${16}">Hallo Nutzer
+			</p>
+			<p sec:authorize="isAuthenticated()" th:text="${'Du hast die Rolle(n) ' + #authentication?.authorities}">
+				placeholder</p>
+		</div>
+	</section>
+
+
+
+	<!-- BOOTSTRAP SCRIPTS -->
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+
+	<script>
+		// Get the current year for the copyright
+		$("#year").text(new Date().getFullYear());
+	</script>
+</body>
+
 </html>

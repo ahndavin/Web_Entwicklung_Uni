@@ -13,16 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kickstart.controller;
+package festivalmanager.controller;
 
+import festivalmanager.staff.Account;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Controller
 public class WelcomeController {
 
 	@RequestMapping("/")
-	public String index() {
+	public String index(Model model, @LoggedIn Account account) {
+		model.addAttribute("account", account);
 		return "welcome";
 	}
 }
