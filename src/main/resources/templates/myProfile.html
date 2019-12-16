@@ -11,13 +11,13 @@
         <link rel="stylesheet" href="css/style.css" />
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-        <title>Create Lineup</title>
+        <title>Profile</title>
 
     <meta charset="UTF-8">
 
 </head>
 <body>
-
+<nav th:include="navigation :: navigation"></nav>
     <p> Username</p>
     <p th:text="${account.getUsername()}"></p>
     <p> Roles</p>
