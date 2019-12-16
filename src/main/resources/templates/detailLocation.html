@@ -89,10 +89,12 @@
           <h3><b>Festivals</b></h3>
           </br>
           
-          <ul class="list-group" th:each="contract : ${contractList}">
+          <ul th:if="${festival.getLocation()==location.getName()}" class="list-group" th:each="festival : ${festivalList}">
 	          <li class="list-group-item">
-				<b>contract: </b>
-				<label th:text="${contract.name}"></label>
+				<b>Festivalname: </b>
+                  <a th:href="${'/festival/' + festival.name + '-' + festival.id}">
+                      <label th:text="${festival.name}"></label>
+                  </a>
 			  </li>
 		  </ul>
         </div>

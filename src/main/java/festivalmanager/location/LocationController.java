@@ -2,6 +2,7 @@ package festivalmanager.location;
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Objects;
 import javax.validation.Valid;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -61,6 +62,7 @@ public class LocationController {
 		public String detailLocation(Model model, @PathVariable("location") String name){
 			model.addAttribute("location", findLocation(name));
 			model.addAttribute("contractList", locationManager.findByName());
+			model.addAttribute("festivalList", locationManager.findFestivals());
 			
 			return "detailLocation";
 		}
@@ -134,7 +136,7 @@ public class LocationController {
 	
 	@PostMapping("/location/{location}/area/{area}/stage/{stage}/createLineup")
 	public String addLineup(@Valid Lineup lineup, @PathVariable("location") String name, @PathVariable("area") String area, @PathVariable("stage") String stage) {
-		findLineups(findStages(findLocation(name).getAllAreas(), area), stage).add(lineup);
+		findLineups(Objects.requireNonNull(findStages(findLocation(name).getAllAreas(), area)), stage).add(lineup);
 		
 		return "redirect:detailLineup";
 	}
@@ -145,6 +147,8 @@ public class LocationController {
 		model.addAttribute("location", findLocation(name));
 		model.addAttribute("area", findArea(findLocation(name), zone));
 		model.addAttribute("lineup", lineup);
+		model.addAttribute("contractList", locationManager.findByName());
+
 		
 		return "createLineup";
 	}

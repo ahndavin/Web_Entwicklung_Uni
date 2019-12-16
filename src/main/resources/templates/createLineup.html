@@ -58,14 +58,25 @@
     <div id="wrapper" class="container text-center">
       <h1 class="mb-3 mt-5">Create Lineup</h1>
       <form method="POST" th:action="${currentURL}" th:object="${lineup}">
-      	<label for="name">date</label>
-        <input type="datetime-local" required="required" th:field="*{date}" class="form-control"/>
+      	<label for="date">date</label>
+        <input type="text" required="required" th:field="*{date}" class="form-control"/>
         <br />
         <!-- Contract으로부터 데이터를 가져와서 여기서 선택할 수 있게 해야 함. -->
+        <!--
         <label for="outsideView">Artist</label><br/>
         <br />
         <br />
-        
+        <ul class="list-group" th:each="contract : ${contractList}">
+          <li class="list-group-item">
+            <b>Artist: </b>
+            <input type ="radio" th:text="${contract.artist}"> </input>
+            <br />
+          </li>
+        </ul>
+        -->
+
+
+
         <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Create Lineup</button>
       </form>
     </div>

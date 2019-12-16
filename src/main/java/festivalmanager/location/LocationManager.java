@@ -2,6 +2,9 @@ package festivalmanager.location;
 
 import java.util.List;
 import java.util.LinkedList;
+
+import festivalmanager.festival.Festival;
+import festivalmanager.festival.FestivalRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.data.util.Streamable;
 import festivalmanager.contract.*;
@@ -10,10 +13,12 @@ import festivalmanager.contract.*;
 public class LocationManager {
 	private List<Location> locations;
 	private ContractsRepository contractsRepository;
+	private FestivalRepository festivalRepository;
 	
-	public LocationManager(ContractsRepository contractsRepository) {
+	public LocationManager(ContractsRepository contractsRepository, FestivalRepository festivalRepository) {
 		this.contractsRepository = contractsRepository;
 		this.locations = new LinkedList<Location>();
+		this.festivalRepository = festivalRepository;
 	}
 	
 	public List<Location> save(Location location) {
@@ -45,6 +50,7 @@ public class LocationManager {
 	public Streamable<Contract> findByName() {
 		return contractsRepository.findAll();
 	}
-	
-	
+
+	public Streamable <Festival> findFestivals() { return festivalRepository.findAll();
+	}
 }
