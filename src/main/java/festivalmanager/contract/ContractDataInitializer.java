@@ -24,5 +24,9 @@ public class ContractDataInitializer implements DataInitializer {
 
 		contractsRepository.save(new Contract("name", "artist", "price", "accepted", "technicianscount",
 			"workinghours", "workerswage"));
+		contractsRepository.save(new Contract("name", "artist12", "price", "accepted", "technicianscount",
+			"workinghours", "workerswage"));
+		contractsRepository.save(new Contract("name", "artist123", "price", "accepted", "technicianscount",
+			"workinghours", "workerswage"));
 	}
 }

@@ -118,4 +118,9 @@ public class Contract {
 	public void setTechnicianscount(String technicianscount) {
 		this.technicianscount = technicianscount;
 	}
+
+
+	public String toString(){
+		return this.artist;
+	}
 }

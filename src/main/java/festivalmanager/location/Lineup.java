@@ -1,5 +1,6 @@
 package festivalmanager.location;
 
+import java.awt.*;
 import java.util.Date;
 
 import festivalmanager.contract.Contract;
@@ -21,8 +22,8 @@ public class Lineup {
 		return this.date = date;
 	}
 	
-	public String getArtist() {
-		return contract.getArtist();
+	public Contract getArtist() {
+		return contract;
 	}
 	
 	public Contract editArtist(Contract artist) {
