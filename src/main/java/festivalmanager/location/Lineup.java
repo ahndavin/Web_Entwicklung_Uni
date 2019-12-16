@@ -6,11 +6,11 @@ import festivalmanager.contract.Contract;
 
 public class Lineup {
 	private String date;
-	//private Contract artist;
+	private Contract contract;
 
-	public Lineup(String date) {
+	public Lineup(String date, Contract contract) {
 		this.date = date;
-		//this.artist = artist;
+		this.contract = contract;
 	}
 	
 	public String getDate() {
@@ -21,13 +21,13 @@ public class Lineup {
 		return this.date = date;
 	}
 	
-	/*public Contract getArtist() {
-		return artist;
+	public String getArtist() {
+		return contract.getArtist();
 	}
 	
 	public Contract editArtist(Contract artist) {
-		return this.artist = artist;
+		return this.contract = artist;
 	}
 
-	 */
+
 }

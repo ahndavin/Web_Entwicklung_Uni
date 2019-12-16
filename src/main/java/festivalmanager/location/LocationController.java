@@ -138,7 +138,7 @@ public class LocationController {
 	public String addLineup(@Valid Lineup lineup, @PathVariable("location") String name, @PathVariable("area") String area, @PathVariable("stage") String stage) {
 		findLineups(Objects.requireNonNull(findStages(findLocation(name).getAllAreas(), area)), stage).add(lineup);
 		
-		return "redirect:detailLineup";
+		return "redirect:lineup";
 	}
 
 	@GetMapping("/location/{location}/area/{area}/stage/{stage}/createLineup")
