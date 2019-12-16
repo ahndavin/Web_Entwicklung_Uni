@@ -5,7 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.h2.engine.User;
 import org.salespointframework.useraccount.UserAccount;
+import org.springframework.data.util.Streamable;
 
 @Entity
 public class Account {
@@ -58,5 +60,7 @@ public class Account {
 	public UserAccount getUserAccount() {
 		return userAccount;
 	}
+
+
 
 }

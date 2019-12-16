@@ -2,6 +2,7 @@ package festivalmanager.staff;
 
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.salespointframework.useraccount.Role;
+import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -61,8 +62,25 @@ public class AccountManager {
 		}
 	}
 
+	public void changePassword(UserAccount account, changePasswordForm form){
+
+		var password = UnencryptedPassword.of(form.getNewPassword());
+		userAccounts.changePassword(account, UnencryptedPassword.of(form.getNewPassword()));
+	}
+
 	public Streamable<Account> findAll(){
 		return accounts.findAll();
 	}
+
+	public Account findByUserAccount(UserAccount userAccount){
+		Streamable<Account> allAccounts = this.findAll();
+		for(Account account : allAccounts){
+			if(account.getUserAccount() == userAccount){
+				return account;
+			}
+		}
+		return null;
+	}
+
 }
 
