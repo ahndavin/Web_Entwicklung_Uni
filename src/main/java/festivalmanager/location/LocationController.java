@@ -3,6 +3,8 @@ package festivalmanager.location;
 import java.util.List;
 import java.util.LinkedList;
 import javax.validation.Valid;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,7 @@ public class LocationController {
 		return "location";
 	}
 
+
 	@PostMapping("/createLocation")
 	public String addLocation(@Valid Location location) {
 		locationManager.save(location);
@@ -34,6 +37,7 @@ public class LocationController {
 		return "redirect:location";
 	}
 
+	@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/createLocation")
 	public String addLocation(Model model, Location location) {
 		model.addAttribute("location", location);
@@ -56,20 +60,21 @@ public class LocationController {
 		return "area";
 	}
 
-	
+	@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/location/{location}/area/changeStatus")
 	public String changeAreaStatus(@PathVariable("location") String name, @RequestParam("area") String area) {
 		findArea(findLocation(name), area).toggleLock();
 		
 		return "redirect:";
 	}
-	
+
 	@PostMapping("/location/{location}/createArea")
 	public String addArea(@Valid Area area, @PathVariable("location") String name) {
 		findLocation(name).addArea(area);
 		
 		return "redirect:area";
 	}
+
 
 	@GetMapping("/location/{location}/createArea")
 	public String addArea(Model model, Area area, @PathVariable("location") String name) {
@@ -87,7 +92,7 @@ public class LocationController {
 		
 		return "stage";
 	}
-	
+
 	@PostMapping("/location/{location}/area/{area}/createStage")
 	public String addStage(@Valid Stage stage, @PathVariable("location") String name, @PathVariable("area") String area) {
 		findArea(findLocation(name), area).addStage(stage);

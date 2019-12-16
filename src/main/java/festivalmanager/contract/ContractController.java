@@ -1,6 +1,7 @@
 package festivalmanager.contract;
 import javax.validation.Valid;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ public class ContractController {
 		return "redirect:/contractManagement";
 	}
 
+	@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/createContract")
 	public String addProduct(Model model, Contract contract) {
 

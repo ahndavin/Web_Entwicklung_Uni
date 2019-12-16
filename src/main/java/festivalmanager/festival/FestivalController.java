@@ -5,6 +5,7 @@ import festivalmanager.inventory.Item;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.quantity.Quantity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -55,6 +56,7 @@ public class FestivalController {
 	/**
 	 * add a new festival
 	 */
+	@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/festival/add")
 	String addFestival(Model model) {
 		model.addAttribute("festival_form", new FestivalForm());
@@ -91,6 +93,7 @@ public class FestivalController {
 	 *
 	 * @param festivalId: id of the festival
 	 */
+	@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/festival/{festivalName}-{festivalId}/edit")
 	String editFestival(@PathVariable long festivalId, Model model) {
 		Optional<Festival> festival = festivals.findById(festivalId);;

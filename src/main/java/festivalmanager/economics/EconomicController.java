@@ -2,6 +2,7 @@ package festivalmanager.economics;
 
 import javax.validation.Valid;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -26,7 +27,8 @@ public class EconomicController{
         this.festivalManager = festivalManager;
     }
 
-    //GetMapping 
+    //GetMapping
+	@PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping(path = "/accountancy")
 	public String goToAccountancy (@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
 		Festival festival = economicManager.findById(festivalIdForm.getId());
