@@ -49,23 +49,14 @@ public class LocationController {
 		return "createLocation";
 	}
 	
-//	@GetMapping("/location/{location}")
-//	public String detailLocation(Model model, @PathVariable("location") String name, FestivalRepository festivalRepository) {
-//		model.addAttribute("festivals", festivalRepository);
-//		model.addAttribute("location", findLocation(name));
-//		
-//		return "detailLocation";
-//	}
-	
-	//GetMapping
-		@GetMapping(path = "/location/{location}")
-		public String detailLocation(Model model, @PathVariable("location") String name){
-			model.addAttribute("location", findLocation(name));
-			model.addAttribute("contractList", locationManager.findByName());
-			model.addAttribute("festivalList", locationManager.findFestivals());
-			
-			return "detailLocation";
-		}
+	@GetMapping(path = "/location/{location}")
+	public String detailLocation(Model model, @PathVariable("location") String name){
+		model.addAttribute("location", findLocation(name));
+		model.addAttribute("contractList", locationManager.findByName());
+		model.addAttribute("festivalList", locationManager.findFestivals());
+		
+		return "detailLocation";
+	}
 	
 	@GetMapping("/location/{location}/area")
 	public String areaManagement(Model model, @PathVariable("location") String name) {
@@ -143,13 +134,11 @@ public class LocationController {
 
 	@GetMapping("/location/{location}/area/{area}/stage/{stage}/createLineup")
 	public String addLineup(Model model, Lineup lineup, @PathVariable("location") String name, @PathVariable("area") String zone, @PathVariable("stage") String stage) {
-
 		model.addAttribute("location", findLocation(name));
 		model.addAttribute("area", findArea(findLocation(name), zone));
 		model.addAttribute("lineup", lineup);
-		model.addAttribute("contractList", locationManager.findByName());
+		model.addAttribute("contractList", locationManager.findByName().toList());
 
-		
 		return "createLineup";
 	}
 	

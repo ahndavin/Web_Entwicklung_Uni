@@ -63,18 +63,13 @@
         <br />
 
 
-        <label for="outsideView">Artist</label><br/>
-        <br />
-        <br />
-        <ul class="list-group" th:each="contract : ${contractList}">
-          <li class="list-group-item">
-            <b>Artist: </b>
-            <input type ="radio"  th:text="${contract.artist}" > </input>
-            <br />
-          </li>
-        </ul>
-
-
+        <label for="contract">Artist</label><br/>
+        <select>
+			<option th:each="contract : ${contractList}" th:text="${contract.getArtist()}" th:value="${contract}"/>
+		</select>
+		<br />
+		<br />
+		
         <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Create Lineup</button>
       </form>
     </div>
