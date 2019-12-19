@@ -75,20 +75,31 @@
 			<label th:text="${location.getCurrVisitors()}"></label>
 		  </li>
         </div>
+        
         <div class="col-md-4">
           <a th:href="@{'/location/' + ${location.getName()} + '/area'}">
           	<img class="ground_plan" th:src="@{/resources/img/location/ground_plan/{image}.jpg(image=${location.getName()})}" width="100%" height="100%">
           </a>
         </div>
+        
+        
+        
+        
         <div class="col-md-4">
           <h3><b>Festivals</b></h3>
           </br>
-          <li class="list-group-item">
-			<a href="/festivals">
-				<label>Hier muss eine Liste von Festivals gesehen werden!</label>
-			</a>
-		  </li>
+          
+          <ul th:if="${festival.getLocation()==location.getName()}" class="list-group" th:each="festival : ${festivalList}">
+	          <li class="list-group-item">
+                  <a th:href="${'/festival/' + festival.name + '-' + festival.id}">
+                      <label th:text="${festival.name}"></label>
+                  </a>
+			  </li>
+		  </ul>
         </div>
+        
+        
+        
       </div>
     </div>
     </br>
