@@ -4,6 +4,7 @@ import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -23,14 +25,16 @@ public class AccountManager {
 
 	public final AccountRepository accounts;
 	public final UserAccountManager userAccounts;
+	private final ApplicationEventPublisher publisher;
 
-	AccountManager(AccountRepository accounts, UserAccountManager userAccounts){
+	AccountManager(AccountRepository accounts, UserAccountManager userAccounts, ApplicationEventPublisher publisher) {
 
-		Assert.notNull(accounts, 	"kickstart.account.AccountRepository must not be null");
+		Assert.notNull(accounts, "kickstart.account.AccountRepository must not be null");
 		Assert.notNull(userAccounts, "UserAccountManager must not be null");
 
 		this.accounts = accounts;
 		this.userAccounts = userAccounts;
+		this.publisher = publisher;
 	}
 
 	public Account createAccount(CreationForm form, Errors result) {
@@ -47,14 +51,14 @@ public class AccountManager {
 			if (Boolean.TRUE.equals(form.getCatering())) {
 				userAccount.add(CATERING_ROLE);
 			}
-			if (Boolean.TRUE.equals(form.getSecurity())){
+			if (Boolean.TRUE.equals(form.getSecurity())) {
 				userAccount.add(SECURITY_ROLE);
 			}
 			/*if (Boolean.TRUE.equals(form.getManager())){
 
 				userAccount.add(MANAGER_ROLE);
 			}*/
-			if (Boolean.TRUE.equals(form.getTicketSalesman())){
+			if (Boolean.TRUE.equals(form.getTicketSalesman())) {
 				userAccount.add(TICKET_SALESMAN_ROLE);
 			}
 
@@ -62,24 +66,27 @@ public class AccountManager {
 		}
 	}
 
-	public void changePassword(UserAccount account, changePasswordForm form){
+	public void changePassword(UserAccount account, changePasswordForm form) {
 
 		var password = UnencryptedPassword.of(form.getNewPassword());
 		userAccounts.changePassword(account, UnencryptedPassword.of(form.getNewPassword()));
 	}
 
-	public Streamable<Account> findAll(){
+	public Streamable<Account> findAll() {
 		return accounts.findAll();
 	}
 
-	public Account findByUserAccount(UserAccount userAccount){
-		Streamable<Account> allAccounts = this.findAll();
-		for(Account account : allAccounts){
-			if(account.getUserAccount() == userAccount){
-				return account;
-			}
-		}
-		return null;
+	public void sendMessage(MessageForm form){
+		UserAccount sender = userAccounts.findByUsername(form.getSender()).get();
+		UserAccount receiver = userAccounts.findByUsername(form.getReceiver()).get();
+
+		MessageEvent messageEvent = new MessageEvent(this, accounts.findByUserAccount(sender).get(),
+				accounts.findByUserAccount(receiver).get(), form.getMessage());
+		publisher.publishEvent(messageEvent);
+	}
+
+	public Optional<Account> findByUserAccount(UserAccount userAccount) {
+		return accounts.findByUserAccount(userAccount);
 	}
 
 }

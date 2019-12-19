@@ -17,10 +17,12 @@ public class StaffDataInitializer implements DataInitializer{
 
 	private final UserAccountManager userAccountManager;
 	private final AccountManager accountManager;
+	public final AccountRepository accounts;
+	public static final Role MANAGER_ROLE = Role.of("MANAGER");
 
+	public StaffDataInitializer(UserAccountManager userAccountManager, AccountManager accountManager, AccountRepository accounts) {
 
-	public StaffDataInitializer(UserAccountManager userAccountManager, AccountManager accountManager) {
-
+		this.accounts = accounts;
 		this.userAccountManager = userAccountManager;
 		this.accountManager = accountManager;
 	}
@@ -34,7 +36,11 @@ public class StaffDataInitializer implements DataInitializer{
 
 		LOG.info("Creating default users and customers.");
 
-		userAccountManager.create("MANAGER", Password.UnencryptedPassword.of("123"), Role.of("MANAGER"));
+		userAccountManager.create("MANAGER", Password.UnencryptedPassword.of("123"));
+		userAccountManager.findByUsername("MANAGER").get().add(MANAGER_ROLE);
+
+
+		accounts.save(new Account(userAccountManager.findByUsername("MANAGER").get(), "MANAGER", "MANAGER"));
 
 		var password = "123";
 

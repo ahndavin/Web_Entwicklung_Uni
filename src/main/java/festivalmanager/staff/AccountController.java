@@ -10,6 +10,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -30,19 +31,17 @@ class 	AccountController {
 		private final MessageManagement messageManagement;
 		private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);
 		@Autowired
-		ActiveAccountsStore activeAccountsStore;
-		MessageEventPublisher publisher;
+		private ActiveAccountsStore activeAccountsStore;
 
 
-		@Autowired
 
 
-		AccountController(AccountManager accountManager, UserAccountManager userAccounts, MessageManagement messageManagement, MessageEventPublisher publisher){
+
+		AccountController(AccountManager accountManager, UserAccountManager userAccounts, MessageManagement messageManagement){
 			Assert.notNull(accountManager, "kickstart.account.AccountManager must be not null");
 			this.accountManager = accountManager;
 			this.userAccounts = userAccounts;
 			this.messageManagement = messageManagement;
-			this.publisher = publisher;
 		}
 
 
@@ -55,7 +54,7 @@ class 	AccountController {
 			return "redirect:/";
 		}
 
-	@PreAuthorize("hasAuthority('MANAGER')")
+	@PreAuthorize("hasRole('MANAGER')")
 		@GetMapping("/createAccount")
 		String createAccount(Model model, CreationForm form, Errors result) {
 			model.addAttribute("form", form);
@@ -63,7 +62,7 @@ class 	AccountController {
 			return "createAccount";
 		}
 
-	@PreAuthorize("hasAuthority('MANAGER')")
+	@PreAuthorize("hasRole('MANAGER')")
 		@GetMapping("/allAccounts")
 		String allAccounts(Model model){
 			model.addAttribute("accountList", accountManager.findAll());
@@ -100,7 +99,7 @@ class 	AccountController {
 			return "redirect:/";
 		}
 
-		@PreAuthorize("hasAuthority('MANAGER')")
+		@PreAuthorize("hasRole('MANAGER')")
 		@GetMapping("/changePassword/{name}")
 		String changePasswordByUsername(Model model, changePasswordForm form, @PathVariable String name){
 			model.addAttribute("form", form);
@@ -124,11 +123,9 @@ class 	AccountController {
 		}
 
 		@PostMapping("/sendMessage")
-		String sendMessagePost(Model model, MessageForm form){
-			/*MessageEvent messageEvent = new MessageEvent(form.getSender(), accountManager.findByUserAccount(userAccounts.findByUsername(form.getSender()).get()),
-					accountManager.findByUserAccount(userAccounts.findByUsername(form.getReceiver()).get()), form.getMessage());
-			publisher.publishEvent(messageEvent);*/
-			return("sendMessage");
+		String sendMessagePost(Model model, @Valid @ModelAttribute("form") MessageForm form){
+			accountManager.sendMessage(form);
+			return("redirect:/");
 		}
 
 }

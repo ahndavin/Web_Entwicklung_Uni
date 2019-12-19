@@ -73,7 +73,7 @@
                         </form>
                     </li>
                     <li class="nav-item" >
-                    <a class="nav-link" sec:authorize="hasAuthority('MANAGER')"  href="/allAccounts" th:href="@{/allAccounts}" th:text="Accounts">hello</a>
+                    <a class="nav-link" sec:authorize="hasRole('MANAGER')"  href="/allAccounts" th:href="@{/allAccounts}" th:text="Accounts">hello</a>
                     </li>
                     <!--
                     <li class="nav-item">
