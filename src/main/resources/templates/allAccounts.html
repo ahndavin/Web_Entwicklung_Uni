@@ -27,19 +27,29 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="account:${accountList}" >
+    <th:block th:each="account:${accountList}">
+    <tr>
         <td th:text="${account.getUserAccount().username}"></td>
         <td th:text="${account.firstName}"></td>
         <td th:text="${account.lastName}"></td>
         <td th:text="${account.getUserAccount().roles.toList()}"></td>
-        <td><form th:action="@{changePassword/{name}(name=${account.getUserAccount().username})}" method="get" ><button type="submit" th:href="@{changePassword/{name}(name=${account.getUserAccount().username})}" th:text="#{change.password}"></button></form></td>
+        <td> <form th:action="@{deleteAccount/{name}(name=${account.getUserAccount().username})}" method="get" >
+            <button type="submit" th:href="@{deleteAccount/{name}(name=${account.getUserAccount().username})}" th:text="#{deleteAccount}">
+            </button></form></td>
+
+        <td><form th:action="@{changePassword/{name}(name=${account.getUserAccount().username})}" method="get" >
+            <button type="submit" th:href="@{changePassword/{name}(name=${account.getUserAccount().username})}" th:text="#{change.password}">
+            </button></form></td>
 
     </tr>
+        </th:block>
     </tbody>
+
 
 </table>
 <td><form th:action="@{/createAccount}" method="get" >
     <button type="submit" th:href="@{/createAccount}" th:text="#{createAccount.button}"></button></form></td>
 
 </body>
+
 </html>
