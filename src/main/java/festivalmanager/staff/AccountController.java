@@ -62,11 +62,11 @@ class 	AccountController {
 			return "createAccount";
 		}
 
-	@PreAuthorize("hasRole('MANAGER')")
+		@PreAuthorize("hasAuthority('MANAGER')")
 		@GetMapping("/allAccounts")
 		String allAccounts(Model model){
 			model.addAttribute("accountList", accountManager.findAll());
-
+			model.addAttribute("accountManager", accountManager);
 			return "allAccounts";
 		}
 
@@ -99,7 +99,7 @@ class 	AccountController {
 			return "redirect:/";
 		}
 
-		@PreAuthorize("hasRole('MANAGER')")
+		@PreAuthorize("hasAuthority('MANAGER')")
 		@GetMapping("/changePassword/{name}")
 		String changePasswordByUsername(Model model, changePasswordForm form, @PathVariable String name){
 			model.addAttribute("form", form);
@@ -125,7 +125,13 @@ class 	AccountController {
 		@PostMapping("/sendMessage")
 		String sendMessagePost(Model model, @Valid @ModelAttribute("form") MessageForm form){
 			accountManager.sendMessage(form);
-			return("redirect:/");
+			return "redirect:/";
+		}
+
+		@GetMapping("/deleteAccount/{name}")
+		String deleteAccount(Model model, @PathVariable String name){
+			accountManager.deleteAccount(accountManager.findByUserAccount(userAccounts.findByUsername(name).get()).get());
+			return "redirect:/allAccounts";
 		}
 
 }
