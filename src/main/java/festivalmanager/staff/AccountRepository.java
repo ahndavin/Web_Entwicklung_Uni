@@ -1,5 +1,6 @@
 package festivalmanager.staff;
 
+import org.h2.engine.User;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.util.Streamable;
@@ -13,4 +14,5 @@ interface AccountRepository extends CrudRepository<Account, Long> {
 
 
 	Optional<Account> findByUserAccount(UserAccount userAccount);
+
 }

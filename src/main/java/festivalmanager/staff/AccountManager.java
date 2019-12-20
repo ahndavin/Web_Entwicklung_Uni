@@ -4,6 +4,8 @@ import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class AccountManager {
 	public final AccountRepository accounts;
 	public final UserAccountManager userAccounts;
 	private final ApplicationEventPublisher publisher;
+
+	private static final Logger LOG = LoggerFactory.getLogger(AccountManager.class);
+
 
 	AccountManager(AccountRepository accounts, UserAccountManager userAccounts, ApplicationEventPublisher publisher) {
 
@@ -85,9 +90,17 @@ public class AccountManager {
 		publisher.publishEvent(messageEvent);
 	}
 
+
+	public void deleteAccount(Account account){
+		accounts.delete(account);
+		LOG.info("deleting " + account.getUserAccount().getUsername());
+	}
 	public Optional<Account> findByUserAccount(UserAccount userAccount) {
 		return accounts.findByUserAccount(userAccount);
 	}
+
+
+
 
 }
 
