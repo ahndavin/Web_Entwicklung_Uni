@@ -19,14 +19,16 @@ public class StaffDataInitializer implements DataInitializer{
 	private final AccountManager accountManager;
 	public final AccountRepository accounts;
 	public final MessageManagement messageManagement;
+	public final MessageRepository messageRepository;
 	public static final Role MANAGER_ROLE = Role.of("MANAGER");
 
-	public StaffDataInitializer(UserAccountManager userAccountManager, AccountManager accountManager, AccountRepository accounts, MessageManagement messageManagement) {
+	public StaffDataInitializer(UserAccountManager userAccountManager, AccountManager accountManager, AccountRepository accounts, MessageManagement messageManagement, MessageRepository messageRepository) {
 
 		this.accounts = accounts;
 		this.userAccountManager = userAccountManager;
 		this.accountManager = accountManager;
 		this.messageManagement = messageManagement;
+		this.messageRepository = messageRepository;
 	}
 	@Override
 	public void initialize() {
@@ -53,9 +55,10 @@ public class StaffDataInitializer implements DataInitializer{
 		Account TICKET_SALESMAN =  accountManager.createAccount(new CreationForm("TICKET_SALESMAN", "123", "TICKET_SALESMAN", "TICKET_SALESMAN",
 				false, false, true), null);
 
-		LOG.info("Creating default messages");
+
 		messageManagement.createNewMessage(new MessageEvent(MANAGER, MANAGER, SECURITY, "Hallo"));
 		messageManagement.findAll();
+		LOG.info("Creating default messages");
 
 
 	}
