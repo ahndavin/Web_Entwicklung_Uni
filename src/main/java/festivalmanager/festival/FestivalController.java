@@ -174,10 +174,8 @@ public class FestivalController {
 
 	@PostMapping("/festival/inventory/edit")
 	String editFestivalInventory(@RequestParam long festivalId,
-								 @RequestParam String festivalName,
 								 @RequestParam InventoryItemIdentifier itemId,
-								 @RequestParam long quantity,
-								 Model model) {
+								 @RequestParam long quantity) {
 
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
 
@@ -189,7 +187,7 @@ public class FestivalController {
 
 		Festival result = festivals.updateInventoryItem(festival, itemId, Quantity.of(quantity));
 
-		return "redirect:/festival/" + festivalName + "-" + festivalId + "/inventory/edit";
+		return "redirect:/festival/" + festival.getName() + "-" + festivalId + "/inventory/edit";
 	}
 
 	@GetMapping("/festival/{festivalId}/delete")
