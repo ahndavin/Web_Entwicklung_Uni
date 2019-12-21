@@ -16,7 +16,12 @@
                 margin: 50px 0 0 100px;
             }
             #editInventoryLink {
-                margin: 40px 0 0 100px;
+                padding: 40px 0 0 100px;
+                float: left;
+                width: 100%;
+            }
+            .back-button {
+                margin: 130px 0 0 100px;
                 float: left;
             }
         </style>
@@ -55,6 +60,9 @@
             </ul>
         </div>
 
-        <a id="editInventoryLink" th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory/edit'}">Lager editieren</a>
+        <div id="inner-navigation">
+            <a id="editInventoryLink" th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory/edit/'}">Lager editieren</a>
+            <a class="btn btn-dark back-button" th:href="${'/festival/' + festival.name + '-' + festival.id + '/'}">Zurück</a>
+        </div>
     </body>
 </html>
