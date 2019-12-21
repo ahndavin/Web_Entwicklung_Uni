@@ -1,15 +1,15 @@
 = Protokoll Gruppe 26
 
-Treffen am 12.12.2019
+Treffen am 19.12.2019
 
 Ort:      Caspar-David-Friedrich-Straße 19 +
-Beginn:   16:50 Uhr +
-Ende:     17:50 Uhr
+Beginn:   16:55 Uhr +
+Ende:     17:45 Uhr
 
 __Schriftführer:__ Tobias Neubauer
 
 *Nächstes Treffen:* +
-19.12.2019, 16:40 Uhr, Caspar-David-Friedrich-Straße 19
+09.01.2020, 16:40 Uhr, Caspar-David-Friedrich-Straße 19
 
 __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
@@ -17,100 +17,66 @@ __Teilnehmer:__
 - Tom Morgenstern (Kunde/Tutor)
 - Marcus Fiedler (Scrum Master)
 - Davin Ahn
+- Igor Macevic
+- Jonas Hönisch
 - Tobias Neubauer (Schriftführer)
 
 == Bemerkungen
-Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen +
 
-- nächste Woche: vorrangig Cross-Testing
-- über Weihnachten: "frei"
-- im Januar nur noch eine Woche zum Implementieren und eine Woche für Bugs und die Abschlusspräsentation
+_Treffen in der zweiten vorlesungsfreien Woche?_ +
+Oder soll Tom sich unseren Code einfach so mal anschauen und Feedback geben? +
+--> Beschreid geben!
 
-- Dublications laut Sonarqube minimal halten, ab 2% gilt der Code sonst als "failed"
+Einige der Funktionen, welche zum letzten Abgabetermin gefordert waren, waren gar nicht oder nur schlampig implementiert. Zum Beispiel inkonsistente Frontend-Designs im Festival-Package, fehlende Links und Verknüpfungen, keine weiteren Tests hinzugekommen. +
+Deshalb haben wir einen Fehlversuch, nächster Abgabetermin ist der folgende Donnerstag, 22.12., 20 Uhr auf dem master-Branch. +
+Feedback dazu erhalten wir am Montag.
 
-=== Bemerkungen zum Cross-Testing
-- vor der Abgabe sicherstellen, dass über die Navigationsbar alle Komponenten erreicht werden können, da das andere Team sonst keine Möglichkeit zum Testen hat
-- die andere Gruppe bekommt den Stand des master-Branches von Sonntag Nacht
-- Fehler sind okey, jedoch je weniger, umso hilfreicher das Feedback, welches wir erhalten
-- Erstellen eines .adoc-Files, in dem die Zugangsdaten zu den vorgefertigten Accounts stehen
-- wir bekommen Programm der anderen, anhand dessen den cross_testing_report.adoc ausfüllen. Je schneller, umso besser, späteste Abgabe am Sonntag, dem 22.12.
-- Note fürs Cross-Testing ergibt sich daraus, wie gut wir die Verbesserungsvorschläge für unser Programm umsetzen
-
-=== Kundenwunsch:
-Jede Stage auf einem Festival muss einen Zeitplan haben, der die Belegung angibt. Hier sollen über alle Festivaltage alle Künstler aufgelistet sein, die auf der Stage auftreten.
-
-Zum Beispiel: +
-Stage 1:
-|===
-|          |02.12.2019 |03.12.2019 |04.12.2019
-|08:00 Uhr |           |-----      |-----
-|09:00 Uhr |-----      |Katy Perry |Sabaton
-|10:00 Uhr |Rammstein  |           |
-|11:00 Uhr |           |-----      |
-|12:00 Uhr |-----      |           |-----
-|13:00 Uhr |           |-----      |-----
-|14:00 Uhr |-----      |Metallica  |David Guetta
-|15:00 Uhr |P!nk       |           |
-|16:00 Uhr |           |           |-----
-|17:00 Uhr |           |-----      |
-|18:00 Uhr |-----      |-----      |-----
-|19:00 Uhr |-----      |Bernd das Brot      |Dat Adam
-|20:00 Uhr |Die Toten Hosen      |geschlossen      |
-|21:00 Uhr |           |-----      |-----
-|22:00 Uhr |-----      |-----      |-----
-|23:00 Uhr |           |Justin Bieber      |The Chainsmokers
-|24:00 Uhr |           |-----      |-----
-|===
-
+=== Weitere allgemeine Kommentare
+- das Lager bezeichnet erst einmal ein allgemeines Lager der Firma, in dem noch keine Items den Festivals zugewiesen worden sind
+- bei Deadlines geht es immer um den Status des master-Branches, nicht um den des develops
 
 
 === Anmerkungen zum aktuellen Stand des Codes
 
-==== Muss bis Sonntag funktionieren
+==== Muss bis Sonntag funktionieren (20 Uhr, master)
 - Accountübersicht (Accounts erstellen, löschen, bearbeiten(Username und Passwort))
-- Lagerverwaltung (Artikel hinzufügen, bearbeiten, löschen)
+- Lagerverwaltung (Artikel hinzufügen, bearbeiten, löschen; Artikel könnten nach Kategorien wie "Essen", "Trinken", "Gegenstände", ... unterteilt sein; Untergrenze der Artikelanzahl muss festgelegt werden können)
 - Festival löschen oder bearbeiten (nur bevor es stattfindet)
-- Tests! Unittests für die Manager, auch Getter und Setter in anderen Klassen testen für die Code Coverage
-- Messaging-System für Neuigkeiten (z.B. sobald ein Festival gepublished wird), senden vom Manager
-- Accountancy (Einnahmen und Ausgaben)
-- Contracts löschen und bearbeiten
+- Messaging-System für Neuigkeiten (z.B. sobald ein Festival gepublished wird), senden vom Manager; Nachrichten sollen auch an Gruppen (z.B. "alle Ticketseller" geschickt werden können) und es soll auch eine Übersicht über die gesendeten Nachrichten geben
+- Accountancy (auch Ausgaben)
+- Contracts müssen Festivals zugeordnet werden
+- Ticketverkauf soll erst möglich sein, wenn das Festival komplett fertig erstellt ist
 - einheitliche Nav-Bar
+- einheitliches Frontend
 - "Abbrechen"-Button auf den HTML-Seiten, um wieder zurück zu kommen
 
-==== Muss im Januar funktionieren
+==== Muss am 9. Januar funktionieren
+_PROGRAMM MUSS FERTIG SEIN_ +
+
+- alle MUSS-Kriterien
+- wenn etwas gelöscht wird: Zwischenabfrage (Modaldialog/Confirm), ob es wirklich gelöscht werden soll
 - eingeloggte Accounts
+- Personen und Gegenstände müssen Festivals zugeordnet werden können
+- beim Erstellen und Bearbeiten eines Festivals: Dropdown-Auflistung aller verfügbaren Locations zum Auswählen
 - Logo
-- automatisches Nachbestellen im Lager
-- Accountancy als PDF ausdrucken
+- automatisches Nachricht, wenn Nachbestellen im Lager erforderlich ist
+- Accountancy als PDF ausdrucken, einmal als Auflistung pro Festival, einmal eine Übersicht über alle Festivals
 - Personal und Gegenstände spezifischen Festivals zuordnen
 - Location löschen und bearbeiten, wenn sie nicht verwendet wird
+- in Detailansicht von Location: Übersicht, welche Festivals dort stattfinden
 - Line-Up
-- Kundenwunsch
-- Ticket drucken
-
-==== Wurde schon angefangen und muss noch fertig gestellt werden bzw. Verbessserungsvorschläge
-- Festival Erstellung ist bisher nur plain HTML
-- Dropdown-Menü mit den verfügbaren Locations, wenn ein Festival erstellt wird
 - Festival Erstellung nur mit Daten erlauben, die in der Zukunft liegen
 - inputType: Date einstellen. Dann wird ein Kalender zum Klicken aufgemacht (Firefox extra testen!!)
-- Contracts Festivals zuordnen
-- Messaging-System
-- Liste in der Detailansicht von Locations
-- Stage-Erstellung
 - Account sollte nicht ohne Rolle erstellt werden können
 - Bestätigung beim Ticketkauf
-
-==== Fertig implementiert und funktioniert
-- Festivalübersicht
-- Festivalerstellung
-- Einzelansicht Festival
-- Stages
-- Location erstellen und Übersicht
-- Login und Registrierung
-- Lageplan (wird halt von außerhalb unserer Software eingefügt)
-- Contracts erstellen
-
-== Live Vorführung
+- Kundenwunsch
+- Ticket drucken
+- Tests! Unittests für die Manager, auch Getter und Setter in anderen Klassen testen für die Code Coverage; 60% Coverage müssen erreicht sein
+- Crosstesting Ergebnisse und Kritiken umsetzen
+- persistente Datenbank muss angeschaltet sein (Vorsicht mit den Inizializern, entweder löschen, oder erst checken, ob das Objekt schon vorhanden ist, damit Dopplungen vermieden werden können)
+- konsistentes Frontend
+- mit dem Javadoc beginnen (Beispiel siehe Videoshop)
 
 == Retrospektive des letzten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -127,10 +93,19 @@ Stage 1:
 |5   |Test Plan                  |geschlossen      |-
 |6   |Prototyp                   |geschlossen      |-
 |8   |Zwischenpräsentation       |geschlossen      |-
+|11   |Accountancy-Verknüpfung im TicketManagement |geschlossen |-
 |12   |Login                     |geschlossen      |-
 |13   |Logout                    |geschlossen      |-
 |14   |Account erstellen         |geschlossen      |-
+|15   |(Graphische) Festival-Darstellung   |geschlossen |-
+|16   |Festival anlegen          |geschlossen      |-
 |25   |Angebot einholen          |geschlossen      |-
+|29   |Lagerbestand einsehen     |geschlossen      |-
+|30   |Produkte nachbestellen    |geschlossen      |-
+|31   |Produkt hinzufügen zum Lager  |geschlossen  |-
+|35   |Ticketpreis anpassen      |geschlossen      |-
+|37   |Ticket verkaufen          |geschlossen      |-
+
 |===
 
 
@@ -145,9 +120,6 @@ Stage 1:
 |7     |Entwickler-Doku aktuell halten   |-             |Wir alle         |offen
 |9     |Zweisprachigkeit           |-                   |Wir alle         |offen
 |10     |Tickets ausdrucken        |PDF-Umwandlung      |Tobias Neubauer         |offen
-|11     |Accountancy-Verknüpfung im TicketManagement   |-                   |Tobias Neubauer         |offen
-|15     |(Graphische) Festival-Darstellung   |-         |Jonas Hönisch    |offen
-|16     |Festival anlegen          |Doppelbelegung verhindern            |Jonas Hönisch         |offen
 |17     |Lageplan anzeigen   |Visualisierung des Fesitval-Geländes                   |Davin Ahn         |offen
 |18     |Bereiche anpassen   |Funktionen und Struktur einzelner Bereiche abändern   |Davin Ahn         |offen
 |19     |Bereiche sperren   |Einzelne Bereiche müssen gesperrt werden können                   |Davin Ahn         |offen
@@ -159,15 +131,10 @@ Stage 1:
 |26     |Angebot annehmen   |-                  |Igor Macevic         |offen
 |27     |Bühnenbelegung abrufen   |Aktuelle Bühnenbelegung für alle Bühnen einsehen      |Davin Ahn         |offen
 |28     |Besucherzahlen abrufen   |Ins Festival integrieren?    |Jonas Hönisch?         |offen
-|29     |Lagerbestand einsehen   |-                   |Jonas Hönisch         |offen
-|30     |Produkte nachbestellen   |-                   |Jonas Hönisch         |offen
-|31     |Produkt hinzufügen zum Lager   |-                   |Jonas Hönisch         |offen
 |32     |Mindestbestand festlegen   |-                   |Jonas Hönisch         |offen
 |33     |Nachrichten einsehen   |-                   |Marcus Fiedler         |offen
 |34     |Nachrichten versenden   |-                   |Marcus Fiedler         |offen
-|35     |Ticketpreis anpassen   |-                   |Tobias Neubauer         |offen
 |36     |Festival freigeben   |Ticketfreigabe starten                  |Jonas Hönisch         |offen
-|37     |Ticket verkaufen   |Bezahlt, E-mail                   |Tobias Neubauer         |offen
 |38     |Tickets drucken   |-                   |Tobias Neubauer         |offen
 |39     |Personal mieten   |-                   |Marcus Fiedler         |offen
 |40     |Personal zuordnen   |zu Arbeitsstelle                   |Marcus Fiedler         |offen
@@ -194,5 +161,3 @@ Stage 1:
 - Umsetzen aller Muss-Kriterien in Back- und Frontend
 - Tests schreiben, Klassen testen
 - Sonarqube und Jenkins Beschwerden korrigieren
-- time_recording nachtragen!!
-- vorgefertigte Accounts in .adoc-File auflisten
