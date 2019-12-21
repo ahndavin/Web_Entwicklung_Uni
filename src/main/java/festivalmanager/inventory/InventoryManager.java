@@ -1,7 +1,7 @@
 package festivalmanager.inventory;
 
+import org.salespointframework.catalog.Catalog;
 import org.salespointframework.inventory.InventoryItemIdentifier;
-import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Component;
@@ -11,9 +11,11 @@ import java.util.*;
 @Component
 public class InventoryManager {
 	private InventoryRepository inventory;
+	private Catalog<Item> catalog;
 
-	public InventoryManager(InventoryRepository inventory) {
+	public InventoryManager(InventoryRepository inventory, Catalog<Item> catalog) {
 		this.inventory = inventory;
+		this.catalog = catalog;
 	}
 
 	public void save(UniqueInventoryItem item) {
@@ -69,5 +71,22 @@ public class InventoryManager {
 		}
 
 		return categoryItems;
+	}
+
+	public void delete(UniqueInventoryItem item) {
+		inventory.delete(item);
+	}
+
+	public Iterable<Item> findAllNotInStock() {
+		Iterable<Item> allItems = catalog.findAll();
+		List<Item> notInStockItems = new ArrayList<>();
+
+		for(Item item : allItems) {
+			if(inventory.findByProduct(item).isEmpty()) {
+				notInStockItems.add(item);
+			}
+		}
+
+		return notInStockItems;
 	}
 }
