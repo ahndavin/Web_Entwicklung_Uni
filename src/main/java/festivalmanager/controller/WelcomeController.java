@@ -20,6 +20,7 @@ import festivalmanager.staff.Account;
 import festivalmanager.staff.AccountManager;
 import festivalmanager.staff.MessageManagement;
 
+import festivalmanager.staff.MessageRepository;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,23 +35,29 @@ import java.util.Optional;
 public class WelcomeController {
 
 
+	@Autowired
+	private MessageManagement messageManagement;
 
-	public final MessageManagement messageManagement;
-	public final AccountManager accountManager;
+	@Autowired
+	private final AccountManager accountManager;
 
-	WelcomeController(MessageManagement messageManagement, AccountManager accountManager){
-		this.messageManagement = messageManagement;
+	WelcomeController(AccountManager accountManager){
+
 		this.accountManager = accountManager;
+
 	}
 
 	@RequestMapping("/")
-	public String index(Model model, @LoggedIn Optional<UserAccount> userAccount, MessageManagement messageManagement) {
+	public String index(Model model, @LoggedIn Optional<UserAccount> userAccount) {
 		Assert.notNull(messageManagement, "MessageManagement must not be null");
 		if(userAccount.isPresent()) {
 			Account account = accountManager.findByUserAccount(userAccount.get()).get();
 			model.addAttribute("Account", account);
 		}
+
 		model.addAttribute("messageManagement", messageManagement);
+		model.addAttribute("messageList", messageManagement.findAll());
+
 		return "welcome";
 	}
 }
