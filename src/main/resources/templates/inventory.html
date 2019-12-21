@@ -1,12 +1,66 @@
 <!DOCTYPE html>
     <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
-        <title>Festivals Lager</title>
+        <!--  BOOTSTRAP STUFF  -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+              integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+              integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+        <link rel="stylesheet" href="css/style.css" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+        <title>Lager</title>
+
+        <style>
+            #inventoryContainer {
+                margin: 50px 0 0 100px;
+            }
+        </style>
     </head>
     <body>
-        <ul>
-            <li th:each="item : ${inventory}" th:text="${item}"></li>
-        </ul>
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a href="/" class="navbar-brand">
+                <h3 class="mb-0">FVIV FESTIVAL</h3>
+            </a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link ">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/inventory/add" class="nav-link">Add an Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/inventory" class="nav-link active">View Inventory</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="inventoryContainer">
+            <div id="foodContainer">
+                <p>Speisen</p>
+                <ul>
+                    <li th:each="item : ${inventory.findByCategory('food')}" th:text="${item.quantity + 'x ' + item.product.name}"></li>
+                </ul>
+            </div>
+            <div id="drinkContainer">
+                <p>Getränke</p>
+                <ul>
+                    <li th:each="item : ${inventory.findByCategory('drink')}" th:text="${item.quantity + 'x ' + item.product.name}"></li>
+                </ul>
+            </div>
+            <div id="furnitureContainer">
+                <p>Gegenstände</p>
+                <ul>
+                    <li th:each="item : ${inventory.findByCategory('furniture')}" th:text="${item.quantity + 'x ' + item.product.name}"></li>
+                </ul>
+            </div>
+
+            <a href="/inventory/edit">Inventar bearbeiten</a>
+        </div>
     </body>
 </html>

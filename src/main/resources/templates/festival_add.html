@@ -70,7 +70,6 @@
                 <input class="form-control" type="date" th:field="*{endDate}" >
             </div>
 
-
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="amountDaytickets">Anzahl Tagestickets</label>
                 <input class="form-control" type="number" th:field="*{amountDaytickets}" >
@@ -83,12 +82,12 @@
 
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="priceDayticket">Preis Tagesticket</label>
-                <input class="form-control" type="number" th:field="*{priceDayticket}" >
+                <input class="form-control" type="number" step="0.01" th:field="*{priceDayticket}" >
             </div>
 
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="priceCampingticket">Preis Campingticket</label>
-                <input class="form-control" type="number" th:field="*{priceCampingticket}" >
+                <input class="form-control" type="number" step="0.01" th:field="*{priceCampingticket}" >
             </div>
 
             <div class="form-group col-md-8">
