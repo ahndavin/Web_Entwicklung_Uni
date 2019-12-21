@@ -16,74 +16,11 @@
 </head>
 
 <body>
-	<!--  START HERE  -->
-<nav th:include="navigation :: navigation"></nav>
-	<!--  NavBar -->
-<!--
-	<nav class="navbar navbar-expand-md navbar-dark">
-		<a href="" class="navbar-brand">
-			<h3 class="mb-0">FVIV FESTIVAL</h3>
-		</a>
-		<button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="mainNavbar">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a href="/" class="nav-link active">Home</a>
-				</li>
+		<!--  START HERE  -->
 
-				<li class="nav-item">
-					<a th:href="@{/createAccount}" class="nav-link"> Create an Account </a>
-				</li>
-				<li class="nav-item">
-					<a th:href="@{/login}" class="nav-link" sec:authorize="!isAuthenticated()" th:text="#{nav.login}">Login</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" sec:authorize="isAuthenticated()" href="/contractManagement">Contracts</a>
-					<form name="Contracts" th:action="@{/contractManagement}" method="post" th:hidden="true">
-					</form>
-				</li>
-
-
-				<li class="nav-item">
-					<a class="nav-link" sec:authorize="isAuthenticated()" href="/location">Locations</a>
-					<form name="Location" th:action="@{/location.html}" method="post" th:hidden="true">
-					</form>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" sec:authorize="isAuthenticated()" href="/ticketManagement">Tickets</a>
-					<form name="Ticket" th:action="@{/ticketManagement.html}" method="post" th:hidden="true">
-					</form>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/myProfile/{id}(id=${account.getId()})}">Profile</a>
-
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" sec:authorize="isAuthenticated()" href="/ticketManagement">Tickets</a>
-					<form name="Ticket" th:action="@{/ticketManagement.html}" method="post" th:hidden="true">
-					</form>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()"
-						role="menuitem"> Logout </a>
-					<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-						<input hidden type="submit" value="Sign Out" />
-					</form>
-				</li>
-
-
-			</ul>
-		</div>
-	</nav>
--->
-	<!--  Overlay -->
+		<!--  NavBar -->
+		<nav th:include="navigation :: navigation"></nav>
+		<!--  Overlay -->
 	<section class="d-flex align-items-center" id="showcase">
 		<div id="overlay"></div>
 		<div id="header" class="container text-white text-center">
@@ -122,10 +59,54 @@
 			</div>
 		</div>
 		<div class="container text-center" sec:authorize="isAuthenticated()">
-			<p sec:authorize="isAuthenticated()" th:text="${'Hallo ' + #authentication?.name }" th:size="${16}">Hallo Nutzer
-			</p>
-			<p sec:authorize="isAuthenticated()" th:text="${'Du hast die Rolle(n) ' + #authentication?.authorities}">
-				placeholder</p>
+				<div > Hallo [[${Account.firstName}]] </div>
+
+
+				<table class="ui celled table" sec:authorize="!hasAuthority('MANAGER')">
+					<thead>
+					<tr>
+						<th>sender</th>
+						<th>message</th>
+
+					</tr>
+					</thead>
+					<tbody>
+
+					<th:block  th:each="message : ${messageManagement.findByReceiver(Account)}">
+						<tr>
+							<td th:text="${message.sender.getUserAccount().username}"></td>
+							<td th:text="${message.message}"></td>
+						</tr>
+					</th:block>
+					</tbody>
+
+
+				</table>
+			<div sec:authorize="!hasAuthority('MANAGER')" th:if="!${messageManagement.anyMessages(Account)}" th:text="#{noMessages}"></div>
+				<table class="ui celled table" sec:authorize="hasAuthority('MANAGER')">
+
+					<thead>
+					<tr>
+						<th>receiver</th>
+						<th>message</th>
+
+					</tr>
+					</thead>
+					<tbody>
+
+					<th:block  th:each="message : ${messageManagement.findBySender(Account)}">
+						<tr>
+							<td th:text="${message.receiver.getUserAccount().username}"></td>
+							<td th:text="${message.message}"></td>
+						</tr>
+					</th:block>
+					</tbody>
+				</table>
+			<div sec:authorize="hasAuthority('MANAGER')" th:if="!${messageManagement.anySentMessages(Account)}" th:text="#{noSentMessages}"></div>
+
+
+
+
 		</div>
 	</section>
 
