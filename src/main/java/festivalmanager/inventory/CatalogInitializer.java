@@ -32,6 +32,6 @@ public class CatalogInitializer implements DataInitializer {
 		catalog.save(new Item("Schnitzelbrötchen",	 Money.of(5.50, EURO), Money.of(1, EURO),	Quantity.of(10), new String[]{ "food"}));
 
 		catalog.save(new Item("Stehtisch",	 Money.of(0, EURO), Money.of(0, EURO),	Quantity.of(10), new String[]{ "furniture"}));
-		catalog.save(new Item("Bänke",	 	 Money.of(0, EURO), Money.of(0, EURO),	Quantity.of(10), new String[]{ "furniture"}));
+		catalog.save(new Item("Bank",	 	 Money.of(0, EURO), Money.of(0, EURO),	Quantity.of(10), new String[]{ "furniture"}));
 	}
 }
