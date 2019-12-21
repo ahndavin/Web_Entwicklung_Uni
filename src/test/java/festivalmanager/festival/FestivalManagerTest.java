@@ -18,8 +18,8 @@ public class FestivalManagerTest {
 		Festival festivalToSave = new Festival(
 				"test",
 				"test",
-				"01.01.1980",
-				"01.01.1980",
+				"1980-01-01",
+				"1980-01-01",
 				100,
 				100,
 				50.0f,
@@ -43,8 +43,8 @@ public class FestivalManagerTest {
 		Festival f1 = new Festival(
 				"test 1",
 				"test",
-				"11.01.2020",
-				"13.01.2020",
+				"2020-01-11",
+				"202-01-13",
 				100,
 				100,
 				50.0f,
@@ -56,8 +56,8 @@ public class FestivalManagerTest {
 		Festival f2 = new Festival(
 				"test 2",
 				"test",
-				"12.01.2020",
-				"12.01.2020",
+				"2020-01-12",
+				"2020-01-12",
 				100,
 				100,
 				50.0f,

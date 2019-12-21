@@ -45,7 +45,7 @@ public class Festival {
 	private final Map<InventoryItemIdentifier, Quantity> inventory = new HashMap<>();
 
 	@Transient
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 
 	private Festival() {}
