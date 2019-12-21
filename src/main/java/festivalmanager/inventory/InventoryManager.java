@@ -1,7 +1,9 @@
 package festivalmanager.inventory;
 
 import org.salespointframework.inventory.InventoryItemIdentifier;
+import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -49,5 +51,23 @@ public class InventoryManager {
 
 	public Optional<UniqueInventoryItem> findById(InventoryItemIdentifier identifier) {
 		return inventory.findById(identifier);
+	}
+
+	public Iterable<UniqueInventoryItem> findByCategory(String category) {
+		Iterable<UniqueInventoryItem> allItems = findAll();
+		List<UniqueInventoryItem> categoryItems = new ArrayList<>();
+
+		for(UniqueInventoryItem item : allItems) {
+			Streamable<String> categories = item.getProduct().getCategories();
+
+			for(String itemCategory : categories) {
+				if(itemCategory.equals(category)) {
+					categoryItems.add(item);
+					break;
+				}
+			}
+		}
+
+		return categoryItems;
 	}
 }
