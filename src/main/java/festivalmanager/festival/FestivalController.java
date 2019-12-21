@@ -191,4 +191,13 @@ public class FestivalController {
 
 		return "redirect:/festival/" + festivalName + "-" + festivalId + "/inventory/edit";
 	}
+
+	@GetMapping("/festival/{festivalId}/delete")
+	String deleteFestival(@PathVariable long festivalId) {
+		Optional<Festival> festivalOptional = festivals.findById(festivalId);
+
+		festivalOptional.ifPresent(festival -> festivals.delete(festival));
+
+		return "redirect:/festivals";
+	}
 }
