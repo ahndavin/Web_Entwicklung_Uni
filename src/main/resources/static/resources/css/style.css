@@ -1,12 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+*,
+*::before,
+*::after
 body {
 	background: white;
-	
+	font-family: sans-serif;
   }
   
   .navbar {
 	background: black;
 	opacity: 0.8;
-	font-weight: 100;
+  font-weight: 100;
+  font-family: 'Source Sans Pro', sans-serif;
   }
   .navbar-brand h3{
 	font-weight: 100;
@@ -21,7 +26,7 @@ body {
   #home-section {
 	background: url(../img/home.jpg);
 	background-repeat: no-repeat;
-	background-size: cover;
+    	background-size: cover;
 	background-attachment: fixed;
 	min-height: 700px;
   }
