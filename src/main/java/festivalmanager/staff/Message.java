@@ -27,6 +27,8 @@ public class Message {
 
 	}
 
+	public Message(){};
+
 	public String getMessage() {
 		return message;
 	}
