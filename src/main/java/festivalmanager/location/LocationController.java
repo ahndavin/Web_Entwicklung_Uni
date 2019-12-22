@@ -66,7 +66,7 @@ public class LocationController {
 		return "area";
 	}
 
-	@PreAuthorize("hasAuthority('MANAGER')")
+	//@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/location/{location}/area/changeStatus")
 	public String changeAreaStatus(@PathVariable("location") String name, @RequestParam("area") String area) {
 		findArea(findLocation(name), area).toggleLock();
