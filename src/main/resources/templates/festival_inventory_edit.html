@@ -1,37 +1,111 @@
 <!DOCTYPE html>
 <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
+        <!--  BOOTSTRAP STUFF  -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+              integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+              integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+        <link rel="stylesheet" href="css/style.css" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
         <title>Festival Lager</title>
+
+        <style>
+            .form-control {
+                float: left;
+                width: 200px;
+            }
+            .col-form-label {
+                float: left;
+                width: 200px;
+            }
+            #addQuantity {
+                margin: 0 40px;
+            }
+            input.btn.btn-dark {
+                float: left;
+            }
+            .availableInfo {
+                float: left;
+                margin: 0 30px;
+                padding: 6px 0;
+                width: 180px;
+            }
+            #editContainer {
+                margin: 50px 0 0 100px;
+            }
+            #edit-ul {
+                list-style: none;
+                float: left;
+                width: 100%;
+            }
+            .edit-li {
+                float: left;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            #inner-navigation {
+                width: 100%;
+                float: left;
+                margin-top: 75px;
+            }
+        </style>
     </head>
 
     <body>
-        <ul>
-            <li th:each="inventoryItem : ${festivalInventory}">
-                <form th:action="@{/festival/inventory/edit}" method="POST">
-                    <input type="hidden" name="festivalId"   th:value="${festivalId}">
-                    <input type="hidden" name="festivalName" th:value="${festivalName}">
-                    <input type="hidden" name="itemId"       th:value="${inventoryItem.key}">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a href="/" class="navbar-brand">
+                <h3 class="mb-0">FVIV FESTIVAL</h3>
+            </a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link ">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/festival/add" class="nav-link">Create a Festival</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/festivals" class="nav-link">See all existing Festivals</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-                    <p th:text="${stock.findById(inventoryItem.key).get().product.name}"></p>
-                    <input type="number" name="quantity" th:value="${inventoryItem.value}" >
-                    <p th:text="${stock.findById(inventoryItem.key).get().quantity}"></p>
+        <div id="editContainer">
+            <ul id="edit-ul">
+                <li class="edit-li" th:each="inventoryItem : ${festivalInventory}">
+                    <form th:action="@{/festival/inventory/edit}" method="POST">
+                        <input type="hidden" name="festivalId"   th:value="${festivalId}">
+                        <input type="hidden" name="itemId"       th:value="${inventoryItem.key}">
 
-                    <input type="submit" value="Speichern" >
-                </form>
-            </li>
+                        <label class="col-form-label" th:text="${stock.findById(inventoryItem.key).get().product.name}"></label>
+                        <input class="form-control" type="number" name="quantity" th:value="${inventoryItem.value}" >
+                        <p class="availableInfo" th:text="'Noch ' + ${stock.findById(inventoryItem.key).get().quantity} + ' verfügbar'"></p>
+
+                        <input class="btn btn-dark" type="submit" value="Speichern" >
+                    </form>
+                </li>
+            </ul>
 
             <form th:if="${stock.findAllExcept(festivalInventory.keySet()).iterator().hasNext()}" th:action="@{/festival/inventory/edit}" method="POST">
                 <input type="hidden" name="festivalId"   th:value="${festivalId}">
-                <input type="hidden" name="festivalName" th:value="${festivalName}">
 
-                <select name="itemId">
+                <select class="col-form-label" name="itemId">
                     <option th:each="item : ${stock.findAllExcept(festivalInventory.keySet())}" th:text="${item.product.name + ' (' + item.quantity + ')'}" th:value="${item.id}"></option>
                 </select>
-                <input type="number" name="quantity" min="0">
+                <input class="form-control" id="addQuantity" type="number" name="quantity" min="0">
 
-                <input type="submit" value="Hinzufügen">
+                <input class="btn btn-dark" type="submit" value="Hinzufügen">
             </form>
-        </ul>
+
+            <div id="inner-navigation">
+                <a class="btn btn-dark back-button" href="../">Zurück</a>
+            </div>
+        </div>
     </body>
 </html>

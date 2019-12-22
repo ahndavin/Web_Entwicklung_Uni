@@ -74,4 +74,7 @@ public class ContractController {
 		model.addAttribute("contract", contractsRepository.findAll());
 		return "contractManagement";
 	}
+	public ContractsRepository getContracts(){
+		return this.contractsRepository;
+	}
 }

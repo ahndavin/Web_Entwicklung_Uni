@@ -109,6 +109,10 @@ public class FestivalManager {
 		return save(festival);
 	}
 
+	public void delete(Festival festival) {
+		festivalRepository.delete(festival);
+	}
+
 	public long getCount() {
 		return festivalRepository.count();
 	}

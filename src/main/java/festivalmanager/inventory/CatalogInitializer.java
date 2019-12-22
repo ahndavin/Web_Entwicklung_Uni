@@ -24,11 +24,14 @@ public class CatalogInitializer implements DataInitializer {
 			return;
 		}
 
-		catalog.save(new Item("Cola", 		Money.of(3.00, EURO), Money.of(0.3, EURO), Quantity.of(10), new String[]{ "drink", "test" }));
-		catalog.save(new Item("Wasser", 		Money.of(2.00, EURO), Money.of(0.2, EURO), Quantity.of(10), new String[]{ "drink", "special" }));
+		catalog.save(new Item("Cola", 		Money.of(3.00, EURO), Money.of(0.3, EURO), Quantity.of(10), new String[]{ "drink" }));
+		catalog.save(new Item("Wasser", 		Money.of(2.00, EURO), Money.of(0.2, EURO), Quantity.of(10), new String[]{ "drink" }));
 		catalog.save(new Item("Bier", 		Money.of(3.50, EURO), Money.of(0.5, EURO), Quantity.of(10), new String[]{ "drink" }));
 
 		catalog.save(new Item("Bratwurst", 	Money.of(4.00, EURO), Money.of(1, EURO),	Quantity.of(10), new String[]{ "food"}));
 		catalog.save(new Item("Schnitzelbrötchen",	 Money.of(5.50, EURO), Money.of(1, EURO),	Quantity.of(10), new String[]{ "food"}));
+
+		catalog.save(new Item("Stehtisch",	 Money.of(0, EURO), Money.of(0, EURO),	Quantity.of(10), new String[]{ "furniture"}));
+		catalog.save(new Item("Bank",	 	 Money.of(0, EURO), Money.of(0, EURO),	Quantity.of(10), new String[]{ "furniture"}));
 	}
 }

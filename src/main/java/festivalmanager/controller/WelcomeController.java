@@ -16,9 +16,17 @@
 package festivalmanager.controller;
 
 import festivalmanager.staff.Account;
+
+import festivalmanager.staff.AccountManager;
+import festivalmanager.staff.MessageManagement;
+
+import festivalmanager.staff.MessageRepository;
+import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
@@ -26,9 +34,30 @@ import java.util.Optional;
 @Controller
 public class WelcomeController {
 
+
+	@Autowired
+	private MessageManagement messageManagement;
+
+	@Autowired
+	private final AccountManager accountManager;
+
+	WelcomeController(AccountManager accountManager){
+
+		this.accountManager = accountManager;
+
+	}
+
 	@RequestMapping("/")
-	public String index(Model model, @LoggedIn Account account) {
-		model.addAttribute("account", account);
+	public String index(Model model, @LoggedIn Optional<UserAccount> userAccount) {
+		Assert.notNull(messageManagement, "MessageManagement must not be null");
+		if(userAccount.isPresent()) {
+			Account account = accountManager.findByUserAccount(userAccount.get()).get();
+			model.addAttribute("Account", account);
+		}
+
+		model.addAttribute("messageManagement", messageManagement);
+		model.addAttribute("messageList", messageManagement.findAll());
+
 		return "welcome";
 	}
 }

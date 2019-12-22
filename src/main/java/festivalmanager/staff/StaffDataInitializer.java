@@ -17,12 +17,18 @@ public class StaffDataInitializer implements DataInitializer{
 
 	private final UserAccountManager userAccountManager;
 	private final AccountManager accountManager;
+	public final AccountRepository accounts;
+	public final MessageManagement messageManagement;
+	public final MessageRepository messageRepository;
+	public static final Role MANAGER_ROLE = Role.of("MANAGER");
 
+	public StaffDataInitializer(UserAccountManager userAccountManager, AccountManager accountManager, AccountRepository accounts, MessageManagement messageManagement, MessageRepository messageRepository) {
 
-	public StaffDataInitializer(UserAccountManager userAccountManager, AccountManager accountManager) {
-
+		this.accounts = accounts;
 		this.userAccountManager = userAccountManager;
 		this.accountManager = accountManager;
+		this.messageManagement = messageManagement;
+		this.messageRepository = messageRepository;
 	}
 	@Override
 	public void initialize() {
@@ -34,16 +40,26 @@ public class StaffDataInitializer implements DataInitializer{
 
 		LOG.info("Creating default users and customers.");
 
-		userAccountManager.create("MANAGER", Password.UnencryptedPassword.of("123"), Role.of("MANAGER"));
+		userAccountManager.create("MANAGER", Password.UnencryptedPassword.of("123"));
+		userAccountManager.findByUsername("MANAGER").get().add(MANAGER_ROLE);
+
+
+		Account MANAGER = accounts.save(new Account(userAccountManager.findByUsername("MANAGER").get(), "MANAGER", "MANAGER"));
 
 		var password = "123";
 
-		accountManager.createAccount(new CreationForm("CATERING", "123", "CATERING", "CATERING",
+		Account CATERING = accountManager.createAccount(new CreationForm("CATERING", "123", "CATERING", "CATERING",
 				true, false, false), null);
-		accountManager.createAccount(new CreationForm("SECURITY", "123", "SECURITY", "SECURITY",
+		Account SECURITY = accountManager.createAccount(new CreationForm("SECURITY", "123", "SECURITY", "SECURITY",
 				false, true, false), null);
-		accountManager.createAccount(new CreationForm("TICKET_SALESMAN", "123", "TICKET_SALESMAN", "TICKET_SALESMAN",
+		Account TICKET_SALESMAN =  accountManager.createAccount(new CreationForm("TICKET_SALESMAN", "123", "TICKET_SALESMAN", "TICKET_SALESMAN",
 				false, false, true), null);
+
+
+		messageManagement.createNewMessage(new MessageEvent(MANAGER, MANAGER, SECURITY, "Hallo"));
+		messageManagement.findAll();
+		LOG.info("Creating default messages");
+
 
 	}
 

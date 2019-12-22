@@ -2,6 +2,7 @@ package festivalmanager.location;
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Objects;
 import javax.validation.Valid;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import festivalmanager.contract.*;
+import festivalmanager.festival.FestivalRepository;
 
 @Controller
 public class LocationController {
@@ -45,9 +49,11 @@ public class LocationController {
 		return "createLocation";
 	}
 	
-	@GetMapping("/location/{location}")
-	public String detailLocation(Model model, @PathVariable("location") String name) {
+	@GetMapping(path = "/location/{location}")
+	public String detailLocation(Model model, @PathVariable("location") String name){
 		model.addAttribute("location", findLocation(name));
+		model.addAttribute("contractList", locationManager.findByName());
+		model.addAttribute("festivalList", locationManager.findFestivals());
 		
 		return "detailLocation";
 	}
@@ -121,9 +127,9 @@ public class LocationController {
 	
 	@PostMapping("/location/{location}/area/{area}/stage/{stage}/createLineup")
 	public String addLineup(@Valid Lineup lineup, @PathVariable("location") String name, @PathVariable("area") String area, @PathVariable("stage") String stage) {
-		findLineups(findStages(findLocation(name).getAllAreas(), area), stage).add(lineup);
+		findLineups(Objects.requireNonNull(findStages(findLocation(name).getAllAreas(), area)), stage).add(lineup);
 		
-		return "redirect:detailLineup";
+		return "redirect:lineup";
 	}
 
 	@GetMapping("/location/{location}/area/{area}/stage/{stage}/createLineup")
@@ -131,6 +137,7 @@ public class LocationController {
 		model.addAttribute("location", findLocation(name));
 		model.addAttribute("area", findArea(findLocation(name), zone));
 		model.addAttribute("lineup", lineup);
+		model.addAttribute("contractList", locationManager.findByName().toList());
 
 		return "createLineup";
 	}

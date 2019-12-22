@@ -64,7 +64,9 @@
       			<h3 th:text="'Stage: ' + ${stage.getName()}"></h3>				
 				<li class="list-group-item">
 					<ul class="list-group">
-						<img class="concert_bill" th:src="@{/resources/img/location/lineup_poster/{image}.jpg(image=${stage.getName()})}" width="100%" height="100%">
+						<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage/' + ${stage.getName()} + '/lineup'" class="text-light">
+							<img class="concert_bill" th:src="@{/resources/img/location/lineup_poster/{image}.jpg(image=${stage.getName()})}" width="100%" height="100%">
+						</a>
 						<br>
 						<button id="btn_" class="btn btn-lg btn-dark">
 		       		 		<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage/' + ${stage.getName()} + '/lineup'" class="text-light">Detail Lineup</a>
