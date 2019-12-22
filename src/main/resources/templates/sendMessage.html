@@ -41,8 +41,7 @@
         </div>
         <br/>
         <fieldset th:if="${multimessage}" th:field="*{role}">
-            <input type="radio" id="NONE" name="role" value="">
-            <label for="NONE"> none</label>
+
             <input type="radio" id="CATERING" name="role" value="CATERING" >
             <label for="CATERING" th:text="catering"></label>
             <input type="radio" id="SECURITY" name="role" value="SECURITY">
