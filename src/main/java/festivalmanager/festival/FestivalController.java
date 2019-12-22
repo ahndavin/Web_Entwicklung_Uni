@@ -129,7 +129,7 @@ public class FestivalController {
 			redirectAttributes.addFlashAttribute("error", "Fehler beim editieren des Festivals.");
 		}
 
-		return "redirect:/festival/" + festivalForm.getName() + "-" + festivalForm.getId();
+		return "redirect:/festivals";
 	}
 
 
