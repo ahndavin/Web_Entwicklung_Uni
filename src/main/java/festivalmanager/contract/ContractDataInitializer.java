@@ -18,7 +18,7 @@ public class ContractDataInitializer implements DataInitializer {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void initialize() {
-		if (contractsRepository.findAll().iterator().hasNext()) {
+		/* if (contractsRepository.findAll().iterator().hasNext()) {
 			return;
 		}
 
@@ -27,6 +27,6 @@ public class ContractDataInitializer implements DataInitializer {
 		contractsRepository.save(new Contract("name", "artist12", "price", "accepted", "technicianscount",
 			"workinghours", "workerswage"));
 		contractsRepository.save(new Contract("name", "artist123", "price", "accepted", "technicianscount",
-			"workinghours", "workerswage"));
+			"workinghours", "workerswage")); */
 	}
 }
