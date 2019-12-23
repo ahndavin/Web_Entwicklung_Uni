@@ -30,7 +30,7 @@ Dieses Programm bietet mehrere Funktionen. Sie können mehr als ein Festival ver
 * Fehlende Features
 ** Als unangemeldeter Nutzer auf die Festivalübersicht zugreifen. Zum Beispiel als Festivalbesucher
 * Interaktion mit der Anwendung (Usability)
-** auf manchen Seiten fehlen "Zürück" Buttons um leichter navigieren zu können
+** auf manchen Seiten fehlen "Zurück" Buttons um leichter navigieren zu können
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
