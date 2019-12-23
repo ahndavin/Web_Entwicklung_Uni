@@ -1,0 +1,198 @@
+= Protokoll Gruppe 26
+
+Treffen am 12.12.2019
+
+Ort:      Caspar-David-Friedrich-Straße 19 +
+Beginn:   16:50 Uhr +
+Ende:     17:50 Uhr
+
+__Schriftführer:__ Tobias Neubauer
+
+*Nächstes Treffen:* +
+19.12.2019, 16:40 Uhr, Caspar-David-Friedrich-Straße 19
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Tom Morgenstern (Kunde/Tutor)
+- Marcus Fiedler (Scrum Master)
+- Davin Ahn
+- Tobias Neubauer (Schriftführer)
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+- nächste Woche: vorrangig Cross-Testing
+- über Weihnachten: "frei"
+- im Januar nur noch eine Woche zum Implementieren und eine Woche für Bugs und die Abschlusspräsentation
+
+- Dublications laut Sonarqube minimal halten, ab 2% gilt der Code sonst als "failed"
+
+=== Bemerkungen zum Cross-Testing
+- vor der Abgabe sicherstellen, dass über die Navigationsbar alle Komponenten erreicht werden können, da das andere Team sonst keine Möglichkeit zum Testen hat
+- die andere Gruppe bekommt den Stand des master-Branches von Sonntag Nacht
+- Fehler sind okey, jedoch je weniger, umso hilfreicher das Feedback, welches wir erhalten
+- Erstellen eines .adoc-Files, in dem die Zugangsdaten zu den vorgefertigten Accounts stehen
+- wir bekommen Programm der anderen, anhand dessen den cross_testing_report.adoc ausfüllen. Je schneller, umso besser, späteste Abgabe am Sonntag, dem 22.12.
+- Note fürs Cross-Testing ergibt sich daraus, wie gut wir die Verbesserungsvorschläge für unser Programm umsetzen
+
+=== Kundenwunsch:
+Jede Stage auf einem Festival muss einen Zeitplan haben, der die Belegung angibt. Hier sollen über alle Festivaltage alle Künstler aufgelistet sein, die auf der Stage auftreten.
+
+Zum Beispiel: +
+Stage 1:
+|===
+|          |02.12.2019 |03.12.2019 |04.12.2019
+|08:00 Uhr |           |-----      |-----
+|09:00 Uhr |-----      |Katy Perry |Sabaton
+|10:00 Uhr |Rammstein  |           |
+|11:00 Uhr |           |-----      |
+|12:00 Uhr |-----      |           |-----
+|13:00 Uhr |           |-----      |-----
+|14:00 Uhr |-----      |Metallica  |David Guetta
+|15:00 Uhr |P!nk       |           |
+|16:00 Uhr |           |           |-----
+|17:00 Uhr |           |-----      |
+|18:00 Uhr |-----      |-----      |-----
+|19:00 Uhr |-----      |Bernd das Brot      |Dat Adam
+|20:00 Uhr |Die Toten Hosen      |geschlossen      |
+|21:00 Uhr |           |-----      |-----
+|22:00 Uhr |-----      |-----      |-----
+|23:00 Uhr |           |Justin Bieber      |The Chainsmokers
+|24:00 Uhr |           |-----      |-----
+|===
+
+
+
+=== Anmerkungen zum aktuellen Stand des Codes
+
+==== Muss bis Sonntag funktionieren
+- Accountübersicht (Accounts erstellen, löschen, bearbeiten(Username und Passwort))
+- Lagerverwaltung (Artikel hinzufügen, bearbeiten, löschen)
+- Festival löschen oder bearbeiten (nur bevor es stattfindet)
+- Tests! Unittests für die Manager, auch Getter und Setter in anderen Klassen testen für die Code Coverage
+- Messaging-System für Neuigkeiten (z.B. sobald ein Festival gepublished wird), senden vom Manager
+- Accountancy (Einnahmen und Ausgaben)
+- Contracts löschen und bearbeiten
+- einheitliche Nav-Bar
+- "Abbrechen"-Button auf den HTML-Seiten, um wieder zurück zu kommen
+
+==== Muss im Januar funktionieren
+- eingeloggte Accounts
+- Logo
+- automatisches Nachbestellen im Lager
+- Accountancy als PDF ausdrucken
+- Personal und Gegenstände spezifischen Festivals zuordnen
+- Location löschen und bearbeiten, wenn sie nicht verwendet wird
+- Line-Up
+- Kundenwunsch
+- Ticket drucken
+
+==== Wurde schon angefangen und muss noch fertig gestellt werden bzw. Verbessserungsvorschläge
+- Festival Erstellung ist bisher nur plain HTML
+- Dropdown-Menü mit den verfügbaren Locations, wenn ein Festival erstellt wird
+- Festival Erstellung nur mit Daten erlauben, die in der Zukunft liegen
+- inputType: Date einstellen. Dann wird ein Kalender zum Klicken aufgemacht (Firefox extra testen!!)
+- Contracts Festivals zuordnen
+- Messaging-System
+- Liste in der Detailansicht von Locations
+- Stage-Erstellung
+- Account sollte nicht ohne Rolle erstellt werden können
+- Bestätigung beim Ticketkauf
+
+==== Fertig implementiert und funktioniert
+- Festivalübersicht
+- Festivalerstellung
+- Einzelansicht Festival
+- Stages
+- Location erstellen und Übersicht
+- Login und Registrierung
+- Lageplan (wird halt von außerhalb unserer Software eingefügt)
+- Contracts erstellen
+
+== Live Vorführung
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|1   |guestbook Erweiterung      |geschlossen      |-
+|2   |Prototyp Pflichtenheft     |geschlossen      |-
+|3   |Videoshop Erweiterung      |geschlossen      |-
+|4   |Entwickler Dokumentation   |geschlossen      |-
+|5   |Test Plan                  |geschlossen      |-
+|6   |Prototyp                   |geschlossen      |-
+|8   |Zwischenpräsentation       |geschlossen      |-
+|12   |Login                     |geschlossen      |-
+|13   |Logout                    |geschlossen      |-
+|14   |Account erstellen         |geschlossen      |-
+|25   |Angebot einholen          |geschlossen      |-
+|===
+
+
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel                      |Beschreibung        |Verantwortlicher |Status
+|7     |Entwickler-Doku aktuell halten   |-             |Wir alle         |offen
+|9     |Zweisprachigkeit           |-                   |Wir alle         |offen
+|10     |Tickets ausdrucken        |PDF-Umwandlung      |Tobias Neubauer         |offen
+|11     |Accountancy-Verknüpfung im TicketManagement   |-                   |Tobias Neubauer         |offen
+|15     |(Graphische) Festival-Darstellung   |-         |Jonas Hönisch    |offen
+|16     |Festival anlegen          |Doppelbelegung verhindern            |Jonas Hönisch         |offen
+|17     |Lageplan anzeigen   |Visualisierung des Fesitval-Geländes                   |Davin Ahn         |offen
+|18     |Bereiche anpassen   |Funktionen und Struktur einzelner Bereiche abändern   |Davin Ahn         |offen
+|19     |Bereiche sperren   |Einzelne Bereiche müssen gesperrt werden können                   |Davin Ahn         |offen
+|20     |Bühnenpositionen ändern   |-                   |Davin Ahn         |offen
+|21     |Toilettenbestückung ändern   |-                   |Davin Ahn         |offen
+|22     |Catering-Stände anpassen   |Speisekarte muss abgeändert werden können                  |Jonas Hönisch (?)   |offen
+|23     |Line-Up erstellen   |Aus verfügbaren Verträgen auf verfügbare Bühnen mappen|Davin Ahn, Igor Macevic         |offen
+|24     |Line-Up anzeigen   |-                   |Davin Ahn, Igor Macevic         |offen
+|26     |Angebot annehmen   |-                  |Igor Macevic         |offen
+|27     |Bühnenbelegung abrufen   |Aktuelle Bühnenbelegung für alle Bühnen einsehen      |Davin Ahn         |offen
+|28     |Besucherzahlen abrufen   |Ins Festival integrieren?    |Jonas Hönisch?         |offen
+|29     |Lagerbestand einsehen   |-                   |Jonas Hönisch         |offen
+|30     |Produkte nachbestellen   |-                   |Jonas Hönisch         |offen
+|31     |Produkt hinzufügen zum Lager   |-                   |Jonas Hönisch         |offen
+|32     |Mindestbestand festlegen   |-                   |Jonas Hönisch         |offen
+|33     |Nachrichten einsehen   |-                   |Marcus Fiedler         |offen
+|34     |Nachrichten versenden   |-                   |Marcus Fiedler         |offen
+|35     |Ticketpreis anpassen   |-                   |Tobias Neubauer         |offen
+|36     |Festival freigeben   |Ticketfreigabe starten                  |Jonas Hönisch         |offen
+|37     |Ticket verkaufen   |Bezahlt, E-mail                   |Tobias Neubauer         |offen
+|38     |Tickets drucken   |-                   |Tobias Neubauer         |offen
+|39     |Personal mieten   |-                   |Marcus Fiedler         |offen
+|40     |Personal zuordnen   |zu Arbeitsstelle                   |Marcus Fiedler         |offen
+|41     |Personal abrechnen   |-                   |Marcus Fiedler, Tobias Neubauer         |offen
+|42     |Veranstaltungsleiter abrechnen   |-                   |Marcus Fiedler, Tobias Neubauer         |offen
+|43     |Gegenstände mieten   | und somit ins Lager einpflegen?                  |Jonas Hönisch?         |offen
+|44     |Betriebswirtschaftliche Daten anzeigen   |-                   |Tobias Neubauer         |offen
+|45     |Aktive Accounts anzeigen   |-                   |Marcus Fiedler         |offen
+|46     |Product abrechnen   |Catering-Personal verkauft Lebensmittel                   |?         |offen
+|47     |Kostenaufstellung   |-                   |Tobias Neubauer         |offen
+|48     |Account-Berechtigungen ändern   |OPTIONAL                   |Marcus Fiedler         |offen
+|49     |Übersicht über Nutzeraccounts   |OPTIONAL                  |Marcus Fiedler         |offen
+|50     |Ausbau des Nachrichtensystems   |-                   |Marcus Fiedler         |offen
+|51     |Tickets kontrollieren   |-                   |Tobias Neubauer         |offen
+|52     |Firmenlogo   |-                   |Wir alle         |offen
+|53     |Dopplung, vgl. 37   |-                   |Tobias Neubauer         |offen
+|54     |Accountancy als PDF   |-                   |Tobias Neubauer         |offen
+|55     |Manager als Singleton   |Immer ein Singleton                   |Marcus Fiedler         |offen
+|56     |Alle Packages mit Accountancy verbinden   |-                   |Wir alle         |offen
+|===
+
+== To-Do bis zum nächsten Treffen:
+- Es sollte alles ziemlich fertig sein!
+- Umsetzen aller Muss-Kriterien in Back- und Frontend
+- Tests schreiben, Klassen testen
+- Sonarqube und Jenkins Beschwerden korrigieren
+- time_recording nachtragen!!
+- vorgefertigte Accounts in .adoc-File auflisten

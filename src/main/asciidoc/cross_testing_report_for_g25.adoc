@@ -1,0 +1,38 @@
+= Cross-Testing Feedback
+
+__Durchführende Gruppe:__ 26
+__Anwendung von Gruppe:__ 25
+
+== Getestetes System
+Dieses Programm bietet mehrere Funktionen. Sie können mehr als ein Festival verwalten und die Finanz-, Lager-, Personal- und Veranstaltungsortverwaltung sowie den Ticketverkauf jedes Festivals in einem Programm verwalten.
+
+== Fehler-Report
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+|===
+|Pfad |Parameter |Beschreibung |Rückgabe
+| /festivals/createGlobalLogins | Passwortfeld leer durch DOM Manipulation | - | HTML 500 Fehlermeldung
+| /festivals/createGlobalLogins | Hourly Wage leer durch DOM Manipulation | - | HTML 500 Fehlermeldung
+
+| /inventory/edit | - | Klick auf delete neben einem Item | HTML 500 Fehlermeldung
+| /inventory/edit | beliebige Anzahl an Items nachbestellen | - | HTML 500 Fehlermeldung
+| /inventory/newItem | Itemname leer | - | HTML 500 Fehlermeldung
+
+| /-1/messages | - | keine Funktion im Frontend implementiert oder sehr versteckt | -
+
+| /1/edit | Startdatum: 30.12.275759, Enddatum: 05.01.275760 | Eingabe eines Jahres das sehr weit in der Zukunft liegt | HTML 500 Fehlermeldung
+| /1/delete | - | auf Festival löschen geklickt und bestätigt nachdem eine Stage gebucht wurde | HTML 500 Fehlermeldung, Festival overview funktioniert nicht mehr
+|===
+
+== Sonstiges
+* Optik der Anwendung
+** aufgeräumt und übersichtlich, aber sehr schlicht
+** beim Inventory sowie beim Inventory-edit ist bei den Drinks die "Available" Spalte eingerückt. Vllt beheben
+* Fehlende Features
+** Als unangemeldeter Nutzer auf die Festivalübersicht zugreifen. Zum Beispiel als Festivalbesucher
+* Interaktion mit der Anwendung (Usability)
+** auf manchen Seiten fehlen "Zurück" Buttons um leichter navigieren zu können
+
+== Verbesserungsvorschläge
+* Was kann noch weiter verbessert werden?
+** man kann als Mangager auf Tickets klicken, es wird aber eine 403 Fehlermeldung angezeigt. Am besten gar nicht darauf verlinken

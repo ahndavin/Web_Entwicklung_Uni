@@ -1,0 +1,66 @@
+= Protokoll Gruppe 26
+
+Treffen am 21.10.2019
+
+Ort:      Caspar-David-Friedrich-Straße 19 +
+Beginn:   16:50 Uhr +
+Ende:     18:00 Uhr
+
+__Schriftführer:__ Tobias Neubauer
+
+*Nächstes Treffen:* +
+24.10.2019, 16:40 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Tom Morgenstern (Kunde/Tutor)
+- Marcus Fiedler (Scrum Master)
+- Davin Ahn
+- Igor Macevic
+- Jonas Hönisch
+- Tobias Neubauer (Schriftführer)
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+- Cyrill trat aus Projekt aus
+- Einzelschritte commiten!
+- in Salespoint einarbeiten
+- timerecording in Minuten
+- empfohlene Reihenfolge: git add -> commit -> fetch -> pull -> push
+- neuer Gruppentermin: Donnerstags, 6. DS
+
+- weitere Details zur Aufgabenbesprechung: siehe Issues auf Github
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|1   |guestbook Erweiterung      |offen      |bis Mittwoch, 23.10.2019
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|2     |Prototyp Pflichtenheft    |Wir fangen mit dem Pflichtenheft an!           |Wir alle               |offen
+|3     |Videoshop Erweiterung     |Erweiterung des Codes                          |Wir alle               |offen
+|===
+
+== To-Do bis zum nächsten Treffen:
+- mit Videoshop beschäftigen
+- in Salespoint einlesen
+- Aufgaben aufteilen und anfangen, an dem Pflichtenheft zu arbeiten
