@@ -70,8 +70,8 @@
                                     <th>Selling Tickets</th>
                                     <th>Edit</th>
                                     <th>Inventory</th>
-                                    <th>Contracts</th>
                                     <th>Accountancy</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,27 +88,21 @@
                                         <i class="fas fa-archive"></i>
                                     </a></td>
                                     <td>
-                                        <form method="get" role="form" class="ui form" name="form" th:action="@{/contracts/list}">
-                                            <input type="hidden" th:value="${festival.getId()}" name="id"/>
-                                            <button type="submit" class="ui button">
-                                                <i class="fas fa-dollar-sign"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                    <td>
                                         <form method="get" role="form" class="ui form" name="form" th:action="@{/accountancy}">
                                             <input type="hidden" th:value="${festival.getId()}" name="id"/>
                                             <button type="submit" class="ui button">
                                                 <i class="fas fa-dollar-sign"></i>
                                             </button>
                                         </form>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
+        </div>
+        </div>
         </div>
     </section>
 
