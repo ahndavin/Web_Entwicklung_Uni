@@ -2,6 +2,8 @@ package festivalmanager.festival;
 
 import javax.persistence.*;
 
+import festivalmanager.contract.Contract;
+import festivalmanager.contract.ContractList;
 import festivalmanager.economics.EconomicList;
 import festivalmanager.inventory.Item;
 import festivalmanager.ticket.TicketBuilder;
@@ -32,6 +34,7 @@ public class Festival {
 	private TicketBuilder ticketBuilder;
 
 	private EconomicList economicList = new EconomicList();
+	private ContractList contractList = new ContractList();
 
 	private int maxVisitors;
 	private int currentVisitors;
@@ -190,6 +193,14 @@ public class Festival {
 
 	public void setEconomicList(EconomicList economicList){
 		this.economicList = economicList;
+	}
+
+	public List<Contract> getContractList(){
+		return this.contractList.getList();
+	}
+
+	public void setContractList(ContractList contractList){
+		this.contractList = contractList;
 	}
 
 	public String toString() {

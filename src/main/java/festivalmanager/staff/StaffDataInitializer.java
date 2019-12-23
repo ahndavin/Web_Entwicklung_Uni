@@ -50,13 +50,15 @@ public class StaffDataInitializer implements DataInitializer{
 
 		Account CATERING = accountManager.createAccount(new CreationForm("CATERING", "123", "CATERING", "CATERING",
 				true, false, false), null);
-		Account SECURITY = accountManager.createAccount(new CreationForm("SECURITY", "123", "SECURITY", "SECURITY",
+		Account SECURITY1 = accountManager.createAccount(new CreationForm("SECURITY1", "123", "SECURITY1", "SECURITY1",
+				false, true, false), null);
+		Account SECURITY2 = accountManager.createAccount(new CreationForm("SECURITY2", "123", "SECURITY2", "SECURITY2",
 				false, true, false), null);
 		Account TICKET_SALESMAN =  accountManager.createAccount(new CreationForm("TICKET_SALESMAN", "123", "TICKET_SALESMAN", "TICKET_SALESMAN",
 				false, false, true), null);
 
 
-		messageManagement.createNewMessage(new MessageEvent(MANAGER, MANAGER, SECURITY, "Hallo"));
+		messageManagement.createNewMessage(new MessageEvent(MANAGER, MANAGER, SECURITY1, "Hallo"));
 		messageManagement.findAll();
 		LOG.info("Creating default messages");
 
