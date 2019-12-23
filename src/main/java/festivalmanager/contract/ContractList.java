@@ -24,4 +24,14 @@ public class ContractList {
         contractList.add(contract);
         System.out.println(contractList.toString());
     }
+
+	public void delete(Contract delete) {
+        List<Contract> contractList2 = new ArrayList<>();
+        for(Contract contract : contractList){
+            if(contract != delete){
+                contractList2.add(contract);
+            }
+        }
+        contractList = contractList2;
+	}
 }
