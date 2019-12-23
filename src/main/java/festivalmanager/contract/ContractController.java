@@ -6,23 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import festivalmanager.contract.Contract;
 import festivalmanager.contract.ContractsRepository;
+import festivalmanager.economics.EconomicManager;
+import festivalmanager.festival.Festival;
+import festivalmanager.festival.FestivalIdForm;
+import festivalmanager.festival.FestivalManager;
 
 @Controller
 @RequestMapping("/contracts/")
 public class ContractController {
 
 	private final ContractsRepository contractsRepository;
+    public final EconomicManager economicManager;
+	public final FestivalManager festivalManager;
+	private Festival festivalForCreation;
 
 	@Autowired
-	public ContractController(ContractsRepository contractsRepository) {
+	public ContractController(ContractsRepository contractsRepository, EconomicManager economicManager, FestivalManager festivalManager) {
 		this.contractsRepository = contractsRepository;
+		this.economicManager = economicManager;
+		this.festivalManager = festivalManager;
 	}
 
 	@GetMapping("create")
@@ -60,7 +71,6 @@ public class ContractController {
 		/*if(contract.getAccepted()){
 			economicManager.add(contract.totalCost(), contract.getName(), festivalForCreation);
 		}
-
 		 */
 		model.addAttribute("contract", contract);
 		return "update-Contract";

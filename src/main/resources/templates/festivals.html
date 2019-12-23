@@ -70,8 +70,8 @@
                                     <th>Selling Tickets</th>
                                     <th>Edit</th>
                                     <th>Inventory</th>
+                                    <th>Contracts</th>
                                     <th>Accountancy</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,15 +102,13 @@
                                                 <i class="fas fa-dollar-sign"></i>
                                             </button>
                                         </form>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
-        </div>
-        </div>
         </div>
     </section>
 
@@ -155,25 +153,18 @@
 
 
 
-<!--
-
+<!--  
     <body>
     <div th:each="festival : ${festivals}">
         <a th:href="${'/festival/' + festival.urlName + '-' + festival.id}">
             <p th:text="${festival.name + ' in ' + festival.location + ' von, bis: ' + festival.formattedDate}"></p>
         </a>
-
         <ul>
             <li th:each="item : ${festival.plan}" th:text="${item}"></li>
         </ul>
     </div>
-
     <p th:if="${error != null}" th:text="${error}"></p>
-
     <a style="position: relative;top: 100px;font-weight: bold;" href="/festival/add">Festival hinzufügen</a>
 </body>
-
 </html>
-
-
  -->
