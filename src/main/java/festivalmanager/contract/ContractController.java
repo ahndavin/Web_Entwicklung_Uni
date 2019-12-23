@@ -31,25 +31,37 @@ public class ContractController {
 	}
 
 	@GetMapping("list")
-	public String showUpdateForm(Model model) {
-		model.addAttribute("contract", contractsRepository.findAll());
+	public String showUpdateForm(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
+		festivalForCreation = economicManager.findById(festivalIdForm.getId());
+		if(result.hasErrors()){
+			return "festivals";
+		}
+
+		model.addAttribute("contract", festivalForCreation.getContractList().getList());
 		return "contractManagement";
 	}
 
 	@PostMapping("add")
-	public String addContract(@Valid Contract contract, BindingResult result, Model model) {
+	public String addContract(@Valid @ModelAttribute Contract contract, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "createContract";
 		}
-
 		contractsRepository.save(contract);
-		return "redirect:list";
+		festivalForCreation.getContractList().add(contract);
+		festivalManager.save(festivalForCreation);
+		//economicManager.add(contract.totalCost(), contract.getName(), festivalForCreation);
+		return "redirect:/festivals";
 	}
 
 	@GetMapping("edit/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
 		Contract contract = contractsRepository.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("Invalid Contract Id:" + id));
+		/*if(contract.getAccepted()){
+			economicManager.add(contract.totalCost(), contract.getName(), festivalForCreation);
+		}
+
+		 */
 		model.addAttribute("contract", contract);
 		return "update-Contract";
 	}
@@ -71,6 +83,7 @@ public class ContractController {
 		Contract contract = contractsRepository.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("Invalid contract Id:" + id));
 		contractsRepository.delete(contract);
+		festivalForCreation.getContractList().delete(contract);
 		model.addAttribute("contract", contractsRepository.findAll());
 		return "contractManagement";
 	}

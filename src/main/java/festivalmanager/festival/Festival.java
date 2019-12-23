@@ -195,8 +195,8 @@ public class Festival {
 		this.economicList = economicList;
 	}
 
-	public List<Contract> getContractList(){
-		return this.contractList.getList();
+	public ContractList getContractList(){
+		return contractList;
 	}
 
 	public void setContractList(ContractList contractList){
