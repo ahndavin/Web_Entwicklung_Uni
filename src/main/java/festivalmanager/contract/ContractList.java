@@ -34,4 +34,7 @@ public class ContractList {
         }
         contractList = contractList2;
 	}
+	public int size(){
+    	return contractList.size();
+	}
 }
