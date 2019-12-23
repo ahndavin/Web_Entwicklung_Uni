@@ -68,9 +68,11 @@ public class ContractController {
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
 		Contract contract = contractsRepository.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("Invalid Contract Id:" + id));
-		if(contract.getAccepted() == true){
+		/*if(contract.getAccepted()){
 			economicManager.add(contract.totalCost(), contract.getName(), festivalForCreation);
 		}
+
+		 */
 		model.addAttribute("contract", contract);
 		return "update-Contract";
 	}
