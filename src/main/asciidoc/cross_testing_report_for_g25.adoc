@@ -27,6 +27,7 @@ Dieses Programm bietet mehrere Funktionen. Sie können mehr als ein Festival ver
 == Sonstiges
 * Optik der Anwendung
 ** aufgeräumt und übersichtlich, aber sehr schlicht
+** beim Inventory sowie beim Inventory-edit ist bei den Drinks die "Available" Spalte eingerückt. Vllt beheben
 * Fehlende Features
 ** Als unangemeldeter Nutzer auf die Festivalübersicht zugreifen. Zum Beispiel als Festivalbesucher
 * Interaktion mit der Anwendung (Usability)
