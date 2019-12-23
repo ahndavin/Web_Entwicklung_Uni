@@ -60,7 +60,7 @@ public class ContractController {
 
 		contractsRepository.save(contract);
 		festivalForCreation.getContractList().add(contract);
-	
+		festivalManager.save(festivalForCreation);
 		return "redirect:/festivals";
 	}
 
@@ -89,6 +89,7 @@ public class ContractController {
 		Contract contract = contractsRepository.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("Invalid contract Id:" + id));
 		contractsRepository.delete(contract);
+		festivalForCreation.getContractList().delete(contract);
 		model.addAttribute("contract", contractsRepository.findAll());
 		return "contractManagement";
 	}
