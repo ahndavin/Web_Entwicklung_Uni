@@ -1,33 +1,73 @@
+<body xmlns="http://www.w3.org/1999/html">
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+
+    <!--  BOOTSTRAP STUFF  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+    <title>Send Message</title>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+
 </head>
 <body>
-
+<nav th:include="navigation :: navigation"></nav>
+<div class="container text-center">
+    <div>
+        <a th:href="@{{name}(name=${sender})}">
+        <button id="single" type="submit"  th:text="#{message.single}"></button>
+        </a>
+        <a th:href="@{{name}?multimessage=true (name=${sender})}">
+        <button id="multi" type="submit"  th:text="#{message.multi}"></button>
+        </a>
+    </div>
 <form method="post" role="form" class="ui form" id="form" th:action="@{/sendMessage}" th:object="${form}">
         <div class="field">
-            <label th:text="#{createMessage.sender}" for="sender">sender</label>
-            <input id="sender" name="sender" th:field="*{sender}" th:errorclass="fieldError" type="text" required="required"/>
+
+            <labelfor="sender"> </label>
+            <input type="hidden"  id="sender" name="sender" th:value="${sender}" th:errorclass="fieldError"  required="required"/>
         </div>
         <br/>
 
-        <div class="field">
-            <label th:text="#{createMessage.reciever}" for="receiver">reciever</label>
+        <div class="field" th:if="!${multimessage}">
+            <label th:text="#{createMessage.reciever}" for="receiver">reciever</label><br/>
             <input id="receiver" name="receiver" th:field="*{receiver}" th:errorclass="fieldError" type="text" required="required"/>
         </div>
         <br/>
+        <fieldset th:if="${multimessage}" th:field="*{role}">
 
+            <input type="radio" id="CATERING" name="role" value="CATERING" >
+            <label for="CATERING" th:text="catering"></label>
+            <input type="radio" id="SECURITY" name="role" value="SECURITY">
+            <label for="SECURITY" th:text="security"></label>
+            <input type="radio" id="TICKET_SALESMAN" name="role" value="TICKET_SALESMAN">
+            <label for="TICKET_SALESMAN" >ticket salesman</label>
+
+        </fieldset>
         <div class="field">
-            <label th:text="#{createMessage.message}" for="message">message</label>
-            <input id="message" name="message" th:field="*{message}" th:errorclass="fieldError" type="text" required="required"/>
+            <label th:text="#{createMessage.message}" for="message">message</label><br/>
+
+            <textarea cols="50" id="message" name="message" required="required" rows="4"
+                      th:errorclass="fieldError" th:field="*{message}"> </textarea>
         </div>
         <br/>
 
-        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light" th:text="#{createMessage.submit}">
-            Send
+
+
+
+
+
+
+        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light" th:text="#{message.send}">
+
         </button>
     </form>
+</div>
 </body>
 </html>
