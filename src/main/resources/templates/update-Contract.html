@@ -77,7 +77,7 @@
 
 							<div class="form-group col-md-8">
 								<label for="accepted" class="col-form-label">Accepted</label> <input
-									type="checkbox" th:field="*{accepted}" class="form-control"
+									type="text" th:field="*{accepted}" class="form-control"
 									id="accepted" placeholder="accepted"> <span
 									th:if="${#fields.hasErrors('accepted')}" th:errors="accepted"
 									class="text-danger"></span>
