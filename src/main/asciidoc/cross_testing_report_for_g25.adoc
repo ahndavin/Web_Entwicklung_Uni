@@ -26,8 +26,12 @@ Dieses Programm bietet mehrere Funktionen. Sie können mehr als ein Festival ver
 
 == Sonstiges
 * Optik der Anwendung
+** aufgeräumt und übersichtlich, aber sehr schlicht
 * Fehlende Features
+** Als unangemeldeter Nutzer auf die Festivalübersicht zugreifen. Zum Beispiel als Festivalbesucher
 * Interaktion mit der Anwendung (Usability)
+** auf manchen Seiten fehlen "Zürück" Buttons um leichter navigieren zu können
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
+** man kann als Mangager auf Tickets klicken, es wird aber eine 403 Fehlermeldung angezeigt. Am besten gar nicht darauf verlinken
