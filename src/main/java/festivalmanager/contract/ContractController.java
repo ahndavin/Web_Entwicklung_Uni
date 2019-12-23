@@ -57,10 +57,10 @@ public class ContractController {
 		if (result.hasErrors()) {
 			return "createContract";
 		}
-
 		contractsRepository.save(contract);
 		festivalForCreation.getContractList().add(contract);
 		festivalManager.save(festivalForCreation);
+		//economicManager.add(contract.totalCost(), contract.getName(), festivalForCreation);
 		return "redirect:/festivals";
 	}
 
@@ -68,6 +68,9 @@ public class ContractController {
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
 		Contract contract = contractsRepository.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("Invalid Contract Id:" + id));
+		if(contract.getAccepted() == true){
+			economicManager.add(contract.totalCost(), contract.getName(), festivalForCreation);
+		}
 		model.addAttribute("contract", contract);
 		return "update-Contract";
 	}
