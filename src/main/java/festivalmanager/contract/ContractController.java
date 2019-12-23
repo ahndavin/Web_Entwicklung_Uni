@@ -6,34 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import festivalmanager.contract.Contract;
 import festivalmanager.contract.ContractsRepository;
-import festivalmanager.economics.EconomicManager;
-import festivalmanager.festival.Festival;
-import festivalmanager.festival.FestivalIdForm;
-import festivalmanager.festival.FestivalManager;
 
 @Controller
 @RequestMapping("/contracts/")
 public class ContractController {
 
 	private final ContractsRepository contractsRepository;
-    public final EconomicManager economicManager;
-	public final FestivalManager festivalManager;
-	private Festival festivalForCreation;
 
 	@Autowired
-	public ContractController(ContractsRepository contractsRepository, EconomicManager economicManager, FestivalManager festivalManager) {
+	public ContractController(ContractsRepository contractsRepository) {
 		this.contractsRepository = contractsRepository;
-		this.economicManager = economicManager;
-		this.festivalManager = festivalManager;
 	}
 
 	@GetMapping("create")
@@ -42,27 +31,19 @@ public class ContractController {
 	}
 
 	@GetMapping("list")
-	public String showUpdateForm(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
-		festivalForCreation = economicManager.findById(festivalIdForm.getId());
-		if(result.hasErrors()){
-			return "festivals";
-		}
-	
-		model.addAttribute("contract", festivalForCreation.getContractList());
+	public String showUpdateForm(Model model) {
+		model.addAttribute("contract", contractsRepository.findAll());
 		return "contractManagement";
 	}
 
 	@PostMapping("add")
-	public String addContract(@Valid @ModelAttribute("form") ContractForm contractForm, BindingResult result, Model model) {
+	public String addContract(@Valid Contract contract, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "createContract";
 		}
 
-		System.out.println(contractForm.getName() + contractForm.getArtist() + contractForm.getPrice() + contractForm.getAccepted() + contractForm.getTechniciansCount() + contractForm.getWorkingHours() + contractForm.getWorkersWage());
-		Contract contract = new Contract(contractForm.getName(), contractForm.getArtist(), contractForm.getPrice(), contractForm.getAccepted(), contractForm.getTechniciansCount(), contractForm.getWorkingHours(), contractForm.getWorkersWage());
 		contractsRepository.save(contract);
-		festivalForCreation.getContractList().add(contract);
-		return "redirect:/festivals";
+		return "redirect:list";
 	}
 
 	@GetMapping("edit/{id}")
