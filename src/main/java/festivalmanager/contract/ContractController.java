@@ -47,21 +47,20 @@ public class ContractController {
 		if(result.hasErrors()){
 			return "festivals";
 		}
-	
-		model.addAttribute("contract", festivalForCreation.getContractList());
+
+		model.addAttribute("contract", festivalForCreation.getContractList().getList());
 		return "contractManagement";
 	}
 
 	@PostMapping("add")
-	public String addContract(@Valid @ModelAttribute("form") ContractForm contractForm, BindingResult result, Model model) {
+	public String addContract(@Valid @ModelAttribute Contract contract, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "createContract";
 		}
 
-		System.out.println(contractForm.getName() + contractForm.getArtist() + contractForm.getPrice() + contractForm.getAccepted() + contractForm.getTechniciansCount() + contractForm.getWorkingHours() + contractForm.getWorkersWage());
-		Contract contract = new Contract(contractForm.getName(), contractForm.getArtist(), contractForm.getPrice(), contractForm.getAccepted(), contractForm.getTechniciansCount(), contractForm.getWorkingHours(), contractForm.getWorkersWage());
 		contractsRepository.save(contract);
 		festivalForCreation.getContractList().add(contract);
+	
 		return "redirect:/festivals";
 	}
 
