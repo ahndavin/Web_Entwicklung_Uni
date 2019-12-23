@@ -22,7 +22,6 @@ public class ContractList {
 
     public void add(Contract contract){
         contractList.add(contract);
-        System.out.println(contractList.toString());
     }
 
 	public void delete(Contract delete) {
