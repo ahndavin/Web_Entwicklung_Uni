@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
+import festivalmanager.festival.*;
+
+import java.util.Queue;
+
+
 @Entity
 public class Contract {
 
@@ -23,25 +28,28 @@ public class Contract {
 		private String artist;
 
 		@Column(name = "price")
-		private int price;
+		private String price;
 
 		@NotBlank(message = "Accepted is mandatory")
 		@Column(name = "accepted")
 		private String accepted;
 
+		@NotBlank(message = "Technicianscount is mandatory")
 		@Column(name = "technicianscount")
-		private int technicianscount;
+		private String technicianscount;
 
+		@NotBlank(message = "Workinghours are mandatory")
 		@Column(name = "workinghours")
-		private int workinghours;
+		private String workinghours;
 
+		@NotBlank(message = "Workerswage are mandatory")
 		@Column(name = "workerswage")
-		private int workerswage;
+		private String workerswage;
 
 		public Contract(){}
 
-		public Contract(String name, String artist, int price, String accepted, int technicianscount,
-						int workinghours, int workerswage) {
+		public Contract(String name, String artist, String price, String accepted, String technicianscount,
+						String workinghours, String workerswage) {
 			this.name = name;
 			this.artist = artist;
 			this.price = price;
@@ -75,11 +83,11 @@ public class Contract {
 			this.artist = artist;
 		}
 
-		public int getPrice() {
+		public String getPrice() {
 			return price;
 		}
 
-		public void setPrice(int price) {
+		public void setPrice(String price) {
 			this.price = price;
 		}
 
@@ -87,11 +95,11 @@ public class Contract {
 			return accepted;
 		}
 
-		public int getWorkerswage() {
+		public String getWorkerswage() {
 			return workerswage;
 		}
 
-		public void setWorkerswage(int workerswage) {
+		public void setWorkerswage(String workerswage) {
 			this.workerswage = workerswage;
 		}
 
@@ -99,24 +107,24 @@ public class Contract {
 			this.accepted = accepted;
 		}
 
-		public int getTechnicianscount() {
+		public String getTechnicianscount() {
 			return technicianscount;
 		}
 
-		public int getWorkinghours() {
+		public String getWorkinghours() {
 			return workinghours;
 		}
 
-		public void setWorkinghours(int workinghours) {
+		public void setWorkinghours(String workinghours) {
 			this.workinghours = workinghours;
 		}
 
-		public void setTechnicianscount(int technicianscount) {
+		public void setTechnicianscount(String technicianscount) {
 			this.technicianscount = technicianscount;
 		}
 
-		public int totalCost(){
-			return this.price + this.workinghours * this.workerswage * this.technicianscount;
+		public Integer totalCost(){
+			return Integer.parseInt(this.price) + (Integer.parseInt(this.workinghours) * Integer.parseInt(this.workerswage) * Integer.parseInt(this.technicianscount));
 		}
 
 		public String toString(){
