@@ -32,25 +32,27 @@
                     <li class="nav-item">
                     <a th:href="@{/login}" class="nav-link" sec:authorize="!isAuthenticated()" th:text="#{nav.login}">Login</a>
                     </li>
-            
+                    <!-- Contracts werden nun bei den Festivals erstellt -->
+                    <!--
                     <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/contracts/list">Contracts</a>
                     <form name="Contracts" th:action="@{/contractManagement}" method="post" th:hidden="true">
                     </form>
                     </li>
-            
-                    <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/location">Locations</a>
-                    <form name="Location" th:action="@{/location.html}" method="post" th:hidden="true">
-                    </form>
-                    </li>
-                    <!--
-                    <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/location">Staff</a>
-                    <form name="Accounts" th:action="@{/allAccounts.html}" method="post" th:hidden="true">
-                    </form>
-                    </li>
                     -->
+
+                   <li class="nav-item">
+                   <a class="nav-link" sec:authorize="isAuthenticated()" href="/location">Locations</a>
+                   <form name="Location" th:action="@{/location.html}" method="post" th:hidden="true">
+                   </form>
+                   </li>
+                   <!--
+                   <li class="nav-item">
+                   <a class="nav-link" sec:authorize="isAuthenticated()" href="/location">Staff</a>
+                   <form name="Accounts" th:action="@{/allAccounts.html}" method="post" th:hidden="true">
+                   </form>
+                   </li>
+                   -->
             
                     <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/ticketManagement">Tickets</a>
@@ -71,7 +73,7 @@
 
                     <li class="nav-item" sec:authorize="isAuthenticated()">
 
-                        <a class="nav-link" href="/changePassword"> change Password</a>
+                        <a class="nav-link" href="/changePassword">Settings</a>
                         <form name="Ticket" th:action="@{/festivals.html}" method="post" th:hidden="true">
                         </form>
                     </li>

@@ -192,6 +192,17 @@ public class Festival {
 		this.economicList = economicList;
 	}
 
+<<<<<<< HEAD
+=======
+	public ContractList getContractList(){
+		return contractList;
+	}
+
+	public void setContractList(ContractList contractList){
+		this.contractList = contractList;
+	}
+
+>>>>>>> develop_before_contract_stuff
 	public String toString() {
 		return 	this.id + ": " +
 				this.name + " in " +

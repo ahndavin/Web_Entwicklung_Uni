@@ -30,9 +30,8 @@ public class Contract {
 		@Column(name = "price")
 		private String price;
 
-		@NotBlank(message = "Accepted is mandatory")
 		@Column(name = "accepted")
-		private String accepted;
+		private boolean accepted;
 
 		@NotBlank(message = "Technicianscount is mandatory")
 		@Column(name = "technicianscount")
@@ -48,8 +47,13 @@ public class Contract {
 
 		public Contract(){}
 
+<<<<<<< HEAD
 		public Contract(String name, String artist, String price, String accepted, String technicianscount,
 						String workinghours, String workerswage) {
+=======
+		public Contract(String name, String artist, int price, boolean accepted, int technicianscount,
+						int workinghours, int workerswage) {
+>>>>>>> develop_before_contract_stuff
 			this.name = name;
 			this.artist = artist;
 			this.price = price;
@@ -91,7 +95,7 @@ public class Contract {
 			this.price = price;
 		}
 
-		public String getAccepted() {
+		public boolean getAccepted() {
 			return accepted;
 		}
 
@@ -103,7 +107,7 @@ public class Contract {
 			this.workerswage = workerswage;
 		}
 
-		public void setAccepted(String accepted) {
+		public void setAccepted(boolean accepted) {
 			this.accepted = accepted;
 		}
 
