@@ -4,7 +4,7 @@ __Durchführende Gruppe:__ 26
 __Anwendung von Gruppe:__ 25
 
 == Getestetes System
-Welche Aufgabe/Problemstellung löst die Anwendung.
+Dieses Programm bietet mehrere Funktionen. Sie können mehr als ein Festival verwalten und die Finanz-, Lager-, Personal- und Veranstaltungsortverwaltung sowie den Ticketverkauf jedes Festivals in einem Programm verwalten.
 
 == Fehler-Report
 // See http://asciidoctor.org/docs/user-manual/#tables
