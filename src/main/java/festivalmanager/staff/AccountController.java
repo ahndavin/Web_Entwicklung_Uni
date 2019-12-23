@@ -116,32 +116,22 @@ class 	AccountController {
 			return "redirect:/allAccounts";
 		}
 
-
-
-		@GetMapping("/deleteAccount/{name}")
-		String deleteAccount(Model model, @PathVariable String name){
-			accountManager.deleteAccount(accountManager.findByUserAccount(userAccounts.findByUsername(name).get()).get());
-			return "redirect:/allAccounts";
-		}
-
-		@GetMapping("/sendMessage/{name}")
-		String sendMessage(Model model, MessageForm form, @PathVariable String name, @RequestParam(required = false) Boolean multimessage){
-
-			boolean multiMessage = Boolean.TRUE.equals(multimessage);
-
-			model.addAttribute("multimessage", multiMessage);
-
+		@GetMapping("/sendMessage")
+		String sendMessage(Model model, MessageForm form){
 			model.addAttribute("form", form);
-			model.addAttribute("sender", name);
-
-			return "/sendMessage"  ;
-
+			return "sendMessage";
 		}
 
 		@PostMapping("/sendMessage")
 		String sendMessagePost(Model model, @Valid @ModelAttribute("form") MessageForm form){
 			accountManager.sendMessage(form);
 			return "redirect:/";
+		}
+
+		@GetMapping("/deleteAccount/{name}")
+		String deleteAccount(Model model, @PathVariable String name){
+			accountManager.deleteAccount(accountManager.findByUserAccount(userAccounts.findByUsername(name).get()).get());
+			return "redirect:/allAccounts";
 		}
 
 }
