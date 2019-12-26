@@ -27,7 +27,7 @@ public class Contract {
 
 		@NotBlank(message = "Accepted is mandatory")
 		@Column(name = "accepted")
-		private String accepted;
+		private Boolean accepted;
 
 		@Column(name = "technicianscount")
 		private int technicianscount;
@@ -85,7 +85,7 @@ public class Contract {
 			this.price = price;
 		}
 
-		public String getAccepted() {
+		public Boolean getAccepted() {
 			return accepted;
 		}
 
@@ -97,7 +97,7 @@ public class Contract {
 			this.workerswage = workerswage;
 		}
 
-		public void setAccepted(String accepted) {
+		public void setAccepted(Boolean accepted) {
 			this.accepted = accepted;
 		}
 
