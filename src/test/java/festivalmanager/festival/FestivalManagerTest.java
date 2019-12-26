@@ -44,7 +44,7 @@ public class FestivalManagerTest {
 				"test 1",
 				"test",
 				"2020-01-11",
-				"202-01-13",
+				"2020-01-13",
 				100,
 				100,
 				50.0f,
