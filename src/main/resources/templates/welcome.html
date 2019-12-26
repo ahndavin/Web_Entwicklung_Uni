@@ -62,7 +62,7 @@
 				<div > Hallo [[${Account.firstName}]] </div>
 
 
-				<table class="ui celled table" sec:authorize="!hasAuthority('MANAGER')">
+				<table class="ui celled table" sec:authorize="isAuthenticated()">
 					<thead>
 					<tr>
 						<th>sender</th>
@@ -82,8 +82,8 @@
 
 
 				</table>
-			<div sec:authorize="!hasAuthority('MANAGER')" th:if="!${messageManagement.anyMessages(Account)}" th:text="#{noMessages}"></div>
-				<table class="ui celled table" sec:authorize="hasAuthority('MANAGER')">
+			<div sec:authorize="hasRole('MANAGER')" th:if="${messageManagement.anyMessages(Account)}" th:text="#{noMessages}"></div>
+				<table class="ui celled table" sec:authorize="hasRole('MANAGER')">
 
 					<thead>
 					<tr>
@@ -102,8 +102,8 @@
 					</th:block>
 					</tbody>
 				</table>
-			<div sec:authorize="hasAuthority('MANAGER')" th:if="!${messageManagement.anySentMessages(Account)}" th:text="#{noSentMessages}"></div>
-			<div sec:authorize="hasAuthority('MANAGER')">
+			<div sec:authorize="hasRole('MANAGER')" th:if="!${messageManagement.anySentMessages(Account)}" th:text="#{noSentMessages}"></div>
+			<div sec:authorize="hasRole('MANAGER')">
 				<form th:action="@{sendMessage/{name}(name=${Account.getUserAccount().username})}" method="get" >
 				<button type="submit" th:href="@{sendMessage/{name}(name=${Account.getUserAccount().username})}" th:text="#{sendNewMessage}">
 				</button>
