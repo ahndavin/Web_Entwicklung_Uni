@@ -1,0 +1,331 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+  <!--  BOOTSTRAP STUFF  -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+</head>
+
+<body>
+  <div th:fragment="section3">
+
+    <!-- Section1 User -->
+    <div th:each="festival,iter : ${festivals}" th:if="${iter.index == 0}" class="streak streak-photo streak-long-2 "
+      sec:authorize="!isAuthenticated()"
+      style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/46.jpg');">
+      <div class="flex-center mask rgba-black-strong">
+        <div class="text-center white-text">
+          <h2 class="font-weight-bold mb-3 pt-4 mt-4" th:text="${'Festival: ' + festival.name + ' comming soon!'}"></h2>
+          <script>
+
+            var deadline = new Date("Dec 26, 19 13:40").getTime();
+            var x = setInterval(function () {
+              var now = new Date().getTime();
+              var t = deadline - now;
+              var days = Math.floor(t / (1000 * 60 * 60 * 24));
+              var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+
+
+              document.getElementById("days").innerHTML = days;
+              document.getElementById("hours").innerHTML = hours;
+              document.getElementById("minutes").innerHTML = minutes;
+              if (t < 0) {
+                clearInterval(x);
+                document.getElementById("days").innerHTML = "";
+                document.getElementById("hours").innerHTML = "EXPIRED";
+                document.getElementById("minutes").innerHTML = "";
+              }
+            }, 1000); 
+          </script>
+          <p class="font-weight-bold white-text">Festival1. startdate Artist1.starttime</p>
+
+          <!--Grid row-->
+          <div class="row mt-5 mb-5">
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-4">
+              <hr class="white mx-5">
+              <h1 class="display-4 font-weight-bold white-text">
+                <strong id="days"></strong>
+              </h1>
+
+              <hr class="white mx-5">
+              <p class="font-weight-bold spacing">DAYS</p>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-4">
+              <h1 class="display-4 font-weight-bold white-text rgba-white-light mx-4 py-3 mt-3">
+                <strong id="hours"></strong>
+              </h1>
+              <p class="font-weight-bold spacing pt-3">HOURS</p>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-4">
+              <hr class="white mx-5">
+              <h1 class="display-4 font-weight-bold white-text">
+                <strong id="minutes"></strong>
+              </h1>
+              <hr class="white mx-5">
+              <p class="font-weight-bold spacing">MINS</p>
+            </div>
+            <!--Grid column-->
+
+
+          </div>
+          <!--Grid row-->
+        </div>
+      </div>
+    </div>
+    <!-- Section1 Manager -->
+    <section sec:authorize="hasAuthority('MANAGER')" id="accountancy" class="mt-5 mb-5">
+
+      <div class="streak streak-photo streak-long-2"
+        style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/46.jpg');">
+        <div class="flex-center mask rgba-black-strong">
+          <div class="text-center white-text">
+            <h2 class="font-weight-bold mb-3 pt-4 mt-4">Festival " Festival1.Name" coming soon!</h2>
+            <p id="demo"></p>
+
+            <script>
+              document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+            </script>
+            <p class="font-weight-bold white-text">Festival1. startdate Artist1.starttime</p>
+
+            <!--Grid row-->
+            <div class="row mt-5 mb-5">
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <hr class="white mx-5">
+                <h1 class="display-4 font-weight-bold white-text">
+                  <strong>20</strong>
+                </h1>
+
+                <hr class="white mx-5">
+                <p class="font-weight-bold spacing">DAYS</p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <h1 class="display-4 font-weight-bold white-text rgba-white-light mx-4 py-3 mt-3">
+                  <strong>12</strong>
+                </h1>
+                <p class="font-weight-bold spacing pt-3">HOURS</p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <hr class="white mx-5">
+                <h1 class="display-4 font-weight-bold white-text">
+                  <strong>35</strong>
+                </h1>
+                <hr class="white mx-5">
+                <p class="font-weight-bold spacing">MINS</p>
+              </div>
+              <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+          </div>
+        </div>
+      </div>
+
+
+    </section>
+
+    <!-- Section1 Catering -->
+    <section sec:authorize="hasAuthority('CATERING')" id="inventory" class="mt-5 mb-5">
+
+      <div class="streak streak-photo streak-long-2"
+        style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/46.jpg');">
+        <div class="flex-center mask rgba-black-strong">
+          <div class="text-center white-text">
+            <h2 class="font-weight-bold mb-3 pt-4 mt-4">Festival " Festival1.Name" coming soon!</h2>
+            <p id="demo"></p>
+
+            <script>
+              document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+            </script>
+            <p class="font-weight-bold white-text">Festival1. startdate Artist1.starttime</p>
+
+            <!--Grid row-->
+            <div class="row mt-5 mb-5">
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <hr class="white mx-5">
+                <h1 class="display-4 font-weight-bold white-text">
+                  <strong>20</strong>
+                </h1>
+
+                <hr class="white mx-5">
+                <p class="font-weight-bold spacing">DAYS</p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <h1 class="display-4 font-weight-bold white-text rgba-white-light mx-4 py-3 mt-3">
+                  <strong>12</strong>
+                </h1>
+                <p class="font-weight-bold spacing pt-3">HOURS</p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <hr class="white mx-5">
+                <h1 class="display-4 font-weight-bold white-text">
+                  <strong>35</strong>
+                </h1>
+                <hr class="white mx-5">
+                <p class="font-weight-bold spacing">MINS</p>
+              </div>
+              <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Section1 SECURITY -->
+    <section sec:authorize="hasAuthority('SECURITY')" id="features" class="mt-5 mb-5">
+
+      <div class="streak streak-photo streak-long-2"
+        style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/46.jpg');">
+        <div class="flex-center mask rgba-black-strong">
+          <div class="text-center white-text">
+            <h2 class="font-weight-bold mb-3 pt-4 mt-4">Festival " Festival1.Name" coming soon!</h2>
+            <p id="demo"></p>
+
+            <script>
+              document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+            </script>
+            <p class="font-weight-bold white-text">Festival1. startdate Artist1.starttime</p>
+
+            <!--Grid row-->
+            <div class="row mt-5 mb-5">
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <hr class="white mx-5">
+                <h1 class="display-4 font-weight-bold white-text">
+                  <strong>20</strong>
+                </h1>
+
+                <hr class="white mx-5">
+                <p class="font-weight-bold spacing">DAYS</p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <h1 class="display-4 font-weight-bold white-text rgba-white-light mx-4 py-3 mt-3">
+                  <strong>12</strong>
+                </h1>
+                <p class="font-weight-bold spacing pt-3">HOURS</p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <hr class="white mx-5">
+                <h1 class="display-4 font-weight-bold white-text">
+                  <strong>35</strong>
+                </h1>
+                <hr class="white mx-5">
+                <p class="font-weight-bold spacing">MINS</p>
+              </div>
+              <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Section1 TICKET_SALESMAN -->
+    <section sec:authorize="hasAuthority('TICKET_SALESMAN')" id="ticketsell" class="mt-5 mb-5">
+
+      <div class="streak streak-photo streak-long-2"
+        style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/46.jpg');">
+        <div class="flex-center mask rgba-black-strong">
+          <div class="text-center white-text">
+            <h2 class="font-weight-bold mb-3 pt-4 mt-4">Festival " Festival1.Name" coming soon!</h2>
+            <p id="demo"></p>
+
+            <script>
+              document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+            </script>
+            <p class="font-weight-bold white-text">Festival1. startdate Artist1.starttime</p>
+
+            <!--Grid row-->
+            <div class="row mt-5 mb-5">
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <hr class="white mx-5">
+                <h1 class="display-4 font-weight-bold white-text">
+                  <strong>20</strong>
+                </h1>
+
+                <hr class="white mx-5">
+                <p class="font-weight-bold spacing">DAYS</p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <h1 class="display-4 font-weight-bold white-text rgba-white-light mx-4 py-3 mt-3">
+                  <strong>12</strong>
+                </h1>
+                <p class="font-weight-bold spacing pt-3">HOURS</p>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-4">
+                <hr class="white mx-5">
+                <h1 class="display-4 font-weight-bold white-text">
+                  <strong>35</strong>
+                </h1>
+                <hr class="white mx-5">
+                <p class="font-weight-bold spacing">MINS</p>
+              </div>
+              <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+
+</html>
