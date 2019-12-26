@@ -2,6 +2,8 @@ package festivalmanager.festival;
 
 import javax.persistence.*;
 
+import festivalmanager.contract.Contract;
+import festivalmanager.contract.ContractList;
 import festivalmanager.economics.EconomicList;
 import festivalmanager.inventory.Item;
 import festivalmanager.ticket.TicketBuilder;
@@ -32,6 +34,7 @@ public class Festival {
 	private TicketBuilder ticketBuilder;
 
 	private EconomicList economicList = new EconomicList();
+	private ContractList contractList = new ContractList();
 
 	private int maxVisitors;
 	private int currentVisitors;
@@ -78,7 +81,7 @@ public class Festival {
 
 		boolean sameDate =
 			(d1[START_DATE].getTime() <= d2[START_DATE].getTime() && d2[START_DATE].getTime() <= d1[END_DATE].getTime()) ||
-			(d2[START_DATE].getTime() <= d1[START_DATE].getTime() && d1[START_DATE].getTime() <= d2[END_DATE].getTime());
+				(d2[START_DATE].getTime() <= d1[START_DATE].getTime() && d1[START_DATE].getTime() <= d2[END_DATE].getTime());
 
 		boolean sameLocation = f1.getLocation().equals(f2.getLocation());
 
@@ -192,11 +195,19 @@ public class Festival {
 		this.economicList = economicList;
 	}
 
+	public ContractList getContractList(){
+		return contractList;
+	}
+
+	public void setContractList(ContractList contractList){
+		this.contractList = contractList;
+	}
+
 	public String toString() {
 		return 	this.id + ": " +
-				this.name + " in " +
-				this.location + " from " +
-				this.getStartDate() + " to " +
-				this.getEndDate();
+			this.name + " in " +
+			this.location + " from " +
+			this.getStartDate() + " to " +
+			this.getEndDate();
 	}
 }
