@@ -17,7 +17,7 @@
 <body>
   <div th:fragment="section1">
 
-    <!-- Section1 User -->
+    <!-- Section 1 User -->
     <!-- Section: Features v.1 -->
     <section sec:authorize="!isAuthenticated()" id="events" class="mt-5 mb-5">
 
@@ -89,7 +89,7 @@
 
     </section>
 
-    <!-- Section1 Catering -->
+    <!-- Section 1 Catering -->
     <section sec:authorize="hasAuthority('CATERING')" id="inventory" class="mt-5 mb-5">
 
       <!-- Section heading -->
@@ -122,7 +122,7 @@
 
     </section>
 
-    <!-- Section1 SECURITY -->
+    <!-- Section 1 SECURITY -->
     <section sec:authorize="hasAuthority('SECURITY')" id="features" class="mt-5 mb-5">
 
       <!-- Section heading -->
@@ -188,7 +188,7 @@
 
     </section>
 
-    <!-- Section1 TICKET_SALESMAN -->
+    <!-- Section 1 TICKET_SALESMAN -->
     <section sec:authorize="hasAuthority('TICKET_SALESMAN')" id="ticketsell" class="mt-5 mb-5">
 
       <!-- Section heading -->

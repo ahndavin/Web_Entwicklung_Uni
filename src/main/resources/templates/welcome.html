@@ -49,242 +49,31 @@
 
     <div class="container">
 
-      <!-- Section1 -->
+      <!-- Section 1 -->
       <div th:replace="section1 :: section1"></div>
 
       <hr class="">
 
-      <!-- Section2 -->
+      <!-- Section 2 -->
       <div th:replace="section2 :: section2"></div>
 
     </div>
 
-    <!-- Section3 Counter -->
+    <!-- Section 3 -->
     <div th:replace="section3 :: section3"></div>
 
-    <!--Section4 pricing-->
+    <!-- Section 4 -->
     <div th:replace="section4 :: section4"></div>
-
-
 
     <div class="container">
 
-      <!--Section: FAQ v.5-->
-      <section id="faq" class="pt-1">
-
-        <!-- Section heading -->
-        <h3 class="text-center my-5 pt-3 dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
-          <strong>Frequently Asked Question</strong>
-        </h3>
-        <!-- Section description -->
-        <p class="text-center w-responsive mx-auto my-5 grey-text">Here we put some Frequently asked Questions for the
-          Festival Visitors. Like where are the Toilets etc..</p>
-
-        <!-- Grid row -->
-        <div class="row gradient-background d-flex justify-content-center">
-
-          <!-- Grid column -->
-          <div class="col-md-10 col-xl-10 pb-5 pt-3">
-
-            <!--Accordion wrapper-->
-            <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-
-              <!-- Accordion card -->
-              <div class="card border-0">
-
-                <!-- Card header -->
-                <div class="card-header white z-depth-1 border-0 mb-1" role="tab" id="heading1">
-                  <a data-toggle="collapse" data-parent="#accordionEx" href="#collapse1" aria-expanded="true"
-                    aria-controls="collapse1">
-                    <h5 class="mb-0 dark-grey-text">
-                      #1 Where are the Toilets?!
-                      <i class="fas fa-angle-down rotate-icon"></i>
-                    </h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapse1" class="collapse show" role="tabpanel" aria-labelledby="heading1"
-                  data-parent="#accordionEx">
-                  <div class="card-body mb-1 rgba-indigo-strong white-text">
-                    <p>Depending on the Location. In Dresden they are near Stage A... In Berlin .... ...
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
-
-              <!-- Accordion card -->
-              <div class="card border-0">
-
-                <!-- Card header -->
-                <div class="card-header White z-depth-1 border-0 mb-1" role="tab" id="heading2">
-                  <a class="collapsed" data-toggle="collapse" href="#collapse2" aria-expanded="false"
-                    aria-controls="collapse2">
-                    <h5 class="mb-0 dark-grey-text">
-                      #2 What payment types do you accept?
-                      <i class="fas fa-angle-down rotate-icon"></i>
-                    </h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="heading2"
-                  data-parent="#accordionEx">
-                  <div class="card-body mb-1 rgba-indigo-strong white-text">
-                    <p>We accept Paypal, Google Pay, Apple Pay or...</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
-
-              <!-- Accordion card -->
-              <div class="card border-0">
-
-                <!-- Card header -->
-                <div class="card-header white z-depth-1 border-0 mb-1" role="tab" id="heading3">
-                  <a class="collapsed" data-toggle="collapse" href="#collapse3" aria-expanded="false"
-                    aria-controls="collapse3">
-                    <h5 class="mb-0 dark-grey-text">
-                      #3 Can I return the tickets?
-                      <i class="fas fa-angle-down rotate-icon"></i>
-                    </h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapse3" class="collapse" role="tabpanel" aria-labelledby="heading3"
-                  data-parent="#accordionEx">
-                  <div class="card-body mb-1 rgba-indigo-strong white-text">
-                    <p>You can return the Tickets, before the festivalevent on our Homepage : www.fviv-festivals.com
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
-            </div>
-            <!--/.Accordion wrapper-->
-
-          </div>
-          <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
-
-      </section>
+      <!-- Section 5 -->
+      <div th:replace=" section5 :: section5"></div>
 
       <hr>
 
-      <!-- Chat content 
-      <div th:replace=" chat :: chat"></div>
-      -->
-
-      <!--Section: Contact v.2-->
-      <section id="contact" class="mb-5">
-
-        <!-- Section heading -->
-        <h3 class="text-center my-5 pt-3 pb-4 dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
-          <strong>Contact us</strong>
-        </h3>
-
-        <!--Section description-->
-        <p class="text-center w-responsive mx-auto my-5 grey-text">If you have Questions you may Contract us here and we
-          will get in Contract with you. </p>
-        <form action="contractForm.php" method="post">
-          <div class="row">
-
-            <!--Grid column-->
-            <div class="col-md-8 col-xl-9">
-
-
-              <!--Grid row-->
-              <div class="row">
-
-                <!--Grid column-->
-                <div class="col-md-6">
-                  <div class="md-form">
-                    <div class="md-form">
-                      <input type="text" name="name" id="contact-name" class="form-control">
-                      <label for="contact-name" class="">Your name</label>
-                    </div>
-                  </div>
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-md-6">
-                  <div class="md-form">
-                    <div class="md-form">
-                      <input type="text" name="email" id="contact-email" class="form-control">
-                      <label for="contact-email" class="">Your email</label>
-                    </div>
-                  </div>
-                </div>
-                <!--Grid column-->
-
-              </div>
-              <!--Grid row-->
-
-              <!--Grid row-->
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="md-form">
-                    <input type="text" name="subject" id="contact-Subject" class="form-control">
-                    <label for="contact-Subject" class="">Subject</label>
-                  </div>
-                </div>
-              </div>
-              <!--Grid row-->
-
-              <!--Grid row-->
-              <div class="row">
-
-                <!--Grid column-->
-                <div class="col-md-12">
-
-                  <div class="md-form">
-                    <textarea name="message" type="text" id="contact-message" class="md-textarea form-control"
-                      rows="3"></textarea>
-                    <label for="contact-message">Your message</label>
-                  </div>
-
-                </div>
-              </div>
-              <!--Grid row-->
-              <div class="text-center text-md-left my-4">
-                <button type="submit" name="submit">SEND MAIL</button>
-              </div>
-            </div>
-            <!--Grid column-->
-
-
-        </form>
-
-        <!--Grid column-->
-        <div class="col-md-4 col-xl-3">
-          <ul class="text-center list-unstyled">
-            <li>
-              <i class="fas fa-map-marker-alt fa-2x indigo-text"></i>
-              <p>Dresden, 08102 Germany</p>
-            </li>
-
-            <li>
-              <i class="fas fa-phone fa-2x indigo-text"></i>
-              <p>+ 01 234 567 89</p>
-            </li>
-
-            <li>
-              <i class="fas fa-envelope fa-2x indigo-text"></i>
-              <p>fvivfestival@gmail.com</p>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-
-    </div>
-
-    </section>
-    <!--Section: Contact v.2-->
+      <!-- Section 6 -->
+      <div th:replace=" section6 :: section6"></div>
 
     </div>
 
