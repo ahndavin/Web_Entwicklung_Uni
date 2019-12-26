@@ -47,8 +47,6 @@
   <!-- Main content -->
   <main>
 
-
-
     <div class="container">
 
       <!-- Section: Features v.1 -->
@@ -677,7 +675,8 @@
   <script type="text/javascript" rel="script" th:src="@{/resources/js/mdb.min.js}"></script>
 
   <!-- Custom scripts -->
-  <script>
+
+  <script sec:authorize="!isAuthenticated()">
     new WOW().init();
   </script>
 

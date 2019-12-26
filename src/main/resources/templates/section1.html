@@ -96,61 +96,28 @@
 
       <!-- Section heading -->
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
-        <strong>Upcoming events</strong>
+        <strong>Edit Inventory of given Festivals</strong>
       </h3>
-
-      <!-- Section description -->
-      <p class="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.3s">
-        Troll The Catering!.</p>
 
       <!--Grid row-->
       <div class="row features-small pt-4">
 
         <!--Grid column-->
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb-4" th:each="festival : ${festivals}">
           <div class="col-1 col-md-2 float-left">
-            <i class="far fa-calendar-alt indigo-text fa-2x"></i>
           </div>
           <div class="col-10 col-md-9 col-lg-10 float-right">
             <h4 class="font-weight-bold indigo-text">
-              <strong>Festival1.name</strong>
+              <strong td th:text="${festival.name}"></strong> <br>
+              <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}" class="btn btn-green">
+                <i class="fas fa-archive"></i>
+              </a>
             </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text">Festival1.startdate</h6>
-            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc )</p>
+            <h6 class="mb-3 font-weight-bold dark-grey-text" th:text="${festival.startDate}">Festival1.startdate</h6>
+            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc </p>
+
           </div>
         </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-          <div class="col-1 col-md-2 float-left">
-            <i class="far fa-calendar-alt indigo-text fa-2x"></i>
-          </div>
-          <div class="col-10 col-md-9 col-lg-10 float-right">
-            <h4 class="font-weight-bold indigo-text">
-              <strong>Festival2.name</strong>
-            </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text">Festival2.startdate</h6>
-            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc )</p>
-          </div>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-          <div class="col-1 col-md-2 float-left">
-            <i class="far fa-calendar-alt indigo-text fa-2x"></i>
-          </div>
-          <div class="col-10 col-md-9 col-lg-10 float-right">
-            <h4 class="font-weight-bold indigo-text">
-              <strong>Festival3.name</strong>
-            </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text">Festival3.startdate</h6>
-            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc )</p>
-          </div>
-        </div>
-        <!--Grid column-->
-
 
       </div>
       <!--Grid row-->
@@ -226,7 +193,7 @@
 
     <!-- Section1 TICKET_SALESMAN -->
     <!-- Section: Features v.1 -->
-    <section sec:authorize="hasAuthority('TICKET_SALESMAN')" id="features" class="mt-5 mb-5">
+    <section sec:authorize="hasAuthority('TICKET_SALESMAN')" id="ticketsell" class="mt-5 mb-5">
 
       <!-- Section heading -->
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
@@ -241,49 +208,37 @@
       <div class="row features-small pt-4">
 
         <!--Grid column-->
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb-4" th:each="festival : ${festivals}">
           <div class="col-1 col-md-2 float-left">
-            <i class="far fa-calendar-alt indigo-text fa-2x"></i>
           </div>
           <div class="col-10 col-md-9 col-lg-10 float-right">
             <h4 class="font-weight-bold indigo-text">
-              <strong>Festival1.name</strong>
+              <strong td th:text="${festival.name}"></strong> <br>
             </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text">Festival1.startdate</h6>
-            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc )</p>
-          </div>
-        </div>
-        <!--Grid column-->
+            <h6 class="mb-3 font-weight-bold dark-grey-text" th:text="${festival.startDate}">Festival1.startdate</h6>
+            <h5>Available / Price</h5>
+            <h5
+              th:text="${'' + festival.ticketBuilder.amountDaytickets} + ' / ' + ${festival.ticketBuilder.priceDayticket}">
+            </h5>
+            <form method="post" role="form" class="ui form" name="form" th:action="@{/ticketDay}">
+              <input type="hidden" th:value="${festival.getId()}" name="id" />
+              <input type="hidden" value="DAYTICKET" name="sort_str" />
+              <button type="submit" class="ui button">Buy Dayticket</button>
+            </form>
+            <br>
+            <br>
+            <h5>Available / Price</h5>
+            <h5
+              th:text="${festival.ticketBuilder.amountCampingtickets} + ' / ' + ${festival.ticketBuilder.priceCampingticket}">
+            </h5>
+            <form method="post" role="form" class="ui form" name="form" th:action="@{/ticketCamping}">
+              <input type="hidden" th:value="${festival.getId()}" name="id" />
+              <input type="hidden" value="CAMPINGTICKET" name="sort_str" />
+              <button type="submit" class="ui button">Buy Campingticket</button>
+            </form>
 
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-          <div class="col-1 col-md-2 float-left">
-            <i class="far fa-calendar-alt indigo-text fa-2x"></i>
-          </div>
-          <div class="col-10 col-md-9 col-lg-10 float-right">
-            <h4 class="font-weight-bold indigo-text">
-              <strong>Festival2.name</strong>
-            </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text">Festival2.startdate</h6>
-            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc )</p>
           </div>
         </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-          <div class="col-1 col-md-2 float-left">
-            <i class="far fa-calendar-alt indigo-text fa-2x"></i>
-          </div>
-          <div class="col-10 col-md-9 col-lg-10 float-right">
-            <h4 class="font-weight-bold indigo-text">
-              <strong>Festival3.name</strong>
-            </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text">Festival3.startdate</h6>
-            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc )</p>
-          </div>
-        </div>
-        <!--Grid column-->
 
 
       </div>
