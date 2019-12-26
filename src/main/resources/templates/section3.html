@@ -23,10 +23,11 @@
       style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/46.jpg');">
       <div class="flex-center mask rgba-black-strong">
         <div class="text-center white-text">
-          <h2 class="font-weight-bold mb-3 pt-4 mt-4" th:text="${'Festival: ' + festival.name + ' comming soon!'}"></h2>
+          <h2 id="festivalplanner" class="font-weight-bold mb-3 pt-4 mt-4"
+            th:text="${'Festival: ' + festival.name + ' comming soon!'}"></h2>
           <script>
 
-            var deadline = new Date("Dec 26, 19 13:40").getTime();
+            var deadline = new Date("Dec 27, 19 18:34").getTime();
             var x = setInterval(function () {
               var now = new Date().getTime();
               var t = deadline - now;
@@ -38,15 +39,20 @@
               document.getElementById("days").innerHTML = days;
               document.getElementById("hours").innerHTML = hours;
               document.getElementById("minutes").innerHTML = minutes;
-              if (t < 0) {
+              if (t <= 0) {
                 clearInterval(x);
                 document.getElementById("Dayrow").hidden = true;
                 document.getElementById("Hourrow").hidden = true;
                 document.getElementById("Minrow").hidden = true;
+                document.getElementById("festivalplanner").innerHTML = "Festival ended, next Festival will be displayed soon! Stay tuned!";
+                document.getElementById("festivaldate").hidden = true;
+
+
               }
+
             }, 1000); 
           </script>
-          <p class="font-weight-bold white-text">Festival1. startdate Artist1.starttime</p>
+          <p id="festivaldate" class="font-weight-bold white-text">Festival1. startdate Artist1.starttime</p>
 
           <!--Grid row-->
           <div class="row mt-5 mb-5">
@@ -97,12 +103,6 @@
         <div class="flex-center mask rgba-black-strong">
           <div class="text-center white-text">
             <h2 class="font-weight-bold mb-3 pt-4 mt-4">Festival " Festival1.Name" coming soon!</h2>
-            <p id="demo"></p>
-
-            <script>
-              document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s ";
-            </script>
             <p class="font-weight-bold white-text">Festival1. startdate Artist1.starttime</p>
 
             <!--Grid row-->

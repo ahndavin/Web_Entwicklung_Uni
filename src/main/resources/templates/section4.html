@@ -1,0 +1,536 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+  <!--  BOOTSTRAP STUFF  -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+</head>
+
+<body>
+  <div th:fragment="section4">
+
+    <!--Section4 User-->
+    <div class="container-fluid grey lighten-4" sec:authorize="!isAuthenticated()">
+      <div class="container">
+
+        <!--Section: Pricing v.5-->
+        <section id="tickets" class="pb-5 pt-1" th:each="festival,iter : ${festivals}" th:if="${iter.index == 0}">
+
+          <!-- Section heading -->
+          <h3 class="text-center my-5 pt-3 dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+            <strong th:text="${'Oder Tickets for: ' + festival.name + ' now! '}"></strong>
+          </h3>
+
+
+
+          <div class="row text-center">
+
+            <!-- Grid column -->
+            <div class="col-md-6 mb-4">
+
+              <div class="card pricing-card">
+
+                <!--Content-->
+                <div class="card-body">
+                  <h5 class="font-weight-bold mt-3">ONEDAY TICKET</h5>
+
+                  <!-- Price -->
+
+                  <h2 class="number indigo-text mb-0" th:text="${'Daytickerprice'}">
+                  </h2>
+
+                  <!--Price-->
+                  <ul class="striped darker-striped">
+                    <li>
+                      <p>
+                        <span th:text="${'Placeholder 1'}"></span>
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span th:text="${'Placeholder 2'}"></span>
+                    </li>
+                    <li>
+                      <p>
+                        <span th:text="${'Placeholder 3'}"></span>
+                    </li>
+                  </ul>
+                  <a class="btn btn-indigo btn-rounded mb-4">Order now !</a>
+                </div>
+              </div>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-6 mb-4">
+
+              <div class="card pricing-card">
+
+                <!--Content-->
+                <div class="card-body">
+                  <h5 class="font-weight-bold mt-3">CAMPING TICKET</h5>
+
+                  <!-- Price -->
+
+                  <h2 class="number indigo-text mb-0" th:text="${'Campingticketprice'}">
+                  </h2>
+
+                  <!--Price-->
+                  <ul class="striped darker-striped">
+                    <li>
+                      <p>
+                        <span th:text="${'Placeholder 1'}"></span>
+                    </li>
+                    <li>
+                      <p>
+                        <span th:text="${'Placeholder 2'}"></span>
+                    </li>
+                    <li>
+                      <p>
+                        <span th:text="${'Placeholder 3'}"></span>
+                    </li>
+                  </ul>
+                  <a class="btn btn-indigo btn-rounded mb-4">Order now ! </a>
+                </div>
+              </div>
+
+            </div>
+            <!-- Grid column -->
+
+          </div>
+          <!-- Grid row -->
+
+      </div>
+      <!--Grid row-->
+
+      </section>
+      <!--/Section: Pricing v.5-->
+
+    </div>
+  </div>
+
+
+
+  <!--Section4 MANAGER-->
+  <div class="container-fluid grey lighten-4" sec:authorize="hasAuthority('MANAGER')">
+    <div class="container">
+
+      <!--Section: Pricing v.5-->
+      <section id="tickets" class="pb-5 pt-1">
+
+        <!-- Section heading -->
+        <h3 class="text-center my-5 pt-3 dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+          <strong>Tickets for Festival1.Name</strong>
+        </h3>
+
+        <!-- Section description -->
+        <p class="text-center w-responsive mx-auto my-5 grey-text">Down bdelow you can order tickets, which will be
+          send to you via Email after your payment, so make sure to enter the correct one.</p>
+
+
+
+        <div class="row text-center">
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+
+            <div class="card pricing-card">
+
+              <!--Content-->
+              <div class="card-body">
+                <h5 class="font-weight-bold mt-3">ONEDAY TICKET</h5>
+
+                <!-- Price -->
+
+                <h2 class="number indigo-text mb-0">price</h2>
+
+                <!--Price-->
+                <ul class="striped darker-striped">
+                  <li>
+                    <p>
+                      <strong>Some</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Another</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Last</strong> Feature</p>
+                  </li>
+                </ul>
+                <a class="btn btn-indigo btn-rounded mb-4"> Buy now</a>
+              </div>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+
+            <div class="card pricing-card">
+
+              <!--Content-->
+              <div class="card-body">
+                <h5 class="font-weight-bold mt-3">CAMPING TICKET</h5>
+
+                <!-- Price -->
+
+                <h2 class="number indigo-text mb-0">price</h2>
+
+                <!--Price-->
+                <ul class="striped darker-striped">
+                  <li>
+                    <p>
+                      <strong>Some</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Another</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Last</strong> Feature</p>
+                  </li>
+                </ul>
+                <a class="btn btn-indigo btn-rounded mb-4"> Buy now</a>
+              </div>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!--Grid row-->
+
+    </section>
+    <!--/Section: Pricing v.5-->
+
+  </div>
+  </div>
+
+
+  <!--Section4 CATERING-->
+  <div class="container-fluid grey lighten-4" sec:authorize="hasAuthority('CATERING')">
+    <div class="container">
+
+      <!--Section: Pricing v.5-->
+      <section id="tickets" class="pb-5 pt-1">
+
+        <!-- Section heading -->
+        <h3 class="text-center my-5 pt-3 dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+          <strong>Tickets for Festival1.Name</strong>
+        </h3>
+
+        <!-- Section description -->
+        <p class="text-center w-responsive mx-auto my-5 grey-text">Down bdelow you can order tickets, which will be
+          send to you via Email after your payment, so make sure to enter the correct one.</p>
+
+
+
+        <div class="row text-center">
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+
+            <div class="card pricing-card">
+
+              <!--Content-->
+              <div class="card-body">
+                <h5 class="font-weight-bold mt-3">ONEDAY TICKET</h5>
+
+                <!-- Price -->
+
+                <h2 class="number indigo-text mb-0">price</h2>
+
+                <!--Price-->
+                <ul class="striped darker-striped">
+                  <li>
+                    <p>
+                      <strong>Some</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Another</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Last</strong> Feature</p>
+                  </li>
+                </ul>
+                <a class="btn btn-indigo btn-rounded mb-4"> Buy now</a>
+              </div>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+
+            <div class="card pricing-card">
+
+              <!--Content-->
+              <div class="card-body">
+                <h5 class="font-weight-bold mt-3">CAMPING TICKET</h5>
+
+                <!-- Price -->
+
+                <h2 class="number indigo-text mb-0">price</h2>
+
+                <!--Price-->
+                <ul class="striped darker-striped">
+                  <li>
+                    <p>
+                      <strong>Some</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Another</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Last</strong> Feature</p>
+                  </li>
+                </ul>
+                <a class="btn btn-indigo btn-rounded mb-4"> Buy now</a>
+              </div>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!--Grid row-->
+
+    </section>
+    <!--/Section: Pricing v.5-->
+
+  </div>
+  </div>
+
+  <!--Section4 SECURITY-->
+  <div class="container-fluid grey lighten-4" sec:authorize="hasAuthority('SECURITY')">
+    <div class="container">
+
+      <!--Section: Pricing v.5-->
+      <section id="tickets" class="pb-5 pt-1">
+
+        <!-- Section heading -->
+        <h3 class="text-center my-5 pt-3 dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+          <strong>Tickets for Festival1.Name</strong>
+        </h3>
+
+        <!-- Section description -->
+        <p class="text-center w-responsive mx-auto my-5 grey-text">Down bdelow you can order tickets, which will be
+          send to you via Email after your payment, so make sure to enter the correct one.</p>
+
+
+
+        <div class="row text-center">
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+
+            <div class="card pricing-card">
+
+              <!--Content-->
+              <div class="card-body">
+                <h5 class="font-weight-bold mt-3">ONEDAY TICKET</h5>
+
+                <!-- Price -->
+
+                <h2 class="number indigo-text mb-0">price</h2>
+
+                <!--Price-->
+                <ul class="striped darker-striped">
+                  <li>
+                    <p>
+                      <strong>Some</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Another</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Last</strong> Feature</p>
+                  </li>
+                </ul>
+                <a class="btn btn-indigo btn-rounded mb-4"> Buy now</a>
+              </div>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+
+            <div class="card pricing-card">
+
+              <!--Content-->
+              <div class="card-body">
+                <h5 class="font-weight-bold mt-3">CAMPING TICKET</h5>
+
+                <!-- Price -->
+
+                <h2 class="number indigo-text mb-0">price</h2>
+
+                <!--Price-->
+                <ul class="striped darker-striped">
+                  <li>
+                    <p>
+                      <strong>Some</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Another</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Last</strong> Feature</p>
+                  </li>
+                </ul>
+                <a class="btn btn-indigo btn-rounded mb-4"> Buy now</a>
+              </div>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!--Grid row-->
+
+    </section>
+    <!--/Section: Pricing v.5-->
+
+  </div>
+  </div>
+
+
+  <!--Section4 TICKET_SALESMAN-->
+  <div class="container-fluid grey lighten-4" sec:authorize="hasAuthority('TICKET_SALESMAN')">
+    <div class="container">
+
+      <!--Section: Pricing v.5-->
+      <section id="tickets" class="pb-5 pt-1">
+
+        <!-- Section heading -->
+        <h3 class="text-center my-5 pt-3 dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+          <strong>Tickets for Festival1.Name</strong>
+        </h3>
+
+        <!-- Section description -->
+        <p class="text-center w-responsive mx-auto my-5 grey-text">Down bdelow you can order tickets, which will be
+          send to you via Email after your payment, so make sure to enter the correct one.</p>
+
+
+
+        <div class="row text-center">
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+
+            <div class="card pricing-card">
+
+              <!--Content-->
+              <div class="card-body">
+                <h5 class="font-weight-bold mt-3">ONEDAY TICKET</h5>
+
+                <!-- Price -->
+
+                <h2 class="number indigo-text mb-0">price</h2>
+
+                <!--Price-->
+                <ul class="striped darker-striped">
+                  <li>
+                    <p>
+                      <strong>Some</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Another</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Last</strong> Feature</p>
+                  </li>
+                </ul>
+                <a class="btn btn-indigo btn-rounded mb-4"> Buy now</a>
+              </div>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+
+            <div class="card pricing-card">
+
+              <!--Content-->
+              <div class="card-body">
+                <h5 class="font-weight-bold mt-3">CAMPING TICKET</h5>
+
+                <!-- Price -->
+
+                <h2 class="number indigo-text mb-0">price</h2>
+
+                <!--Price-->
+                <ul class="striped darker-striped">
+                  <li>
+                    <p>
+                      <strong>Some</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Another</strong> Feature</p>
+                  </li>
+                  <li>
+                    <p>
+                      <strong>Last</strong> Feature</p>
+                  </li>
+                </ul>
+                <a class="btn btn-indigo btn-rounded mb-4"> Buy now</a>
+              </div>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!--Grid row-->
+
+    </section>
+    <!--/Section: Pricing v.5-->
+
+  </div>
+  </div>
+
+  </div>
+</body>
+
+</html>
