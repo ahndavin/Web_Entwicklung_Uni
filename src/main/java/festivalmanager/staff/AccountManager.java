@@ -15,6 +15,7 @@ import org.springframework.validation.Errors;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -82,12 +83,24 @@ public class AccountManager {
 	}
 
 	public void sendMessage(MessageForm form){
-		UserAccount sender = userAccounts.findByUsername(form.getSender()).get();
-		UserAccount receiver = userAccounts.findByUsername(form.getReceiver()).get();
 
-		MessageEvent messageEvent = new MessageEvent(this, accounts.findByUserAccount(sender).get(),
-				accounts.findByUserAccount(receiver).get(), form.getMessage());
-		publisher.publishEvent(messageEvent);
+		LOG.info(form.getRole());
+
+		UserAccount sender = userAccounts.findByUsername(form.getSender()).get();
+		if(!(form.getReceiver() == null)) {
+			UserAccount receiver = userAccounts.findByUsername(form.getReceiver()).get();;
+			MessageEvent messageEvent = new MessageEvent(this, accounts.findByUserAccount(sender).get(),
+					accounts.findByUserAccount(receiver).get(), form.getMessage());
+			publisher.publishEvent(messageEvent);
+
+		} else {
+			Role role = Role.of(form.getRole());
+
+
+			findByRole(role).forEach(acc -> publisher.publishEvent(new MessageEvent(this, accounts.findByUserAccount(sender).get(),acc
+					, form.getMessage())));
+
+		}
 	}
 
 
@@ -95,12 +108,14 @@ public class AccountManager {
 		accounts.delete(account);
 		LOG.info("deleting " + account.getUserAccount().getUsername());
 	}
+	
 	public Optional<Account> findByUserAccount(UserAccount userAccount) {
 		return accounts.findByUserAccount(userAccount);
 	}
 
-
-
+	public Stream<Account> findByRole(Role role){
+		return findAll().stream().filter(acc -> acc.getUserAccount().getRoles().toSet().contains(role));
+	}
 
 }
 

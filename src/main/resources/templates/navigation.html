@@ -33,11 +33,14 @@
                     <a th:href="@{/login}" class="nav-link" sec:authorize="!isAuthenticated()" th:text="#{nav.login}">Login</a>
                     </li>
             
+                    <!-- Contracts werden nun bei den Festivals erstellt -->
+                    <!--
                     <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/contracts/list">Contracts</a>
                     <form name="Contracts" th:action="@{/contractManagement}" method="post" th:hidden="true">
                     </form>
                     </li>
+                    -->
             
                     <li class="nav-item">
                     <a class="nav-link" sec:authorize="isAuthenticated()" href="/location">Locations</a>

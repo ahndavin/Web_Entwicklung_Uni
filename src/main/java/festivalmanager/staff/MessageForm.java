@@ -7,16 +7,19 @@ public class MessageForm  {
 	@NotEmpty
 	private String sender;
 
-	@NotEmpty
+
 	private String receiver;
 
 	@NotEmpty
 	private String message;
 
-	public MessageForm(String sender, String receiver, String message){
+	private String role;
+
+	public MessageForm(String sender, String receiver, String role, String message){
 		this.message = message;
 		this.sender = sender;
 		this.receiver = receiver;
+		this.role = role;
 	}
 
 	public String getMessage() {
@@ -31,6 +34,10 @@ public class MessageForm  {
 		return sender;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
 	public void setMessage(String message) {
 		this.message = message;
 	}
@@ -41,5 +48,10 @@ public class MessageForm  {
 
 	public void setSender(String sender) {
 		this.sender = sender;
+	}
+
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }

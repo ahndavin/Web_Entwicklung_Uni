@@ -25,7 +25,6 @@ public class Contract {
 		@Column(name = "price")
 		private int price;
 
-		@NotBlank(message = "Accepted is mandatory")
 		@Column(name = "accepted")
 		private Boolean accepted;
 
@@ -39,7 +38,6 @@ public class Contract {
 		private int workerswage;
 
 		public Contract(){}
-
 
 		public Contract(String name, String artist, int price, boolean accepted, int technicianscount,
 						int workinghours, int workerswage) {

@@ -54,7 +54,6 @@ public class ContractController {
 	}
 
 	@PostMapping("add")
-
 	public String addContract(@Valid @ModelAttribute Contract contract, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "createContract";
@@ -95,6 +94,7 @@ public class ContractController {
 		model.addAttribute("contract", contractsRepository.findAll());
 		return "contractManagement";
 	}
+	
 	public ContractsRepository getContracts(){
 		return this.contractsRepository;
 	}
