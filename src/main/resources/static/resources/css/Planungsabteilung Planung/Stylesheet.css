@@ -11,7 +11,7 @@ header{
   top: 15px;
   left: 0;
   right: 85%;
-  
+
 }
 .Logout{
     border-radius: 25px;
@@ -22,7 +22,7 @@ header{
     display: block;
     top: 20px;
     left: 90;
-    right: 10%; 
+    right: 10%;
     font-weight: bold;
     background-color: #E7E7E7;
     transition : 0.5s;
@@ -40,7 +40,7 @@ header{
     transform: translateX(-50%), translateY(-50%);
 }
 li{
-    display: inline-block;   
+    display: inline-block;
 }
 li a{
     display: inline-block;
@@ -67,8 +67,8 @@ li a{
 }
 .Coollink:hover::after{
     width: 100%;
-    transition: width .3s  
-    
+    transition: width .3s
+
 }
 .letter{
   height: 60px;
@@ -85,11 +85,11 @@ li a{
   display: block;
   top: 5px;
   right: 20%;
-  
+
 }
 
 #largebox{
-    
+
     background-color: gray;
     width: 73.5%;
     height: 40px;
@@ -97,7 +97,7 @@ li a{
     padding-left: 200px;
     padding-right: 200px;
     padding-bottom: 20px;
-    
+
 }
 #anlegen{
     margin-top: 0px;
@@ -123,7 +123,7 @@ li a{
 
 
 table, tr, td {
-    
+
     border-collapse: collapse;
     border: 2px solid black;
     font-size: 20px;
@@ -132,7 +132,7 @@ table, tr, td {
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    
+
 }
 table th{
     padding: 15px;
@@ -147,4 +147,3 @@ h1{
 body{
     background-color: #E7E7E7;
 }
-
