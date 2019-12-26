@@ -27,7 +27,7 @@ public class FestivalInitializer implements DataInitializer {
 			return;
 		}
 
-		Festival f = new Festival("Beispiel Festival 2019", "Dresden", "2019-12-19","2019-12-20", 100, 50, 20, 40, 2, true);
+		Festival f = new Festival("Abriss", "Dresden", "2019-12-19","2019-12-20", 100, 50, 20, 40, 2, true);
 
 		f.editPlan().add("blabla");
 		f.editPlan().add("lalala");
@@ -36,6 +36,7 @@ public class FestivalInitializer implements DataInitializer {
 
 		festivals.save(f);
 
-		festivals.save(new Festival("Test Festival 2019", "Berlin", "2019-12-18", null, 1000, 400, 50, 100, 2, true));
+		festivals.save(new Festival("Abiball", "Leipzig", "2019-8-16", null, 1000, 400, 50, 100, 2, true));
+		festivals.save(new Festival("Silvester", "Berlin", "2019-12-31", null, 1000, 400, 50, 100, 2, true));
 	}
 }

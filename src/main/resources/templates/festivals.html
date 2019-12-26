@@ -82,22 +82,26 @@
                                     <td th:text="${festival.endDate}"></td>
                                     <td th:text="${festival.maxVisitors}"></td>
                                     <td th:text="${festival.sellingTickets}"></td>
-                                    <td><a th:href="${'/festival/' + festival.name + '-' + festival.id + '/edit'}"  class="btn btn-green">
-                                        <i class="fas fa-user-edit ml-2"></i></a></td>
-                                    <td><a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}"  class="btn btn-green">
-                                        <i class="fas fa-archive"></i>
-                                    </a></td>
+                                    <td><a th:href="${'/festival/' + festival.name + '-' + festival.id + '/edit'}"
+                                            class="btn btn-green">
+                                            <i class="fas fa-user-edit ml-2"></i></a></td>
+                                    <td><a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}"
+                                            class="btn btn-green">
+                                            <i class="fas fa-archive"></i>
+                                        </a></td>
                                     <td>
-                                        <form method="get" role="form" class="ui form" name="form" th:action="@{/contracts/list}">
-                                            <input type="hidden" th:value="${festival.getId()}" name="id"/>
+                                        <form method="get" role="form" class="ui form" name="form"
+                                            th:action="@{/contracts/list}">
+                                            <input type="hidden" th:value="${festival.getId()}" name="id" />
                                             <button type="submit" class="ui button">
                                                 <i class="fas fa-address-book"></i>
                                             </button>
                                         </form>
                                     </td>
                                     <td>
-                                        <form method="get" role="form" class="ui form" name="form" th:action="@{/accountancy}">
-                                            <input type="hidden" th:value="${festival.getId()}" name="id"/>
+                                        <form method="get" role="form" class="ui form" name="form"
+                                            th:action="@{/accountancy}">
+                                            <input type="hidden" th:value="${festival.getId()}" name="id" />
                                             <button type="submit" class="ui button">
                                                 <i class="fas fa-dollar-sign"></i>
                                             </button>

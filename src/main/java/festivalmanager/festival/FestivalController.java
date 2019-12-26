@@ -26,8 +26,9 @@ public class FestivalController {
 	}
 
 	/**
-	 *	list all existing festivals
+	 * list all existing festivals
 	 */
+
 	@GetMapping("/festivals")
 	String festivals(Model model) {
 		model.addAttribute("festivals", festivals.findAll());
@@ -35,15 +36,22 @@ public class FestivalController {
 		return "festivals";
 	}
 
+	@GetMapping("/")
+	String allFestivals(Model model) {
+		model.addAttribute("festivals", festivals.findAll());
+
+		return "welcome";
+	}
+
 	/**
 	 *
-	 * @param festivalId:	id of the festival, passed in the URL
+	 * @param festivalId: id of the festival, passed in the URL
 	 */
 	@GetMapping("/festival/{festivalName}-{festivalId}")
 	String festival(@PathVariable long festivalId, Model model) {
 		Optional<Festival> festival = festivals.findById(festivalId);
 
-		if(festival.isEmpty()) {
+		if (festival.isEmpty()) {
 			return "redirect:/404";
 		}
 
@@ -51,7 +59,6 @@ public class FestivalController {
 
 		return "festival_detail";
 	}
-
 
 	/**
 	 * add a new festival
@@ -66,23 +73,23 @@ public class FestivalController {
 
 	/**
 	 *
-	 * @param festivalForm: form the user filed with information about the new festival
-	 * @param errors: errors from validation of festival data
+	 * @param festivalForm: form the user filed with information about the new
+	 *                      festival
+	 * @param errors:       errors from validation of festival data
 	 */
 	@PostMapping("/festival/add")
-	String addFestival(@ModelAttribute @Valid FestivalForm festivalForm,
-					   Errors errors,
-					   RedirectAttributes redirectAttributes) {
+	String addFestival(@ModelAttribute @Valid FestivalForm festivalForm, Errors errors,
+			RedirectAttributes redirectAttributes) {
 
 		boolean result = false;
 
 		Festival festival = festivalForm.toFestival();
 
-		if(!errors.hasErrors()) {
+		if (!errors.hasErrors()) {
 			result = festivals.save(festival) != null;
 		}
 
-		if(!result) {
+		if (!result) {
 			redirectAttributes.addFlashAttribute("error", "Fehler beim erstellen des Festivals.");
 		}
 
@@ -96,9 +103,10 @@ public class FestivalController {
 	@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/festival/{festivalName}-{festivalId}/edit")
 	String editFestival(@PathVariable long festivalId, Model model) {
-		Optional<Festival> festival = festivals.findById(festivalId);;
+		Optional<Festival> festival = festivals.findById(festivalId);
+		;
 
-		if(festival.isEmpty()) {
+		if (festival.isEmpty()) {
 			return "redirect:/404";
 		}
 
@@ -110,28 +118,26 @@ public class FestivalController {
 	/**
 	 *
 	 * @param festivalForm: form with the new data
-	 * @param errors: errors from validation of the festival data
+	 * @param errors:       errors from validation of the festival data
 	 */
 	@PostMapping("/festival/edit")
-	String editFestival(@ModelAttribute("festival_form") @Valid FestivalForm festivalForm,
-						Errors errors,
-						RedirectAttributes redirectAttributes) {
+	String editFestival(@ModelAttribute("festival_form") @Valid FestivalForm festivalForm, Errors errors,
+			RedirectAttributes redirectAttributes) {
 
 		boolean result = false;
 
 		Festival festival = festivalForm.toFestival();
 
-		if(!errors.hasErrors()) {
+		if (!errors.hasErrors()) {
 			result = festivals.update(festival) != null;
 		}
 
-		if(!result) {
+		if (!result) {
 			redirectAttributes.addFlashAttribute("error", "Fehler beim editieren des Festivals.");
 		}
 
 		return "redirect:/festivals";
 	}
-
 
 	/**
 	 *
@@ -139,9 +145,10 @@ public class FestivalController {
 	 */
 	@GetMapping("/festival/{festivalName}-{festivalId}/inventory")
 	String festivalInventory(@PathVariable long festivalId, Model model) {
-		Optional<Festival> festivalOptional = festivals.findById(festivalId);;
+		Optional<Festival> festivalOptional = festivals.findById(festivalId);
+		;
 
-		if(festivalOptional.isEmpty()) {
+		if (festivalOptional.isEmpty()) {
 			return "redirect:/404";
 		}
 
@@ -157,7 +164,7 @@ public class FestivalController {
 	String editFestivalInventory(@PathVariable long festivalId, Model model) {
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
 
-		if(festivalOptional.isEmpty()) {
+		if (festivalOptional.isEmpty()) {
 			return "redirect:/404";
 		}
 
@@ -173,13 +180,12 @@ public class FestivalController {
 	}
 
 	@PostMapping("/festival/inventory/edit")
-	String editFestivalInventory(@RequestParam long festivalId,
-								 @RequestParam InventoryItemIdentifier itemId,
-								 @RequestParam long quantity) {
+	String editFestivalInventory(@RequestParam long festivalId, @RequestParam InventoryItemIdentifier itemId,
+			@RequestParam long quantity) {
 
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
 
-		if(festivalOptional.isEmpty()) {
+		if (festivalOptional.isEmpty()) {
 			return "redirect:/404";
 		}
 

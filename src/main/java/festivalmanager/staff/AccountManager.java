@@ -26,6 +26,7 @@ public class AccountManager {
 	public static final Role SECURITY_ROLE = Role.of("SECURITY");
 	public static final Role TICKET_SALESMAN_ROLE = Role.of("TICKET_SALESMAN");
 
+
 	public final AccountRepository accounts;
 	public final UserAccountManager userAccounts;
 	private final ApplicationEventPublisher publisher;
