@@ -40,9 +40,9 @@
               document.getElementById("minutes").innerHTML = minutes;
               if (t < 0) {
                 clearInterval(x);
-                document.getElementById("days").innerHTML = "";
-                document.getElementById("hours").innerHTML = "EXPIRED";
-                document.getElementById("minutes").innerHTML = "";
+                document.getElementById("Dayrow").hidden = true;
+                document.getElementById("Hourrow").hidden = true;
+                document.getElementById("Minrow").hidden = true;
               }
             }, 1000); 
           </script>
@@ -52,7 +52,7 @@
           <div class="row mt-5 mb-5">
 
             <!--Grid column-->
-            <div class="col-lg-4 col-md-4">
+            <div class="col-lg-4 col-md-4" id="Dayrow">
               <hr class="white mx-5">
               <h1 class="display-4 font-weight-bold white-text">
                 <strong id="days"></strong>
@@ -64,7 +64,7 @@
             <!--Grid column-->
 
             <!--Grid column-->
-            <div class="col-lg-4 col-md-4">
+            <div class="col-lg-4 col-md-4" id="Hourrow">
               <h1 class="display-4 font-weight-bold white-text rgba-white-light mx-4 py-3 mt-3">
                 <strong id="hours"></strong>
               </h1>
@@ -73,7 +73,7 @@
             <!--Grid column-->
 
             <!--Grid column-->
-            <div class="col-lg-4 col-md-4">
+            <div class="col-lg-4 col-md-4" id="Minrow">
               <hr class="white mx-5">
               <h1 class="display-4 font-weight-bold white-text">
                 <strong id="minutes"></strong>
