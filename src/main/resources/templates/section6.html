@@ -127,6 +127,66 @@
     </section>
 
     <!-- Section 6 MANAGER -->
+    <section id="contact" class="mb-5">
+      <div class="container text-center" sec:authorize="isAuthenticated()">
+        <div> Hallo User </div>
+
+
+        <table class="ui celled table" sec:authorize="!hasAuthority('MANAGER')">
+          <thead>
+            <tr>
+              <th>sender</th>
+              <th>message</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            <th:block th:each="message : ${messageManagement.findByReceiver(Account)}">
+              <tr>
+                <td th:text="${message.sender.getUserAccount().username}"></td>
+                <td th:text="${message.message}"></td>
+              </tr>
+            </th:block>
+          </tbody>
+
+
+        </table>
+        <div sec:authorize="!hasAuthority('MANAGER')" th:if="!${messageManagement.anyMessages(Account)}"
+          th:text="#{noMessages}"></div>
+        <table class="ui celled table" sec:authorize="hasAuthority('MANAGER')">
+
+          <thead>
+            <tr>
+              <th>receiver</th>
+              <th>message</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            <th:block th:each="message : ${messageManagement.findBySender(Account)}">
+              <tr>
+                <td th:text="${message.receiver.getUserAccount().username}"></td>
+                <td th:text="${message.message}"></td>
+              </tr>
+            </th:block>
+          </tbody>
+        </table>
+        <div sec:authorize="hasAuthority('MANAGER')" th:if="!${messageManagement.anySentMessages(Account)}"
+          th:text="#{noSentMessages}"></div>
+        <div sec:authorize="hasAuthority('MANAGER')">
+          <form th:action="@{sendMessage/{name}(name=${Account.getUserAccount().username})}" method="get">
+            <button type="submit" th:href="@{sendMessage/{name}(name=${Account.getUserAccount().username})}"
+              th:text="#{sendNewMessage}">
+            </button>
+          </form>
+        </div>
+
+
+
+      </div>
+    </section>
 
     <!-- Section 6 CATERING -->
 
