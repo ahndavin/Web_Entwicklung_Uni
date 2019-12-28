@@ -9,6 +9,7 @@ import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -107,6 +108,22 @@ public class FestivalManager {
 		}
 
 		return save(festival);
+	}
+
+	public Iterable<Festival> findAllSortedByDate() {
+		List<Festival> festivalList = (List<Festival>) festivalRepository.findAll();
+
+		festivalList.sort(new Comparator<Festival>() {
+			@Override
+			public int compare(Festival festival1, Festival festival2) {
+				Long date1 = festival1.getDate()[Festival.START_DATE].getTime();
+				Long date2 = festival2.getDate()[Festival.START_DATE].getTime();
+				
+				return date1.compareTo(date2);
+			}
+		});
+
+		return festivalList;
 	}
 
 	public void delete(Festival festival) {
