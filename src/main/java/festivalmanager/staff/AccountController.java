@@ -62,7 +62,7 @@ class 	AccountController {
 			return "createAccount";
 		}
 
-		@PreAuthorize("hasAuthority('MANAGER')")
+		@PreAuthorize("hasRole('MANAGER')")
 		@GetMapping("/allAccounts")
 		String allAccounts(Model model){
 			model.addAttribute("accountList", accountManager.findAll());
@@ -99,7 +99,7 @@ class 	AccountController {
 			return "redirect:/";
 		}
 
-		@PreAuthorize("hasAuthority('MANAGER')")
+		@PreAuthorize("hasRole('MANAGER')")
 		@GetMapping("/changePassword/{name}")
 		String changePasswordByUsername(Model model, changePasswordForm form, @PathVariable String name){
 			model.addAttribute("form", form);

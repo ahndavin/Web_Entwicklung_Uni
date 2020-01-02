@@ -25,6 +25,7 @@ public class AccountManager {
 	public static final Role MANAGER_ROLE = Role.of("MANAGER");
 	public static final Role SECURITY_ROLE = Role.of("SECURITY");
 	public static final Role TICKET_SALESMAN_ROLE = Role.of("TICKET_SALESMAN");
+	public static final Role Festival_MANAGER_ROLE = Role.of("FESTIVAL_MANAGER");
 
 
 	public final AccountRepository accounts;
@@ -67,6 +68,10 @@ public class AccountManager {
 			}*/
 			if (Boolean.TRUE.equals(form.getTicketSalesman())) {
 				userAccount.add(TICKET_SALESMAN_ROLE);
+			}
+
+			if (Boolean.TRUE.equals(form.getTicketSalesman())){
+				userAccount.add(Festival_MANAGER_ROLE);
 			}
 
 			return accounts.save(new Account(userAccount, form.getFirstName(), form.getLastName()));
