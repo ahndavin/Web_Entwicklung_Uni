@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class FestivalManagerTest {
-	/* @Autowired FestivalManager festivals;
+	@Autowired FestivalManager festivals;
 
 	@Test
 	public void canSaveFestival() {
@@ -44,7 +44,7 @@ public class FestivalManagerTest {
 				"test 1",
 				"test",
 				"2020-01-11",
-				"202-01-13",
+				"2020-01-13",
 				100,
 				100,
 				50.0f,
@@ -73,5 +73,5 @@ public class FestivalManagerTest {
 
 		assertNull(savedF2);
 		assertEquals(1, endFestivalCount - startFestivalCount);
-	} */
+	}
 }
