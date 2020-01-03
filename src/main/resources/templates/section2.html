@@ -314,7 +314,7 @@
     </h3>
 
     <!--Table-->
-    <section>
+    <section id="festivals">
 
       <div class="container my-2">
         <div class="card">
@@ -342,9 +342,11 @@
                     <td th:text="${festival.endDate}"></td>
                     <td th:text="${festival.maxVisitors}"></td>
                     <td th:text="${festival.sellingTickets}"></td>
-                    <td><a th:href="${'/festival/' + festival.name + '-' + festival.id + '/edit'}"
-                        class="btn btn-green">
-                        <i class="fas fa-user-edit ml-2"></i></a></td>
+                    <td>
+                      <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/edit'}" class="btn btn-green">
+                        <i class="fas fa-user-edit ml-2"></i></a>
+
+                    </td>
                     <td><a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}"
                         class="btn btn-green">
                         <i class="fas fa-archive"></i>
