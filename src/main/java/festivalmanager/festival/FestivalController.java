@@ -232,6 +232,6 @@ public class FestivalController {
 
 		festivalOptional.ifPresent(festival -> festivals.delete(festival));
 
-		return "redirect:/festivals";
+		return "redirect:/#festivals";
 	}
 }

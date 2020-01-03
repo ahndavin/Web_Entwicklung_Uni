@@ -43,48 +43,6 @@
 </head>
 
 <body>
-    <!-- Userspecific Navbar -->
-    <nav th:replace="usernav :: usernavigation"></nav>
-    <nav sec:authorize="hasAuthority('MANAGER')" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="/">FVIV</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto smooth-scroll">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#accountancy" data-offset="80">Festival Accountancy</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#events" data-offset="80">Manager Stuff2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tickets" data-offset="40">Manager Stuff3</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#faq" data-offset="40">Manager Stuff4</a>
-                    </li>
-                </ul>
-
-                <!-- Manager Logout and Icon  -->
-                <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="fas fa-user-secret"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
-                        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                            <input hidden type="submit" value="Sign Out" />
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <!-- Navbar Festival Manager -->
     <nav sec:authorize="hasAuthority('FESTIVAL_MANAGER')" class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
@@ -103,8 +61,6 @@
                         <a class="nav-link" href="/#events" data-offset="80">See All Festivals</a>
                     </li>
                 </ul>
-
-
 
                 <!-- FestivalManager Logout and Icon -->
                 <ul class="navbar-nav nav-flex-icons">
@@ -130,52 +86,52 @@
 
         <div class="form-group col-md-8">
             <label class="col-form-label" for="name">Name</label>
-            <input class="form-control" type="text" th:field="*{name}">
+            <input class="form-control" type="text" th:field="*{name}" required>
         </div>
 
         <div class="form-group col-md-8">
             <label class="col-form-label" for="location">Location</label>
-            <input class="form-control" type="text" th:field="*{location}">
+            <input class="form-control" type="text" th:field="*{location}" required>
         </div>
 
         <div class="form-group col-md-8">
             <label class="col-form-label" for="startDate">Start</label>
-            <input class="form-control" type="date" th:field="*{startDate}">
+            <input class="form-control" type="date" th:field="*{startDate}" required>
         </div>
 
         <div class="form-group col-md-8">
             <label class="col-form-label" for="endDate">Ende</label>
-            <input class="form-control" type="date" th:field="*{endDate}">
+            <input class="form-control" type="date" th:field="*{endDate}" required>
         </div>
 
 
         <div class="form-group col-md-8">
             <label class="col-form-label" for="amountDaytickets">Anzahl Tagestickets</label>
             <input class="form-control" type="number" id="amountDaytickets" th:name="amountDaytickets"
-                th:value="${festival_form.ticketBuilder.amountDaytickets}">
+                th:value="${festival_form.ticketBuilder.amountDaytickets}" required>
         </div>
 
         <div class="form-group col-md-8">
             <label class="col-form-label" for="amountCampingtickets">Anzahl Campingtickets</label>
             <input class="form-control" type="number" id="amountCampingtickets" th:name="amountCampingtickets"
-                th:value="${festival_form.ticketBuilder.amountCampingtickets}">
+                th:value="${festival_form.ticketBuilder.amountCampingtickets}" required>
         </div>
 
         <div class="form-group col-md-8">
             <label class="col-form-label" for="priceDayticket">Preis Tagesticket</label>
             <input class="form-control" type="number" id="priceDayticket" th:name="priceDayticket"
-                th:value="${festival_form.ticketBuilder.formattedPriceDayticket}">
+                th:value="${festival_form.ticketBuilder.formattedPriceDayticket}" required>
         </div>
 
         <div class="form-group col-md-8">
             <label class="col-form-label" for="priceCampingticket">Preis Campingticket</label>
             <input class="form-control" type="number" id="priceCampingticket" th:name="priceCampingticket"
-                th:value="${festival_form.ticketBuilder.formattedPriceCampingticket}">
+                th:value="${festival_form.ticketBuilder.formattedPriceCampingticket}" required>
         </div>
 
         <div class="form-group col-md-8">
             <label class="col-form-label" for="maxVisitors">maximale Besucher</label>
-            <input class="form-control" type="number" th:field="*{maxVisitors}">
+            <input class="form-control" type="number" th:field="*{maxVisitors}" required>
         </div>
 
         <div class="form-group col-md-8">
