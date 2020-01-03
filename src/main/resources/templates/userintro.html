@@ -58,6 +58,26 @@
     </div>
   </div>
 
+  <!-- FestivalManager Intro Section -->
+  <div th:fragment="usersection" sec:authorize="hasAuthority('FESTIVAL_MANAGER')" id=" home" class="view jarallax"
+    data-jarallax='{"speed": 0.2}'
+    style="background-image: url(https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);">
+    <div class="mask rgba-black-strong">
+      <div class="container h-100 d-flex justify-content-center align-items-center mt-5">
+        <div class="row smooth-scroll">
+          <div class="col-md-12 text-center white-text">
+            <div class="wow fadeInDown" data-wow-delay="0.2s">
+              <h3 class="display-4 font-weight-bold mb-2 rgba-black-light py-2">FVIV FESTIVALMANAGER</h3>
+              <hr class="hr-light my-4">
+              <p class="clearfix d-none d-md-inline-block">Scroll down to learn more</p>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Catering Intro Section -->
   <div th:fragment="usersection" sec:authorize="hasAuthority('CATERING')" id=" home" class="view jarallax"

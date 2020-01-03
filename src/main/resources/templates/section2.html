@@ -308,6 +308,64 @@
 
     </section>
 
+    <!-- Section 2 Festival Manager -->
+    <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+      <strong>All Festivals</strong>
+    </h3>
+
+    <!--Table-->
+    <section>
+
+      <div class="container my-2">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-md-10">
+              <table class="table table-striped table-responsive-md">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Startdate</th>
+                    <th>Enddate</th>
+                    <th>Max. Visitors</th>
+                    <th>Selling Tickets</th>
+                    <th>Edit</th>
+                    <th>Inventory</th>
+                    <th>Contracts</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="festival : ${festivals}">
+                    <td th:text="${festival.name}"></td>
+                    <td th:text="${festival.location}"></td>
+                    <td th:text="${festival.startDate}"></td>
+                    <td th:text="${festival.endDate}"></td>
+                    <td th:text="${festival.maxVisitors}"></td>
+                    <td th:text="${festival.sellingTickets}"></td>
+                    <td><a th:href="${'/festival/' + festival.name + '-' + festival.id + '/edit'}"
+                        class="btn btn-green">
+                        <i class="fas fa-user-edit ml-2"></i></a></td>
+                    <td><a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}"
+                        class="btn btn-green">
+                        <i class="fas fa-archive"></i>
+                      </a></td>
+                    <td>
+                      <form method="get" role="form" class="ui form" name="form" th:action="@{/contracts/list}">
+                        <input type="hidden" th:value="${festival.getId()}" name="id" />
+                        <button type="submit" class="ui button">
+                          <i class="fas fa-address-book"></i>
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Table-->
 
     <!-- Section 2 Catering -->
     <section id="schedule" class="my-5" sec:authorize="hasAuthority('CATERING')">

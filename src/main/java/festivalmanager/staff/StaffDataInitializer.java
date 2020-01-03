@@ -56,6 +56,9 @@ public class StaffDataInitializer implements DataInitializer{
 				false, true, false, false), null);
 		Account TICKET_SALESMAN =  accountManager.createAccount(new CreationForm("TICKET_SALESMAN", "123", "TICKET_SALESMAN", "TICKET_SALESMAN",
 				false, false, false, true), null);
+		Account FESTIVAL_MANAGER =  accountManager.createAccount(new CreationForm("FESTIVAL_MANAGER", "123", "FESTIVAL_MANAGER", "FESTIVAL_MANAGER",
+			false, false, true, false), null);
+
 
 
 		messageManagement.createNewMessage(new MessageEvent(MANAGER, MANAGER, SECURITY1, "Hallo"));

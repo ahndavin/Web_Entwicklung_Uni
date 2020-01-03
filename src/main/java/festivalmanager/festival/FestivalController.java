@@ -39,9 +39,29 @@ public class FestivalController {
 	@GetMapping("/")
 	String allFestivals(Model model) {
 		model.addAttribute("festivals", festivals.findAll());
+		model.addAttribute("festival_form", new FestivalForm());
 
 		return "welcome";
 	}
+	@PostMapping("/")
+	String addFestivals(@ModelAttribute @Valid FestivalForm festivalForm, Errors errors,
+					   RedirectAttributes redirectAttributes) {
+
+		boolean result = false;
+
+		Festival festival = festivalForm.toFestival();
+
+		if (!errors.hasErrors()) {
+			result = festivals.save(festival) != null;
+		}
+
+		if (!result) {
+			redirectAttributes.addFlashAttribute("error", "Fehler beim erstellen des Festivals.");
+		}
+
+		return "redirect:/";
+	}
+
 
 	/**
 	 *
@@ -63,7 +83,7 @@ public class FestivalController {
 	/**
 	 * add a new festival
 	 */
-	@PreAuthorize("hasAuthority('MANAGER')")
+	@PreAuthorize("hasAuthority('FESTIVAL_MANAGER') or hasAuthority('MANAGER')")
 	@GetMapping("/festival/add")
 	String addFestival(Model model) {
 		model.addAttribute("festival_form", new FestivalForm());
@@ -93,14 +113,14 @@ public class FestivalController {
 			redirectAttributes.addFlashAttribute("error", "Fehler beim erstellen des Festivals.");
 		}
 
-		return "redirect:/festivals";
+		return "redirect:/";
 	}
 
 	/**
 	 *
 	 * @param festivalId: id of the festival
 	 */
-	@PreAuthorize("hasAuthority('MANAGER')")
+	@PreAuthorize("hasAuthority('FESTIVAL_MANAGER') or hasAuthority('MANAGER') ")
 	@GetMapping("/festival/{festivalName}-{festivalId}/edit")
 	String editFestival(@PathVariable long festivalId, Model model) {
 		Optional<Festival> festival = festivals.findById(festivalId);
