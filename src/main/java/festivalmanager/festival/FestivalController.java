@@ -1,8 +1,8 @@
 package festivalmanager.festival;
 
 import festivalmanager.inventory.InventoryManager;
-import festivalmanager.inventory.Item;
-import org.salespointframework.catalog.ProductIdentifier;
+import festivalmanager.staff.AccountManager;
+import festivalmanager.staff.CreationForm;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,10 +19,12 @@ import java.util.Optional;
 public class FestivalController {
 	private FestivalManager festivals;
 	private InventoryManager stock;
+	private final AccountManager accountManager;
 
-	public FestivalController(FestivalManager festivals, InventoryManager stock) {
+	public FestivalController(FestivalManager festivals, InventoryManager stock, AccountManager accountManager) {
 		this.festivals = festivals;
 		this.stock = stock;
+		this.accountManager = accountManager;
 	}
 
 	/**
@@ -37,9 +39,13 @@ public class FestivalController {
 	}
 
 	@GetMapping("/")
-	String allFestivals(Model model) {
+	String everyThing(Model model , CreationForm form, Errors result) {
 		model.addAttribute("festivals", festivals.findAll());
 		model.addAttribute("festival_form", new FestivalForm());
+		model.addAttribute("accountList", accountManager.findAll());
+		model.addAttribute("accountManager", accountManager);
+		model.addAttribute("form", form);
+		model.addAttribute("error", result);
 
 
 

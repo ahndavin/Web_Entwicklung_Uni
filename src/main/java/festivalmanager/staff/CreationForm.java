@@ -5,7 +5,7 @@ import org.h2.api.UserToRolesMapper;
 
 import javax.validation.constraints.NotEmpty;
 
-class CreationForm {
+public class CreationForm {
 
 		@NotEmpty(message = "{CreationForm.name.NotEmpty}")
 		private final String usrName;
