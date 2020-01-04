@@ -28,13 +28,15 @@
 
       <!-- Section description -->
       <p class="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.3s">
-        Click on a Specific Festival, to see buy order a Ticket!</p>
-
+        Down below you see the next three Festivals.</p>
+      <p class="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.3s">
+        Click on a Specific Festival, to get more Details!</p>
       <!--Grid row-->
       <div class="row features-small pt-4">
 
         <!--Grid column-->
-        <div class="col-md-4 mb-4" th:each="festival,index : ${festivals}">
+        <div class="col-md-4 mb-4" th:each="festival,iter : ${festivals}" th:if="${iter.index <3}">
+
           <div class="col-1 col-md-2 float-left">
           </div>
           <div class="col-10 col-md-9 col-lg-10 float-right">
