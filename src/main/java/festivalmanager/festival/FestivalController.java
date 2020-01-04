@@ -222,7 +222,7 @@ public class FestivalController {
 
 	@PostMapping("/festival/inventory/edit")
 	String editFestivalInventory(@RequestParam long festivalId, @RequestParam InventoryItemIdentifier itemId,
-			@RequestParam long quantity) {
+			@RequestParam String quantity) {
 
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
 
@@ -232,7 +232,13 @@ public class FestivalController {
 
 		Festival festival = festivalOptional.get();
 
-		Festival result = festivals.updateInventoryItem(festival, itemId, Quantity.of(quantity));
+		if(quantity.equals("")) {
+			return "redirect:/festival/" + festival.getName() + "-" + festivalId + "/inventory/edit";
+		}
+
+		long quantityParsed = Long.parseLong(quantity);
+
+		Festival result = festivals.updateInventoryItem(festival, itemId, Quantity.of(quantityParsed));
 
 		return "redirect:/festival/" + festival.getName() + "-" + festivalId + "/inventory/edit";
 	}
