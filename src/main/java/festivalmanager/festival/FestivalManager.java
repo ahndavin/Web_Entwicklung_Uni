@@ -111,7 +111,7 @@ public class FestivalManager {
 	}
 
 	public Iterable<Festival> findAllSortedByDate() {
-		List<Festival> festivalList = (List<Festival>) festivalRepository.findAll();
+		List<Festival> festivalList = (List<Festival>) findAll();
 
 		festivalList.sort(new Comparator<Festival>() {
 			@Override
