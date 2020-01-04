@@ -2,6 +2,8 @@ package festivalmanager.festival;
 
 import festivalmanager.inventory.InventoryManager;
 import festivalmanager.inventory.Item;
+import festivalmanager.location.Location;
+import festivalmanager.location.LocationManager;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
@@ -17,10 +19,12 @@ import java.util.Optional;
 public class FestivalManager {
 	private final FestivalRepository festivalRepository;
 	private final InventoryManager inventory;
+	private final LocationManager locations;
 
-	public FestivalManager(FestivalRepository festivalRepository, InventoryManager inventory) {
+	public FestivalManager(FestivalRepository festivalRepository, InventoryManager inventory, LocationManager locations) {
 		this.festivalRepository = festivalRepository;
 		this.inventory = inventory;
+		this.locations = locations;
 	}
 
 	public Iterable<Festival> findAll() {
@@ -32,6 +36,20 @@ public class FestivalManager {
 	}
 
 	public Festival save(Festival festival) {
+		Iterable<Location> locationList = locations.findAll();
+
+		boolean foundLocation = false;
+		for(Location location : locationList) {
+			if(festival.getLocation().equals(location.getName())) {
+				foundLocation = true;
+				break;
+			}
+		}
+
+		if(!foundLocation) {
+			return null;
+		}
+
 		Iterable<Festival> festivals = festivalRepository.findAll();
 
 		for(Festival f : festivals) {
