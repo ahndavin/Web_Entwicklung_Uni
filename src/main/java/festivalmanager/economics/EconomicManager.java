@@ -27,19 +27,23 @@ public class EconomicManager{
 
     public Festival findById(Long id) {
         return festivalRepository.findById(id).isPresent() ? festivalRepository.findById(id).get() : null;
-      }
+    }
 
 	public void add(int amount, String description, Festival festival){
         MonetaryAmount value = Money.of(amount, "EUR");
         AccountancyEntry entry = new AccountancyEntry(value, description);
-        accountency.add(entry);
-        festival.getEconomicList().add(entry);
+        addEntry(entry, festival);
     }
 
     public void add(Money value, String description, Festival festival){
         AccountancyEntry entry = new AccountancyEntry(value, description);
+        addEntry(entry, festival);
+    }
+
+    public void addEntry(AccountancyEntry entry, Festival festival){
         accountency.add(entry);
         festival.getEconomicList().add(entry);
+
     }
 
     public List<AccountancyEntry> getAll(Festival festival){
@@ -50,7 +54,7 @@ public class EconomicManager{
         List<AccountancyEntry> entrys = festival.getEconomicList();
         MonetaryAmount sum = Money.of(0, "EUR");
         for (AccountancyEntry entry : entrys){
-            if(entry.isRevenue() == true){
+            if(entry.isRevenue()){
                 sum = sum.add(entry.getValue());
             }
         }
@@ -61,7 +65,7 @@ public class EconomicManager{
         List<AccountancyEntry> entrys = festival.getEconomicList();
         MonetaryAmount sum = Money.of(0, "EUR");
         for (AccountancyEntry entry : entrys){
-            if(entry.isExpense() == true){
+            if(entry.isExpense()){
                 sum = sum.add(entry.getValue());
             }
         }
