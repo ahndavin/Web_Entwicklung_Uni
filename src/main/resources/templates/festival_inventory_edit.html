@@ -109,7 +109,7 @@
                         th:text="${stock.findById(inventoryItem.key).get().product.name}"></label>
                     <input class="form-control" type="number" name="quantity" th:value="${inventoryItem.value}">
                     <p class="availableInfo"
-                        th:text="'Noch ' + ${stock.findById(inventoryItem.key).get().quantity} + ' available'"></p>
+                        th:text="${stock.findById(inventoryItem.key).get().quantity} + ' more available'"></p>
 
                     <input class="btn btn-dark" type="submit" value="Save">
                 </form>
