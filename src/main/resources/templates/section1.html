@@ -302,7 +302,7 @@
             <form method="post" role="form" class="ui form" name="form" th:action="@{/ticketDay}">
               <input type="hidden" th:value="${festival.getId()}" name="id" />
               <input type="hidden" value="DAYTICKET" name="sort_str" />
-              <button type="submit" class="ui button">Buy Dayticket</button>
+              <button onclick="return confirm('Was the ticket paid for?');" class="ui button">Buy Dayticket</button>
             </form>
             <br>
             <br>
@@ -313,7 +313,7 @@
             <form method="post" role="form" class="ui form" name="form" th:action="@{/ticketCamping}">
               <input type="hidden" th:value="${festival.getId()}" name="id" />
               <input type="hidden" value="CAMPINGTICKET" name="sort_str" />
-              <button type="submit" class="ui button">Buy Campingticket</button>
+              <button onclick="return confirm('Was the ticket paid for?');" class="ui button">Buy Campingticket</button>
             </form>
 
           </div>
