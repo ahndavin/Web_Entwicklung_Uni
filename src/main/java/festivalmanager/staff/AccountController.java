@@ -54,7 +54,7 @@ class 	AccountController {
 			return "redirect:/";
 		}
 
-	@PreAuthorize("hasRole('MANAGER')")
+		//@PreAuthorize("hasRole('MANAGER')")
 		@GetMapping("/createAccount")
 		String createAccount(Model model, CreationForm form, Errors result) {
 			model.addAttribute("form", form);
@@ -69,6 +69,7 @@ class 	AccountController {
 			model.addAttribute("accountManager", accountManager);
 			return "allAccounts";
 		}
+
 
 		@GetMapping(value = "/loggedaccounts")
 		public String getLoggedAccounts(Locale locale, Model model){
@@ -121,7 +122,7 @@ class 	AccountController {
 		@GetMapping("/deleteAccount/{name}")
 		String deleteAccount(Model model, @PathVariable String name){
 			accountManager.deleteAccount(accountManager.findByUserAccount(userAccounts.findByUsername(name).get()).get());
-			return "redirect:/allAccounts";
+			return "redirect:/#accounts";
 		}
 
 		@GetMapping("/sendMessage/{name}")
