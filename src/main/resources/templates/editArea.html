@@ -10,17 +10,14 @@
   <link rel="stylesheet" href="css/style.css" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-  <title>Areas</title>
+  <title>Edit Area</title>
 </head>
 
 <body>
+
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
-  	function goToCreateArea() {
-		var currURL = location.pathname
-		currURL = currURL.replace("/area", "/createArea");
-		location.href = currURL;
-	}
+  		var currentURL = "@{" + location.pathname + "}";
   </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
@@ -36,7 +33,7 @@
           <a th:href="@{'/location/' + ${location.getName()}}" class="nav-link ">Overview of Location</a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link active">See all existing Areas</a>
+          <a th:href="@{'/location/' + ${location.getName()} + '/area'}" class="nav-link">See all existing Areas</a>
         </li>
       </ul>
     </div>
@@ -46,70 +43,59 @@
   <section class="d-flex align-items-center" id="showcase">
     <div id="overlay"></div>
     <div id="header" class="container text-white text-center">
-      <h3 class="display-5 mb-0">Amazing Location here!</h3>
-      <h1 class="display-3">For real! This Location is glorious!!</h1>
+      <h3 class="display-5 mb-0">Creating the awesome Area?!</h3>
+      <h1 class="display-3">Where should it be?</h1>
       <p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
     </div>
   </section>
 
-  
-  <div id="wrapper" class="container">
-    <h1 class="text-center mb-05">Current Areas</h1>
-    <div class="container text-center">
-      <ul class="list-group" th:each="area : ${areaList}">
-      			<h3 th:text="'Area: ' + ${area.getZone()}"></h3>
-				
-				<li class="list-group-item">
-					<label for="type"><b>Type: </b></label>
-					<label th:text="${area.getType()}"></label>
-				</li>
-				<li class="list-group-item">
-					<form method="get" th:action="@{'/location/' + ${location.getName()} + '/area/changeStatus'}">
-						<label for="blocked"><b>Blocked: </b></label>
-						<input type="hidden" name="area" th:value="${area}"/>
-						<button id="btn__" type="submit" th:text="${area.getStatus()}"></button>
-		      		</form>
-				</li>
-				
-				<li class="list-group-item">
-					<label for="currVisitors"><b>Current Visitors: </b></label>
-					<label th:text="${area.getCurrVisitors()}"></label>
-				</li>
-				
-				<li class="list-group-item">
-					<label for="maxVisitors"><b>Maximum Visitors: </b></label>
-					<label th:text="${area.getMaxVisitors()}"></label>
-				</li>
-				
-				<li th:if="${area.getAllStages()!=null}" class="list-group-item">
-					<label for="maxStages"><b>Maximum Stages: </b></label>
-					<label th:text="${area.getMaxStages()}"></label>
-				</li>
-				
-				<li class="list-group-item">
-					<button id="btn_" class="btn btn-lg btn-dark">
-						<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}}" class="text-light">Edit Area</a>
-	      			</button>
-					<button th:if="${area.getAllStages()!=null}" id="btn_" class="btn btn-lg btn-dark">
-	       		 		<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage'" class="text-light">View Stages</a>
-	      			</button>
-				</li>
-				<br>
-				<br>
-			</ul>
+  <!--  ImputField -->
+  <section>
+
+    <div id="wrapper" class="container text-center">
+      <h1 class="mb-3 mt-5"> Edit Area </h1>
+      
+      <form method="POST" th:action="${currentURL}" th:object="${area}">
+      	<label for="zone">Zone</label>
+        <input type="text" th:field="*{zone}" class="form-control" />
+        <br />
+        <label for="maxVisitors">Max Visitors</label>
+        <input type="number" th:field="*{maxVisitors}" class="form-control" />
+        <br />
+        <label for="type">Type</label><br/>	
+		<label class="box-radio-input">
+		<input type="radio" name="chk_info" th:field="*{type}" value="CAMPING"><span>Camping</span></label>
+		<label class="box-radio-input">
+		<input type="radio" name="chk_info" th:field="*{type}" value="PARK"><span>Park</span></label>
+		<label class="box-radio-input">
+		<input type="radio" name="chk_info" th:field="*{type}" value="CATERING"><span>Catering</span></label>
+		<label class="box-radio-input">
+		<input type="radio" name="chk_info" th:field="*{type}" value="STAGE"><span>Stage</span></label>
+		<br />
+		<br />
+		
+		<!-- Stage를 눌렀을 때만 보이게 할 것 -->
+		<label for="maxStages">Max Stages</label>
+        <input type="number" th:field="*{maxStages}" class="form-control" />
+        
+        
+        <br />
+		<br />
+		
+		
+        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">
+          Edit Area
+        </button>
+        <!--
+        <a id="deleteLink" th:onclick="'deleteFestival(' + ${festival_form.id} + ')'" href="#">Festival löschen</a>
+ 		-->
+      </form>
+
     </div>
-  </div>
-  <br>
-  <section class="d-flex align-items-center mb-02">
-    <div id="header" class="container text-white text-center">
-      <button id="btn" class="btn btn-lg btn-dark">
-        <a href="#" onclick="goToCreateArea()" class="text-light">Create a new Area</a>
-      </button>
-    </div>
+
   </section>
   <br>
   <br>
-
 
 
   <!-- BOOTSTRAP SCRIPTS -->
