@@ -27,7 +27,7 @@ public class FestivalInitializer implements DataInitializer {
 			return;
 		}
 
-		Festival f = new Festival("Abriss", "Dresden", "2019-12-19","2019-12-20", 100, 50, 20, 40, 2, true);
+		Festival f = new Festival("Abriss", "Dresden", "2020-12-19","2019-12-20", 100, 50, 20, 40, 2, true);
 
 		f.editPlan().add("blabla");
 		f.editPlan().add("lalala");

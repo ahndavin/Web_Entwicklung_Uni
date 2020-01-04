@@ -18,32 +18,37 @@
   <div th:fragment="section3">
 
     <!-- Section 3 User -->
-    <div th:each="festival,iter : ${festivals}" th:if="${iter.index == 0}" class="streak streak-photo streak-long-2 "
-      sec:authorize="!isAuthenticated()"
+    <div id="nextFestival" th:each="festival,iter : ${festivals}" th:if="${iter.index == 0}"
+      class="streak streak-photo streak-long-2 " sec:authorize="!isAuthenticated()"
       style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/46.jpg');">
       <div class="flex-center mask rgba-black-strong">
         <div class="text-center white-text">
           <h2 id="festivalplanner" class="font-weight-bold mb-3 pt-4 mt-4"
             th:text="${'Festival: ' + festival.name + ' comming soon!'}"></h2>
-          <script>
-
-            var deadline = new Date("Dec 27, 19 18:34").getTime();
+          <script th:inline="javascript">
+            /*<![CDATA[*/
+            var date = /*[[${festival.startDate}]]*/ 'Sebastian';
+            /*]]>*/
+            var deadline = new Date(date).getTime();
             var x = setInterval(function () {
               var now = new Date().getTime();
               var t = deadline - now;
               var days = Math.floor(t / (1000 * 60 * 60 * 24));
               var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
               var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+              var seconds = Math.floor((t % (1000 * 60)) / 1000);
 
 
               document.getElementById("days").innerHTML = days;
               document.getElementById("hours").innerHTML = hours;
               document.getElementById("minutes").innerHTML = minutes;
+              document.getElementById("seconds").innerHTML = seconds;
               if (t <= 0) {
                 clearInterval(x);
                 document.getElementById("Dayrow").hidden = true;
                 document.getElementById("Hourrow").hidden = true;
                 document.getElementById("Minrow").hidden = true;
+                document.getElementById("Secrow").hidden = true;
                 document.getElementById("festivalplanner").innerHTML = "Festival ended, next Festival will be displayed soon! Stay tuned!";
                 document.getElementById("festivaldate").hidden = true;
 
@@ -55,22 +60,22 @@
           <p id="festivaldate" class="font-weight-bold white-text">Festival1. startdate Artist1.starttime</p>
 
           <!--Grid row-->
-          <div class="row mt-5 mb-5">
+
+          <div class="row">
 
             <!--Grid column-->
-            <div class="col-lg-4 col-md-4" id="Dayrow">
+            <div class="col" id="Dayrow">
               <hr class="white mx-5">
               <h1 class="display-4 font-weight-bold white-text">
                 <strong id="days"></strong>
               </h1>
-
               <hr class="white mx-5">
               <p class="font-weight-bold spacing">DAYS</p>
             </div>
             <!--Grid column-->
 
             <!--Grid column-->
-            <div class="col-lg-4 col-md-4" id="Hourrow">
+            <div class="col" id="Hourrow">
               <h1 class="display-4 font-weight-bold white-text rgba-white-light mx-4 py-3 mt-3">
                 <strong id="hours"></strong>
               </h1>
@@ -79,13 +84,22 @@
             <!--Grid column-->
 
             <!--Grid column-->
-            <div class="col-lg-4 col-md-4" id="Minrow">
+            <div class="col" id="Minrow">
               <hr class="white mx-5">
               <h1 class="display-4 font-weight-bold white-text">
                 <strong id="minutes"></strong>
               </h1>
               <hr class="white mx-5">
-              <p class="font-weight-bold spacing">MINS</p>
+              <p class="font-weight-bold spacing">MIN</p>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col" id="Secrow">
+              <h1 class="display-4 font-weight-bold white-text rgba-white-light mx-4 py-3 mt-3">
+                <strong id="seconds"></strong>
+              </h1>
+              <p class="font-weight-bold spacing pt-3">SECONDS</p>
             </div>
             <!--Grid column-->
 

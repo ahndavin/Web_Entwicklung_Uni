@@ -18,113 +18,14 @@
   <div th:fragment="section4">
 
     <!--Section 4 User-->
-    <div class="container-fluid grey lighten-4" sec:authorize="!isAuthenticated()">
-      <div class="container">
 
-        <!--Section: Pricing v.5-->
-        <section id="tickets" class="pb-5 pt-1" th:each="festival,iter : ${festivals}" th:if="${iter.index == 0}">
+    <!-- Section 4 MANAGER -->
 
-          <!-- Section heading -->
-          <h3 class="text-center my-5 pt-3 dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
-            <strong th:text="${'Oder Tickets for: ' + festival.name + ' now! '}"></strong>
-          </h3>
+    <!-- Section 4 CATERING -->
 
+    <!-- Section 4 SECURITY -->
 
-
-          <div class="row text-center">
-
-            <!-- Grid column -->
-            <div class="col-md-6 mb-4">
-
-              <div class="card pricing-card">
-
-                <!--Content-->
-                <div class="card-body">
-                  <h5 class="font-weight-bold mt-3">ONEDAY TICKET</h5>
-
-                  <!-- Price -->
-
-                  <h2 class="number indigo-text mb-0" th:text="${'Daytickerprice'}">
-                  </h2>
-
-                  <!--Price-->
-                  <ul class="striped darker-striped">
-                    <li>
-                      <p>
-                        <span th:text="${'Placeholder 1'}"></span>
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        <span th:text="${'Placeholder 2'}"></span>
-                    </li>
-                    <li>
-                      <p>
-                        <span th:text="${'Placeholder 3'}"></span>
-                    </li>
-                  </ul>
-                  <a class="btn btn-indigo btn-rounded mb-4">Order now !</a>
-                </div>
-              </div>
-
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-6 mb-4">
-
-              <div class="card pricing-card">
-
-                <!--Content-->
-                <div class="card-body">
-                  <h5 class="font-weight-bold mt-3">CAMPING TICKET</h5>
-
-                  <!-- Price -->
-
-                  <h2 class="number indigo-text mb-0" th:text="${'Campingticketprice'}">
-                  </h2>
-
-                  <!--Price-->
-                  <ul class="striped darker-striped">
-                    <li>
-                      <p>
-                        <span th:text="${'Placeholder 1'}"></span>
-                    </li>
-                    <li>
-                      <p>
-                        <span th:text="${'Placeholder 2'}"></span>
-                    </li>
-                    <li>
-                      <p>
-                        <span th:text="${'Placeholder 3'}"></span>
-                    </li>
-                  </ul>
-                  <a class="btn btn-indigo btn-rounded mb-4">Order now ! </a>
-                </div>
-              </div>
-
-            </div>
-            <!-- Grid column -->
-
-          </div>
-          <!-- Grid row -->
-
-      </div>
-      <!--Grid row-->
-
-      </section>
-      <!--/Section: Pricing v.5-->
-
-    </div>
-  </div>
-
-  <!-- Section 4 MANAGER -->
-
-  <!-- Section 4 CATERING -->
-
-  <!-- Section 4 SECURITY -->
-
-  <!-- Section 4 TICKET_SALESMAN -->
+    <!-- Section 4 TICKET_SALESMAN -->
 
   </div>
 </body>
