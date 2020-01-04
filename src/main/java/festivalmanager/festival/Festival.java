@@ -50,6 +50,8 @@ public class Festival {
 	@Transient
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+	@Transient
+	private boolean hasErrors;
 
 	private Festival() {}
 
@@ -135,10 +137,24 @@ public class Festival {
 	public void setDate(int dateType, String date) {
 		try {
 			festivalDate[dateType] = dateFormat.parse(date);
+
+			switch(dateType) {
+				case START_DATE:
+					if(festivalDate[START_DATE].getTime() < System.currentTimeMillis()) {
+						this.hasErrors = true;
+					}
+					break;
+				case END_DATE:
+					if(festivalDate[END_DATE].getTime() < festivalDate[START_DATE].getTime()) {
+						this.hasErrors = true;
+					}
+					break;
+			}
+
 		} catch (ParseException | ArrayIndexOutOfBoundsException e) {
 			e.printStackTrace();
 
-			// TODO show error somehow
+			this.hasErrors = true;
 		}
 	}
 
@@ -209,5 +225,9 @@ public class Festival {
 				this.location + " from " +
 				this.getStartDate() + " to " +
 				this.getEndDate();
+	}
+
+	public boolean hasErrors() {
+		return hasErrors;
 	}
 }
