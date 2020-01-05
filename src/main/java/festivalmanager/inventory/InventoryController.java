@@ -32,6 +32,31 @@ public class InventoryController {
 
 		return "inventory";
 	}
+	@PostMapping("inventory/")
+	public String edit2(@RequestParam InventoryItemIdentifier id, @RequestParam int amount) {
+		Optional<UniqueInventoryItem> itemOptional = inventory.findById(id);
+
+		if(itemOptional.isPresent()) {
+			UniqueInventoryItem	item = itemOptional.get();
+			Quantity quantity = Quantity.of(amount, Metric.UNIT);
+
+			if(quantity.isLessThan(Quantity.of(1, Metric.UNIT))) {
+				inventory.delete(item);
+			} else {
+				Quantity oldQuantity = item.getQuantity();
+
+				if(quantity.isGreaterThan(oldQuantity)) {
+					item.increaseQuantity(quantity.subtract(oldQuantity));
+				} else if(quantity.isLessThan(oldQuantity)) {
+					item.decreaseQuantity(oldQuantity.subtract(quantity));
+				}
+
+				inventory.save(item);
+			}
+		}
+
+		return "redirect:/inventory/";
+	}
 
 	@GetMapping("/inventory/add")
 	public String add() {

@@ -1,66 +1,271 @@
-<!DOCTYPE html>
-    <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <!--  BOOTSTRAP STUFF  -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-              integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-              integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
-        <link rel="stylesheet" href="css/style.css" />
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-        <title>Lager</title>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-        <style>
-            #inventoryContainer {
-                margin: 50px 0 0 100px;
-            }
-        </style>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <a href="/" class="navbar-brand">
-                <h3 class="mb-0">FVIV FESTIVAL</h3>
-            </a>
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNavbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link ">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/inventory/add" class="nav-link">Add an Item</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/inventory" class="nav-link active">View Inventory</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
 
-        <div id="inventoryContainer">
-            <div id="foodContainer">
-                <p>Speisen</p>
-                <ul>
-                    <li th:each="item : ${inventory.findByCategory('food')}" th:text="${item.quantity + 'x ' + item.product.name}"></li>
-                </ul>
-            </div>
-            <div id="drinkContainer">
-                <p>Getränke</p>
-                <ul>
-                    <li th:each="item : ${inventory.findByCategory('drink')}" th:text="${item.quantity + 'x ' + item.product.name}"></li>
-                </ul>
-            </div>
-            <div id="furnitureContainer">
-                <p>Gegenstände</p>
-                <ul>
-                    <li th:each="item : ${inventory.findByCategory('furniture')}" th:text="${item.quantity + 'x ' + item.product.name}"></li>
-                </ul>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Lets try this !</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link type="text/css" th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Basic CSS with Thymeleaf -->
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+    <!-- Material Design Bootstrap -->
+    <link th:href="@{/resources/css/mdb.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/resources/css/timeline.min.css}">
+    <link th:href="@{/resources/css/addons-pro/chat.css}" rel="stylesheet">
+    <style>
+        html,
+        body,
+        header,
+        .view.jarallax {
+            height: 100%;
+            min-height: 100%;
 
-            <a href="/inventory/edit">Inventar bearbeiten</a>
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <a href="/" class="navbar-brand">
+            <h3 class="mb-0">FVIV FESTIVAL</h3>
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/" class="nav-link ">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/inventory/add" class="nav-link">Add an Item</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/inventory" class="nav-link active">View Inventory</a>
+                </li>
+            </ul>
         </div>
-    </body>
+    </nav>
+
+    <!--Grid row-->
+    <div class="row features-small pt-4">
+
+        <!--Grid column Food-->
+        <div class="col-md-4 mb-4">
+
+            <!-- Rotating Food Card -->
+            <div class="card-wrapper">
+                <div id="card-0" class="card card-rotating text-center">
+
+                    <!-- Front Side -->
+                    <div class="festival front">
+
+                        <!-- Background-->
+                        <div class="card-up">
+                            <img class="card-img-top"
+                                src="https://images.unsplash.com/photo-1547424450-75ec164925ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
+                        </div>
+
+                        <!-- Food -->
+                        <div class="avatar mx-auto white"><img
+                                src="https://images.unsplash.com/photo-1556761223-4c4282c73f77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1901&q=80"
+                                class="rounded-circle">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="card-body">
+                            <h4 class="font-weight-bold mb-3">FOOD</h4>
+                            <ul>
+                                <li class="unstyled" th:each="item : ${inventory.findByCategory('food')}"
+                                    th:text="${item.quantity + 'x ' + item.product.name}">Item</li>
+                            </ul>
+                            <!-- Triggering button -->
+                            <a class="rotate-btn" data-card="card-0"><i class="fas fa-redo-alt"></i> Click here
+                                to
+                                edit the Stock</a>
+                        </div>
+                    </div>
+                    <!-- Front Side -->
+
+                    <!-- Back Side -->
+                    <div class="face back">
+                        <div class="card-body">
+
+                            <!-- Content -->
+                            <h4 class="font-weight-bold mb-0"></h4>
+                            <hr>
+                            <ul class="edit-ul">
+                                <li class="edit-li unstyled" th:each="item : ${inventory.findByCategory('food')}">
+                                    <form th:action="@{/inventory/}" method="post">
+                                        <input type="hidden" name="id" th:value="${item.id}">
+                                        <label class="col-form-label" th:text="${item.product.name}"></label>
+                                        <input class="form-control" type="number" name="amount"
+                                            th:value="${item.quantity}">
+                                    </form>
+                                </li>
+                            </ul>
+                            <hr>
+                            <!-- Triggering button -->
+                            <p>Press Enter to Confirm the Edit</p>
+                        </div>
+                    </div>
+                    <!-- Back Side -->
+                </div>
+            </div>
+        </div>
+
+        <!--Grid column Drink-->
+        <div class="col-md-4 mb-4">
+
+            <!-- Rotating Drink Card -->
+            <div class="card-wrapper">
+                <div id="card-1" class="card card-rotating text-center">
+
+                    <!-- Front Side -->
+                    <div class="festival front">
+
+                        <!-- Background-->
+                        <div class="card-up">
+                            <img class="card-img-top"
+                                src="https://images.unsplash.com/photo-1438557068880-c5f474830377?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80">
+                        </div>
+
+                        <!-- Drink -->
+                        <div class="avatar mx-auto white"><img
+                                src="https://images.unsplash.com/photo-1575026790968-a60e29365048?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80"
+                                class="rounded-circle">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="card-body">
+                            <h4 class="font-weight-bold mb-3">DRINK</h4>
+                            <ul>
+                                <li class="unstyled" th:each="item : ${inventory.findByCategory('drink')}"
+                                    th:text="${item.quantity + 'x ' + item.product.name}">Item</li>
+                            </ul>
+                            <!-- Triggering button -->
+                            <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click
+                                here
+                                to
+                                edit the Stock</a>
+                        </div>
+                    </div>
+                    <!-- Front Side -->
+
+                    <!-- Back Side -->
+                    <div class="face back">
+                        <div class="card-body">
+
+                            <!-- Content -->
+                            <h4 class="font-weight-bold mb-0"></h4>
+                            <hr>
+                            <ul class="edit-ul">
+                                <li class="edit-li unstyled" th:each="item : ${inventory.findByCategory('drink')}">
+                                    <form th:action="@{/inventory/}" method="post">
+                                        <input type="hidden" name="id" th:value="${item.id}">
+                                        <label class="col-form-label" th:text="${item.product.name}"></label>
+                                        <input class="form-control" type="number" name="amount"
+                                            th:value="${item.quantity}">
+                                    </form>
+                                </li>
+                            </ul>
+                            <hr>
+                            <!-- Triggering button -->
+                            <p>Press Enter to Confirm the Edit</p>
+                        </div>
+                    </div>
+                    <!-- Back Side -->
+                </div>
+            </div>
+        </div>
+
+        <!--Grid column Furniture-->
+        <div class="col-md-4 mb-4">
+
+            <!-- Rotating Furniture Card -->
+            <div class="card-wrapper">
+                <div id="card-2" class="card card-rotating text-center">
+
+                    <!-- Front Side -->
+                    <div class="festival front">
+
+                        <!-- Background-->
+                        <div class="card-up">
+                            <img class="card-img-top"
+                                src="https://images.unsplash.com/photo-1507878866276-a947ef722fee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80">
+                        </div>
+
+                        <!-- Furniture -->
+                        <div class="avatar mx-auto white"><img
+                                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                                class="rounded-circle">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="card-body">
+                            <h4 class="font-weight-bold mb-3">FURNITURE</h4>
+                            <ul>
+                                <li class="unstyled" th:each="item : ${inventory.findByCategory('furniture')}"
+                                    th:text="${item.quantity + 'x ' + item.product.name}">Item</li>
+                            </ul>
+                            <!-- Triggering button -->
+                            <a class="rotate-btn" data-card="card-2"><i class="fas fa-redo-alt"></i> Click
+                                here
+                                to
+                                edit the Stock</a>
+                        </div>
+                    </div>
+                    <!-- Front Side -->
+
+                    <!-- Back Side -->
+                    <div class="face back">
+                        <div class="card-body">
+
+                            <!-- Content -->
+                            <h4 class="font-weight-bold mb-0"></h4>
+                            <hr>
+                            <ul class="edit-ul">
+                                <li class="edit-li unstyled" th:each="item : ${inventory.findByCategory('furniture')}">
+                                    <form th:action="@{/inventory/}" method="post">
+                                        <input type="hidden" name="id" th:value="${item.id}">
+                                        <label class="col-form-label" th:text="${item.product.name}"></label>
+                                        <input class="form-control" type="number" name="amount"
+                                            th:value="${item.quantity}">
+                                    </form>
+                                </li>
+                            </ul>
+                            <hr>
+                            <!-- Triggering button -->
+                            <p>Press Enter to Confirm the Edit</p>
+                        </div>
+                    </div>
+                    <!-- Back Side -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--  JQuery  -->
+    <script type="text/javascript" rel="script" th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
+    <!--  Bootstrap tooltips  -->
+    <script type="text/javascript" rel="script" th:src="@{/resources/js/popper.min.js}"></script>
+    <!--  Bootstrap core JavaScript  -->
+    <script type="text/javascript" rel="script" th:src="@{/resources/js/bootstrap.min.js}"></script>
+    <!--  MDB core JavaScript  -->
+    <script type="text/javascript" rel="script" th:src="@{/resources/js/mdb.min.js}"></script>
+
+    <!-- Custom scripts -->
+
+    <script sec:authorize="!isAuthenticated()">
+        new WOW().init();
+    </script>
+</body>
+
 </html>
