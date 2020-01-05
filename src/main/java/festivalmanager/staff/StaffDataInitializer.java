@@ -1,6 +1,7 @@
 package festivalmanager.staff;
 
 import festivalmanager.festival.FestivalManager;
+import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.Role;
@@ -9,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import static org.salespointframework.core.Currencies.EURO;
 
 @Component
 @Order(10)
@@ -48,18 +51,18 @@ public class StaffDataInitializer implements DataInitializer{
 		userAccountManager.findByUsername("MANAGER").get().add(MANAGER_ROLE);
 
 
-		Account MANAGER = accounts.save(new Account(userAccountManager.findByUsername("MANAGER").get(), "MANAGER", "MANAGER"));
+		Account MANAGER = accounts.save(new Account(userAccountManager.findByUsername("MANAGER").get(), "MANAGER", "MANAGER", null, null, null ));
 
 		var password = "123";
 
 		Account CATERING = accountManager.createAccount(new CreationForm("CATERING", "123", "CATERING", "CATERING",
-				true, false, false, false, 20, 12, festivalManager.findById() ), null);
+				true, false, false, false, (float) 20.0 , Money.of(12, EURO), festivalManager.findByName("Abriss")), null);
 		Account SECURITY2 = accountManager.createAccount(new CreationForm("SECURITY2", "123", "SECURITY2", "SECURITY2",
-				false, true, false, false), null);
+				false, true, false, false, null, null, null), null);
 		Account TICKET_SALESMAN =  accountManager.createAccount(new CreationForm("TICKET_SALESMAN", "123", "TICKET_SALESMAN", "TICKET_SALESMAN",
-				false, false, false, true), null);
+				false, false, false, true, null, null, null ), null);
 		Account FESTIVAL_MANAGER =  accountManager.createAccount(new CreationForm("FESTIVAL_MANAGER", "123", "FESTIVAL_MANAGER", "FESTIVAL_MANAGER",
-			false, false, true, false), null);
+			false, false, true, false, null, null, null ), null);
 
 
 

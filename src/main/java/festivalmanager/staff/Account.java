@@ -1,9 +1,6 @@
 package festivalmanager.staff;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import festivalmanager.festival.Festival;
 import org.h2.engine.User;
@@ -21,6 +18,7 @@ public class Account {
 	private Float workedHours;
 	private Money hourlyWage;
 
+	@ManyToOne
 	private Festival festival;
 
 	@OneToOne
