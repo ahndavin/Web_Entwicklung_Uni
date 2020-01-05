@@ -110,7 +110,7 @@
                             <hr>
                             <ul class="edit-ul">
                                 <li class="edit-li unstyled" th:each="item : ${inventory.findByCategory('food')}">
-                                    <form th:action="@{/inventory/}" method="post">
+                                    <form th:action="@{/inventory/edit}" method="post">
                                         <input type="hidden" name="id" th:value="${item.id}">
                                         <label class="col-form-label" th:text="${item.product.name}"></label>
                                         <input class="form-control" type="number" name="amount"
@@ -175,7 +175,7 @@
                             <hr>
                             <ul class="edit-ul">
                                 <li class="edit-li unstyled" th:each="item : ${inventory.findByCategory('drink')}">
-                                    <form th:action="@{/inventory/}" method="post">
+                                    <form th:action="@{/inventory/edit}" method="post">
                                         <input type="hidden" name="id" th:value="${item.id}">
                                         <label class="col-form-label" th:text="${item.product.name}"></label>
                                         <input class="form-control" type="number" name="amount"
@@ -240,7 +240,7 @@
                             <hr>
                             <ul class="edit-ul">
                                 <li class="edit-li unstyled" th:each="item : ${inventory.findByCategory('furniture')}">
-                                    <form th:action="@{/inventory/}" method="post">
+                                    <form th:action="@{/inventory/edit}" method="post">
                                         <input type="hidden" name="id" th:value="${item.id}">
                                         <label class="col-form-label" th:text="${item.product.name}"></label>
                                         <input class="form-control" type="number" name="amount"

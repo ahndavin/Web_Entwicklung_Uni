@@ -131,6 +131,6 @@ public class InventoryController {
 			}
 		}
 
-		return "redirect:/inventory/edit";
+		return "redirect:/inventory/";
 	}
 }
