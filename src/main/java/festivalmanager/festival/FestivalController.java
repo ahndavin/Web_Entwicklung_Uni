@@ -148,7 +148,7 @@ public class FestivalController {
 		Festival festival = festivalOptional.get();
 
 		if(festival.getDate()[Festival.START_DATE].getTime() < new Date().getTime()) {
-			return "redirect:/festivals";
+			return "redirect:/#festivals";
 		}
 		
 		model.addAttribute("festival_form", festival);
