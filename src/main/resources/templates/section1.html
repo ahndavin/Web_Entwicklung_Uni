@@ -344,14 +344,15 @@
           <div class="col-1 col-md-2 float-left">
           </div>
           <div class="col-10 col-md-9 col-lg-10 float-right">
-            <h4 class="font-weight-bold indigo-text">
+            <h4 class="font-weight-bold indigo-text text-center">
               <strong td th:text="${festival.name}"></strong> <br>
               <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}" class="btn btn-green">
                 <i class="fas fa-archive"></i>
               </a>
             </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text" th:text="${festival.startDate}">Festival1.startdate</h6>
-            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc </p>
+            <h6 class="mb-3 font-weight-bold dark-grey-text text-center" th:text="${festival.startDate}">
+              Festival1.startdate</h6>
+            <p class="grey-text font-small text-center">Festival Information down Below. (Maybe Lineup.. etc </p>
 
           </div>
         </div>
