@@ -1,5 +1,6 @@
 package festivalmanager.festival;
 
+import festivalmanager.contract.Contract;
 import festivalmanager.inventory.InventoryManager;
 import festivalmanager.inventory.Item;
 import festivalmanager.location.Location;
@@ -73,6 +74,8 @@ public class FestivalManager {
 
 			festival.editPlan().addAll(f.editPlan());
 			festival.editInventory().putAll(f.editInventory());
+			festival.getEconomicList().addAll(f.getEconomicList());
+			festival.getContractList().getList().addAll(f.getContractList().getList());
 
 			return save(festival);
 		}
