@@ -91,7 +91,9 @@
 
         <div class="form-group col-md-8">
             <label class="col-form-label" for="location">Location</label>
-            <input class="form-control" type="text" th:field="*{location}" required>
+            <select class="form-control" th:field="*{location}" >
+                <option th:each="location : ${locations}" th:selected="${festival_form.location == location.name}" th:text="${location.name}" th:value="${location.name}"></option>
+            </select>
         </div>
 
         <div class="form-group col-md-8">

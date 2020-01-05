@@ -146,6 +146,7 @@ public class FestivalController {
 		}
 
 		model.addAttribute("festival_form", festival.get());
+		model.addAttribute("locations", locations.findAll());
 
 		return "festival_edit";
 	}
