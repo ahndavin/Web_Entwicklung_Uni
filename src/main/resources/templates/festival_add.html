@@ -52,7 +52,7 @@
         <form id="festivalAddForm" th:action="@{/festival/add}" th:object="${festival_form}" method="POST">
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="name">Name</label>
-                <input class="form-control" type="text" th:field="*{name}" >
+                <input class="form-control" type="text" th:field="*{name}" required>
             </div>
 
             <div class="form-group col-md-8">
@@ -64,42 +64,42 @@
 
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="startDate">Start</label>
-                <input class="form-control" type="date" th:field="*{startDate}" >
+                <input class="form-control" type="date" th:field="*{startDate}" required>
             </div>
 
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="endDate">Ende</label>
-                <input class="form-control" type="date" th:field="*{endDate}" >
+                <input class="form-control" type="date" th:field="*{endDate}" required>
             </div>
 
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="amountDaytickets">Anzahl Tagestickets</label>
-                <input class="form-control" type="number" th:field="*{amountDaytickets}" >
+                <input class="form-control" type="number" th:field="*{amountDaytickets}" required>
             </div>
 
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="amountCampingtickets">Anzahl Campingtickets</label>
-                <input class="form-control" type="number" th:field="*{amountCampingtickets}" >
+                <input class="form-control" type="number" th:field="*{amountCampingtickets}" required>
             </div>
 
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="priceDayticket">Preis Tagesticket</label>
-                <input class="form-control" type="number" step="0.01" th:field="*{priceDayticket}" >
+                <input class="form-control" type="number" step="0.01" th:field="*{priceDayticket}" required>
             </div>
 
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="priceCampingticket">Preis Campingticket</label>
-                <input class="form-control" type="number" step="0.01" th:field="*{priceCampingticket}" >
+                <input class="form-control" type="number" step="0.01" th:field="*{priceCampingticket}" required>
             </div>
 
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="maxVisitors">maximale Besucher</label>
-                <input class="form-control" type="number" th:field="*{maxVisitors}" >
+                <input class="form-control" type="number" th:field="*{maxVisitors}" required>
             </div>
 
             <div class="form-group col-md-8">
                 <label class="col-form-label" for="sellingTickets">Tickets verfügbar</label>
-                <input class="form-control" type="checkbox" th:field="*{sellingTickets}" >
+                <input class="form-control" type="checkbox" th:field="*{sellingTickets}" required>
             </div>
 
             <input class="btn btn-dark" type="submit" value="ok">
