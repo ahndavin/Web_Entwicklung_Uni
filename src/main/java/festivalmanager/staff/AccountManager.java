@@ -1,5 +1,8 @@
 package festivalmanager.staff;
 
+import festivalmanager.festival.Festival;
+import festivalmanager.festival.FestivalManager;
+import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
@@ -17,6 +20,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import static org.salespointframework.core.Currencies.EURO;
+
 @Service
 @Transactional
 public class AccountManager {
@@ -31,11 +36,12 @@ public class AccountManager {
 	public final AccountRepository accounts;
 	public final UserAccountManager userAccounts;
 	private final ApplicationEventPublisher publisher;
+	private final FestivalManager festivalManager;
 
 	private static final Logger LOG = LoggerFactory.getLogger(AccountManager.class);
 
 
-	AccountManager(AccountRepository accounts, UserAccountManager userAccounts, ApplicationEventPublisher publisher) {
+	AccountManager(AccountRepository accounts, UserAccountManager userAccounts, ApplicationEventPublisher publisher, FestivalManager festivalManager) {
 
 		Assert.notNull(accounts, "kickstart.account.AccountRepository must not be null");
 		Assert.notNull(userAccounts, "UserAccountManager must not be null");
@@ -43,6 +49,7 @@ public class AccountManager {
 		this.accounts = accounts;
 		this.userAccounts = userAccounts;
 		this.publisher = publisher;
+		this.festivalManager = festivalManager;
 	}
 
 	public Account createAccount(CreationForm form, Errors result) {
@@ -74,7 +81,17 @@ public class AccountManager {
 				userAccount.add(FESTIVAL_MANAGER_ROLE);
 			}
 
-			return accounts.save(new Account(userAccount, form.getFirstName(), form.getLastName(), form.getWorkedHours(), form.getHourlyWage(), form.getFestival()));
+			//float workedHours = form.getWorkedHours();
+			Money hourlyWage = null;
+			if(form.getHourlyWage() != null) {
+				hourlyWage = Money.of(form.getHourlyWage(), EURO);
+			}
+
+			Festival festival = null;
+			if(form.getFestival() != null){
+				festival = festivalManager.findByName(form.getFestival());
+			}
+			return accounts.save(new Account(userAccount, form.getFirstName(), form.getLastName(), form.getWorkedHours(), hourlyWage, festival));
 		}
 	}
 

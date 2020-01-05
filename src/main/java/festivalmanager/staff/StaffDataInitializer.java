@@ -56,20 +56,13 @@ public class StaffDataInitializer implements DataInitializer{
 		var password = "123";
 
 		Account CATERING = accountManager.createAccount(new CreationForm("CATERING", "123", "CATERING", "CATERING",
-				true, false, false, false, (float) 20.0 , Money.of(12, EURO), festivalManager.findByName("Abriss")), null);
+				true, false, false, false, (float) 20.0 , (float) 12.0, "Abriss"), null);
 		Account SECURITY2 = accountManager.createAccount(new CreationForm("SECURITY2", "123", "SECURITY2", "SECURITY2",
-				false, true, false, false, null, null, null), null);
+				false, true, false, false, (float) 20.0, (float)12.0, "Abriss"), null);
 		Account TICKET_SALESMAN =  accountManager.createAccount(new CreationForm("TICKET_SALESMAN", "123", "TICKET_SALESMAN", "TICKET_SALESMAN",
 				false, false, false, true, null, null, null ), null);
 		Account FESTIVAL_MANAGER =  accountManager.createAccount(new CreationForm("FESTIVAL_MANAGER", "123", "FESTIVAL_MANAGER", "FESTIVAL_MANAGER",
 			false, false, true, false, null, null, null ), null);
-
-
-
-		//messageManagement.createNewMessage(new MessageEvent(MANAGER, MANAGER, SECURITY2, "Hallo"));
-		//messageManagement.findAll();
-		//LOG.info("Creating default messages");
-
 
 	}
 

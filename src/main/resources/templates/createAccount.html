@@ -113,8 +113,25 @@
         </div>
         <br/>
 
+        <div class="field">
+            <label th:text="#{createAccount.workedHours}" for="workedHours"> hours Worked</label>
+            <input id="workedHours" name="workedHours" th:field="*{workedHours}" th:errorclass="fieldError" type="number"/>
 
+        </div>
+        <br/>
 
+                <div class="field">
+                    <label th:text="#{createAccount.hourlyWage}" for="hourlyWage"> hourly Wage</label>
+                    <input id="hourlyWage" name="hourlyWage" th:field="*{hourlyWage}" th:errorclass="fieldError" type="number"/>
+                </div>
+                <br/>
+
+                <div class="field">
+                    <label th:text="#{createAccount.Festival}" for="festival"> Festival</label>
+                    <input id="festival" name="festival" th:field="*{festival}" th:errorclass="fieldError" type="text"/>
+
+                </div>
+                <br/>
         <button id="btn" type="submit" class="btn btn-lg btn-dark text-light" th:text="#{createAccount.submit}">
             Register
         </button>

@@ -31,12 +31,12 @@ public class CreationForm {
 
 		private Float workedHours;
 
-		private Money hourlyWage;
+		private Float hourlyWage;
 
-		private Festival festival;
+		private String festival;
 
 		public CreationForm(String usrName, String password, String firstName, String lastName,
-							Boolean catering, Boolean security, Boolean festivalManager, Boolean ticketSalesman, Float workedHours, Money hourlyWage, Festival festival) {
+							Boolean catering, Boolean security, Boolean festivalManager, Boolean ticketSalesman, Float workedHours, Float hourlyWage, String festival) {
 			this.usrName = usrName;
 			this.password = password;
 			this.firstName = firstName;
@@ -82,10 +82,10 @@ public class CreationForm {
 			return ticketSalesman;
 		}
 
-		public Money getHourlyWage() {return hourlyWage;}
+		public Float getHourlyWage() {return hourlyWage;}
 
 		public Float getWorkedHours() {return workedHours;}
 
-		public Festival getFestival() {return festival;}
+		public String getFestival() {return festival;}
 }
 
