@@ -20,6 +20,8 @@ import festivalmanager.festival.Festival;
 import festivalmanager.festival.FestivalIdForm;
 import festivalmanager.festival.FestivalManager;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/contracts/")
 public class ContractController {
@@ -55,13 +57,13 @@ public class ContractController {
 	@PostMapping("add")
 	public String addContract(@Valid @ModelAttribute Contract contract, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "createContract";
+			return "welcome";
 		}
 		contractsRepository.save(contract);
 		festivalForCreation.getContractList().add(contract);
 		festivalManager.save(festivalForCreation);
 		//economicManager.add(contract.totalCost(), contract.getName(), festivalForCreation);
-		return "redirect:/festivals";
+		return "redirect:/#festivals";
 	}
 
 	@GetMapping("edit/{id}")
@@ -85,7 +87,7 @@ public class ContractController {
 
 		contractsRepository.save(contract);
 		model.addAttribute("contract", contractsRepository.findAll());
-		return "contractManagement";
+		return "redirect:/#festivals";
 	}
 
 	@GetMapping("delete/{id}")
