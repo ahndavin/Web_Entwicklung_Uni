@@ -50,6 +50,7 @@ public class FestivalController {
 		model.addAttribute("accountManager", accountManager);
 		model.addAttribute("form", form);
 		model.addAttribute("error", result);
+		model.addAttribute("locations", locations.findAll());
 
 
 
