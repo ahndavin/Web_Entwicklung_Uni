@@ -74,7 +74,7 @@ public class AccountManager {
 				userAccount.add(FESTIVAL_MANAGER_ROLE);
 			}
 
-			return accounts.save(new Account(userAccount, form.getFirstName(), form.getLastName()));
+			return accounts.save(new Account(userAccount, form.getFirstName(), form.getLastName(), form.getWorkedHours(), form.getHourlyWage(), form.getFestival()));
 		}
 	}
 

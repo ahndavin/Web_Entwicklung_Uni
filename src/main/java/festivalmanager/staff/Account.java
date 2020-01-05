@@ -5,7 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import festivalmanager.festival.Festival;
 import org.h2.engine.User;
+import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 
@@ -16,18 +18,24 @@ public class Account {
 
 	private String firstName;
 	private String lastName;
-	private Boolean catering;
+	private Float workedHours;
+	private Money hourlyWage;
+
+	private Festival festival;
 
 	@OneToOne
 	private UserAccount userAccount;
 
 	private Account() {}
 
-	public Account(UserAccount userAccount, String firstName, String lastName){
+	public Account(UserAccount userAccount, String firstName, String lastName, Float workedHours, Money hourlyWage, Festival festival){
+
 		this.userAccount = userAccount;
 		this.firstName = firstName;
 		this.lastName = lastName;
-
+		this.workedHours = workedHours;
+		this.hourlyWage = hourlyWage;
+		this.festival = festival;
 	}
 
 	public long getId() {return id;}
@@ -48,19 +56,23 @@ public class Account {
 		this.lastName = lastName;
 	}
 
-	public Boolean getCatering(){
-		return this.catering;
-	}
-
-	public void setCatering(Boolean catering){
-		this.catering = catering;
-	}
-
-
 	public UserAccount getUserAccount() {
 		return userAccount;
 	}
 
+	public Money getHourlyWage() {
+		return hourlyWage;
+	}
 
+	public void setHourlyWage(Money hourlyWage) {
+		this.hourlyWage = hourlyWage;
+	}
 
+	public float getWorkedHours() {
+		return workedHours;
+	}
+
+	public void setWorkedHours(float workedHours) {
+		this.workedHours = workedHours;
+	}
 }

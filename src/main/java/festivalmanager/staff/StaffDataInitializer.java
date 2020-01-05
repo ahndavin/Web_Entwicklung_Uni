@@ -1,5 +1,6 @@
 package festivalmanager.staff;
 
+import festivalmanager.festival.FestivalManager;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.Role;
@@ -20,15 +21,18 @@ public class StaffDataInitializer implements DataInitializer{
 	public final AccountRepository accounts;
 	public final MessageManagement messageManagement;
 	public final MessageRepository messageRepository;
+	private final FestivalManager festivalManager;
 	public static final Role MANAGER_ROLE = Role.of("MANAGER");
 
-	public StaffDataInitializer(UserAccountManager userAccountManager, AccountManager accountManager, AccountRepository accounts, MessageManagement messageManagement, MessageRepository messageRepository) {
+	public StaffDataInitializer(UserAccountManager userAccountManager, AccountManager accountManager, AccountRepository accounts,
+								MessageManagement messageManagement, MessageRepository messageRepository, FestivalManager festivalManager) {
 
 		this.accounts = accounts;
 		this.userAccountManager = userAccountManager;
 		this.accountManager = accountManager;
 		this.messageManagement = messageManagement;
 		this.messageRepository = messageRepository;
+		this.festivalManager = festivalManager;
 	}
 	@Override
 	public void initialize() {
@@ -49,7 +53,7 @@ public class StaffDataInitializer implements DataInitializer{
 		var password = "123";
 
 		Account CATERING = accountManager.createAccount(new CreationForm("CATERING", "123", "CATERING", "CATERING",
-				true, false, false, false), null);
+				true, false, false, false, 20, 12, festivalManager.findById() ), null);
 		Account SECURITY2 = accountManager.createAccount(new CreationForm("SECURITY2", "123", "SECURITY2", "SECURITY2",
 				false, true, false, false), null);
 		Account TICKET_SALESMAN =  accountManager.createAccount(new CreationForm("TICKET_SALESMAN", "123", "TICKET_SALESMAN", "TICKET_SALESMAN",

@@ -1,7 +1,9 @@
 package festivalmanager.staff;
 
+import festivalmanager.festival.Festival;
 import festivalmanager.festival.FestivalManager;
 import org.h2.api.UserToRolesMapper;
+import org.javamoney.moneta.Money;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -27,8 +29,14 @@ public class CreationForm {
 
 		private Boolean ticketSalesman;
 
+		private Float workedHours;
 
-		public CreationForm(String usrName, String password, String firstName, String lastName, Boolean catering, Boolean security, Boolean festivalManager, Boolean ticketSalesman) {
+		private Money hourlyWage;
+
+		private Festival festival;
+
+		public CreationForm(String usrName, String password, String firstName, String lastName,
+							Boolean catering, Boolean security, Boolean festivalManager, Boolean ticketSalesman, Float workedHours, Money hourlyWage, Festival festival) {
 			this.usrName = usrName;
 			this.password = password;
 			this.firstName = firstName;
@@ -37,6 +45,9 @@ public class CreationForm {
 			this.security = security;
 			this.festivalManager = festivalManager;
 			this.ticketSalesman = ticketSalesman;
+			this.workedHours = workedHours;
+			this.hourlyWage = hourlyWage;
+			this.festival = festival;
 		}
 
 		public String getUsrName() {
@@ -70,5 +81,11 @@ public class CreationForm {
 		public Boolean getTicketSalesman() {
 			return ticketSalesman;
 		}
+
+		public Money getHourlyWage() {return hourlyWage;}
+
+		public Float getWorkedHours() {return workedHours;}
+
+		public Festival getFestival() {return festival;}
 }
 
