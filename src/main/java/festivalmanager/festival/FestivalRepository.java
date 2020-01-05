@@ -9,4 +9,6 @@ public interface FestivalRepository extends CrudRepository<Festival, Long> {
 
     @Override
     Streamable<Festival> findAll();
+
+	Festival findByName (String name);
 }
