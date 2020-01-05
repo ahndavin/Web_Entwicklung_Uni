@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -138,14 +139,19 @@ public class FestivalController {
 	@PreAuthorize("hasAuthority('FESTIVAL_MANAGER') or hasAuthority('MANAGER')")
 	@GetMapping("/festival/{festivalName}-{festivalId}/edit")
 	String editFestival(@PathVariable long festivalId, Model model) {
-		Optional<Festival> festival = festivals.findById(festivalId);
-		;
+		Optional<Festival> festivalOptional = festivals.findById(festivalId);
 
-		if (festival.isEmpty()) {
+		if (festivalOptional.isEmpty()) {
 			return "redirect:/404";
 		}
 
-		model.addAttribute("festival_form", festival.get());
+		Festival festival = festivalOptional.get();
+
+		if(festival.getDate()[Festival.START_DATE].getTime() < new Date().getTime()) {
+			return "redirect:/festivals";
+		}
+		
+		model.addAttribute("festival_form", festival);
 		model.addAttribute("locations", locations.findAll());
 
 		return "festival_edit";
