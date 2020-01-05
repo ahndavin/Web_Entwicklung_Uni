@@ -93,9 +93,12 @@ public class ContractController {
 	@GetMapping("delete/{id}")
 	public String deleteContract(@PathVariable("id") long id, Model model) {
 		Contract contract = contractsRepository.findById(id)
-			.orElseThrow(() -> new IllegalArgumentException("Invalid contract Id:" + id));
-		contractsRepository.delete(contract);
+				.orElseThrow(() -> new IllegalArgumentException("Invalid contract Id:" + id));
+
 		festivalForCreation.getContractList().delete(contract);
+		festivalManager.save(festivalForCreation);
+		contractsRepository.delete(contract);
+
 		model.addAttribute("contract", contractsRepository.findAll());
 		return "contractManagement";
 	}
