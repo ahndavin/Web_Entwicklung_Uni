@@ -3,34 +3,29 @@ package festivalmanager.location;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Objects;
-import java.util.Optional;
-
 import javax.validation.Valid;
 
+import festivalmanager.festival.FestivalManager;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
-import org.springframework.validation.Errors;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import festivalmanager.contract.*;
-import festivalmanager.festival.Festival;
-import festivalmanager.festival.FestivalForm;
-import festivalmanager.festival.FestivalRepository;
 
 @Controller
 public class LocationController {
 	private final LocationManager locationManager;
+	private final FestivalManager festivalManager;
 	
-	public LocationController(LocationManager locationManager){
+	public LocationController(LocationManager locationManager, FestivalManager festivalManager){
 		Assert.notNull(locationManager, "Location must not be null!");
 		this.locationManager = locationManager;
+		this.festivalManager = festivalManager;
 	}
 
 	@GetMapping("/location")
@@ -60,7 +55,7 @@ public class LocationController {
 	public String detailLocation(Model model, @PathVariable("location") String name){
 		model.addAttribute("location", findLocation(name));
 		model.addAttribute("contractList", locationManager.findByName());
-		model.addAttribute("festivalList", locationManager.findFestivals());
+		model.addAttribute("festivalList", festivalManager.findAll());
 		
 		return "detailLocation";
 	}
@@ -73,7 +68,7 @@ public class LocationController {
 		return "area";
 	}
 
-	//@PreAuthorize("hasAuthority('MANAGER')")
+	@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/location/{location}/area/changeStatus")
 	public String changeAreaStatus(@PathVariable("location") String name, @RequestParam("area") String area) {
 		findArea(findLocation(name), area).toggleLock();
@@ -88,30 +83,13 @@ public class LocationController {
 		return "redirect:area";
 	}
 
+
 	@GetMapping("/location/{location}/createArea")
 	public String addArea(Model model, Area area, @PathVariable("location") String name) {
 		model.addAttribute("location", findLocation(name));
 		model.addAttribute("area", area);
 
 		return "createArea";
-	}
-	
-	@PostMapping("/location/{location}/area/{area}")
-	String editArea(@ModelAttribute("area") @Valid Area area, @PathVariable("location") String name) {
-		int index = findLocation(name).getAllAreas().indexOf(area);
-		
-		findLocation(name).getAllAreas().set(index, area);
-
-		return "redirect:";
-	}
-	
-	//@PreAuthorize("hasAuthority('MANAGER')")
-	@GetMapping("/location/{location}/area/{area}")
-	String editArea(Model model, @PathVariable("location") String name, @PathVariable("area") String areaName) {
-		model.addAttribute("location", findLocation(name));
-		model.addAttribute("area", findArea(findLocation(name), areaName));
-
-		return "editArea";
 	}
 	
 	@GetMapping("/location/{location}/area/{area}/stage")
@@ -233,6 +211,7 @@ public class LocationController {
 		int i = 0;
 		
 		while(i < stages.size()) {
+			System.out.println(stages.get(i));
 			if(stages.get(i).getName().equals(stage))
 				return stages.get(i).getLineups();
 			
