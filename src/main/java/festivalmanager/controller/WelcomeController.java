@@ -18,7 +18,7 @@ package festivalmanager.controller;
 import festivalmanager.staff.Account;
 
 import festivalmanager.staff.AccountManager;
-import festivalmanager.staff.MessageManagement;
+import festivalmanager.staff.MessageManager;
 
 import festivalmanager.staff.MessageRepository;
 import org.salespointframework.useraccount.UserAccount;
@@ -36,7 +36,7 @@ public class WelcomeController {
 
 
 	@Autowired
-	private MessageManagement messageManagement;
+	private MessageManager MessageManager;
 
 	@Autowired
 	private final AccountManager accountManager;
@@ -49,14 +49,14 @@ public class WelcomeController {
 
 	@RequestMapping("/")
 	public String index(Model model, @LoggedIn Optional<UserAccount> userAccount) {
-		Assert.notNull(messageManagement, "MessageManagement must not be null");
+		Assert.notNull(MessageManager, "MessageManagement must not be null");
 		if(userAccount.isPresent()) {
 			Account account = accountManager.findByUserAccount(userAccount.get()).get();
 			model.addAttribute("Account", account);
 		}
 
-		model.addAttribute("messageManagement", messageManagement);
-		model.addAttribute("messageList", messageManagement.findAll());
+		model.addAttribute("messageManagement", MessageManager);
+		model.addAttribute("messageList", MessageManager.findAll());
 
 		return "welcome";
 	}

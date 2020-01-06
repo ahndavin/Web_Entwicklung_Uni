@@ -22,13 +22,13 @@ public class StaffDataInitializer implements DataInitializer{
 	private final UserAccountManager userAccountManager;
 	private final AccountManager accountManager;
 	public final AccountRepository accounts;
-	public final MessageManagement messageManagement;
+	public final MessageManager messageManagement;
 	public final MessageRepository messageRepository;
 	private final FestivalManager festivalManager;
 	public static final Role MANAGER_ROLE = Role.of("MANAGER");
 
 	public StaffDataInitializer(UserAccountManager userAccountManager, AccountManager accountManager, AccountRepository accounts,
-								MessageManagement messageManagement, MessageRepository messageRepository, FestivalManager festivalManager) {
+								MessageManager messageManagement, MessageRepository messageRepository, FestivalManager festivalManager) {
 
 		this.accounts = accounts;
 		this.userAccountManager = userAccountManager;
