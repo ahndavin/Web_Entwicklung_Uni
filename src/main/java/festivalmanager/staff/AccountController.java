@@ -28,7 +28,7 @@ class 	AccountController {
 
 		private final AccountManager accountManager;
 		public final UserAccountManager userAccounts;
-		private final MessageManagement messageManagement;
+		private final MessageManager messageManagement;
 		private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);
 		@Autowired
 		private ActiveAccountsStore activeAccountsStore;
@@ -37,7 +37,7 @@ class 	AccountController {
 
 
 
-		AccountController(AccountManager accountManager, UserAccountManager userAccounts, MessageManagement messageManagement){
+		AccountController(AccountManager accountManager, UserAccountManager userAccounts, MessageManager messageManagement){
 			Assert.notNull(accountManager, "kickstart.account.AccountManager must be not null");
 			this.accountManager = accountManager;
 			this.userAccounts = userAccounts;
