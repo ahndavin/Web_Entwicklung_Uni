@@ -1,13 +1,21 @@
 package festivalmanager.location;
 
-import java.util.Date;
 import java.util.List;
 import java.util.LinkedList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Stage {
+	private @Id @GeneratedValue long id;
 	private String name;
 	private String poster;
-	private List<Lineup> lineups;
+	private @OneToMany List<Lineup> lineups;
+	
+	@SuppressWarnings("unused")
+	private Stage() {}
 	
 	public Stage(String name, String poster) {
 		this.name = name;

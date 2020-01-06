@@ -2,15 +2,24 @@ package festivalmanager.location;
 
 import java.util.List;
 import java.util.LinkedList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Area {
+	private @Id @GeneratedValue long id;
 	private String zone;
 	private boolean blocked;
 	private Integer currVisitors;
 	private Integer maxVisitors;
 	private Integer maxStages;
 	private Type type;
-	private List<Stage> stages;
+	private @OneToMany List<Stage> stages;
+	
+	@SuppressWarnings("unused")
+	private Area() {}
 	
 	public Area(String zone, Integer maxVisitors, Integer maxStages, Type type) {
 		this.zone = zone;

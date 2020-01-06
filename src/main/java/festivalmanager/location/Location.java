@@ -2,8 +2,14 @@ package festivalmanager.location;
 
 import java.util.List;
 import java.util.LinkedList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Location {
+	private @Id @GeneratedValue long id;
 	private String name;
 	private String address;
 	private boolean isBooked;
@@ -11,7 +17,7 @@ public class Location {
 	private Integer maxVisitors;
 	private String thumbnail;
 	private String groundPlan;
-	private List<Area> areas;
+	private @OneToMany List<Area> areas;
 	
 	@SuppressWarnings("unused")
 	private Location() {}
