@@ -56,13 +56,21 @@ public class ContractController {
 
 	@PostMapping("add")
 	public String addContract(@Valid @ModelAttribute Contract contract, BindingResult result, Model model) {
-		if (result.hasErrors()) {
+		Optional<Festival> festivalOptional = festivalManager.findById(festivalForCreation.getId());
+
+		if (result.hasErrors() || festivalOptional.isEmpty()) {
 			return "welcome";
 		}
+
+		Festival festival = festivalOptional.get();
+
 		contractsRepository.save(contract);
-		festivalForCreation.getContractList().add(contract);
-		festivalManager.save(festivalForCreation);
-		//economicManager.add(contract.totalCost(), contract.getName(), festivalForCreation);
+
+		festival.getContractList().add(contract);
+		economicManager.add(contract.totalCost(), contract.getName(), festival);
+
+		festivalManager.save(festival);
+
 		return "redirect:/#festivals";
 	}
 
