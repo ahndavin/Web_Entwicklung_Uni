@@ -95,7 +95,7 @@ public class InventoryManager {
 		return notInStockItems;
 	}
 
-	public void addOrSubtractFromStock(UniqueInventoryItem item, Quantity quantity) {
+	public void setQuantity(UniqueInventoryItem item, Quantity quantity) {
 		if(quantity.isLessThan(Quantity.of(1, Metric.UNIT))) {
 			inventory.delete(item);
 		} else {
