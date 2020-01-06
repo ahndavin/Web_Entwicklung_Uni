@@ -137,7 +137,7 @@ public class FestivalManager {
 
 				economics.add(
 						((Item) item.getProduct()).getCost().multiply(difference.getAmount().intValue()).negate(),
-						"Added Item " + item.getId() + " to stock " + difference + "x",
+						"added " + difference + "x " + item.getProduct().getName() + " to stock ",
 						festival
 				);
 			} else if(oldQuantity.isGreaterThan(newQuantity)) {
@@ -147,7 +147,7 @@ public class FestivalManager {
 
 				economics.add(
 						((Item) item.getProduct()).getCost().multiply(difference.getAmount().intValue()),
-						"Removed Item " + item.getId() + " from stock " + difference + "x",
+						"removed " + difference + "x " + item.getProduct().getName() + " from stock ",
 						festival
 				);
 			}
