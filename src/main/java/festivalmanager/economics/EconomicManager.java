@@ -19,11 +19,9 @@ import festivalmanager.festival.FestivalManager;
 public class EconomicManager{
 
     private final Accountancy accountency;
-    private final FestivalManager festivalManager;
 
-    public EconomicManager(Accountancy accountency, FestivalManager festivalManager) {
+    public EconomicManager(Accountancy accountency) {
         this.accountency = accountency;
-        this.festivalManager = festivalManager;
     }
 
 	public void add(int amount, String description, Festival festival){
@@ -75,9 +73,4 @@ public class EconomicManager{
         sum = sum.subtract(getExpenses(festival));
         return sum;
     }
-
-    public Optional<Festival> findById(long id) {
-		return festivalManager.findById(id);
-	}
-
 }

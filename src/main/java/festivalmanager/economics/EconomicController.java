@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import festivalmanager.festival.FestivalManager;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,12 @@ import festivalmanager.festival.FestivalIdForm;
 public class EconomicController {
 
     public final EconomicManager economicManager;
+    private final FestivalManager festivalManager;
 
-    public EconomicController(EconomicManager economicManager) {
+    public EconomicController(EconomicManager economicManager, FestivalManager festivalManager) {
         Assert.notNull(economicManager, "TicketManagement must not be null!");
         this.economicManager = economicManager;
+        this.festivalManager = festivalManager;
     }
 
     // GetMapping
@@ -30,11 +33,14 @@ public class EconomicController {
     @GetMapping(path = "/accountancy")
     public String goToAccountancy(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result,
             Model model) {
-        Optional<Festival> festivalOptinal = economicManager.findById(festivalIdForm.getId());
-        Festival festival = festivalOptinal.get();
-		if(result.hasErrors() || festivalOptinal.isPresent()==false){
+        Optional<Festival> festivalOptinal = festivalManager.findById(festivalIdForm.getId());
+
+		if(result.hasErrors() || festivalOptinal.isEmpty()){
 			return "festivals";
 		}
+
+        Festival festival = festivalOptinal.get();
+
 	
         model.addAttribute("entrylist", economicManager.getAll(festival));
         model.addAttribute("sumRevenues", economicManager.getRevenues(festival));
