@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 import javax.validation.Valid;
 
+import festivalmanager.festival.FestivalManager;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -19,10 +20,12 @@ import festivalmanager.contract.*;
 @Controller
 public class LocationController {
 	private final LocationManager locationManager;
+	private final FestivalManager festivalManager;
 	
-	public LocationController(LocationManager locationManager){
+	public LocationController(LocationManager locationManager, FestivalManager festivalManager){
 		Assert.notNull(locationManager, "Location must not be null!");
 		this.locationManager = locationManager;
+		this.festivalManager = festivalManager;
 	}
 
 	@GetMapping("/location")
@@ -52,7 +55,7 @@ public class LocationController {
 	public String detailLocation(Model model, @PathVariable("location") String name){
 		model.addAttribute("location", findLocation(name));
 		model.addAttribute("contractList", locationManager.findByName());
-		model.addAttribute("festivalList", locationManager.findFestivals());
+		model.addAttribute("festivalList", festivalManager.findAll());
 		
 		return "detailLocation";
 	}
