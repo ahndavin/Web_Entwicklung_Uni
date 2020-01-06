@@ -6,6 +6,7 @@ import festivalmanager.inventory.InventoryManager;
 import festivalmanager.inventory.Item;
 import festivalmanager.location.Location;
 import festivalmanager.location.LocationManager;
+import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
@@ -156,6 +157,33 @@ public class FestivalManager {
 		}
 
 		return save(festival);
+	}
+
+	public void buyInventoryItem(Festival festival, InventoryItemIdentifier itemId, Quantity quantity) {
+		Optional<UniqueInventoryItem> uniqueInventoryItemOptional = inventory.findById(itemId);
+
+		if(uniqueInventoryItemOptional.isPresent()) {
+			UniqueInventoryItem item = uniqueInventoryItemOptional.get();
+
+			Quantity newQuantity = festival.getInventory().get(itemId).subtract(quantity);
+
+			if(newQuantity.isLessThan(Quantity.NONE)) {
+				return;
+
+			} else if(newQuantity.isLessThan(((Item) item.getProduct()).getMinimalQuantity())) {
+				// TODO send msg
+			}
+
+			economics.add(
+					(Money) item.getProduct().getPrice().multiply(quantity.getAmount().intValue()),
+					"bought item " + itemId + " " + quantity + "x",
+					festival
+			);
+
+			festival.getInventory().put(itemId, newQuantity);
+
+			save(festival);
+		}
 	}
 
 	public Iterable<Festival> findAllSortedByDate() {
