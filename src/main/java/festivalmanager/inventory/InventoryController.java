@@ -91,7 +91,7 @@ public class InventoryController {
 			UniqueInventoryItem	item = itemOptional.get();
 			Quantity quantity = Quantity.of(amount, Metric.UNIT);
 
-			inventory.addOrSubtractFromStock(item, quantity);
+			inventory.setQuantity(item, quantity);
 		}
 
 		return "redirect:/inventory/";
