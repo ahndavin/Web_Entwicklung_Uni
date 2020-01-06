@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import festivalmanager.contract.*;
-import festivalmanager.festival.FestivalRepository;
 
 @Controller
 public class LocationController {
