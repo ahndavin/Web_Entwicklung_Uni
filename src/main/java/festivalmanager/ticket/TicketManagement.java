@@ -1,43 +1,42 @@
 package festivalmanager.ticket;
 
 import org.salespointframework.quantity.Quantity;
-import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import festivalmanager.economics.EconomicManager;
 import festivalmanager.festival.Festival;
-import festivalmanager.festival.FestivalRepository;;
+import festivalmanager.festival.FestivalManager;
 
 @Service
 @Transactional
 public class TicketManagement{
 
-    private final FestivalRepository festivalrepository;
     private final DayticketRepository dayticketRepository;
     private final CampingticketRepository campingticketRepository;
     private final EconomicManager economicManager;
+    private final FestivalManager festivalManager;
 
-    public TicketManagement(FestivalRepository festivalrepository, 
+    public TicketManagement(FestivalManager festivalManager, 
     DayticketRepository dayticketRepository, CampingticketRepository campingticketRepository, EconomicManager economicManager){
-		Assert.notNull(festivalrepository, "FestivalRepository must not be null!");
+		Assert.notNull(festivalManager, "FestivalManager must not be null!");
 		Assert.notNull(dayticketRepository, "TagesticketRepository must not be null!");
 		Assert.notNull(campingticketRepository, "CampingticketRepository must not be null!");
 		Assert.notNull(economicManager, "EconomicManager must not be null!");
         
-        this.festivalrepository = festivalrepository;
+        this.festivalManager = festivalManager;
         this.dayticketRepository = dayticketRepository;
         this.campingticketRepository = campingticketRepository;
         this.economicManager = economicManager;
     }
 
-    public Streamable<Festival> findAll(){
-        return festivalrepository.findAll();
+    public Iterable<Festival> findAll() {
+        return festivalManager.findAll();
     }
 
     public Festival findById(Long id) {
-        return festivalrepository.findById(id).isPresent() ? festivalrepository.findById(id).get() : null;
+        return festivalManager.findById(id).isPresent() ? festivalManager.findById(id).get() : null;
       }
 
       public boolean dayTicketIsAvailable(Sort sort, Festival festival){

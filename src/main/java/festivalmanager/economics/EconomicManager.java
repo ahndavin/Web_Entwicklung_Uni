@@ -3,6 +3,7 @@ package festivalmanager.economics;
 import javax.money.MonetaryAmount;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.accountancy.Accountancy;
@@ -11,22 +12,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import festivalmanager.festival.Festival;
-import festivalmanager.festival.FestivalRepository;
+import festivalmanager.festival.FestivalManager;
 
 @Service
 @Transactional
 public class EconomicManager{
 
     private final Accountancy accountency;
-    private final FestivalRepository festivalRepository;
+    private final FestivalManager festivalManager;
 
-    public EconomicManager(Accountancy accountency, FestivalRepository festivalRepository) {
+    public EconomicManager(Accountancy accountency, FestivalManager festivalManager) {
         this.accountency = accountency;
-        this.festivalRepository = festivalRepository;
-    }
-
-    public Festival findById(Long id) {
-        return festivalRepository.findById(id).isPresent() ? festivalRepository.findById(id).get() : null;
+        this.festivalManager = festivalManager;
     }
 
 	public void add(int amount, String description, Festival festival){
@@ -78,4 +75,9 @@ public class EconomicManager{
         sum = sum.subtract(getExpenses(festival));
         return sum;
     }
+
+    public Optional<Festival> findById(long id) {
+		return festivalManager.findById(id);
+	}
+
 }

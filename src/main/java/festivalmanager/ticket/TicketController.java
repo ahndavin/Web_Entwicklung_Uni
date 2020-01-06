@@ -29,46 +29,8 @@ public class TicketController {
 		model.addAttribute("festivallist", ticketManagement.findAll());
 		return "ticketManagement";
 	}
-	/*
-	@PostMapping(path = "/ticketCamping")
-	public String buyCampingticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
 
-		Festival festival = ticketManagement.findById(festivalIdForm.getId());
-		if(result.hasErrors()){
-			return "ticketManagement";
-		} else{
-			if(ticketManagement.dayTicketIsAvailable(festivalIdForm.getSort(), festival) == true && festivalIdForm.getSort() == Sort.DAYTICKET){
-				ticketManagement.buyDayticket(festival);
-			}	
-			if(ticketManagement.campingTicketIsAvailable(festivalIdForm.getSort(), festival) == true && festivalIdForm.getSort() == Sort.CAMPINGTICKET){
-				ticketManagement.buyCampingticket(festival);
-			}
-		}
-
-		model.addAttribute("festivallist", ticketManagement.findAll());
-		return "redirect:/ticketManagement";
-	}
-	
-
-	@PostMapping(path = "/ticketDay")
-	public String buyDayticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
-		Festival festival = ticketManagement.findById(festivalIdForm.getId());
-		if(result.hasErrors()){
-			return "ticketManagement";
-		} else{
-			if(ticketManagement.dayTicketIsAvailable(festivalIdForm.getSort(), festival) == true && festivalIdForm.getSort() == Sort.DAYTICKET){
-				ticketManagement.buyDayticket(festival);
-			}
-			if(ticketManagement.campingTicketIsAvailable(festivalIdForm.getSort(), festival) == true && festivalIdForm.getSort() == Sort.CAMPINGTICKET){
-				ticketManagement.buyCampingticket(festival);
-			}
-		}
-
-		model.addAttribute("festivallist", ticketManagement.findAll());
-		return "redirect:/ticketManagement";
-	}
-
-	 */
+	//PostMapping
 	@PostMapping(path = "/ticketCamping")
 	 	public String buyCampingticket2(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
 

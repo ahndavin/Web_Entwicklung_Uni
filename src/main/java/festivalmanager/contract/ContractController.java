@@ -45,7 +45,7 @@ public class ContractController {
 
 	@GetMapping("list")
 	public String showUpdateForm(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
-		festivalForCreation = economicManager.findById(festivalIdForm.getId());
+		festivalForCreation = festivalManager.findById(festivalIdForm.getId()).get();
 		if(result.hasErrors()){
 			return "festivals";
 		}
@@ -67,7 +67,7 @@ public class ContractController {
 		contractsRepository.save(contract);
 
 		festival.getContractList().add(contract);
-		economicManager.add(contract.totalCost(), contract.getName(), festival);
+		economicManager.add(contract.totalCost()*(-1), contract.getName(), festival);
 
 		festivalManager.save(festival);
 
