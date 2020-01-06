@@ -36,7 +36,9 @@ public class FestivalManager {
 		return festivalRepository.findById(id);
 	}
 
-	public Festival findByName(String name) {return festivalRepository.findByName(name);}
+	public Festival findByName(String name) {
+		return festivalRepository.findByName(name);
+	}
 
 	public Festival save(Festival festival) {
 		Iterable<Location> locationList = locations.findAll();
