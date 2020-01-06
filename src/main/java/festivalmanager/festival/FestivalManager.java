@@ -1,6 +1,7 @@
 package festivalmanager.festival;
 
 import festivalmanager.contract.Contract;
+import festivalmanager.economics.EconomicManager;
 import festivalmanager.inventory.InventoryManager;
 import festivalmanager.inventory.Item;
 import festivalmanager.location.Location;
@@ -21,11 +22,17 @@ public class FestivalManager {
 	private final FestivalRepository festivalRepository;
 	private final InventoryManager inventory;
 	private final LocationManager locations;
+	private final EconomicManager economics;
 
-	public FestivalManager(FestivalRepository festivalRepository, InventoryManager inventory, LocationManager locations) {
+	public FestivalManager(FestivalRepository festivalRepository,
+						   InventoryManager inventory,
+						   LocationManager locations,
+						   EconomicManager economics) {
+
 		this.festivalRepository = festivalRepository;
 		this.inventory = inventory;
 		this.locations = locations;
+		this.economics = economics;
 	}
 
 	public Iterable<Festival> findAll() {
@@ -123,9 +130,25 @@ public class FestivalManager {
 			}
 
 			if(oldQuantity.isLessThan(newQuantity)) {
-				item.decreaseQuantity(newQuantity.subtract(oldQuantity));
+				Quantity difference = newQuantity.subtract(oldQuantity);
+
+				item.decreaseQuantity(difference);
+
+				economics.add(
+						((Item) item.getProduct()).getCost().multiply(difference.getAmount().intValue()).negate(),
+						"Added Item " + item.getId() + " to stock " + difference + "x",
+						festival
+				);
 			} else if(oldQuantity.isGreaterThan(newQuantity)) {
-				item.increaseQuantity(oldQuantity.subtract(newQuantity));
+				Quantity difference = oldQuantity.subtract(newQuantity);
+
+				item.increaseQuantity(difference);
+
+				economics.add(
+						((Item) item.getProduct()).getCost().multiply(difference.getAmount().intValue()),
+						"Removed Item " + item.getId() + " from stock " + difference + "x",
+						festival
+				);
 			}
 
 		} else {
