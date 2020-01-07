@@ -9,15 +9,20 @@ import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.util.Streamable;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
+import org.salespointframework.useraccount.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.salespointframework.core.Currencies.EURO;
@@ -37,6 +42,14 @@ public class AccountManager {
 	public final UserAccountManager userAccounts;
 	private final ApplicationEventPublisher publisher;
 	private final FestivalManager festivalManager;
+
+
+
+	@Autowired
+	private SessionRegistry sessionRegistry;
+
+
+
 
 	private static final Logger LOG = LoggerFactory.getLogger(AccountManager.class);
 
@@ -140,5 +153,14 @@ public class AccountManager {
 		return findAll().stream().filter(acc -> acc.getUserAccount().getRoles().toSet().contains(role));
 	}
 
+
+	public List<String> getUsersFromSessionRegistry() {
+		List<String> newReeeturn = sessionRegistry.getAllPrincipals().stream()
+				.filter(u -> !sessionRegistry.getAllSessions(u, false).isEmpty())
+				.map(u -> ((UserDetails) u).getUsername())
+				.collect(Collectors.toList());
+
+		return newReeeturn;
+	}
 }
 
