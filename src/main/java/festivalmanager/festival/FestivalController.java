@@ -7,6 +7,7 @@ import festivalmanager.staff.AccountManager;
 import festivalmanager.staff.CreationForm;
 import festivalmanager.staff.MessageManager;
 import org.salespointframework.inventory.InventoryItemIdentifier;
+import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -20,6 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -273,5 +276,52 @@ public class FestivalController {
 		festivalOptional.ifPresent(festival -> festivals.delete(festival));
 
 		return "redirect:/#festivals";
+	}
+
+	@GetMapping("festival/{festivalId}/buy")
+	String buyItem(Model model, @PathVariable long festivalId) {
+		Optional<Festival> festivalOptional = festivals.findById(festivalId);
+
+		if(festivalOptional.isEmpty()) {
+			return "redirect:/festivals";
+		}
+
+		Map<InventoryItemIdentifier, Quantity> festivalInventory =  festivalOptional.get().getInventory();
+		Map<InventoryItemIdentifier, Quantity> festivalInventoryWithoutFurniture =  new HashMap<>();
+
+
+		for(Map.Entry<InventoryItemIdentifier, Quantity> entry : festivalInventory.entrySet()) {
+			Optional<UniqueInventoryItem> itemOptional = stock.findById(entry.getKey());
+
+			if(itemOptional.isPresent()) {
+				UniqueInventoryItem item = itemOptional.get();
+
+				if(!item.getProduct().getCategories().toList().contains("furniture")) {
+					festivalInventoryWithoutFurniture.put(entry.getKey(), entry.getValue());
+				}
+			}
+		}
+
+		model.addAttribute("festival", festivalOptional.get());
+		model.addAttribute("festivalInventory", festivalInventoryWithoutFurniture);
+		model.addAttribute("inventory", stock);
+
+		return "catering";
+	}
+
+	@PostMapping("festival/buy")
+	String buyItem(@RequestParam long festivalId,
+				   @RequestParam InventoryItemIdentifier itemId,
+				   @RequestParam long amount) {
+
+		Optional<Festival> festivalOptional = festivals.findById(festivalId);
+
+		if(festivalOptional.isEmpty()) {
+			return "redirect:/festivals";
+		}
+
+		festivals.buyInventoryItem(festivalOptional.get(), itemId, Quantity.of(amount));
+
+		return "redirect:/inventory/" + festivalId + "/buy";
 	}
 }
