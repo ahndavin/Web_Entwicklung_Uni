@@ -182,7 +182,7 @@ public class FestivalManager {
 
 			economics.add(
 					(Money) item.getProduct().getPrice().multiply(quantity.getAmount().intValue()),
-					"bought item " + itemId + " " + quantity + "x",
+					"sold " + quantity + "x " + item.getProduct().getName(),
 					festival
 			);
 			
