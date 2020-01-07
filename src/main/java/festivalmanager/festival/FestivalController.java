@@ -45,7 +45,7 @@ public class FestivalController {
 
 	@GetMapping("/")
 	String everyThing(Model model , CreationForm form, Errors result) {
-		model.addAttribute("festivals", festivals.findAllSortedByDate());
+		model.addAttribute("festivals", festivals.findAll());
 		model.addAttribute("festival_form", new FestivalForm());
 		model.addAttribute("accountList", accountManager.findAll());
 		model.addAttribute("accountManager", accountManager);
