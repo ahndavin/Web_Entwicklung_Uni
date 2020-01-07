@@ -8,6 +8,8 @@ import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 
+import static org.salespointframework.core.Currencies.EURO;
+
 @Entity
 public class Account {
 
@@ -72,5 +74,30 @@ public class Account {
 
 	public void setWorkedHours(float workedHours) {
 		this.workedHours = workedHours;
+	}
+
+	public float getWorkedHoursWithoutNull() {
+		if (workedHours == null) {
+			return 0;
+		} else {
+			return workedHours;
+		}
+	}
+
+	public Money getHourlyWageWithoutNull(){
+		if(hourlyWage == null){
+			return Money.of(0, EURO);
+		} else {
+			return hourlyWage;
+		}
+	}
+
+	public String getFestivalNameWithoutNull(){
+		if(this.festival == null){
+			return "not assigned";
+		} else {
+
+			return this.festival.getName();
+		}
 	}
 }

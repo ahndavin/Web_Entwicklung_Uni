@@ -55,6 +55,10 @@ public class Application {
 				formLogin().loginPage(LOGIN_ROUTE).loginProcessingUrl(LOGIN_ROUTE).and(). //
 				logout().logoutUrl("/logout").logoutSuccessUrl("/");
 
+			http
+					.sessionManagement()
+					.maximumSessions(1).sessionRegistry(sessionRegistry());
+
 		}
 		@Bean
 		public SessionRegistry sessionRegistry() {
