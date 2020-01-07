@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LocationRepository extends CrudRepository<Location, Long> {
-    List<Location> findAll();
+public interface StageRepository extends CrudRepository<Stage, Long> {
+    List<Stage> findAll();
 }

@@ -67,10 +67,10 @@
         <input type="number" required="required" th:field="*{maxVisitors}" class="form-control" />
         <br />
         <label for="outsideView">Thumbnail</label><br/>
-        <input type="file" required="required" th:field="*{thumbnail}" name="thumbnail" accept="image/*"/>
+        <input type="file" th:field="*{thumbnail}" name="thumbnail" accept="image/*"/>
         <br />
         <label for="outsideView">Ground Plan</label><br/>
-        <input type="file" required="required" th:field="*{groundPlan}" name="groundPlan" accept="image/*"/>
+        <input type="file" th:field="*{groundPlan}" name="groundPlan" accept="image/*"/>
         <br />
 		<br />
 		

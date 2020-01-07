@@ -1,11 +1,8 @@
 package festivalmanager.location;
 
-import java.util.List;
-import java.util.LinkedList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Location {
@@ -17,7 +14,6 @@ public class Location {
 	private Integer maxVisitors;
 	private String thumbnail;
 	private String groundPlan;
-	private @OneToMany List<Area> areas;
 	
 	@SuppressWarnings("unused")
 	private Location() {}
@@ -30,23 +26,34 @@ public class Location {
 		this.groundPlan = groundPlan;
 		this.isBooked = false;
 		this.currVisitors = 0;
-		this.areas = new LinkedList<Area>();
+	}
+	
+	public long getId() {
+		return id;
 	}
 	
 	public String getName() {		
 		return name;
 	}
 	
+	public String setName(String name) {		
+		return this.name = name;
+	}
+	
 	public String getAddress() {
 		return address;
 	}
 	
-	public boolean toggleBook() {
-		return isBooked = !isBooked;
+	public String setAddress(String address) {		
+		return this.address = address;
 	}
 	
 	public boolean getStatus() {
 		return isBooked;
+	}
+	
+	public boolean toggleBook() {
+		return isBooked = !isBooked;
 	}
 	
 	public Integer countVisitors(int visitors) {		
@@ -61,44 +68,23 @@ public class Location {
 		return maxVisitors;
 	}
 	
+	public Integer setMaxVisitors(Integer maxVisitors) {
+		return this.maxVisitors = maxVisitors;
+	}
+	
 	public String getThumbnail() {
 		return thumbnail;
+	}
+	
+	public String setThumbnail(String thumbnail) {
+		return this.thumbnail = thumbnail;
 	}
 	
 	public String getGroundPlan() {
 		return groundPlan;
 	}
 	
-	public String editGroundPlan(String gp) {
-		groundPlan = gp;
-		return groundPlan;
-	}
-		
-	public List<Area> addArea(Area area){
-		if(areas.contains(area))
-			return null;
-		
-		areas.add(area);
-		return areas;
-	}
-	
-	public Area getArea(Area area) {
-		int index = areas.indexOf(area);
-		
-		if(index == -1)
-			return null;
-		
-		return areas.get(index);
-	}
-	
-	public List<Area> removeArea(Area area) {
-		if(!areas.remove(area))
-			return null;
-		
-		return areas;
-	}
-	
-	public List<Area> getAllAreas() {
-		return areas;
+	public String setGroundPlan(String groundPlan) {
+		return this.groundPlan = groundPlan;
 	}
 }

@@ -54,7 +54,6 @@
 
     <div id="wrapper" class="container text-center">
       <h1 class="mb-3 mt-5"> Edit Area </h1>
-      
       <form method="POST" th:action="${currentURL}" th:object="${area}">
       	<label for="zone">Zone</label>
         <input type="text" th:field="*{zone}" class="form-control" />
@@ -77,11 +76,8 @@
 		<!-- Stage를 눌렀을 때만 보이게 할 것 -->
 		<label for="maxStages">Max Stages</label>
         <input type="number" th:field="*{maxStages}" class="form-control" />
-        
-        
         <br />
 		<br />
-		
 		
         <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">
           Edit Area
