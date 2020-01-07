@@ -3,7 +3,6 @@ package festivalmanager.economics;
 import javax.money.MonetaryAmount;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.accountancy.Accountancy;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import festivalmanager.festival.Festival;
-import festivalmanager.festival.FestivalManager;
 
 @Service
 @Transactional
