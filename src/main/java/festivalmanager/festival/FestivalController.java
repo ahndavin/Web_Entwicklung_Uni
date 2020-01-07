@@ -2,13 +2,18 @@ package festivalmanager.festival;
 
 import festivalmanager.inventory.InventoryManager;
 import festivalmanager.location.LocationManager;
+import festivalmanager.staff.Account;
 import festivalmanager.staff.AccountManager;
 import festivalmanager.staff.CreationForm;
+import festivalmanager.staff.MessageManager;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.quantity.Quantity;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,13 +28,15 @@ public class FestivalController {
 	private InventoryManager stock;
 	private LocationManager locations;
 	private final AccountManager accountManager;
+	private final MessageManager messageManager;
 
 
-	public FestivalController(FestivalManager festivals, InventoryManager stock, AccountManager accountManager, LocationManager locations) {
+	public FestivalController(FestivalManager festivals, InventoryManager stock, AccountManager accountManager, LocationManager locations, MessageManager messageManager) {
 		this.festivals = festivals;
 		this.stock = stock;
 		this.accountManager = accountManager;
 		this.locations = locations;
+		this.messageManager = messageManager;
 	}
 
 	/**
@@ -44,7 +51,7 @@ public class FestivalController {
 	}
 
 	@GetMapping("/")
-	String everyThing(Model model , CreationForm form, Errors result) {
+	String everyThing(Model model , CreationForm form, Errors result, @LoggedIn Optional<UserAccount> userAccount) {
 		model.addAttribute("festivals", festivals.findAll());
 		model.addAttribute("festival_form", new FestivalForm());
 		model.addAttribute("accountList", accountManager.findAll());
@@ -52,7 +59,15 @@ public class FestivalController {
 		model.addAttribute("form", form);
 		model.addAttribute("error", result);
 		model.addAttribute("locations", locations.findAll());
+		Assert.notNull(messageManager, "MessageManagement must not be null");
 
+		if(userAccount.isPresent()) {
+			Account account = accountManager.findByUserAccount(userAccount.get()).get();
+			model.addAttribute("Account", account);
+		}
+
+		model.addAttribute("messageManagement", messageManager);
+		model.addAttribute("messageList", messageManager.findAll());
 
 
 		return "welcome";
