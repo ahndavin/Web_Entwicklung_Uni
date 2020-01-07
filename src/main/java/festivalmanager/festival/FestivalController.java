@@ -306,7 +306,7 @@ public class FestivalController {
 		model.addAttribute("festivalInventory", festivalInventoryWithoutFurniture);
 		model.addAttribute("inventory", stock);
 
-		return "catering";
+		return "festival_catering";
 	}
 
 	@PostMapping("festival/buy")
@@ -322,6 +322,6 @@ public class FestivalController {
 
 		festivals.buyInventoryItem(festivalOptional.get(), itemId, Quantity.of(amount));
 
-		return "redirect:/inventory/" + festivalId + "/buy";
+		return "redirect:/festival/" + festivalId + "/buy";
 	}
 }
