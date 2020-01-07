@@ -2,23 +2,24 @@ package festivalmanager.location;
 
 import java.util.List;
 import javax.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import festivalmanager.contract.Contract;
 import festivalmanager.festival.Festival;
+import festivalmanager.festival.FestivalManager;
 
 @Controller
 public class LocationController {
 	private final LocationManager locationManager;
 	
-	public LocationController(LocationManager locationManager){
+	public LocationController(LocationManager locationManager, FestivalManager festivalManager){
 		Assert.notNull(locationManager, "Location must not be null!");
 		this.locationManager = locationManager;
 	}
@@ -72,7 +73,7 @@ public class LocationController {
 		return "area";
 	}
 
-	//@PreAuthorize("hasAuthority('MANAGER')")
+	@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/location/{location}/area/changeStatus")
 	public String changeAreaStatus(@PathVariable("location") String locationName, @RequestParam("area") String areaName) {
 		Location location = locationManager.findByName(locationName);
@@ -94,6 +95,7 @@ public class LocationController {
 		
 		return "redirect:area";
 	}
+
 
 	@GetMapping("/location/{location}/createArea")
 	public String addArea(Model model, Area area, @PathVariable("location") String locationName) {
