@@ -130,26 +130,32 @@ public class FestivalManager {
 				festival.editInventory().remove(itemId);
 			}
 
+			boolean isFurniture = item.getProduct().getCategories().toList().contains("furniture");
+
 			if(oldQuantity.isLessThan(newQuantity)) {
 				Quantity difference = newQuantity.subtract(oldQuantity);
 
 				item.decreaseQuantity(difference);
 
-				economics.add(
-						((Item) item.getProduct()).getCost().multiply(difference.getAmount().intValue()).negate(),
-						"added " + difference + "x " + item.getProduct().getName() + " to stock ",
-						festival
-				);
+				if(!isFurniture) {
+					economics.add(
+							((Item) item.getProduct()).getCost().multiply(difference.getAmount().intValue()).negate(),
+							"added " + difference + "x " + item.getProduct().getName() + " to stock ",
+							festival
+					);
+				}
 			} else if(oldQuantity.isGreaterThan(newQuantity)) {
 				Quantity difference = oldQuantity.subtract(newQuantity);
 
 				item.increaseQuantity(difference);
 
-				economics.add(
-						((Item) item.getProduct()).getCost().multiply(difference.getAmount().intValue()),
-						"removed " + difference + "x " + item.getProduct().getName() + " from stock ",
-						festival
-				);
+				if(!isFurniture) {
+					economics.add(
+							((Item) item.getProduct()).getCost().multiply(difference.getAmount().intValue()),
+							"removed " + difference + "x " + item.getProduct().getName() + " from stock ",
+							festival
+					);
+				}
 			}
 
 		} else {
