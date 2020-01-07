@@ -64,14 +64,14 @@
 							<div class="form-group col-md-8">
 								<label for="artist" class="col-form-label">Artist</label> <input
 									type="text" th:field="*{artist}" class="form-control" id="artist"
-									placeholder="Price"> <span
+									placeholder="Artist"> <span
 									th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}"
 									class="text-danger"></span>
 							</div>
 
 							<div class="form-group col-md-8">
 								<label for="price" class="col-form-label">Price</label> <input
-									type="text" th:field="*{price}" class="form-control"
+									type="number" th:field="*{price}" class="form-control"
 									id="price" placeholder="price"> <span
 									th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
 									class="text-danger"></span>
@@ -87,7 +87,7 @@
 
 							<div class="form-group col-md-8">
 								<label for="technicianscount" class="col-form-label">Technicianscount</label> <input
-									type="text" th:field="*{technicianscount}" class="form-control"
+									type="number" th:field="*{technicianscount}" class="form-control"
 									id="technicianscount" placeholder="technicianscount"> <span
 									th:if="${#fields.hasErrors('technicianscount')}" th:errors="technicianscount"
 									class="text-danger"></span>
@@ -95,7 +95,7 @@
 
 							<div class="form-group col-md-8">
 								<label for="workinghours" class="col-form-label">workinghours</label> <input
-									type="text" th:field="*{workinghours}" class="form-control"
+									type="number" th:field="*{workinghours}" class="form-control"
 									id="workinghours" placeholder="workinghours"> <span
 									th:if="${#fields.hasErrors('workinghours')}" th:errors="workinghours"
 									class="text-danger"></span>
@@ -103,7 +103,7 @@
 
 							<div class="form-group col-md-8">
 								<label for="workerswage" class="col-form-label">Workerswage</label> <input
-									type="text" th:field="*{workerswage}" class="form-control"
+									type="number" th:field="*{workerswage}" class="form-control"
 									id="workerswage" placeholder="workerswage"> <span
 									th:if="${#fields.hasErrors('workerswage')}" th:errors="workerswage"
 									class="text-danger"></span>
