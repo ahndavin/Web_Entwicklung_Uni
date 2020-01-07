@@ -1,5 +1,7 @@
 package festivalmanager.inventory;
 
+import festivalmanager.festival.Festival;
+import festivalmanager.festival.FestivalManager;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.catalog.ProductIdentifier;
@@ -10,19 +12,24 @@ import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
 public class InventoryController {
 	private InventoryManager inventory;
 	private Catalog<Item> catalog;
+	private FestivalManager festivals;
 
-	public InventoryController(InventoryManager inventory, Catalog<Item> catalog) {
+	public InventoryController(InventoryManager inventory, Catalog<Item> catalog, FestivalManager festivals) {
 		this.inventory = inventory;
 		this.catalog = catalog;
+		this.festivals = festivals;
 	}
 
 
@@ -95,5 +102,52 @@ public class InventoryController {
 		}
 
 		return "redirect:/inventory/";
+	}
+
+	@GetMapping("inventory/{festivalId}/buy")
+	String buyItem(Model model, @PathVariable long festivalId) {
+		Optional<Festival> festivalOptional = festivals.findById(festivalId);
+
+		if(festivalOptional.isEmpty()) {
+			return "redirect:/festivals";
+		}
+
+		Map<InventoryItemIdentifier, Quantity> festivalInventory =  festivalOptional.get().getInventory();
+		Map<InventoryItemIdentifier, Quantity> festivalInventoryWithoutFurniture =  new HashMap<>();
+
+
+		for(Map.Entry<InventoryItemIdentifier, Quantity> entry : festivalInventory.entrySet()) {
+			Optional<UniqueInventoryItem> itemOptional = inventory.findById(entry.getKey());
+
+			if(itemOptional.isPresent()) {
+				UniqueInventoryItem item = itemOptional.get();
+
+				if(!item.getProduct().getCategories().toList().contains("furniture")) {
+					festivalInventoryWithoutFurniture.put(entry.getKey(), entry.getValue());
+				}
+			}
+		}
+
+		model.addAttribute("festival", festivalOptional.get());
+		model.addAttribute("festivalInventory", festivalInventoryWithoutFurniture);
+		model.addAttribute("inventory", inventory);
+
+		return "catering";
+	}
+
+	@PostMapping("inventory/buy")
+	String buyItem(@RequestParam long festivalId,
+				   @RequestParam InventoryItemIdentifier itemId,
+				   @RequestParam long amount) {
+
+		Optional<Festival> festivalOptional = festivals.findById(festivalId);
+
+		if(festivalOptional.isEmpty()) {
+			return "redirect:/festivals";
+		}
+
+		festivals.buyInventoryItem(festivalOptional.get(), itemId, Quantity.of(amount));
+
+		return "redirect:/inventory/" + festivalId + "/buy";
 	}
 }
