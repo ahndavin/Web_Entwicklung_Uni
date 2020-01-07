@@ -47,7 +47,7 @@
 <!-- Main content -->
 <main>
     <div id="availableItems">
-        <form th:each="item : ${festivalInventory}" th:action="@{/inventory/buy}" method="post">
+        <form th:each="item : ${festivalInventory}" th:action="@{/festival/buy}" method="post">
             <input type="hidden" name="festivalId" th:value="${festival.id}">
             <input type="hidden" name="itemId" th:value="${item.key}">
 
