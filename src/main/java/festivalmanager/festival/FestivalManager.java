@@ -179,8 +179,12 @@ public class FestivalManager {
 					"bought item " + itemId + " " + quantity + "x",
 					festival
 			);
-
-			festival.getInventory().put(itemId, newQuantity);
+			
+			if(newQuantity.isGreaterThan(Quantity.NONE)) {
+				festival.getInventory().put(itemId, newQuantity);
+			} else {
+				festival.getInventory().remove(itemId);
+			}
 
 			save(festival);
 		}
