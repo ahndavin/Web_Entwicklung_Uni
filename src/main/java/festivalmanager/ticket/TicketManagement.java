@@ -63,7 +63,7 @@ public class TicketManagement{
         economicManager.add(festival.getTicketBuilder().getPriceDayticket(), "Day Ticket", festival);
 
         festival.getTicketBuilder().setAmountDaytickets(newQuantity);
-        Dayticket ticket = new Dayticket(festival.getName(), festival.getTicketBuilder().getPriceDayticket());
+        Dayticket ticket = festival.getTicketBuilder().createDayticket();
         dayticketRepository.save(ticket);
         return ticket;
     }
@@ -74,7 +74,7 @@ public class TicketManagement{
         economicManager.add(festival.getTicketBuilder().getPriceCampingticket(), "Camping Ticket", festival);
 
         festival.getTicketBuilder().setAmountCampingtickets(newQuantity);
-        Campingticket ticket=new Campingticket(festival.getName(), festival.getTicketBuilder().getPriceCampingticket());
+        Campingticket ticket = festival.getTicketBuilder().createCampingticket();
         campingticketRepository.save(ticket);
         return ticket;
     }
