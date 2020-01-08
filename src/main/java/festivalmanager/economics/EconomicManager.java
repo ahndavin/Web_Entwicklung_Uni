@@ -69,7 +69,7 @@ public class EconomicManager{
     public MonetaryAmount getSum(Festival festival){
         MonetaryAmount sum = Money.of(0, "EUR");
         sum = sum.add(getRevenues(festival));
-        sum = sum.subtract(getExpenses(festival));
+        sum = sum.add(getExpenses(festival));
         return sum;
     }
 }
