@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.salespointframework.quantity.Quantity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class FestivalFormTest {
 
@@ -90,5 +91,14 @@ public class FestivalFormTest {
 		assertEquals(festival.getTicketBuilder().getPriceCampingticket(), Money.of(festivalForm.getPriceCampingticket(), "EUR"));
 		assertEquals(festival.getMaxVisitors(), festivalForm.getMaxVisitors());
 		assertEquals(festival.isSellingTickets(), festivalForm.isSellingTickets());
+	}
+
+	@Test
+	public void canSaveOneDayFestivals() {
+		FestivalForm festivalForm = new FestivalForm();
+
+		festivalForm.setEndDate("");
+
+		assertNull(festivalForm.getEndDate());
 	}
 }
