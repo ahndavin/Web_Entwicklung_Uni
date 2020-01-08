@@ -1,9 +1,15 @@
 package festivalmanager.festival;
 
 import com.google.common.collect.Iterables;
+import festivalmanager.inventory.InventoryManager;
+import festivalmanager.inventory.Item;
 import org.hibernate.Hibernate;
 import org.junit.jupiter.api.Test;
+import org.salespointframework.catalog.ProductIdentifier;
+import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.quantity.Metric;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional
 public class FestivalManagerTest {
 	@Autowired FestivalManager festivals;
+	@Autowired InventoryManager inventory;
 
 	@Test
 	public void canSaveFestival() {
@@ -182,7 +189,7 @@ public class FestivalManagerTest {
 		);
 
 		festivals.save(festivalToSave2);
-		
+
 
 		Festival[] sortedFestivals = Iterables.toArray(festivals.findAllSortedByDate(), Festival.class);
 
@@ -196,5 +203,52 @@ public class FestivalManagerTest {
 				assertTrue(startDateFestival1 < startDateFestival2);
 			}
 		}
+	}
+
+	@Test
+	public void canAddAndBuyInventoryItem() {
+		Festival festivalToSave = new Festival(
+				"test",
+				"Dresden",
+				"1981-01-01",
+				"1981-01-01",
+				100,
+				100,
+				50.0f,
+				100.0f,
+				1000,
+				true
+		);
+
+		Festival festival = festivals.save(festivalToSave);
+
+		Item item = inventory.addItem(
+				"test item",
+				5.00f,
+				1.00f,
+				20,
+				"food",
+				10
+		);
+
+		InventoryItemIdentifier itemId = inventory.findByItem(item).get().getId();
+
+		Quantity quantity = Quantity.of(10);
+
+		festivals.updateInventoryItem(festival, itemId, quantity);
+
+		Festival updatedFestival = festivals.findById(festival.getId()).get();
+
+		assertEquals(updatedFestival.getInventory().get(itemId).getAmount().intValue(), quantity.getAmount().intValue());
+
+
+
+		Quantity boughtQuantity = Quantity.of(5);
+
+		festivals.buyInventoryItem(festival, itemId, boughtQuantity);
+
+		updatedFestival = festivals.findById(festival.getId()).get();
+
+		assertEquals(updatedFestival.getInventory().get(itemId).getAmount().intValue(), quantity.subtract(boughtQuantity).getAmount().intValue());
 	}
 }

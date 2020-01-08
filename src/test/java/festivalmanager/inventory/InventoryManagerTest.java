@@ -23,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class InventoryManagerTest {
 	@Autowired InventoryManager inventory;
-	@Autowired Catalog<Item> catalog;
 
 	@Test
 	public void canSaveItem() {
@@ -122,18 +121,6 @@ public class InventoryManagerTest {
 	}
 
 	private Item saveTestItem(boolean saveToInventory) {
-		Item item = catalog.save(new Item(
-				"test",
-				Money.of(12.00, "EUR"),
-				Money.of(5.00, "EUR"),
-				Quantity.of(10, Metric.UNIT),
-				new String[]{ "test" }
-		));
-
-		if(saveToInventory) {
-			inventory.save(new UniqueInventoryItem(item, Quantity.of(10, Metric.UNIT)));
-		}
-
-		return item;
+		return inventory.addItem("test item", 12.00f, 5.00f, 10, "test", saveToInventory ? 10 : 0);
 	}
 }
