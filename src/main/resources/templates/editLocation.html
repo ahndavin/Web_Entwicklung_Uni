@@ -74,9 +74,8 @@
         <br />
 		<br />
 		
-        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">
-          Edit Location
-        </button>
+		<button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">Cancel</button>
+        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Edit Location</button>
 
       </form>
 
@@ -98,6 +97,9 @@
     crossorigin="anonymous"></script>
 
   <script>
+  	function goBack() {
+	    window.history.back();
+	}
     // Get the current year for the copyright
     $("#year").text(new Date().getFullYear());
   </script>

@@ -91,7 +91,7 @@ public class LocationController {
 		return "area";
 	}
 
-	@PreAuthorize("hasAuthority('MANAGER')")
+	//@PreAuthorize("hasAuthority('MANAGER')")					왜 갑자기 안 되는거냐
 	@GetMapping("/location/{location}/area/changeStatus")
 	public String changeAreaStatus(@PathVariable("location") String locationName, @RequestParam("area") String areaName) {
 		Location location = locationManager.findByName(locationName);
@@ -256,10 +256,11 @@ public class LocationController {
 	}
 
 	@GetMapping("/location/{location}/area/{area}/stage/{stage}/lineup/{lineup}")
-	public String editLineup(Model model, @PathVariable("location") String locationName, @PathVariable("area") String areaName, @PathVariable("stage") String stageName, @PathVariable("lineup") long lineupId) {
+	public String editLineup(Model model, @PathVariable("location") String locationName, @PathVariable("area") String areaName, @PathVariable("stage") String stageName, @PathVariable("lineup") String lineupIdAsString) {
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
 		Stage stage = locationManager.findByName(area, stageName);
+		long lineupId = Long.parseLong(lineupIdAsString);
 		Lineup lineup = locationManager.findById(stage, lineupId);
 		List<Contract> contracts = locationManager.findByName().toList();
 		
