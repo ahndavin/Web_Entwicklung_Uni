@@ -3,6 +3,7 @@ package festivalmanager.inventory;
 import festivalmanager.economics.EconomicManager;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Catalog;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Metric;
@@ -112,7 +113,7 @@ public class InventoryManager {
 		}
 	}
 
-	public void addItem(String name, float price, float cost, int minimalQuantity, String category, int quantity) {
+	public Item addItem(String name, float price, float cost, int minimalQuantity, String category, int quantity) {
 		Item item = catalog.save(
 				new Item(
 						name,
@@ -126,5 +127,7 @@ public class InventoryManager {
 		if(quantity > 0) {
 			inventory.save(new UniqueInventoryItem(item, Quantity.of(quantity, Metric.UNIT)));
 		}
+
+		return item;
 	}
 }
