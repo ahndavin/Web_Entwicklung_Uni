@@ -291,7 +291,7 @@ public class FestivalManagerTest {
 
 		Festival updatedFestival = festivals.findById(festival.getId()).get();
 
-		
+
 		assertEquals(amountInStockBeforeBuying, updatedFestival.getInventory().get(itemId).getAmount().intValue());
 	}
 
@@ -376,7 +376,7 @@ public class FestivalManagerTest {
 		UniqueInventoryItem uniqueInventoryItem = new UniqueInventoryItem(item, Quantity.of(10));
 
 
-		Festival nullFestival = festivals.updateInventoryItem(festival, uniqueInventoryItem.getId(), Quantity.of(-1));
+		Festival nullFestival = festivals.updateInventoryItem(festival, uniqueInventoryItem.getId(), Quantity.of(10));
 
 		assertNull(nullFestival);
 	}
