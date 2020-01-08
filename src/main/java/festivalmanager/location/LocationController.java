@@ -21,10 +21,17 @@ import festivalmanager.festival.FestivalManager;
 @Controller
 public class LocationController {
 	private final LocationManager locationManager;
+	private static FestivalManager festivalManager;
 	
+	@SuppressWarnings("static-access")
 	public LocationController(LocationManager locationManager, FestivalManager festivalManager){
 		Assert.notNull(locationManager, "Location must not be null!");
 		this.locationManager = locationManager;
+		this.festivalManager = festivalManager;
+	}
+	
+	public static FestivalManager getFestivalManager() {
+		return festivalManager;
 	}
 
 	@GetMapping("/location")

@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.LinkedList;
 
 import festivalmanager.festival.Festival;
-import festivalmanager.festival.FestivalRepository;
+import festivalmanager.contract.*;
 
 import org.springframework.stereotype.Service;
 import org.springframework.data.util.Streamable;
-import festivalmanager.contract.*;
 
 @Service
 public class LocationManager {
@@ -16,18 +15,16 @@ public class LocationManager {
 	private AreaRepository areaRepository;
 	private StageRepository stageRepository;
 	private LineupRepository lineupRepository;
-	private FestivalRepository festivalRepository;
 	private ContractsRepository contractsRepository;
 	
  	public LocationManager(	LocationRepository locationRepository, AreaRepository areaRepository,
 							StageRepository stageRepository, LineupRepository lineupRepository,
-							FestivalRepository festivalRepository, ContractsRepository contractsRepository)
+							ContractsRepository contractsRepository)
  	{
  		this.locationRepository = locationRepository;
  		this.areaRepository = areaRepository;
  		this.stageRepository = stageRepository;
  		this.lineupRepository = lineupRepository;
- 		this.festivalRepository = festivalRepository;
  		this.contractsRepository = contractsRepository;
 	}
  	
@@ -170,6 +167,6 @@ public class LocationManager {
 	}
 
 	public Iterable<Festival> findFestivals() {
-		return festivalRepository.findAll();
+		return LocationController.getFestivalManager().findAll();
 	}
 }
