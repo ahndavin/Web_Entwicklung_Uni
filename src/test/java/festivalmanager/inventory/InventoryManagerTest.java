@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -83,6 +84,41 @@ public class InventoryManagerTest {
 		inventory.delete(uniqueInventoryItem);
 
 		assertTrue(inventory.findById(uniqueInventoryItem.getId()).isEmpty());
+	}
+
+	@Test
+	public void canFindByCategory() {
+		Iterable<UniqueInventoryItem> items = inventory.findAll();
+		List<UniqueInventoryItem> foodItems = (List<UniqueInventoryItem>) inventory.findByCategory("food");
+
+		int foodItemCount = 0;
+		for(UniqueInventoryItem item : items) {
+			if(item.getProduct().getCategories().toList().contains("food")) {
+				foodItemCount += 1;
+			}
+		}
+
+		assertEquals(foodItemCount, foodItems.size());
+	}
+
+	@Test
+	public void canSetQuantity() {
+		Iterable<UniqueInventoryItem> items = inventory.findAll();
+
+		if(!items.iterator().hasNext()) {
+			fail();
+		}
+
+		UniqueInventoryItem item = items.iterator().next();
+
+		Quantity quantity = Quantity.of(20);
+
+		inventory.setQuantity(item, quantity);
+
+		UniqueInventoryItem updatedItem = inventory.findById(item.getId()).get();
+
+
+		assertEquals(updatedItem.getQuantity().getAmount().intValue(), quantity.getAmount().intValue());
 	}
 
 	private Item saveTestItem(boolean saveToInventory) {
