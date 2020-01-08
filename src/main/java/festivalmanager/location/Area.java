@@ -1,16 +1,22 @@
 package festivalmanager.location;
 
-import java.util.List;
-import java.util.LinkedList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Area {
+	private @Id @GeneratedValue long id;
+	private long locationId;
 	private String zone;
 	private boolean blocked;
 	private Integer currVisitors;
 	private Integer maxVisitors;
 	private Integer maxStages;
 	private Type type;
-	private List<Stage> stages;
+	
+	@SuppressWarnings("unused")
+	private Area() {}
 	
 	public Area(String zone, Integer maxVisitors, Integer maxStages, Type type) {
 		this.zone = zone;
@@ -19,24 +25,35 @@ public class Area {
 		this.blocked = false;
 		this.currVisitors = 0;
 		this.type = type;
-		
-		if(this.type == Type.STAGE)
-			this.stages = new LinkedList<Stage>();
-		else
-			this.stages = null;
+	}
+	
+	public long getId() {
+		return id;
+	}
+	
+	public long getLocationId() {
+		return locationId;
+	}
+	
+	public long setLocationId(long locationId) {
+		return this.locationId = locationId;
 	}
 	
 	public String getZone() {
 		return zone;
 	}
 	
-	public boolean toggleLock() {
-		blocked = !blocked;
-		
-		return blocked;
+	public String setZone(String zone) {
+		return this.zone = zone;
 	}
 	
 	public boolean getStatus() {
+		return blocked;
+	}
+	
+	public boolean toggleLock() {
+		blocked = !blocked;
+		
 		return blocked;
 	}
 	
@@ -55,41 +72,24 @@ public class Area {
 		return maxVisitors;
 	}
 	
+	public Integer setMaxVisitors(Integer maxVisitors) {
+		return this.maxVisitors = maxVisitors;
+	}
+	
 	public Integer getMaxStages() {
 		return maxStages;
+	}
+	
+	public Integer setMaxStages(Integer maxStages) {
+		return this.maxStages = maxStages;
 	}
 	
 	public Type getType() {
 		return type;
 	}
 	
-	public List<Stage> addStage(Stage stage){
-		if((maxStages <= stages.size()) || (stages.contains(stage)))
-			return null;
-		
-		stages.add(stage);
-		
-		return stages;
-	}
-	
-	public Stage getStage(Stage stage) {
-		int index = stages.indexOf(stage);
-		
-		if(index == -1)
-			return null;
-		
-		return stages.get(index);
-	}
-	
-	public List<Stage> removeStage(Stage stage) {
-		if(!stages.remove(stage))
-			return null;
-		
-		return stages;
-	}
-	
-	public List<Stage> getAllStages() {
-		return stages;
+	public Type setType(Type type) {
+		return this.type = type;
 	}
 	
 	public String toString() {

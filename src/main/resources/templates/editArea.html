@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-  <title>Create Area</title>
+  <title>Edit Area</title>
 </head>
 
 <body>
@@ -46,7 +46,6 @@
       <h3 class="display-5 mb-0">Creating the awesome Area?!</h3>
       <h1 class="display-3">Where should it be?</h1>
       <p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
-
     </div>
   </section>
 
@@ -54,13 +53,13 @@
   <section>
 
     <div id="wrapper" class="container text-center">
-      <h1 class="mb-3 mt-5"> Create Area </h1>
+      <h1 class="mb-3 mt-5"> Edit Area </h1>
       <form method="POST" th:action="${currentURL}" th:object="${area}">
       	<label for="zone">Zone</label>
-        <input type="text" required="required" th:field="*{zone}" class="form-control" />
+        <input type="text" th:field="*{zone}" th:value="${area.getZone()}" class="form-control" />
         <br />
         <label for="maxVisitors">Max Visitors</label>
-        <input type="number" required="required" th:field="*{maxVisitors}" class="form-control" />
+        <input type="number" th:field="*{maxVisitors}" class="form-control" />
         <br />
         <label for="type">Type</label><br/>	
 		<label class="box-radio-input">
@@ -80,9 +79,15 @@
         <br />
 		<br />
 		
-		<button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">Cancel</button>
-        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Create Area</button>
-
+		<button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">
+          Cancel
+        </button>
+        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">
+          Edit Area
+        </button>
+        <!--
+        <a id="deleteLink" th:onclick="'deleteFestival(' + ${festival_form.id} + ')'" href="#">Festival löschen</a>
+ 		-->
       </form>
 
     </div>

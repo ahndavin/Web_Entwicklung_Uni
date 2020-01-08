@@ -63,6 +63,7 @@
 					<label for="type"><b>Type: </b></label>
 					<label th:text="${area.getType()}"></label>
 				</li>
+				
 				<li class="list-group-item">
 					<form method="get" th:action="@{'/location/' + ${location.getName()} + '/area/changeStatus'}">
 						<label for="blocked"><b>Blocked: </b></label>
@@ -81,22 +82,16 @@
 					<label th:text="${area.getMaxVisitors()}"></label>
 				</li>
 				
-				<li th:if="${area.getAllStages()!=null}" class="list-group-item">
+				<li th:if="${area.getMaxStages()!=null}" class="list-group-item">
 					<label for="maxStages"><b>Maximum Stages: </b></label>
 					<label th:text="${area.getMaxStages()}"></label>
 				</li>
 				
 				<li class="list-group-item">
 					<button id="btn_" class="btn btn-lg btn-dark">
-						<!-- TO DO 
-						Der Festivalleiter muss die Belegung und den Typ eines Bereiches sowie
-						die Anordnung von Toiletten und Cateringständen ändern können.
-						
-						Der Festivalleiter muss die Bühnenpositionen ändern können.
-						-->
-<!-- TODO!!!!!!!!!!! --><a href="#" onclick="goToCreateArea()" class="text-light">Edit Area</a>
+						<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}}" class="text-light">Edit Area</a>
 	      			</button>
-					<button th:if="${area.getAllStages()!=null}" id="btn_" class="btn btn-lg btn-dark">
+					<button th:if="${area.getMaxStages()!=null}" id="btn_" class="btn btn-lg btn-dark">
 	       		 		<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage'" class="text-light">View Stages</a>
 	      			</button>
 				</li>

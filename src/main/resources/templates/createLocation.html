@@ -67,18 +67,21 @@
         <input type="number" required="required" th:field="*{maxVisitors}" class="form-control" />
         <br />
         <label for="outsideView">Thumbnail</label><br/>
-        <input type="file" required="required" th:field="*{thumbnail}" name="thumbnail" accept="image/*"/>
+        <input type="file" th:field="*{thumbnail}" name="thumbnail" accept="image/*"/>
         <br />
         <label for="outsideView">Ground Plan</label><br/>
-        <input type="file" required="required" th:field="*{groundPlan}" name="groundPlan" accept="image/*"/>
+        <input type="file" th:field="*{groundPlan}" name="groundPlan" accept="image/*"/>
         <br />
 		<br />
 		
-        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">
+        <button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">
+          Cancel
+        </button>
+		<button id="btn" type="submit" class="btn btn-lg btn-dark text-light">
           Create Location
         </button>
-
       </form>
+      
 
     </div>
 
@@ -98,6 +101,9 @@
     crossorigin="anonymous"></script>
 
   <script>
+  	function goBack() {
+	    window.history.back();
+	}
     // Get the current year for the copyright
     $("#year").text(new Date().getFullYear());
   </script>
