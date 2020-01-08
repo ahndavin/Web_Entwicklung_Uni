@@ -95,21 +95,6 @@ public class FestivalManager {
 		return null;
 	}
 
-	public Festival updatePlan(Festival festival) {
-		Optional<Festival> festivalOptional = festivalRepository.findById(festival.getId());
-
-		if(festivalOptional.isPresent()) {
-			Festival f = festivalOptional.get();
-
-			f.editPlan().clear();
-			f.editPlan().addAll(festival.editPlan());
-
-			return save(f);
-		}
-
-		return null;
-	}
-
 	public Festival updateInventoryItem(Festival festival, InventoryItemIdentifier itemId, Quantity newQuantity) {
 		if(newQuantity.isLessThan(Quantity.NONE)) {
 			return null;
