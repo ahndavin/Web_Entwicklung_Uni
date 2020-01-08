@@ -11,9 +11,9 @@ import javax.validation.constraints.NotNull;
 @Component
 public class MessageEventListener implements ApplicationListener<MessageEvent> {
 	private static final Logger LOG = LoggerFactory.getLogger(MessageEventListener.class);
-	private MessageManagement messageManagement;
+	private MessageManager messageManagement;
 
-	public MessageEventListener(MessageManagement messageManagement){
+	public MessageEventListener(MessageManager messageManagement){
 		this.messageManagement = messageManagement;
 	}
 

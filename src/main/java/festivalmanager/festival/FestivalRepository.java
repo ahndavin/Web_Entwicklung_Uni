@@ -5,8 +5,6 @@ import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FestivalRepository extends CrudRepository<Festival, Long> {
-
-    @Override
-    Streamable<Festival> findAll();
+interface FestivalRepository extends CrudRepository<Festival, Long> {
+	Festival findByName (String name);
 }

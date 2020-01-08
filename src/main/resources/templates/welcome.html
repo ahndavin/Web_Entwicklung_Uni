@@ -1,136 +1,195 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Lets try this !</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link type="text/css" th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Basic CSS with Thymeleaf -->
+  <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+  <!-- Material Design Bootstrap -->
+  <link th:href="@{/resources/css/mdb.min.css}" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/resources/css/timeline.min.css}">
+  <link th:href="@{/resources/css/addons-pro/chat.css}" rel="stylesheet">
+  <style>
+    html,
+    body,
+    header,
+    .view.jarallax {
+      height: 100%;
+      min-height: 100%;
 
-	<!--  BOOTSTRAP STUFF  -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
-	<link rel="stylesheet" href="css/style.css" />
-
-	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-	<title>FVIV FESTIVAL</title>
+    }
+  </style>
 </head>
 
-<body>
-		<!--  START HERE  -->
+<body class="event-lp">
 
-		<!--  NavBar -->
-		<nav th:include="navigation :: navigation"></nav>
-		<!--  Overlay -->
-	<section class="d-flex align-items-center" id="showcase">
-		<div id="overlay"></div>
-		<div id="header" class="container text-white text-center">
-			<h1 class="display-5 mb-0">Welcome to the FVIV GANG, where we create awesome Festivals, yo!</h1>
-			<h3 class="display-3">Like really cool Festivals!</h3>
-			<br>
-			<p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
-			<button id="btn" class="btn btn-lg btn-light">
-				<a class="text-dark" href="/createAccount">Create an Account!</a>
-			</button>
-		</div>
-	</section>
+  <!-- Navigation & Intro -->
+  <header>
 
-	<!--  3 Row Column -->
-	<section>
-		<div class="container text-center" sec:authorize="!isAuthenticated()">
-			<h2 class="mt-4">Yooo, sign up, we got cookies!</h2>
-			<div class="row mt-5">
-				<div class="col-md-4">
-					<img class="img img-fluid" src="https://image.flaticon.com/icons/svg/864/864857.svg" alt="">
-					<h3>Plan your Stage!</h3>
-					<p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-						invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-				</div>
-				<div class="col-md-4">
-					<img class="img img-fluid" src="https://image.flaticon.com/icons/svg/3/3774.svg" alt="">
-					<h3>Get the Line-Up</h3>
-					<p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-						invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-				</div>
-				<div class="col-md-4">
-					<img class="img img-fluid" src="https://image.flaticon.com/icons/svg/684/684831.svg" alt="">
-					<h3>See all Contracts</h3>
-
-				</div>
-			</div>
-		</div>
-		<div class="container text-center" sec:authorize="isAuthenticated()">
-				<div > Hallo [[${Account.firstName}]] </div>
+    <!-- Userspecific Navbar -->
+    <nav th:replace="usernav :: usernavigation"></nav>
 
 
-				<table class="ui celled table" sec:authorize="isAuthenticated()">
-					<thead>
-					<tr>
-						<th>sender</th>
-						<th>message</th>
+    <!-- Intro Section -->
+    <div th:replace="userintro :: usersection"></div>
 
-					</tr>
-					</thead>
-					<tbody>
-
-					<th:block  th:each="message : ${messageManagement.findByReceiver(Account)}">
-						<tr>
-							<td th:text="${message.sender.getUserAccount().username}"></td>
-							<td th:text="${message.message}"></td>
-						</tr>
-					</th:block>
-					</tbody>
+  </header>
 
 
-				</table>
-			<div sec:authorize="hasRole('MANAGER')" th:if="${messageManagement.anyMessages(Account)}" th:text="#{noMessages}"></div>
-				<table class="ui celled table" sec:authorize="hasRole('MANAGER')">
+  <!-- Main content -->
+  <main>
 
-					<thead>
-					<tr>
-						<th>receiver</th>
-						<th>message</th>
+    <div class="container">
 
-					</tr>
-					</thead>
-					<tbody>
+      <!-- Section 1 -->
+      <div th:replace="section1 :: section1"></div>
 
-					<th:block  th:each="message : ${messageManagement.findBySender(Account)}">
-						<tr>
-							<td th:text="${message.receiver.getUserAccount().username}"></td>
-							<td th:text="${message.message}"></td>
-						</tr>
-					</th:block>
-					</tbody>
-				</table>
-			<div sec:authorize="hasRole('MANAGER')" th:if="!${messageManagement.anySentMessages(Account)}" th:text="#{noSentMessages}"></div>
-			<div sec:authorize="hasRole('MANAGER')">
-				<form th:action="@{sendMessage/{name}(name=${Account.getUserAccount().username})}" method="get" >
-				<button type="submit" th:href="@{sendMessage/{name}(name=${Account.getUserAccount().username})}" th:text="#{sendNewMessage}">
-				</button>
-				</form>
-			</div>
+      <hr class="">
+
+      <!-- Section 2 -->
+      <div th:replace="section2 :: section2"></div>
+
+    </div>
+
+    <!-- Section 3 -->
+    <div th:replace="section3 :: section3"></div>
+
+    <!-- Section 4 -->
+    <div th:replace="section4 :: section4"></div>
+
+    <div class="container">
+
+      <!-- Section 5 -->
+      <div th:replace=" section5 :: section5"></div>
+
+      <hr>
+
+      <!-- Section 6 -->
+
+      <div th:replace=" section6 :: section6"></div>
 
 
 
-		</div>
-	</section>
+    </div>
+
+  </main>
+  <!-- Main content -->
+
+  <!--Footer-->
+  <footer class="page-footer black text-center text-md-left pt-0">
+
+    <!--Footer Links-->
+    <div class="container">
+
+      <!--Grid row-->
+      <div class="row pt-5 mb-3 text-center d-flex justify-content-center">
+
+        <!--Grid column-->
+        <div class="col-md-2 mb-3">
+          <h6 class="text-uppercase font-weight-bold">
+            <a href="#!">About us</a>
+          </h6>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-2 mb-3">
+          <h6 class="text-uppercase font-weight-bold">
+            <a href="#!">Help</a>
+          </h6>
+        </div>
+        <!--Grid column-->
 
 
+      </div>
+      <!--Grid row-->
 
-	<!-- BOOTSTRAP SCRIPTS -->
-	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
-		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-		crossorigin="anonymous"></script>
+      <hr class="rgba-white-light" style="margin: 0 15%;">
 
-	<script>
-		// Get the current year for the copyright
-		$("#year").text(new Date().getFullYear());
-	</script>
+      <!--Grid row-->
+      <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+
+        <!--Grid column-->
+        <div class="col-md-8 col-12 mt-5">
+          <p style="line-height: 1.7rem">Some funky FVIV Festivals Stuff goes here!</p>
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+
+      <!--Grid row-->
+      <div class="row pb-3">
+
+        <!--Grid column-->
+        <div class="col-md-12">
+
+          <div class="footer-socials mb-5 flex-center">
+            <!--Facebook-->
+            <a class="p-2 m-2 fa-lg fb-ic" href="https://www.facebook.com/FVIV-Events-109983937178291/">
+              <i class="fab fa-facebook-f fa-lg white-text mr-md-4"> </i>
+            </a>
+            <!--Twitter-->
+            <a class="p-2 m-2 fa-lg tw-ic" href="https://twitter.com/EventsFviv">
+              <i class="fab fa-twitter fa-lg white-text mr-md-4"> </i>
+            </a>
+            <!--Google +-->
+            <a class="p-2 m-2 fa-lg gplus-ic" href="https://www.google.com/intl/de/gmail/about/#">
+              <i class="fab fa-google-plus-g fa-lg white-text mr-md-4"> </i>
+            </a>
+            <!--Instagram-->
+            <a class="p-2 m-2 fa-lg ins-ic" href="https://www.instagram.com/fviv.events/">
+              <i class=" fab fa-instagram fa-lg white-text mr-md-4"> </i>
+            </a>
+          </div>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+
+    </div>
+    <!--/Footer Links-->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+      <div class="container-fluid">
+        © 2020 Copyright: <a href="https://fviv-festivals.com/" target="_blank"> FVIV-Festivals.com </a>
+      </div>
+    </div>
+    <!--/Copyright-->
+
+  </footer>
+  <!--/Footer-->
+
+  <!--  Timer  -->
+  <script type="text/javascript" rel="script" th:src="@{/resources/js/timer.js}"></script>
+  <!--  JQuery  -->
+  <script type="text/javascript" rel="script" th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
+  <!--  Bootstrap tooltips  -->
+  <script type="text/javascript" rel="script" th:src="@{/resources/js/popper.min.js}"></script>
+  <!--  Bootstrap core JavaScript  -->
+  <script type="text/javascript" rel="script" th:src="@{/resources/js/bootstrap.min.js}"></script>
+  <!--  MDB core JavaScript  -->
+  <script type="text/javascript" rel="script" th:src="@{/resources/js/mdb.min.js}"></script>
+
+  <!-- Custom scripts -->
+
+  <script sec:authorize="!isAuthenticated()">
+    new WOW().init();
+  </script>
+
+
 </body>
 
 </html>

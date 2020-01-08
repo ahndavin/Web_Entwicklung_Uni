@@ -17,7 +17,7 @@ public class FestivalManagerTest {
 	public void canSaveFestival() {
 		Festival festivalToSave = new Festival(
 				"test",
-				"test",
+				"Dresden",
 				"1980-01-01",
 				"1980-01-01",
 				100,
@@ -42,7 +42,7 @@ public class FestivalManagerTest {
 
 		Festival f1 = new Festival(
 				"test 1",
-				"test",
+				"Dresden",
 				"2020-01-11",
 				"2020-01-13",
 				100,
@@ -55,7 +55,7 @@ public class FestivalManagerTest {
 
 		Festival f2 = new Festival(
 				"test 2",
-				"test",
+				"Dresden",
 				"2020-01-12",
 				"2020-01-12",
 				100,

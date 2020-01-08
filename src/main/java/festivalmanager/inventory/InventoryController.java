@@ -1,5 +1,7 @@
 package festivalmanager.inventory;
 
+import festivalmanager.festival.Festival;
+import festivalmanager.festival.FestivalManager;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.catalog.ProductIdentifier;
@@ -10,19 +12,24 @@ import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
 public class InventoryController {
 	private InventoryManager inventory;
 	private Catalog<Item> catalog;
+	private FestivalManager festivals;
 
-	public InventoryController(InventoryManager inventory, Catalog<Item> catalog) {
+	public InventoryController(InventoryManager inventory, Catalog<Item> catalog, FestivalManager festivals) {
 		this.inventory = inventory;
 		this.catalog = catalog;
+		this.festivals = festivals;
 	}
 
 
@@ -91,21 +98,9 @@ public class InventoryController {
 			UniqueInventoryItem	item = itemOptional.get();
 			Quantity quantity = Quantity.of(amount, Metric.UNIT);
 
-			if(quantity.isLessThan(Quantity.of(1, Metric.UNIT))) {
-				inventory.delete(item);
-			} else {
-				Quantity oldQuantity = item.getQuantity();
-
-				if(quantity.isGreaterThan(oldQuantity)) {
-					item.increaseQuantity(quantity.subtract(oldQuantity));
-				} else if(quantity.isLessThan(oldQuantity)) {
-					item.decreaseQuantity(oldQuantity.subtract(quantity));
-				}
-
-				inventory.save(item);
-			}
+			inventory.setQuantity(item, quantity);
 		}
 
-		return "redirect:/inventory/edit";
+		return "redirect:/inventory/";
 	}
 }

@@ -1,0 +1,135 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+  <!--  BOOTSTRAP STUFF  -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+</head>
+
+<body>
+  <div th:fragment="section5">
+
+    <!-- Section 5 User -->
+    <section id="faq" class="pt-1" sec:authorize="!isAuthenticated()">
+
+      <!-- Section heading -->
+      <h3 class="text-center my-5 pt-3 dark-grey-text font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+        <strong>Frequently Asked Question</strong>
+      </h3>
+      <!-- Section description -->
+      <p class="text-center w-responsive mx-auto my-5 grey-text">Here we put some Frequently asked Questions for the
+        Festival Visitors. Like where are the Toilets etc..</p>
+
+      <!-- Grid row -->
+      <div class="row gradient-background d-flex justify-content-center">
+
+        <!-- Grid column -->
+        <div class="col-md-10 col-xl-10 pb-5 pt-3">
+
+          <!--Accordion wrapper-->
+          <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+            <!-- Accordion card -->
+            <div class="card border-0">
+
+              <!-- Card header -->
+              <div class="card-header white z-depth-1 border-0 mb-1" role="tab" id="heading1">
+                <a data-toggle="collapse" data-parent="#accordionEx" href="#collapse1" aria-expanded="true"
+                  aria-controls="collapse1">
+                  <h5 class="mb-0 dark-grey-text">
+                    #1 Where are the Toilets?!
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div id="collapse1" class="collapse show" role="tabpanel" aria-labelledby="heading1"
+                data-parent="#accordionEx">
+                <div class="card-body mb-1 rgba-indigo-strong white-text">
+                  <p>Depending on the Location. In Dresden they are near Stage A... In Berlin .... ...
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card -->
+
+            <!-- Accordion card -->
+            <div class="card border-0">
+
+              <!-- Card header -->
+              <div class="card-header White z-depth-1 border-0 mb-1" role="tab" id="heading2">
+                <a class="collapsed" data-toggle="collapse" href="#collapse2" aria-expanded="false"
+                  aria-controls="collapse2">
+                  <h5 class="mb-0 dark-grey-text">
+                    #2 What payment types do you accept?
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="heading2"
+                data-parent="#accordionEx">
+                <div class="card-body mb-1 rgba-indigo-strong white-text">
+                  <p>We accept Paypal, Google Pay, Apple Pay or...</p>
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card -->
+
+            <!-- Accordion card -->
+            <div class="card border-0">
+
+              <!-- Card header -->
+              <div class="card-header white z-depth-1 border-0 mb-1" role="tab" id="heading3">
+                <a class="collapsed" data-toggle="collapse" href="#collapse3" aria-expanded="false"
+                  aria-controls="collapse3">
+                  <h5 class="mb-0 dark-grey-text">
+                    #3 Can I return the tickets?
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div id="collapse3" class="collapse" role="tabpanel" aria-labelledby="heading3"
+                data-parent="#accordionEx">
+                <div class="card-body mb-1 rgba-indigo-strong white-text">
+                  <p>You can return the Tickets, before the festivalevent on our Homepage : www.fviv-festivals.com
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card -->
+          </div>
+          <!--/.Accordion wrapper-->
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </section>
+
+    <!-- Section 5 MANAGER -->
+
+    <!-- Section 5 CATERING -->
+
+    <!-- Section 5 SECURITY -->
+
+    <!-- Section 5 TICKET_SALESMAN -->
+
+  </div>
+</body>
+
+</html>

@@ -28,7 +28,7 @@ class 	AccountController {
 
 		private final AccountManager accountManager;
 		public final UserAccountManager userAccounts;
-		private final MessageManagement messageManagement;
+		private final MessageManager messageManagement;
 		private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);
 		@Autowired
 		private ActiveAccountsStore activeAccountsStore;
@@ -37,7 +37,7 @@ class 	AccountController {
 
 
 
-		AccountController(AccountManager accountManager, UserAccountManager userAccounts, MessageManagement messageManagement){
+		AccountController(AccountManager accountManager, UserAccountManager userAccounts, MessageManager messageManagement){
 			Assert.notNull(accountManager, "kickstart.account.AccountManager must be not null");
 			this.accountManager = accountManager;
 			this.userAccounts = userAccounts;
@@ -54,7 +54,7 @@ class 	AccountController {
 			return "redirect:/";
 		}
 
-	@PreAuthorize("hasRole('MANAGER')")
+		//@PreAuthorize("hasRole('MANAGER')")
 		@GetMapping("/createAccount")
 		String createAccount(Model model, CreationForm form, Errors result) {
 			model.addAttribute("form", form);
@@ -62,13 +62,14 @@ class 	AccountController {
 			return "createAccount";
 		}
 
-		@PreAuthorize("hasAuthority('MANAGER')")
+		@PreAuthorize("hasRole('MANAGER')")
 		@GetMapping("/allAccounts")
 		String allAccounts(Model model){
 			model.addAttribute("accountList", accountManager.findAll());
 			model.addAttribute("accountManager", accountManager);
 			return "allAccounts";
 		}
+
 
 		@GetMapping(value = "/loggedaccounts")
 		public String getLoggedAccounts(Locale locale, Model model){
@@ -99,7 +100,7 @@ class 	AccountController {
 			return "redirect:/";
 		}
 
-		@PreAuthorize("hasAuthority('MANAGER')")
+		@PreAuthorize("hasRole('MANAGER')")
 		@GetMapping("/changePassword/{name}")
 		String changePasswordByUsername(Model model, changePasswordForm form, @PathVariable String name){
 			model.addAttribute("form", form);
@@ -121,7 +122,7 @@ class 	AccountController {
 		@GetMapping("/deleteAccount/{name}")
 		String deleteAccount(Model model, @PathVariable String name){
 			accountManager.deleteAccount(accountManager.findByUserAccount(userAccounts.findByUsername(name).get()).get());
-			return "redirect:/allAccounts";
+			return "redirect:/#accounts";
 		}
 
 		@GetMapping("/sendMessage/{name}")

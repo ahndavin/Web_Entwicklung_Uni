@@ -25,9 +25,10 @@ public class ContractList {
     }
 
 	public void delete(Contract delete) {
+
         List<Contract> contractList2 = new ArrayList<>();
         for(Contract contract : contractList){
-            if(contract != delete){
+            if(contract.getId() != delete.getId()){
                 contractList2.add(contract);
             }
         }

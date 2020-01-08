@@ -1,10 +1,13 @@
 package festivalmanager.staff;
 
+import festivalmanager.festival.Festival;
+import festivalmanager.festival.FestivalManager;
 import org.h2.api.UserToRolesMapper;
+import org.javamoney.moneta.Money;
 
 import javax.validation.constraints.NotEmpty;
 
-class CreationForm {
+public class CreationForm {
 
 		@NotEmpty(message = "{CreationForm.name.NotEmpty}")
 		private final String usrName;
@@ -22,20 +25,29 @@ class CreationForm {
 
 		private Boolean security;
 
-		//private Boolean manager;
+		private Boolean festivalManager;
 
 		private Boolean ticketSalesman;
 
+		private Float workedHours;
 
-		public CreationForm(String usrName, String password, String firstName, String lastName, Boolean catering, Boolean security, Boolean ticketSalesman) {
+		private Float hourlyWage;
+
+		private String festival;
+
+		public CreationForm(String usrName, String password, String firstName, String lastName,
+							Boolean catering, Boolean security, Boolean festivalManager, Boolean ticketSalesman, Float workedHours, Float hourlyWage, String festival) {
 			this.usrName = usrName;
 			this.password = password;
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.catering = catering;
 			this.security = security;
-			//this.manager = manager;
+			this.festivalManager = festivalManager;
 			this.ticketSalesman = ticketSalesman;
+			this.workedHours = workedHours;
+			this.hourlyWage = hourlyWage;
+			this.festival = festival;
 		}
 
 		public String getUsrName() {
@@ -62,12 +74,18 @@ class CreationForm {
 			return security;
 		}
 
-		/*public Boolean getManager() {
-			return manager;
-		}*/
+		public Boolean getFestivalManager() {
+			return festivalManager;
+		}
 
 		public Boolean getTicketSalesman() {
 			return ticketSalesman;
 		}
+
+		public Float getHourlyWage() {return hourlyWage;}
+
+		public Float getWorkedHours() {return workedHours;}
+
+		public String getFestival() {return festival;}
 }
 

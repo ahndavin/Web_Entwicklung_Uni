@@ -1,8 +1,11 @@
 package festivalmanager.inventory;
 
+import festivalmanager.economics.EconomicManager;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.quantity.Metric;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +15,12 @@ import java.util.*;
 public class InventoryManager {
 	private InventoryRepository inventory;
 	private Catalog<Item> catalog;
+	private EconomicManager economicManager;
 
-	public InventoryManager(InventoryRepository inventory, Catalog<Item> catalog) {
+	public InventoryManager(InventoryRepository inventory, Catalog<Item> catalog, EconomicManager economicManager) {
 		this.inventory = inventory;
 		this.catalog = catalog;
+		this.economicManager = economicManager;
 	}
 
 	public void save(UniqueInventoryItem item) {
@@ -88,5 +93,21 @@ public class InventoryManager {
 		}
 
 		return notInStockItems;
+	}
+
+	public void setQuantity(UniqueInventoryItem item, Quantity quantity) {
+		if(quantity.isLessThan(Quantity.of(1, Metric.UNIT))) {
+			inventory.delete(item);
+		} else {
+			Quantity oldQuantity = item.getQuantity();
+
+			if(quantity.isGreaterThan(oldQuantity)) {
+				item.increaseQuantity(quantity.subtract(oldQuantity));
+			} else if(quantity.isLessThan(oldQuantity)) {
+				item.decreaseQuantity(oldQuantity.subtract(quantity));
+			}
+
+			inventory.save(item);
+		}
 	}
 }

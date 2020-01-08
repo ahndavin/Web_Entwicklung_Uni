@@ -17,9 +17,9 @@
 
   <!--  START HERE  -->
 
-	<!--  NavBar -->
-  <nav th:include="navigation :: navigation"></nav>
-  
+  <!--  NavBar -->
+  <nav th:include="usernav :: usernavigation"></nav>
+
   <!--  Overlay -->
   <section class="d-flex align-items-center" id="showcase">
     <div id="overlay"></div>
@@ -36,15 +36,17 @@
     <div class="three wide column"></div>
     <div class="ten wide column" style="padding-top: 50px">
 
-        <h4 class="ui dividing header" >Accountancy</h4>
-        <table width=100% height=100%><tr><td width=40%>
-          <!-- Left part --> 
-          <table class="ui celled table">
+      <h4 class="ui dividing header">Accountancy</h4>
+      <table width=100% height=100%>
+        <tr>
+          <td width=40%>
+            <!-- Left part -->
+            <table class="ui celled table">
               <thead>
-              <tr>
+                <tr>
                   <th>Expenses</th>
                   <th>Amount</th>
-              </tr>
+                </tr>
               </thead>
               <tbody th:remove="all-but-first">
                 <tr th:each="accountancyEntry : ${entrylist}" th:if="${accountancyEntry.isExpense()}">
@@ -52,27 +54,70 @@
                   <td th:text="${accountancyEntry.value}">Betrag</td>
                 </tr>
               </tbody>
-          </table>
-  
-        </td><td width=40%>
-          <!-- Right part-->
+            </table>
+          </td>
+          <td width=40%>
+            <!-- Right part-->
 
-          <table class="ui celled table">
+            <table class="ui celled table">
               <thead>
-              <tr>
+                <tr>
                   <th>Revenues</th>
                   <th>Amount</th>
-              </tr>
+                </tr>
               </thead>
               <tbody th:remove="all-but-first">
                 <tr th:each="accountancyEntry : ${entrylist}" th:if="${accountancyEntry.isRevenue()}">
                   <td th:text="${accountancyEntry.description}">Beschreibung</td>
                   <td th:text="${accountancyEntry.value}">Betrag</td>
-                  </tr>
+                </tr>
               </tbody>
-          </table>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <br>
 
-        </td></tr></table>
+      <!-- Summaries-->
+
+      <table width=100% height=100%>
+        <tr>
+          <td width=40%>
+            <!-- Left part -->
+            
+            <table class="ui celled table">
+              <thead>
+                <tr>
+                  <th>Sum of Expenses: </th>
+                  <th th:text="${sumExpenses}"></th>
+                </tr>
+              </thead>
+            </table>
+          </td>
+          <td width=40%>
+            <!-- Right part-->
+
+            <table class="ui celled table">
+              <thead>
+                <tr>
+                  <th>Sum of Revenues: </th>
+                  <th th:text="${sumRevenues}"></th>
+                </tr>
+              </thead>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th>Sum: </th>
+            <th th:text="${sumAll}"></th>
+          </tr>
+        </thead>
+      </table>
 
     </div>
   </div>

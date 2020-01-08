@@ -20,6 +20,8 @@ import festivalmanager.festival.Festival;
 import festivalmanager.festival.FestivalIdForm;
 import festivalmanager.festival.FestivalManager;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/contracts/")
 public class ContractController {
@@ -43,7 +45,7 @@ public class ContractController {
 
 	@GetMapping("list")
 	public String showUpdateForm(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
-		festivalForCreation = economicManager.findById(festivalIdForm.getId());
+		festivalForCreation = festivalManager.findById(festivalIdForm.getId()).get();
 		if(result.hasErrors()){
 			return "festivals";
 		}
@@ -55,15 +57,22 @@ public class ContractController {
 
 	@PostMapping("add")
 	public String addContract(@Valid @ModelAttribute Contract contract, BindingResult result, Model model) {
-		if (result.hasErrors()) {
-			return "createContract";
-		}
-		contractsRepository.save(contract);
-		festivalForCreation.getContractList().add(contract);
-		festivalManager.save(festivalForCreation);
-		//economicManager.add(contract.totalCost(), contract.getName(), festivalForCreation);
-		return "redirect:/festivals";
+		Optional<Festival> festivalOptional = festivalManager.findById(festivalForCreation.getId());
 
+		if (result.hasErrors() || festivalOptional.isEmpty()) {
+			return "welcome";
+		}
+
+		Festival festival = festivalOptional.get();
+
+		contractsRepository.save(contract);
+
+		festival.getContractList().add(contract);
+		economicManager.add(contract.totalCost()*(-1), contract.getName(), festival);
+
+		festivalManager.save(festival);
+
+		return "redirect:/#festivals";
 	}
 
 	@GetMapping("edit/{id}")
@@ -83,18 +92,22 @@ public class ContractController {
 
 		contractsRepository.save(contract);
 		model.addAttribute("contract", contractsRepository.findAll());
-		return "contractManagement";
+		return "redirect:/#festivals";
 	}
 
 	@GetMapping("delete/{id}")
 	public String deleteContract(@PathVariable("id") long id, Model model) {
 		Contract contract = contractsRepository.findById(id)
-			.orElseThrow(() -> new IllegalArgumentException("Invalid contract Id:" + id));
+				.orElseThrow(() -> new IllegalArgumentException("Invalid contract Id:" + id));
+
+		festivalForCreation.getContractList().delete(contract);
+		festivalManager.save(festivalForCreation);
 		contractsRepository.delete(contract);
+
 		model.addAttribute("contract", contractsRepository.findAll());
 		return "contractManagement";
 	}
-	
+
 	public ContractsRepository getContracts(){
 		return this.contractsRepository;
 	}

@@ -1,7 +1,10 @@
 package festivalmanager.economics;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
+import festivalmanager.festival.FestivalManager;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,29 +15,32 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import festivalmanager.festival.Festival;
 import festivalmanager.festival.FestivalIdForm;
-import festivalmanager.festival.FestivalManager;
 
 @Controller
-public class EconomicController{
+public class EconomicController {
 
     public final EconomicManager economicManager;
-    public final FestivalManager festivalManager;
+    private final FestivalManager festivalManager;
 
-    public EconomicController(EconomicManager economicManager, FestivalManager festivalManager){
+    public EconomicController(EconomicManager economicManager, FestivalManager festivalManager) {
         Assert.notNull(economicManager, "TicketManagement must not be null!");
-        Assert.notNull(festivalManager, "FestivalManager must not be null!");
         this.economicManager = economicManager;
         this.festivalManager = festivalManager;
     }
 
-    //GetMapping
-	@PreAuthorize("hasAuthority('MANAGER')")
+    // GetMapping
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping(path = "/accountancy")
-	public String goToAccountancy (@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
-		Festival festival = economicManager.findById(festivalIdForm.getId());
-		if(result.hasErrors()){
+    public String goToAccountancy(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result,
+            Model model) {
+        Optional<Festival> festivalOptinal = festivalManager.findById(festivalIdForm.getId());
+
+		if(result.hasErrors() || festivalOptinal.isEmpty()){
 			return "festivals";
 		}
+
+        Festival festival = festivalOptinal.get();
+
 	
         model.addAttribute("entrylist", economicManager.getAll(festival));
         model.addAttribute("sumRevenues", economicManager.getRevenues(festival));

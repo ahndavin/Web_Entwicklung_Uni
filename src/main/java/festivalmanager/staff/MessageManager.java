@@ -15,13 +15,13 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class MessageManagement {
+public class MessageManager {
 
 	@Autowired
 	private final MessageRepository messages;
-	private static final Logger LOG = LoggerFactory.getLogger(MessageManagement.class);
+	private static final Logger LOG = LoggerFactory.getLogger(MessageManager.class);
 
-	public MessageManagement(MessageRepository messages){
+	public MessageManager(MessageRepository messages){
 		Assert.notNull(messages, "MessageRepository must not be null");
 		this.messages = messages;}
 
