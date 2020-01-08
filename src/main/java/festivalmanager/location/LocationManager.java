@@ -138,6 +138,20 @@ public class LocationManager {
 		lineupRepository.deleteById(id);
 	}
 	
+	public Lineup findById(Stage stage, long id) {
+		int i = 0;
+		List<Lineup> lineups = findAllLineups(stage);
+		
+		while(i < lineups.size()) {
+			if(lineups.get(i).getId() == id)
+				break;
+			
+			i++;
+		}
+		
+		return lineupRepository.findById(lineups.get(i).getId()).get();
+	}
+	
 	public List<Lineup> findAllLineups(Stage stage) {
 		List<Lineup> allLineupForStage = new LinkedList<Lineup>();
 		List<Lineup> lineups = lineupRepository.findAll();

@@ -56,7 +56,7 @@
       <h1 class="mb-3 mt-5"> Edit Area </h1>
       <form method="POST" th:action="${currentURL}" th:object="${area}">
       	<label for="zone">Zone</label>
-        <input type="text" th:field="*{zone}" class="form-control" />
+        <input type="text" th:field="*{zone}" th:value="${area.getZone()}" class="form-control" />
         <br />
         <label for="maxVisitors">Max Visitors</label>
         <input type="number" th:field="*{maxVisitors}" class="form-control" />

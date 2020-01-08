@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-  <title>Create Lineup</title>
+  <title>Edit Stage</title>
 </head>
 
 <body>
@@ -18,8 +18,6 @@
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
   		var currentURL = "@{" + location.pathname + "}";
-  		var s = document.getElementById("contract");
-  	    var selectedOption = s.options[s.selectedIndex].value;
   </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
@@ -58,20 +56,17 @@
   <!--  ImputField -->
   <section>
     <div id="wrapper" class="container text-center">
-      <h1 class="mb-3 mt-5">Create Lineup</h1>
-      <form method="POST" th:action="${currentURL}" th:object="${lineup}">
-      	<label for="date">date</label>
-        <input type="text" required="required" th:field="*{date}" class="form-control"/>
+      <h1 class="mb-3 mt-5">Edit Stage</h1>
+      <form method="POST" th:action="${currentURL}" th:object="${stage}">
+      	<label for="name">Name</label>
+        <input type="text" required="required" th:field="*{name}" class="form-control"/>
         <br />
-        <label for="contract">Artist</label><br/>
-        <select id="contract" name="contract" required="required" class="contract">
-			<option th:each="contract : ${contractList}" th:text="${contract.getArtist()}" th:value="${contract}"/>
-		</select>
-		<br />
-		<br />		
-		
-		<input type="hidden" name="contract" th:value="${selectOption}"/>
-        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Create Lineup</button>
+        <label for="outsideView">Lineup Poster</label><br/>
+        <input type="file" th:field="*{poster}" name="poster" accept="image/*"/>
+        <br />
+        <br />
+        
+        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Edit Stage</button>
       </form>
     </div>
   </section>
