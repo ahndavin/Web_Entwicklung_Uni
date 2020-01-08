@@ -169,7 +169,7 @@ public class LocationManager {
 		return contractsRepository.findAll();
 	}
 
-	public Streamable <Festival> findFestivals() {
+	public Iterable<Festival> findFestivals() {
 		return festivalRepository.findAll();
 	}
 }

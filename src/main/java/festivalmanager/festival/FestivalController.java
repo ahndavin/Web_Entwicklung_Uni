@@ -61,7 +61,7 @@ public class FestivalController {
 		model.addAttribute("accountManager", accountManager);
 		model.addAttribute("form", form);
 		model.addAttribute("error", result);
-		model.addAttribute("locations", locations.findAll());
+		model.addAttribute("locations", locations.findAllLocations());
 		Assert.notNull(messageManager, "MessageManagement must not be null");
 
 		if(userAccount.isPresent()) {
@@ -120,7 +120,7 @@ public class FestivalController {
 	@GetMapping("/festival/add")
 	String addFestival(Model model) {
 		model.addAttribute("festival_form", new FestivalForm());
-		model.addAttribute("locations", locations.findAll());
+		model.addAttribute("locations", locations.findAllLocations());
 
 		return "festival_add";
 	}
@@ -170,7 +170,7 @@ public class FestivalController {
 		}
 		
 		model.addAttribute("festival_form", festival);
-		model.addAttribute("locations", locations.findAll());
+		model.addAttribute("locations", locations.findAllLocations());
 
 		return "festival_edit";
 	}

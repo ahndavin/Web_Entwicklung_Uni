@@ -2,6 +2,7 @@ package festivalmanager.location;
 
 import java.util.List;
 import javax.validation.Valid;
+import com.google.common.collect.Lists;
 
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -71,7 +72,8 @@ public class LocationController {
 	public String detailLocation(Model model, @PathVariable("location") String locationName){
 		Location location = locationManager.findByName(locationName);
 		List<Contract> contracts = locationManager.findByName().toList();
-		List<Festival> festivals = locationManager.findFestivals().toList();
+		List<Festival> festivals = Lists.newArrayList(locationManager.findFestivals().iterator());
+		
 		
 		model.addAttribute("location", location);
 		model.addAttribute("contractList", contracts);

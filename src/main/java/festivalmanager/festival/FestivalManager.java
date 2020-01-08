@@ -49,7 +49,7 @@ public class FestivalManager {
 	}
 
 	public Festival save(Festival festival) {
-		Iterable<Location> locationList = locations.findAll();
+		Iterable<Location> locationList = locations.findAllLocations();
 
 		boolean foundLocation = false;
 		for(Location location : locationList) {
