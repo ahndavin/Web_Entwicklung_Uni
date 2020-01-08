@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -22,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class InventoryManagerTest {
 	@Autowired InventoryManager inventory;
-	@Autowired Catalog<Item> catalog;
 
 	@Test
 	public void canSaveItem() {
@@ -85,19 +85,42 @@ public class InventoryManagerTest {
 		assertTrue(inventory.findById(uniqueInventoryItem.getId()).isEmpty());
 	}
 
-	private Item saveTestItem(boolean saveToInventory) {
-		Item item = catalog.save(new Item(
-				"test",
-				Money.of(12.00, "EUR"),
-				Money.of(5.00, "EUR"),
-				Quantity.of(10, Metric.UNIT),
-				new String[]{ "test" }
-		));
+	@Test
+	public void canFindByCategory() {
+		Iterable<UniqueInventoryItem> items = inventory.findAll();
+		List<UniqueInventoryItem> foodItems = (List<UniqueInventoryItem>) inventory.findByCategory("food");
 
-		if(saveToInventory) {
-			inventory.save(new UniqueInventoryItem(item, Quantity.of(10, Metric.UNIT)));
+		int foodItemCount = 0;
+		for(UniqueInventoryItem item : items) {
+			if(item.getProduct().getCategories().toList().contains("food")) {
+				foodItemCount += 1;
+			}
 		}
 
-		return item;
+		assertEquals(foodItemCount, foodItems.size());
+	}
+
+	@Test
+	public void canSetQuantity() {
+		Iterable<UniqueInventoryItem> items = inventory.findAll();
+
+		if(!items.iterator().hasNext()) {
+			fail();
+		}
+
+		UniqueInventoryItem item = items.iterator().next();
+
+		Quantity quantity = Quantity.of(20);
+
+		inventory.setQuantity(item, quantity);
+
+		UniqueInventoryItem updatedItem = inventory.findById(item.getId()).get();
+
+
+		assertEquals(updatedItem.getQuantity().getAmount().intValue(), quantity.getAmount().intValue());
+	}
+
+	private Item saveTestItem(boolean saveToInventory) {
+		return inventory.addItem("test item", 12.00f, 5.00f, 10, "test", saveToInventory ? 10 : 0);
 	}
 }
