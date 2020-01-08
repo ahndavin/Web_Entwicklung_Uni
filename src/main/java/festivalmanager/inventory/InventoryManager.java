@@ -1,6 +1,7 @@
 package festivalmanager.inventory;
 
 import festivalmanager.economics.EconomicManager;
+import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Catalog;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -108,6 +109,22 @@ public class InventoryManager {
 			}
 
 			inventory.save(item);
+		}
+	}
+
+	public void addItem(String name, float price, float cost, int minimalQuantity, String category, int quantity) {
+		Item item = catalog.save(
+				new Item(
+						name,
+						Money.of(price, "EUR"),
+						Money.of(cost, "EUR"),
+						Quantity.of(minimalQuantity, Metric.UNIT),
+						new String[]{ category }
+				)
+		);
+
+		if(quantity > 0) {
+			inventory.save(new UniqueInventoryItem(item, Quantity.of(quantity, Metric.UNIT)));
 		}
 	}
 }
