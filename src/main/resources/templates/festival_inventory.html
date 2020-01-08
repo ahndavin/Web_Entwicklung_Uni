@@ -1,73 +1,164 @@
-<!DOCTYPE html>
-<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 
 <head>
-    <!--  BOOTSTRAP STUFF  -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.css" />
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Lets try this !</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link type="text/css" th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Basic CSS with Thymeleaf -->
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-    <title>Festival Inventory</title>
-
+    <!-- Material Design Bootstrap -->
+    <link th:href="@{/resources/css/mdb.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/resources/css/timeline.min.css}">
+    <link th:href="@{/resources/css/addons-pro/chat.css}" rel="stylesheet">
     <style>
-        #inventoryContainer {
-            margin: 50px 0 0 100px;
+        html,
+        body,
+        header,
+        .view.jarallax {
+            height: 100%;
+            min-height: 100%;
+
         }
 
-        #editInventoryLink {
-            padding: 40px 0 0 100px;
-            float: left;
-            width: 100%;
+        .card-body ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .back-button {
-            margin: 130px 0 0 100px;
-            float: left;
+        .card-wrapper {
+            height: unset !important;
         }
     </style>
 </head>
 
 <body>
-    <nav sec:authorize="hasAuthority('FESTIVAL_MANAGER')" class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="/">FVIV</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto smooth-scroll">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#festivals" data-offset="80">Back</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/" data-offset="80">Home</a>
-                    </li>
-                </ul>
+    <!-- Navigation & Intro -->
+    <header>
 
-                <!-- FestivalManager Logout and Icon -->
-                <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="fas fa-user-secret"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
-                        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                            <input hidden type="submit" value="Sign Out" />
-                        </form>
-                    </li>
-                </ul>
+        <!-- Userspecific Navbar -->
+        <!-- Navbar Manager -->
+        <nav sec:authorize="hasAuthority('MANAGER')"
+            class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="/">FVIV</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto smooth-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/" data-offset="80">Back</a>
+                        </li>
+                    </ul>
+                    <!-- Manager Logout and Icon  -->
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <i class="fas fa-user-secret"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript: document.logoutForm.submit()"
+                                data-offset="80">Logout</a>
+                            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                                <input hidden type="submit" value="Sign Out" />
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+
+        <!-- Navbar Festival Manager -->
+        <nav sec:authorize="hasAuthority('FESTIVAL_MANAGER')"
+            class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="/">FVIV</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto smooth-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/" data-offset="80">Back</a>
+                        </li>
+                    </ul>
+
+                    <!-- FestivalManager Logout and Icon -->
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <i class="fas fa-user-secret"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript: document.logoutForm.submit()"
+                                data-offset="80">Logout</a>
+                            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                                <input hidden type="submit" value="Sign Out" />
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Navbar Catering -->
+        <nav sec:authorize="hasAuthority('CATERING')"
+            class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="/">FVIV</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto smooth-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/" data-offset="40">Back</a>
+                        </li>
+                    </ul>
+
+                    <!-- Catering Logout and Icon  -->
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <i class="fas fa-utensils"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript: document.logoutForm.submit()"
+                                data-offset="80">Logout</a>
+                            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                                <input hidden type="submit" value="Sign Out" />
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- Intro Section -->
+        <div th:replace="userintro :: usersection"></div>
+
+    </header>
+
+
 
     <div id="inventoryContainer">
         <p>Current Inventory</p>
+
+
 
         <ul style="list-style: none;">
             <li th:each="inventoryItem: ${festival.inventory}">
@@ -80,6 +171,22 @@
         <a id="editInventoryLink"
             th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory/edit/'}">Edit Inventory</a>
     </div>
+
+
+    <!--  JQuery  -->
+    <script type="text/javascript" rel="script" th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
+    <!--  Bootstrap tooltips  -->
+    <script type="text/javascript" rel="script" th:src="@{/resources/js/popper.min.js}"></script>
+    <!--  Bootstrap core JavaScript  -->
+    <script type="text/javascript" rel="script" th:src="@{/resources/js/bootstrap.min.js}"></script>
+    <!--  MDB core JavaScript  -->
+    <script type="text/javascript" rel="script" th:src="@{/resources/js/mdb.min.js}"></script>
+
+    <!-- Custom scripts -->
+
+    <script sec:authorize="!isAuthenticated()">
+        new WOW().init();
+    </script>
 </body>
 
 </html>
