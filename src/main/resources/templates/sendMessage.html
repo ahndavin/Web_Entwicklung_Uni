@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <nav sec:authorize="hasAuthority('MANAGER')" class="navbar navbar-expand-md navbar-dark">
+    <nav sec:authorize="hasRole('MANAGER')" class="navbar navbar-expand-md navbar-dark">
         <a href="/" class="navbar-brand">
             <h3 class="mb-0">HOME</h3>
         </a>

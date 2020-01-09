@@ -71,7 +71,7 @@
     </nav>
 
     <!-- Navbar Manager -->
-    <nav sec:authorize="hasAuthority('MANAGER')" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+    <nav sec:authorize="hasRole('MANAGER')" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="/">FVIV</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -113,7 +113,7 @@
     </nav>
 
     <!-- Navbar Festival Manager -->
-    <nav sec:authorize="hasAuthority('FESTIVAL_MANAGER')"
+    <nav sec:authorize="hasRole('FESTIVAL_MANAGER')"
       class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="/">FVIV</a>
@@ -152,8 +152,7 @@
     </nav>
 
     <!-- Navbar Catering -->
-    <nav sec:authorize="hasAuthority('CATERING')"
-      class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+    <nav sec:authorize="hasRole('CATERING')" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="/">FVIV</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -195,8 +194,7 @@
     </nav>
 
     <!-- Navbar SECURITY -->
-    <nav sec:authorize="hasAuthority('SECURITY')"
-      class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+    <nav sec:authorize="hasRole('SECURITY')" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="/">FVIV</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -239,7 +237,7 @@
     </nav>
 
     <!-- Navbar TICKET_SALESMAN -->
-    <nav sec:authorize="hasAuthority('TICKET_SALESMAN')"
+    <nav sec:authorize="hasRole('TICKET_SALESMAN')"
       class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="/">FVIV</a>

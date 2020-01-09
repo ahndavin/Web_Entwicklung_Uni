@@ -116,7 +116,7 @@ public class FestivalController {
 	/**
 	 * add a new festival
 	 */
-	@PreAuthorize("hasAuthority('FESTIVAL_MANAGER') or hasAuthority('MANAGER')")
+	@PreAuthorize("hasRole('FESTIVAL_MANAGER') or hasRole('MANAGER')")
 	@GetMapping("/festival/add")
 	String addFestival(Model model) {
 		model.addAttribute("festival_form", new FestivalForm());
@@ -154,7 +154,7 @@ public class FestivalController {
 	 *
 	 * @param festivalId: id of the festival
 	 */
-	@PreAuthorize("hasAuthority('FESTIVAL_MANAGER') or hasAuthority('MANAGER')")
+	@PreAuthorize("hasRole('FESTIVAL_MANAGER') or hasRole('MANAGER')")
 	@GetMapping("/festival/{festivalName}-{festivalId}/edit")
 	String editFestival(@PathVariable long festivalId, Model model) {
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
