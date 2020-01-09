@@ -7,6 +7,7 @@ import org.springframework.util.Assert;
 
 import festivalmanager.economics.EconomicManager;
 import festivalmanager.festival.Festival;
+import festivalmanager.festival.FestivalIdForm;
 import festivalmanager.festival.FestivalManager;
 
 @Service
@@ -45,7 +46,6 @@ public class TicketManagement{
             return true;
         }
         return false;
-
     }
 
     public boolean campingTicketIsAvailable(Sort sort, Festival festival){
@@ -55,6 +55,16 @@ public class TicketManagement{
         }
         return false;
 
+    }
+
+    public void buyTicket(FestivalIdForm festivalIdForm){
+        Festival festival = findById(festivalIdForm.getId());
+        if(dayTicketIsAvailable(festivalIdForm.getSort(), festival) && festivalIdForm.getSort() == Sort.DAYTICKET){
+            buyDayticket(festival);
+        }
+        if(campingTicketIsAvailable(festivalIdForm.getSort(), festival) && festivalIdForm.getSort() == Sort.CAMPINGTICKET){
+            buyCampingticket(festival);
+        }      
     }
 
     public Dayticket buyDayticket(Festival festival){
