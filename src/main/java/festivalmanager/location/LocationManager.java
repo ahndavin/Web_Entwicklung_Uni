@@ -54,14 +54,14 @@ public class LocationManager {
 	public Location findByName(String name) {
 		int i = 0;
 		List<Location> locations = findAllLocations();
-
+		
 		while(i < locations.size()) {
 			if(locations.get(i).getName().equals(name))
 				break;
 
 			i++;
 		}
-
+		
 		return locationRepository.findById(locations.get(i).getId()).get();
 	}
 

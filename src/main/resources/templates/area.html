@@ -57,47 +57,47 @@
     <h1 class="text-center mb-05">Current Areas</h1>
     <div class="container text-center">
       <ul class="list-group" th:each="area : ${areaList}">
-      			<h3 th:text="'Area: ' + ${area.getZone()}"></h3>
-				
-				<li class="list-group-item">
-					<label for="type"><b>Type: </b></label>
-					<label th:text="${area.getType()}"></label>
-				</li>
-				
-				<li class="list-group-item">
-					<form method="get" th:action="@{'/location/' + ${location.getName()} + '/area/changeStatus'}">
-						<label for="blocked"><b>Blocked: </b></label>
-						<input type="hidden" name="area" th:value="${area}"/>
-						<button id="btn__" type="submit" th:text="${area.getStatus()}"></button>
-		      		</form>
-				</li>
-				
-				<li class="list-group-item">
-					<label for="currVisitors"><b>Current Visitors: </b></label>
-					<label th:text="${area.getCurrVisitors()}"></label>
-				</li>
-				
-				<li class="list-group-item">
-					<label for="maxVisitors"><b>Maximum Visitors: </b></label>
-					<label th:text="${area.getMaxVisitors()}"></label>
-				</li>
-				
-				<li th:if="${area.getMaxStages()!=null}" class="list-group-item">
-					<label for="maxStages"><b>Maximum Stages: </b></label>
-					<label th:text="${area.getMaxStages()}"></label>
-				</li>
-				
-				<li class="list-group-item">
-					<button id="btn_" class="btn btn-lg btn-dark">
-						<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}}" class="text-light">Edit Area</a>
-	      			</button>
-					<button th:if="${area.getMaxStages()!=null}" id="btn_" class="btn btn-lg btn-dark">
-	       		 		<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage'" class="text-light">View Stages</a>
-	      			</button>
-				</li>
-				<br>
-				<br>
-			</ul>
+	   	<h3 th:text="'Area: ' + ${area.getZone()}"></h3>
+		
+		<li class="list-group-item">
+			<label for="type"><b>Type: </b></label>
+			<label th:text="${area.getType()}"></label>
+		</li>
+		
+		<li class="list-group-item">
+			<form method="get" th:action="@{'/location/' + ${location.getName()} + '/area/changeStatus'}">
+				<label for="blocked"><b>Blocked: </b></label>
+				<input type="hidden" name="area" th:value="${area}"/>
+				<button id="btn__" type="submit" th:text="${area.getStatus()}"></button>
+	     		</form>
+		</li>
+		
+		<li class="list-group-item">
+			<label for="currVisitors"><b>Current Visitors: </b></label>
+			<label th:text="${area.getCurrVisitors()}"></label>
+		</li>
+		
+		<li class="list-group-item">
+			<label for="maxVisitors"><b>Maximum Visitors: </b></label>
+			<label th:text="${area.getMaxVisitors()}"></label>
+		</li>
+		
+		<li th:if="${area.getMaxStages()!=null}" class="list-group-item">
+			<label for="maxStages"><b>Maximum Stages: </b></label>
+			<label th:text="${area.getMaxStages()}"></label>
+		</li>
+		
+		<li class="list-group-item">
+			<button id="btn_" class="btn btn-lg btn-dark">
+				<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}}" class="text-light">Edit Area</a>
+	    			</button>
+			<button th:if="${area.getMaxStages()!=null}" id="btn_" class="btn btn-lg btn-dark">
+	     		 		<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage'" class="text-light">View Stages</a>
+	    			</button>
+		</li>
+		<br>
+		<br>
+	  </ul>
     </div>
   </div>
   <br>

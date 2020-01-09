@@ -53,7 +53,7 @@
 
   <!--  ImputField -->
   <section>
-
+	<!-- <input type="hidden" id="hasArea" th:value="${hasArea}"/>       #######################!!!!!!!!!-->
     <div id="wrapper" class="container text-center">
       <h1 class="mb-3 mt-5"> Edit Location </h1>
       <form method="POST" th:action="${currentURL}" th:object="${location}">
@@ -100,6 +100,7 @@
 
   <script>
   	var currentURL = "@{" + location.pathname + "}";
+	//var checkArea = document.getElementById("hasArea").value;
   	
   	function goBack() {
 	    window.history.back();
@@ -107,10 +108,16 @@
   	
   	function deleteLocation(id) {
         var result = confirm("Location wirklich löschen?");
-
+        
         if (result) {
-            location.href = location.pathname + "/delete";
+        	location.href = location.pathname + "/delete";
         }
+        /*if (result) {
+        	if (checkArea)
+        		alert("Es gibt Area an diesem Location");
+        	else
+        		location.href = location.pathname + "/delete";
+        }*/
     }
     // Get the current year for the copyright
     $("#year").text(new Date().getFullYear());

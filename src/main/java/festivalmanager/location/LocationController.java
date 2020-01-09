@@ -1,6 +1,7 @@
 package festivalmanager.location;
 
 import java.util.List;
+
 import javax.validation.Valid;
 import com.google.common.collect.Lists;
 
@@ -89,9 +90,19 @@ public class LocationController {
 	//@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/location/{location}/editLocation")
 	public String editLocation(Model model, @PathVariable("location") String locationIdAsString) {
+		boolean hasArea = false;
 		long locationId = Long.parseLong(locationIdAsString);
 		Location location = locationManager.findById(locationId);
+		List<Area> areas = locationManager.findAllAreas(location);
 		
+		for(Area area : areas) {
+			if(area.getLocationId() == location.getId()) {
+				hasArea = !hasArea;
+				break;
+			}
+		}
+		
+		model.addAttribute("hasArea", hasArea);
 		model.addAttribute("location", location);
 
 		return "editLocation";
@@ -111,13 +122,14 @@ public class LocationController {
 	}
 	
 	@GetMapping("/location/{location}/editLocation/delete")
-	public String deleteLocation(@PathVariable("location") String locationName) {
-		Location location = locationManager.findByName(locationName);
+	public String deleteLocation(@PathVariable("location") String locationIdAsString) throws Exception {
+		long locationId = Long.parseLong(locationIdAsString);
+		Location location = locationManager.findById(locationId);
 		
 		locationManager.deleteLocationById(location.getId());
 
 		return "redirect:/location";
-	}
+	}	
 	
 //	@GetMapping("/location/{location}/area")
 //	public String areaManagement(Model model, @PathVariable("location") String locationName) {
@@ -133,8 +145,6 @@ public class LocationController {
 	
 	@GetMapping("/location/{location}/area")
 	public String areaManagement(Model model, @PathVariable("location") String locationName) {
-		
-		System.out.println(locationManager.findByName(locationName).getId());
 		List<Area> areas = locationManager.findAllAreas(locationManager.findByName(locationName));
 		
 		model.addAttribute("location", locationManager.findByName(locationName));
@@ -199,7 +209,7 @@ public class LocationController {
 		
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
-
+		
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
 
@@ -212,7 +222,7 @@ public class LocationController {
 		
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
-
+		
 		locationManager.deleteAreaById(area.getId());
 
 		return "redirect:/location/" + location.getName() + "/area";

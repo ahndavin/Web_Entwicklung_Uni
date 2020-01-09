@@ -18,11 +18,12 @@
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
   		var currentURL = "@{" + location.pathname + "}";
+  		
   		function deleteArea(id) {
             var result = confirm("Area wirklich löschen?");
 
             if (result) {
-                location.href = location.pathname + "/delete";
+            	location.href = location.pathname + "/delete";
             }
         }
   </script>
@@ -58,7 +59,7 @@
 
   <!--  ImputField -->
   <section>
-
+	
     <div id="wrapper" class="container text-center">
       <h1 class="mb-3 mt-5"> Edit Area </h1>
       <form method="POST" th:action="${currentURL}" th:object="${area}">
