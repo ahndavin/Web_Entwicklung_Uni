@@ -21,26 +21,31 @@
 
     <!-- Section 4 MANAGER -->
 
-      <table class="ui celled table" sec:authorize="hasAuthority('MANAGER')">
 
-        <thead>
-        <tr>
-          <th>aktuelle online accounts</th>
+    <br>
+    <div class="container">
+      <section id="messages" sec:authorize="hasAuthority('MANAGER')">
+        <table class="table table-bordered">
+          <thead class="black white-text">
+            <tr>
+              <th>CURRENTLY ONLINE</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            <th:block th:each="account : ${accountManager.getUsersFromSessionRegistry()}">
+              <tr>
+                <td th:text="${account}"></td>
+              </tr>
+            </th:block>
+          </tbody>
+        </table>
+      </section>
+    </div>
 
 
-        </tr>
-        </thead>
-        <tbody>
-
-        <th:block th:each="account : ${accountManager.getUsersFromSessionRegistry()}">
-          <tr>
-            <td th:text="${account}"></td>
-
-          </tr>
-        </th:block>
-        </tbody>
-      </table>
-
+    <!-- Section 4 FESTIVAL_MANAGER -->
 
     <!-- Section 4 CATERING -->
 

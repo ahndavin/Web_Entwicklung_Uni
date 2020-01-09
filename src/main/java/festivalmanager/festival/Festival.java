@@ -83,7 +83,7 @@ public class Festival {
 
 		boolean sameDate =
 			(d1[START_DATE].getTime() <= d2[START_DATE].getTime() && d2[START_DATE].getTime() <= d1[END_DATE].getTime()) ||
-			(d2[START_DATE].getTime() <= d1[START_DATE].getTime() && d1[START_DATE].getTime() <= d2[END_DATE].getTime());
+				(d2[START_DATE].getTime() <= d1[START_DATE].getTime() && d1[START_DATE].getTime() <= d2[END_DATE].getTime());
 
 		boolean sameLocation = f1.getLocation().equals(f2.getLocation());
 
@@ -221,10 +221,10 @@ public class Festival {
 
 	public String toString() {
 		return 	this.id + ": " +
-				this.name + " in " +
-				this.location + " from " +
-				this.getStartDate() + " to " +
-				this.getEndDate();
+			this.name + " in " +
+			this.location + " from " +
+			this.getStartDate() + " to " +
+			this.getEndDate();
 	}
 
 	public boolean hasErrors() {

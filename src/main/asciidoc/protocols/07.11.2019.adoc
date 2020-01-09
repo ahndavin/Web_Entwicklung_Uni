@@ -1,0 +1,121 @@
+= Protokoll Gruppe 26
+
+Treffen am 07.11.2019
+
+Ort:      Caspar-David-Friedrich-Straße 19 +
+Beginn:   17:00 Uhr +
+Ende:     18:15 Uhr
+
+__Schriftführer:__ Tobias Neubauer
+
+*Nächstes Treffen:* +
+14.11.2019, 16:40 Uhr, Caspar-David-Friedrich-Straße 19
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Tom Morgenstern (Kunde/Tutor)
+- Marcus Fiedler (Scrum Master)
+- Davin Ahn
+- Igor Macevic
+- Jonas Hönisch
+- Tobias Neubauer (Schriftführer)
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+=== Allgemeines:
+- Klärung der allgemeinen Funktionen von Jenkins und SonarQube
+- SonarQube: Code checker, prüft quality gates; Ziel: 80% Zufriedenheit
+- Jenkins: kompiliert und baut das Projekt
+- -> Jenkinsfile und pom.xml nicht bearbeiten, wenn nicht vorher im Team besprochen
+- Termine einhalten, allgemeine Pünktlichkeit im Auge behalten
+- Jeder muss Frontend und Backend machen! 
+- Jeder sucht sich Packages aus, für die ein Prototyp mit mindest einem Feature (wie z.B. Lagerübersicht, Personal erstellen, Login, Ticket kaufen, ...) erstellt werden soll + dazugehörige Aufgaben in der Entwickler-Dokumentation
+- bisherige Noten: CRC: 1; Pflichtenheft: 1; Prozess: 2.
+
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|1   |guestbook Erweiterung      |geschlossen      |bis Mittwoch, 23.10.2019
+|2   |Prototyp Pflichtenheft     |geschlossen      |bis Sonntag, 03.11.2019
+|3   |Videoshop Erweiterung      |geschlossen      |bis Sonntag, 03.11.2019
+|===
+
+
+== Aktueller Stand
+=== Neue Aufgabenverteilung:
+[option="headers"]
+|===
+|Package           |Klassen                                   |Verantwortlicher
+|FestivalManager   |Festivalmanager, Festival                 |Jonas
+|Location          |Location, Layout, Area, Type, Stage       |Davin
+|Staff             |StaffManager, Login, Staff, CateringPersonal, MessageController, Security, Manager, TicketSalesman, Message|Marcus
+|Economics         |EconomicManager, PositiveAmount, NegativeAmount|Tobias
+|Contracts         |ContractManager, Contract                 |Igor
+|Inventory         |InventoryManager, Item               |Jonas
+|Tickets           |Ticketmanager, Ticket, Sort            |Tobias
+|===
+
+=== Entwicklerdokumentation, Aufgaben aufgeteilt wie folgt:
+[option="headers"]
+|===
+|Aufgabe                           |Verantwortlicher 
+|Einführung und Ziele              |Marcus     
+|Randbedingungen                   |Davin     
+|Kontextabgrenzung                 |Davin     
+|Erfüllung der Qualitätsziele      |Marcus     
+|Softwarearchitektur               |Igor
+|Entwurfsentscheidungen            |Tobias
+|Bausteinsicht                     |alle
+|Laufzeitsicht                     |alle
+|===
+
+=== Besprechung der Bestandteile der Entwicklerdokumentation:
+* Einführung und Ziele: siehe Pflichtenheft
+* Hardware-Vorgaben: Software wird auf Terminal laufen + Hardware Specs ausdenken
+* Software-Vorgaben: aktuelle Browser-Versionen, Java-Version, Maven-Version
+* Vorgaben zum Betrieb des Software: Projekt wird auf git gespeichert, ist lokal unter localhost:8080 abrufbar
+* Kontextabgrenzung: Welche Teile welcher Frameworks nutzen wir für was? (Spring boot, web, security als Basis, Salespoint, Thymeleaf für dynamisches HTML, iText zur Erstellung von PDF-Datein)
+* Erfüllung von Qualitätszielen: QA-Ziele aus Pflichtenheft
+* Softwarearchitektur: Welche Packages nutzen wir, wo laufen die zusammen? + Serverdiagramm
+* Verwendete Muster: Designpattern (Spring MVC, Singleton)
+* Persistenz: Welche Datenbank verwenden wir, welche Klassen haben darauf Zugriff, welche Packages?
+* Benutzeroberfläche: mit Worten beschreiben, welche Browser-Versionen, "mit und ohne JavaScript"
+* Verwendung externer Frameworks: Welche werden verwendet, welche Klassen davon und wo werden sie genutzt? + Package-Pfad (z.B. org.iText. ...)
+* technische Schulden: Wird entfernt, siehe SonarQube
+* Bausteinsicht: Jeder kümmert sich um sein Package! Unter jeden Diagramm die Klassen/Enums erklären (Beispiel siehe Pflichtenheft)
+* Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell: Vergleich der geplanten Klassen aus dem Pflichtenheft mit den akutell eingesetzten Klassen
+* Laufzeitsicht: Jeder kümmert sich um sein Package! Pro Komponente ein Sequenzdiagramm; Wie spielt dieses Package mit anderen zusammen; hierbei sind auch Spring und Salespoint zu beachtende Komponenten
+
+=== Testplan:
+* Einführung: Zielgruppe sind nachfolgende Entwickler, in kurzem Text beschreiben, was dieses Dokument beinhaltet.
+* Aufbau der Testbezeichner: U (unittest) bzw. I (integration test) 1007 (wobei die 1 hier eine grobe Unterteilung ermöglicht, die 7 ingegen eine feinere)
+* Test Gegenstände: Komponenten
+* Zu testende Funktionalitäten: Klassen, Objekte erstellen, ...
+* Nicht zu testende Funktionalitäten: Spring, Salespoint, iText
+* Umgebungsvoraussetzungen: aktuelle Junit-Version; Hardware: Terminal; kompatible Browser-Versionen; Brower-Integrationstests müssen möglicherweise manuell getestet werden; getestet wird lokal
+* Testfälle: mit gültigen und ungütligen Daten; an Akzeptanztestfällen orientieren und mehr dazu machen; Verantwortlicher ist der Verantwortliche des Packages; Ausgabe kann auch Fehlermeldung sein; Integrationstests prüfen Zusammenspiel auch mit Frontend (15 - 20); Unittests überprüfen einzelne Funktionen (mind. 30)
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel                      |Beschreibung        |Verantwortlicher |Status
+|4     |Entwickler-Dokumentation   |-                   |Wir alle         |offen
+|5     |Testplan                   |-                   |Tobias Neubauer  |offen
+|6     |Prototyp                   |-                   |Wir alle         |offen
+|===
+
+== To-Do bis zum nächsten Treffen:
+- Issues abarbeiten
+- in Salespoint und Spring einarbeiten
+- bis nächsten Donnerstag: fertige Entwicklerdokumentation (und evtl. Testplan)

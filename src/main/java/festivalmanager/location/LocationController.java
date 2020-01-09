@@ -21,7 +21,7 @@ import festivalmanager.festival.FestivalManager;
 public class LocationController {
 	private final LocationManager locationManager;
 	private static FestivalManager festivalManager;
-	
+
 	@SuppressWarnings("static-access")
 	public LocationController(LocationManager locationManager, FestivalManager festivalManager){
 		Assert.notNull(locationManager, "Location must not be null!");
@@ -36,9 +36,9 @@ public class LocationController {
 	@GetMapping("/location")
 	public String locationManagement(Model model) {
 		List<Location> locations = locationManager.findAllLocations();
-		
+
 		model.addAttribute("locationList", locations);
-		
+
 		return "location";
 	}
 
@@ -57,7 +57,7 @@ public class LocationController {
 
 		return "createLocation";
 	}
-	
+
 	@PostMapping("/location/{location}/editLocation")
 	public String editLocation(	@ModelAttribute("location") @Valid LocationForm locationForm,
 								@PathVariable("location") String locationIdAsString) {
@@ -96,18 +96,17 @@ public class LocationController {
 
 		return "editLocation";
 	}
-	
+
 	@GetMapping("/location/{location}")
 	public String detailLocation(Model model, @PathVariable("location") String locationName){
 		Location location = locationManager.findByName(locationName);
 		List<Contract> contracts = locationManager.findByName().toList();
-		List<Festival> festivals = Lists.newArrayList(locationManager.findFestivals().iterator());
-		
-		
+		List<Festival> festivals = (List<Festival>) festivalManager.findAll();
+
 		model.addAttribute("location", location);
 		model.addAttribute("contractList", contracts);
 		model.addAttribute("festivalList", festivals);
-		
+
 		return "detailLocation";
 	}
 	
@@ -151,21 +150,21 @@ public class LocationController {
 		
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
-		
+
 		area.toggleLock();
 		locationManager.deleteAreaById(area.getId());
 		locationManager.save(area);
-		
+
 		return "redirect:";
 	}
 
 	@PostMapping("/location/{location}/createArea")
 	public String addArea(@Valid Area area, @PathVariable("location") String locationName) {
 		Location location = locationManager.findByName(locationName);
-		
+
 		area.setLocationId(location.getId());
 		locationManager.save(area);
-		
+
 		return "redirect:area";
 	}
 
@@ -173,13 +172,13 @@ public class LocationController {
 	@GetMapping("/location/{location}/createArea")
 	public String addArea(Model model, Area area, @PathVariable("location") String locationName) {
 		Location location = locationManager.findByName(locationName);
-		
+
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
 
 		return "createArea";
 	}
-	
+
 	@PostMapping("/location/{location}/area/{area}")
 	String editArea(@ModelAttribute("area") @Valid Area area,
 					@PathVariable("location") String locationName,
@@ -188,10 +187,10 @@ public class LocationController {
 //		System.out.println(area.getZone());
 //		locationManager.deleteAreaById(area.getId());
 //		locationManager.save(area);
-		
+
 		return "redirect:";
 	}
-	
+
 	//@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/location/{location}/area/{area}")
 	String editArea(Model model,
@@ -200,7 +199,7 @@ public class LocationController {
 		
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
-		
+
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
 
@@ -218,7 +217,7 @@ public class LocationController {
 
 		return "redirect:/location/" + location.getName() + "/area";
 	}
-	
+
 	@GetMapping("/location/{location}/area/{area}/stage")
 	public String stageManagement(	Model model,
 									@PathVariable("location") String locationName,
@@ -227,11 +226,11 @@ public class LocationController {
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
 		List<Stage> stages = locationManager.findAllStages(area);
-		
+
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
 		model.addAttribute("stageList", stages);
-		
+
 		return "stage";
 	}
 
@@ -242,10 +241,10 @@ public class LocationController {
 		
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
-		
+
 		stage.setAreaId(area.getId());
 		locationManager.save(stage);
-		
+
 		return "redirect:stage";
 	}
 
@@ -256,14 +255,14 @@ public class LocationController {
 		
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
-		
+
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
 		model.addAttribute("stage", stage);
 
 		return "createStage";
 	}
-	
+
 	@PostMapping("/location/{location}/area/{area}/stage/{stage}")
 	public String editStage(@ModelAttribute("stage") @Valid Stage stage,
 							@PathVariable("location") String locationName,
@@ -281,7 +280,7 @@ public class LocationController {
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
 		Stage stage = locationManager.findByName(area, stageName);
-		
+
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
 		model.addAttribute("stage", stage);
@@ -313,7 +312,7 @@ public class LocationController {
 		Area area = locationManager.findByName(location, areaName);
 		Stage stage = locationManager.findByName(area, stageName);
 		List<Lineup> lineups = locationManager.findAllLineups(stage);
-		
+
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
 		model.addAttribute("stage", stage);
@@ -321,7 +320,7 @@ public class LocationController {
 		
 		return "lineup";
 	}
-	
+
 	@PostMapping("/location/{location}/area/{area}/stage/{stage}/createLineup")
 	public String addLineup(@RequestParam("festival") String festival,
 							@RequestParam("contract") String contract,
@@ -349,7 +348,7 @@ public class LocationController {
 		lineup.setStageId(stage.getId());
 		
 		locationManager.save(lineup);
-		
+
 		return "redirect:lineup";
 	}
 
@@ -372,7 +371,7 @@ public class LocationController {
 
 		return "createLineup";
 	}
-	
+
 	@PostMapping("/location/{location}/area/{area}/stage/{stage}/lineup/{lineup}")
 	public String editLineup(	@Valid Lineup lineup,
 								@RequestParam("contract") String contract,
@@ -396,7 +395,7 @@ public class LocationController {
 		long lineupId = Long.parseLong(lineupIdAsString);
 		Lineup lineup = locationManager.findById(stage, lineupId);
 		List<Contract> contracts = locationManager.findByName().toList();
-		
+
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
 		model.addAttribute("lineup", lineup);

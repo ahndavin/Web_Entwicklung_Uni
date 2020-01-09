@@ -1,0 +1,149 @@
+header{
+    background-color: white;
+    height: 70px;
+}
+
+.logo{
+  height: 60px;
+  position: absolute;
+  margin: auto;
+  display: block;
+  top: 15px;
+  left: 0;
+  right: 85%;
+
+}
+.Logout{
+    border-radius: 25px;
+    border: 1px solid black;
+    height: 40px;
+    position: absolute;
+    margin: auto;
+    display: block;
+    top: 20px;
+    left: 90;
+    right: 10%;
+    font-weight: bold;
+    background-color: #E7E7E7;
+    transition : 0.5s;
+}
+
+.Logout:hover{
+    background-color: darkgray;
+    color:#fff;
+}
+
+.Links{
+    top: 30px;
+    position: absolute;
+    left:16%;
+    transform: translateX(-50%), translateY(-50%);
+}
+li{
+    display: inline-block;
+}
+li a{
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 20px;
+    padding: 0 20px;
+}
+.Links a:hover{
+    font-size:21px;
+    font-size-adjust: 20px;
+    font-weight: bold;
+}
+.Coollink::after{
+    content:'';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: width .3s;
+
+}
+.Coollink:hover::after{
+    width: 100%;
+    transition: width .3s
+
+}
+.letter{
+  height: 60px;
+  position: absolute;
+  margin: auto;
+  display: block;
+  top: 10px;
+  right: 20%;
+}
+.letter:hover{
+  height: 70px;
+  position: absolute;
+  margin: auto;
+  display: block;
+  top: 5px;
+  right: 20%;
+
+}
+
+#largebox{
+
+    background-color: gray;
+    width: 73.5%;
+    height: 40px;
+    padding-top: 20px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-bottom: 20px;
+
+}
+#anlegen{
+    margin-top: 0px;
+    font-size: 40px;
+    text-align: center;
+}
+.firstTable{
+    margin-top: 50px;
+    height: auto;
+    width: 250px;
+    float: left;
+    margin-left: 450px;
+}
+.secondTable{
+    margin-top: 51px;
+    height: auto;
+    width: 250px;
+    float: left;
+}
+
+
+
+
+
+table, tr, td {
+
+    border-collapse: collapse;
+    border: 2px solid black;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+table th{
+    padding: 15px;
+}
+h1{
+    text-align: center;
+    margin-top: 400px;
+}
+.bottomTable{
+    margin-left: 2%;
+}
+body{
+    background-color: #E7E7E7;
+}

@@ -1,0 +1,81 @@
+= Protokoll Gruppe 26
+
+Treffen am 24.10.2019
+
+Ort:      APB +
+Beginn:   17:00 Uhr +
+Ende:     18:15 Uhr
+
+__Schriftführer:__ Tobias Neubauer
+
+*Nächstes Treffen:* +
+28.10.2019, 16:00 Uhr, Caspar-David-Friedrich-Straße 19
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Marcus Fiedler (Scrum Master)
+- Davin Ahn
+- Igor Macevic
+- Jonas Hönisch
+- Tobias Neubauer (Schriftführer)
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+- Festlegung der Commit- und Code-Sprache auf Englisch
+- Aufteilung der Aufgaben bis nächsten Montag wie folgt: (Eingeklammerte werden vorerst zurückgestellt)
+
+(Inhaltsverzeichnis) +
+(Zusammenfassung) +
+(Aufgabenstellung, Zielsetzung mit Klassen- und Attributnamen) +
+Davin: Produktnutzung (Browsermodelle) +
+Davin: Stakeholder (Tabelle mit Personengruppe, Priorität, Aufgabe, Erwartung) +
+Davin: Kontextdiagramm +
+Davin: Top-Level-Architektur +
+Jonas: Akteure +
+Jonas: Anwendungsfalldiagramm +
+Jonas: Anwendungsfallbeschreibungen und Sequenzdiagramme +
+Marcus: Muss-Kriterien +
+Marcus: Kann-Kriterien +
+Marcus: Qualitätsziele +
+Marcus: Nicht-funktionale Anforderungen +
+Igor: GUI-Prototyp +
+Igor: Dialoglandkarte +
+Igor: zusätzliche Beschreibung +
+Tobias: Klassendiagramm +
+Tobias: Akzeptanztestfälle für jeden Anwendungsfall +
+(Glossar)
+
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|1   |guestbook Erweiterung      |geschlossen      |bis Mittwoch, 23.10.2019
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|2     |Prototyp Pflichtenheft    |Wir fangen mit dem Pflichtenheft an!           |Wir alle               |offen
+|3     |Videoshop Erweiterung     |Erweiterung des Codes                          |Wir alle               |offen
+|===
+
+== To-Do bis zum nächsten Treffen:
+- mit Videoshop beschäftigen
+- in Salespoint einlesen
+- Aufgaben abarbeiten

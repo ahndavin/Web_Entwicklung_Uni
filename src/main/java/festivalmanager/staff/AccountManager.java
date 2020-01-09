@@ -140,11 +140,11 @@ public class AccountManager {
 	}
 
 
-
 	public void deleteAccount(Account account){
 		accounts.delete(account);
 		LOG.info("deleting " + account.getUserAccount().getUsername());
 	}
+	
 	public Optional<Account> findByUserAccount(UserAccount userAccount) {
 		return accounts.findByUserAccount(userAccount);
 	}

@@ -51,6 +51,7 @@ public class ContractController {
 		}
 
 		model.addAttribute("contract", festivalForCreation.getContractList().getList());
+
 		return "contractManagement";
 	}
 
@@ -78,10 +79,6 @@ public class ContractController {
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
 		Contract contract = contractsRepository.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("Invalid Contract Id:" + id));
-		/*if(contract.getAccepted()){
-			economicManager.add(contract.totalCost(), contract.getName(), festivalForCreation);
-		}
-		 */
 		model.addAttribute("contract", contract);
 		return "update-Contract";
 	}
@@ -110,6 +107,7 @@ public class ContractController {
 		model.addAttribute("contract", contractsRepository.findAll());
 		return "contractManagement";
 	}
+
 	public ContractsRepository getContracts(){
 		return this.contractsRepository;
 	}

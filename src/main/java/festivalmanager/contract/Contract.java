@@ -26,7 +26,7 @@ public class Contract {
 		private int price;
 
 		@Column(name = "accepted")
-		private boolean accepted;
+		private Boolean accepted;
 
 		@Column(name = "technicianscount")
 		private int technicianscount;
@@ -41,6 +41,7 @@ public class Contract {
 
 		public Contract(String name, String artist, int price, boolean accepted, int technicianscount,
 						int workinghours, int workerswage) {
+
 			this.name = name;
 			this.artist = artist;
 			this.price = price;
@@ -82,7 +83,7 @@ public class Contract {
 			this.price = price;
 		}
 
-		public boolean getAccepted() {
+		public Boolean getAccepted() {
 			return accepted;
 		}
 
@@ -94,7 +95,7 @@ public class Contract {
 			this.workerswage = workerswage;
 		}
 
-		public void setAccepted(boolean accepted) {
+		public void setAccepted(Boolean accepted) {
 			this.accepted = accepted;
 		}
 

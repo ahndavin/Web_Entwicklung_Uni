@@ -1,0 +1,93 @@
+= Protokoll Gruppe 26
+
+Treffen am 14.11.2019
+
+Ort:      Caspar-David-Friedrich-Straße 19 +
+Beginn:   17:00 Uhr +
+Ende:     17:30 Uhr
+
+__Schriftführer:__ Tobias Neubauer
+
+*Nächstes Treffen:* +
+05.12.2019, 16:40 Uhr, Caspar-David-Friedrich-Straße 19
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Tom Morgenstern (Kunde/Tutor)
+- Marcus Fiedler (Scrum Master)
+- Davin Ahn
+- Jonas Hönisch
+- Tobias Neubauer (Schriftführer)
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+=== Auswertung der Zwischenpräsentation:
+==== Positiv:
+- richtig beschriftete Fußzeile
+- gute Vortragsweise
+- jeder hat etwas gesagt
+- Programmvorführung wurde von einem einzelnen übernommen
+- Basisfunktionalität passt schon ganz gut
+
+==== Negativ:
+- Bug ist aufgetreten
+- Diagramme waren teilweise nicht aktuell
+- an Zeit halten: 10 min +- max. 30 sek
+
+==== Allgemeine Tipps:
+- Jedes Package hat einen Contoller und einen Manger --> ist auch leichter zu testen
+- Locations könnte man logisch gruppieren: Grünflächen, Clubs, Konzerthallen, ...
+
+==== Note: 2
+
+=== Tipps für die Abschlusspräsentation:
+- Datenstruktur und technische Details interresieren den Kunden nicht
+- Entwurfsentscheidungen begründen und nur ein Komponentendiagramm zeigen
+- wenig Text
+- gut vorbereiten: gesprochenen Text, Programmvorführung, Zeiteinhaltung
+- sollten wir Bilder einbinden: Urheberrecht checken (Antwort bis 15.12.)
+- Bugs ausschließen
+- Präsentation auch wieder im asciidoc-Order ablegen
+
+== Bis Sonntag:
+- Erweiterung der Prototyp-Funktionalitäten
+- möglichst viele MUSS-Kriterien
+- JUnit-Tests schreiben
+- unter Beachtung von Jenkins und Sonarqube
+
+== Bis zum nächsten Treffen:
+- Programmcode von anderen mal durchlesen und verstehen
+- Tom wird Fragen dazu stellen
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|1   |guestbook Erweiterung      |geschlossen      |bis Mittwoch, 23.10.2019
+|2   |Prototyp Pflichtenheft     |geschlossen      |bis Sonntag, 03.11.2019
+|3   |Videoshop Erweiterung      |geschlossen      |bis Sonntag, 03.11.2019
+|4   |Entwickler-Dokumentation   |geschlossen      |bis Sonntag, 17.11.2019
+|5   |Testplan                   |geschlossen      |bis Sonntag, 17.11.2019
+|6   |Prototyp                   |geschlossen      |bis Sonntag, 17.11.2019
+|===
+
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel                      |Beschreibung        |Verantwortlicher |Status
+|7     |Enwickler-Doku aktuell halten|-                 |wir alle         |offen
+|8     |Zwischenpräsentation       |-                   |wir alle         |offen
+|9     |Zweisprachigkeit|Erstellen von .properties-Datein|wir alle        |offen
+|10    |Tickets ausdrucken| Darstellen der Tickets im pdf-Format zum Ausdrucken|Tobias Neubauer|offen
+|11    |Verknüpfen von Ticket und EconomicManager|Übertragen der Gewinne in die Übersicht|Tobias Neubauer|offen
+|===

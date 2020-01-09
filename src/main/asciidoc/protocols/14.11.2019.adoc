@@ -1,0 +1,105 @@
+= Protokoll Gruppe 26
+
+Treffen am 14.11.2019
+
+Ort:      Caspar-David-Friedrich-Straße 19 +
+Beginn:   16:40 Uhr +
+Ende:     17:50 Uhr
+
+__Schriftführer:__ Tobias Neubauer
+
+*Nächstes Treffen:* +
+21.11.2019, 16:40 Uhr, Caspar-David-Friedrich-Straße 19
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Tom Morgenstern (Kunde/Tutor)
+- Marcus Fiedler (Scrum Master)
+- Davin Ahn
+- Igor Macevic
+- Jonas Hönisch
+- Tobias Neubauer (Schriftführer)
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+=== Allgemeines:
+- kleinschrittig commiten! Commits können am Ende zusammen gepusht werden
+- Die Entwickler-Doku muss über den gesamten Entwicklungs-Zeitraum immer aktuell bleiben
+- Namensgebung durch die Diagramme konsistent halten -> sich an der Vorhergehenden orientieren
+- Deutsch als Standardsprache
+- Tests sollen von Anfang an mitgeschrieben werden
+- Auch die Zweisprachigkeit ist einfacher, wenn dies von Anfang an erfolgt
+- Bis zum Ende werden noch Javadocs erstellt
+- Testplan wird von Tobias und Jonas zusammen erstellt.
+
+
+=== Bisheriger Fortschritt der Entwickler Dokumentation:
+- Controller-Klassen in Diagramme einfügen
+- zusätzlches Programm: Package Übersicht und Zusammenspiel, ohne Controller-Klassen (Davin)
+- Prototypen können auch zusammengefasst werden auf einem Branch, Kommunikation untereinander ist wichtig
+- Diagrammnamen wie folgt: festivalmanager.packagename
+- To-Do Checkliste für jedes Festival hinzufügen
+- Messages fehlen noch
+- Annotationen wie @GetMapping nicht in die Diagramme einschließen
+- Alle, die Dinge speichern wollen: Repository verwenden und Spring CrudRepository verwenden und in Diagramme einbinden
+- Initializer sind praktisch, um Daten beim Start der Applikation einzuspielen. Diese müssen entweder so programmiert werden, dass sie keine doppelten Elemente einspeichern oder sie müssen ab der Aktivierung vom persistenten Speicher gelöscht werden, da es sonst zur Mehrfachspeicherung der Objekte kommt
+- In Diagrammen sollen die Spring- und Salespoint-Komponenten grün gekennzeichnet werden
+- kickstart umbenennen -> festival
+- HTML bisher sehr gut
+
+=== Zeitlicher Ausblick
+- nächster Meilenstein: Implementieren von Basisfunktionen, Abgabe ist am 01.12. Hierbei soll ein zusammenhängendes Projekt auf dem develop-Branch erstellt werden, wobei nicht einfach der Prototyp hochgemergt werden soll, sonder das meiste soll neu entwickelt werden. Auch die Issues sollen aktuell gehalten werden
+- gemeinsamer Termin mit anderer Gruppe: Zwischenpräsentation
+- nächster Meilenstein: Implementieren aller MUSS-Kriterien, Abgabe am 15.12.
+- anschließend Cross-Testing mit anderer Gruppe
+- anschließend werden bis Weihnachten die dabei auftretenden Fehler gefixt und ein Kundenwunsch implementiert, KANN-Kriterien implementieren, auf Sonarqube achten
+- nach den Weihnachtsferien, am 17.01. ist finale Abgabe
+
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|1   |guestbook Erweiterung      |geschlossen      |bis Mittwoch, 23.10.2019
+|2   |Prototyp Pflichtenheft     |geschlossen      |bis Sonntag, 03.11.2019
+|3   |Videoshop Erweiterung      |geschlossen      |bis Sonntag, 03.11.2019
+|===
+
+
+== Aktueller Stand
+=== Neue Aufgabenverteilung (hat sich nicht verändert):
+[option="headers"]
+|===
+|Package           |Klassen                                   |Verantwortlicher
+|FestivalManager   |Festivalmanager, Festival                 |Jonas
+|Location          |Location, Layout, Area, Type, Stage       |Davin
+|Staff             |StaffManager, Login, Staff, CateringPersonal, MessageController, Security, Manager, TicketSalesman, Message|Marcus
+|Economics         |EconomicManager, PositiveAmount, NegativeAmount|Tobias
+|Contracts         |ContractManager, Contract                 |Igor
+|Inventory         |InventoryManager, Item               |Jonas
+|Tickets           |Ticketmanager, Ticket, Sort            |Tobias
+|===
+
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel                      |Beschreibung        |Verantwortlicher |Status
+|4     |Entwickler-Dokumentation   |-                   |Wir alle         |offen
+|5     |Testplan                   |-                   |Tobias Neubauer  |offen
+|6     |Prototyp                   |-                   |Wir alle         |offen
+|===
+
+== To-Do bis zum nächsten Treffen:
+- Issues abarbeiten
+- in Salespoint und Spring einarbeiten
+- bis nächsten Donnerstag: fertige Entwicklerdokumentation (und evtl. Testplan)

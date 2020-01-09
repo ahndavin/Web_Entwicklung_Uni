@@ -1,0 +1,96 @@
+.logo{
+  height: 70px;
+  position: absolute;
+  margin: auto;
+  display: block;
+  top: 20px;
+  left: 0;
+  right: 90%;
+
+}
+.Mitarbeiterlogin{
+    border-radius: 25px;
+    border: 1px solid black;
+    height: 40px;
+    position: absolute;
+    margin: auto;
+    display: block;
+    top: 20px;
+    left: 90;
+    right: 3%;
+    font-weight: bold;
+    background-color: #E7E7E7;
+    transition : 0.5s;
+}
+
+.Mitarbeiterlogin:hover{
+    background-color: darkgray;
+    color:#fff;
+}
+.Festivalgelände{
+    border-radius: 25px;
+    border: 1px solid black;
+    height: 50px;
+    position: absolute;
+    top: 300px;
+    right: 45.5%;
+    font-weight: bold;
+    background-color: #E7E7E7;
+    transition : 0.5s;
+}
+.Festivalgelände:hover{
+    background-color: darkgray;
+    color:#fff;
+}
+#largebox{
+    background-color: white;
+
+    width: 73.5%;
+    height: 400px;
+    padding-top: 50px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+#table1{
+
+    border-collapse: collapse;
+    height: auto;
+    width: 250px;
+    float: left;
+}
+#table2{
+    height: auto;
+    width: 250px;
+    float: left;
+    margin-left: 175px;
+    margin-right: 175px;
+}
+
+#table3{
+    height: auto;
+    width: 250px;
+    float: right;
+}
+#spielplan{
+    width:100%;
+    height:400px;
+}
+
+table, tr, td {
+
+    border-collapse: collapse;
+    border: 2px solid black;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+table th{
+    padding: 15px;
+}
+body{
+    background-color: #E7E7E7;
+}

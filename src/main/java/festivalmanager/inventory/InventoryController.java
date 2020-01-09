@@ -53,19 +53,7 @@ public class InventoryController {
 					  @RequestParam int quantity,
 					  @RequestParam String category) {
 
-		Item item = catalog.save(
-				new Item(
-						name,
-						Money.of(price, "EUR"),
-						Money.of(cost, "EUR"),
-						Quantity.of(minimalQuantity, Metric.UNIT),
-						new String[]{ category }
-				)
-		);
-
-		if(quantity > 0) {
-			inventory.save(new UniqueInventoryItem(item, Quantity.of(quantity, Metric.UNIT)));
-		}
+		inventory.addItem(name, price, cost, minimalQuantity, category, quantity);
 
 		return "redirect:/inventory";
 	}

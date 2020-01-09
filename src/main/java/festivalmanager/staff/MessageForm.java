@@ -51,7 +51,7 @@ public class MessageForm  {
 	}
 
 
-	public void setRole(String rolle) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 }
