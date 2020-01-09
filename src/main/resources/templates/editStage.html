@@ -18,6 +18,13 @@
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
   		var currentURL = "@{" + location.pathname + "}";
+  		function deleteStage(id) {
+            var result = confirm("Stage wirklich löschen?");
+
+            if (result) {
+                location.href = location.pathname + "/delete";
+            }
+        }
   </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
@@ -63,6 +70,9 @@
         <br />
         <label for="outsideView">Lineup Poster</label><br/>
         <input type="file" th:field="*{poster}" name="poster" accept="image/*"/>
+        <br />
+        <br />
+        <a id="deleteLink" th:onclick="'deleteStage(' + ${stage.getId()} + ')'" href="#">Stage löschen</a>
         <br />
         <br />
         

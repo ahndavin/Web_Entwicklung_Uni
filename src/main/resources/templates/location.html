@@ -66,7 +66,7 @@
 					<label for="address"></label>
 					<label th:text="${location.getAddress()}"></label>
 					<button id="btn_">
-        				<a th:href="@{'/location/' + ${location.getName()} + '/editLocation'}">Edit Location</a>
+        				<a th:href="@{'/location/' + ${location.getId()} + '/editLocation'}">Edit Location</a>
      				</button>
 				</li>
 				<br>

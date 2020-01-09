@@ -60,11 +60,12 @@
   <div id="wrapper" class="container">
     <h1 th:text="'Stage: ' + ${stage.getName()}" class="text-center mb-05"></h1>
     <div class="container text-center">
-	    <ul class="list-group" th:each="lineup : ${lineupList}">		
+	    <ul class="list-group" th:each="lineup : ${lineupList}">
 			<li class="list-group-item">
 				<ul class="list-group">
+	      			<h5 th:text="'Festival: ' + ${lineup.getFestival()}"></h5>
+	      			<h5 th:text="'Artist: ' + ${lineup.getArtist()}"></h5>
 	      			<h5 th:text="'Date: ' + ${lineup.getDate()}"></h5>
-                    <h5 th:text="'Artist: ' + ${lineup.getArtist()}"></h5>
 	      			<button>
 	      				<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()} + '/stage/' + ${stage.getName()} + '/lineup/' + ${lineup.getId()}}">Edit Lineup</a>
 	      			</button>

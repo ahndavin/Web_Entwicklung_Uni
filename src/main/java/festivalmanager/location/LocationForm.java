@@ -1,12 +1,7 @@
 package festivalmanager.location;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
-public class Location {
-	private @Id @GeneratedValue long id;
+public class LocationForm {
+	private long id;
 	private String name;
 	private String address;
 	private boolean isBooked;
@@ -14,19 +9,6 @@ public class Location {
 	private Integer maxVisitors;
 	private String thumbnail;
 	private String groundPlan;
-	
-	@SuppressWarnings("unused")
-	private Location() {}
-	
-	public Location(String name, String address, Integer maxVisitors, String thumbnail, String groundPlan) {
-		this.name = name;
-		this.address = address;
-		this.maxVisitors = maxVisitors;
-		this.thumbnail = thumbnail;
-		this.groundPlan = groundPlan;
-		this.isBooked = false;
-		this.currVisitors = 0;
-	}
 	
 	public long getId() {
 		return id;
@@ -60,14 +42,6 @@ public class Location {
 		return this.isBooked = isBooked;
 	}
 	
-	public boolean toggleBook() {
-		return isBooked = !isBooked;
-	}
-	
-	public Integer countVisitors(int visitors) {		
-		return currVisitors += visitors;
-	}
-	
 	public Integer getCurrVisitors() {
 		return currVisitors;
 	}
@@ -98,5 +72,11 @@ public class Location {
 	
 	public String setGroundPlan(String groundPlan) {
 		return this.groundPlan = groundPlan;
+	}
+	
+	public Location toLocation() {
+		Location location = new Location(name, address, maxVisitors, thumbnail, groundPlan);
+
+		return location;
 	}
 }

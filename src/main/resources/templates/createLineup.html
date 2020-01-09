@@ -18,8 +18,12 @@
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
   		var currentURL = "@{" + location.pathname + "}";
-  		var s = document.getElementById("contract");
-  	    var selectedOption = s.options[s.selectedIndex].value;
+  		
+  		var f = document.getElementById("festival");
+	    var selectedFestival = f.options[f.selectedIndex].value;
+	    
+  		var a = document.getElementById("contract");
+  	    var selectedArtist = a.options[a.selectedIndex].value;
   </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
@@ -60,17 +64,22 @@
     <div id="wrapper" class="container text-center">
       <h1 class="mb-3 mt-5">Create Lineup</h1>
       <form method="POST" th:action="${currentURL}" th:object="${lineup}">
-      	<label for="date">date</label>
+      	<label for="festival">Festival : </label>
+        <select id="festival" name="festival" required="required" class="festival">
+			<option th:each="festival : ${festivalList}" th:text="${festival.getName()}" th:value="${festival.getName()}"/>
+		</select><br />
+        <label for="contract">Artist : </label>
+        <select id="contract" name="contract"  class="contract">
+			<option th:each="contract : ${contractList}" th:text="${contract.getArtist()}" th:value="${contract}"/>
+		</select><br />
+		<label for="date">date</label>
         <input type="text" required="required" th:field="*{date}" class="form-control"/>
         <br />
-        <label for="contract">Artist</label><br/>
-        <select id="contract" name="contract" required="required" class="contract">
-			<option th:each="contract : ${contractList}" th:text="${contract.getArtist()}" th:value="${contract}"/>
-		</select>
 		<br />
-		<br />		
+		<br />
 		
-		<input type="hidden" name="contract" th:value="${selectOption}"/>
+		<input type="hidden" id="festival" name="festival" th:value="${selectedFestival}"/>
+		<input type="hidden" id="contract" name="contract" th:value="${selectedContract}"/>
 		<button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">Cancel</button>
         <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Create Lineup</button>
       </form>

@@ -18,6 +18,13 @@
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
   		var currentURL = "@{" + location.pathname + "}";
+  		function deleteArea(id) {
+            var result = confirm("Area wirklich löschen?");
+
+            if (result) {
+                location.href = location.pathname + "/delete";
+            }
+        }
   </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
@@ -77,6 +84,8 @@
 		<label for="maxStages">Max Stages</label>
         <input type="number" th:field="*{maxStages}" class="form-control" />
         <br />
+		<a id="deleteLink" th:onclick="'deleteArea(' + ${area.getId()} + ')'" href="#">Area löschen</a>
+		<br />
 		<br />
 		
 		<button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">

@@ -31,7 +31,7 @@
           <a href="/" class="nav-link ">Home</a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link active">Create a Location</a>
+          <a href="" class="nav-link">Create a Location</a>
         </li>
         <li class="nav-item">
           <a href="/location" class="nav-link">See all existing Locations</a>
@@ -56,7 +56,7 @@
 
     <div id="wrapper" class="container text-center">
       <h1 class="mb-3 mt-5"> Edit Location </h1>
-      <form method="POST" th:action="@{/createLocation}" th:object="${location}">
+      <form method="POST" th:action="${currentURL}" th:object="${location}">
       	<label for="name">Name</label>
         <input type="text" required="required" th:field="*{name}" class="form-control" />
         <br />
@@ -72,6 +72,8 @@
         <label for="outsideView">Ground Plan</label><br/>
         <input type="file" th:field="*{groundPlan}" name="groundPlan" accept="image/*"/>
         <br />
+		<a id="deleteLink" th:onclick="'deleteLocation(' + ${location.getId()} + ')'" href="#">Location löschen</a>
+		<br />
 		<br />
 		
 		<button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">Cancel</button>
@@ -97,9 +99,19 @@
     crossorigin="anonymous"></script>
 
   <script>
+  	var currentURL = "@{" + location.pathname + "}";
+  	
   	function goBack() {
 	    window.history.back();
 	}
+  	
+  	function deleteLocation(id) {
+        var result = confirm("Location wirklich löschen?");
+
+        if (result) {
+            location.href = location.pathname + "/delete";
+        }
+    }
     // Get the current year for the copyright
     $("#year").text(new Date().getFullYear());
   </script>

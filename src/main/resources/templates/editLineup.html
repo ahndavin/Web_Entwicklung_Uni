@@ -20,6 +20,14 @@
   		var currentURL = "@{" + location.pathname + "}";
   		var s = document.getElementById("contract");
   	    var selectedOption = s.options[s.selectedIndex].value;
+  	    
+		function deleteLineup(id) {
+			var result = confirm("Lineup wirklich löschen?");
+		
+		    if (result) {
+				location.href = location.pathname + "/delete";
+			}
+		}
   </script>
   <!--  NavBar -->
   <nav class="navbar navbar-expand-md navbar-dark">
@@ -68,8 +76,10 @@
 			<option th:each="contract : ${contractList}" th:text="${contract.getArtist()}" th:value="${contract}"/>
 		</select>
 		<br />
-		<br />		
-		
+		<br />
+		<a id="deleteLink" th:onclick="'deleteLineup(' + ${lineup.getId()} + ')'" href="#">Lineup löschen</a>
+		<br />
+		<br />
 		<input type="hidden" name="contract" th:value="${selectOption}"/>
 		<button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">Cancel</button>
         <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Edit Lineup</button>

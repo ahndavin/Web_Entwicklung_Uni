@@ -37,6 +37,20 @@ public class LocationManager {
 		locationRepository.deleteById(id);
 	}
 	
+	public Location findById(long id) {
+		int i = 0;
+		List<Location> locations = findAllLocations();
+		
+		while(i < locations.size()) {
+			if(locations.get(i).getId() == id)
+				break;
+			
+			i++;
+		}
+		
+		return locationRepository.findById(locations.get(i).getId()).get();
+	}
+	
 	public Location findByName(String name) {
 		int i = 0;
 		List<Location> locations = findAllLocations();
