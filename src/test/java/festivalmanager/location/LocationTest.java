@@ -8,13 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class LocationTest {
 
-	private Location location = new Location("location", "Portugal", 33, "img1", "img2");
+	private Location location = new Location("location", "Portugal", 1000, 33, "img1", "img2");
 
 
 	@Test
 	public void checkAllTheGetters(){	
 		assertEquals("location", location.getName());
 		assertEquals("Portugal", location.getAddress());
+		assertEquals(1000, location.getPrice());
 		assertEquals(33, location.getMaxVisitors());
 		assertEquals("img1", location.getThumbnail());
 		assertEquals("img2", location.getGroundPlan());
@@ -26,6 +27,7 @@ public class LocationTest {
 	public void checkAllTheSetters(){
 		location.setName("name");
 		location.setAddress("Paris");
+		location.setPrice(2000);
 		location.toggleBook();
 		location.countVisitors(110);
 		location.setMaxVisitors(112);
@@ -34,6 +36,7 @@ public class LocationTest {
 
 		assertEquals("name", location.getName());
 		assertEquals("Paris", location.getAddress());
+		assertEquals(2000, location.getPrice());
 		assertEquals(112, location.getMaxVisitors());
 		assertEquals("img3", location.getThumbnail());
 		assertEquals("img4", location.getGroundPlan());

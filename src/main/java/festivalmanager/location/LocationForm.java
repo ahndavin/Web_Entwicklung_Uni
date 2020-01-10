@@ -5,6 +5,7 @@ public class LocationForm {
 	private String name;
 	private String address;
 	private boolean isBooked;
+	private Integer price;
 	private Integer currVisitors;
 	private Integer maxVisitors;
 	private String thumbnail;
@@ -42,6 +43,14 @@ public class LocationForm {
 		return this.isBooked = isBooked;
 	}
 	
+	public Integer getPrice() {
+		return price;
+	}
+	
+	public Integer setPrice(Integer price) {
+		return this.price = price;
+	}
+	
 	public Integer getCurrVisitors() {
 		return currVisitors;
 	}
@@ -75,7 +84,7 @@ public class LocationForm {
 	}
 	
 	public Location toLocation() {
-		Location location = new Location(name, address, maxVisitors, thumbnail, groundPlan);
+		Location location = new Location(name, address, price, maxVisitors, thumbnail, groundPlan);
 
 		return location;
 	}

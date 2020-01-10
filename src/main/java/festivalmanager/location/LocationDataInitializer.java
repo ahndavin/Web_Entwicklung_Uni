@@ -21,7 +21,7 @@ public class LocationDataInitializer implements DataInitializer {
 			return;
 		}
 		
-		Location location1 = new Location("Dresden", "blablastr. 10, 01069, Dresden", 1000, "/img/location/thumbnail/Dresden.jpg", "/img/location/ground_plan/Dresden.jpg");
+		Location location1 = new Location("Dresden", "blablastr. 10, 01069, Dresden", 10000, 1000, "/img/location/thumbnail/Dresden.jpg", "/img/location/ground_plan/Dresden.jpg");
 		Area area1 = new Area("D", 1000, 4, Type.STAGE);
 		Area area2 = new Area("B", 700, null, Type.CAMPING);
 		Stage stage1 = new Stage("first", "/img/location/lineup_poster/first.jpg");

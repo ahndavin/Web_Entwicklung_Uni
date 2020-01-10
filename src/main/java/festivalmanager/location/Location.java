@@ -10,6 +10,7 @@ public class Location {
 	private String name;
 	private String address;
 	private boolean isBooked;
+	private Integer price;
 	private Integer currVisitors;
 	private Integer maxVisitors;
 	private String thumbnail;
@@ -18,9 +19,10 @@ public class Location {
 	@SuppressWarnings("unused")
 	private Location() {}
 	
-	public Location(String name, String address, Integer maxVisitors, String thumbnail, String groundPlan) {
+	public Location(String name, String address, Integer price, Integer maxVisitors, String thumbnail, String groundPlan) {
 		this.name = name;
 		this.address = address;
+		this.price = price;
 		this.maxVisitors = maxVisitors;
 		this.thumbnail = thumbnail;
 		this.groundPlan = groundPlan;
@@ -62,6 +64,14 @@ public class Location {
 	
 	public boolean toggleBook() {
 		return isBooked = !isBooked;
+	}
+	
+	public Integer getPrice() {
+		return price;
+	}
+	
+	public Integer setPrice(Integer price) {
+		return this.price = price;
 	}
 	
 	public Integer countVisitors(int visitors) {		
