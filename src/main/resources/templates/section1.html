@@ -205,46 +205,149 @@
     </section>
 
     <!-- Section1 Manager -->
-    <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')" id="accountancy" class="mt-5 mb-5">
+    <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')" id="festivals" class="mt-5 mb-5">
 
-      <!-- Section heading -->
+      <!-- Create a new Festival -->
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
+        Create Festivals
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="createFestivalModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="createFestivalModal">Create a Festival</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="festivalAddForm" th:action="@{/festival/add}" th:object="${festival_form}" method="POST">
+                <div class="form-group col-md-8">
+                  <label class="col-form-label" for="name">Name</label>
+                  <input class="form-control" type="text" th:field="*{name}" required>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label class="col-form-label" for="location">Location</label>
+                  <select class="form-control" th:field="*{location}">
+                    <option th:each="location : ${locations}" th:text="${location.name}" th:value="${location.name}">
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label class="col-form-label" for="startDate">Start</label>
+                  <input class="form-control" type="date" th:field="*{startDate}" required>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label class="col-form-label" for="endDate">Ende</label>
+                  <input class="form-control" type="date" th:field="*{endDate}" required>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label class="col-form-label" for="amountDaytickets">Amount Dayticket</label>
+                  <input class="form-control" type="number" th:field="*{amountDaytickets}" required>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label class="col-form-label" for="amountCampingtickets">Amount Campingtickets</label>
+                  <input class="form-control" type="number" th:field="*{amountCampingtickets}" required>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label class="col-form-label" for="priceDayticket">Price Dayticket</label>
+                  <input class="form-control" type="number" step="0.01" th:field="*{priceDayticket}" required>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label class="col-form-label" for="priceCampingticket">Price Campingticket</label>
+                  <input class="form-control" type="number" step="0.01" th:field="*{priceCampingticket}" required>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label class="col-form-label" for="maxVisitors">max. Visitors</label>
+                  <input class="form-control" type="number" th:field="*{maxVisitors}" required>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label class="col-form-label" for="sellingTickets">Tickets available</label>
+                  <input class="form-control" type="checkbox" th:field="*{sellingTickets}">
+                </div>
+
+                <input class="btn btn-dark" type="submit" value="Create" >
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Create new Festival -->
+      <!-- See all Festivals -->
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
         <strong>All Festivals</strong>
       </h3>
 
-      <!--Grid row-->
-      <div class="row features-small pt-4">
+      <!--Table-->
+  
+          
+              <table  class="table table-bordered">
+                <thead class="black white-text">
+                  <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Startdate</th>
+                    <th>Enddate</th>
+                    <th>Max. Visitors</th>
+                    <th>Selling Tickets</th>
+                    <th>Edit</th>
+                    <th>Festival Inventory</th>
+                    <th>Contracts</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="festival : ${festivals}">
+                    <td th:text="${festival.name}"></td>
+                    <td th:text="${festival.location}"></td>
+                    <td th:text="${festival.startDate}"></td>
+                    <td th:text="${festival.endDate}"></td>
+                    <td th:text="${festival.maxVisitors}"></td>
+                    <td th:text="${festival.sellingTickets}"></td>
+                    <td>
+                      <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/edit'}" class="btn btn-green">
+                        <i class="fas fa-user-edit ml-2"></i></a>
 
-        <!--Grid column-->
-        <div class="col-md-4 mb-4" th:each="festival : ${festivals}">
-          <div class="col-1 col-md-2 float-left">
-          </div>
-          <div class="col-10 col-md-9 col-lg-10 float-right">
-            <h4 class="text-center font-weight-bold indigo-text">
-              <strong td th:text="${festival.name}"></strong>
-              <form method="get" role="form" class="ui form" name="form" th:action="@{/accountancy}">
-                <input type="hidden" th:value="${festival.getId()}" name="id" />
-                <button type="submit" class="btn btn-green">
-                  <strong>Go to Accountancy</strong>
-                </button>
-              </form>
-            </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text text-center" th:text="${festival.startDate}">
-              Festival1.startdate</h6>
-            <p class="grey-text font-small text-center">Festival Information down Below. (Maybe Lineup.. etc </p>
-
-          </div>
-        </div>
-
-      </div>
-      <!--Grid row-->
-
+                    </td>
+                    <td><a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}"
+                        class="btn btn-green">
+                        <i class="fas fa-archive"></i>
+                      </a></td>
+                    <td>
+                      <form method="get" role="form" class="ui form" name="form" th:action="@{/contracts/list}">
+                        <input type="hidden" th:value="${festival.getId()}" name="id" />
+                        <button type="submit" class="ui button">
+                          <i class="fas fa-address-book"></i>
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+           
+      <!-- See all Festivals -->
 
     </section>
 
     <!-- Section1 FestivalManager -->
     <section sec:authorize="hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')" id="createFestival" class="mt-5 mb-5">
 
+      <!-- Create Festival -->
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
         Create Festivals
@@ -324,6 +427,8 @@
           </div>
         </div>
       </div>
+      <!-- Create Festival -->
+      
 
     </section>
 

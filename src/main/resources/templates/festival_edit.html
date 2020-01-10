@@ -44,8 +44,41 @@
 
 <body>
 
-    <!-- Navbar Festival Manager -->
-    <nav sec:authorize="hasAuthority('FESTIVAL_MANAGER')" class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
+    <!-- Navbar  Manager -->
+    <nav sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')" class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">FVIV</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto smooth-scroll">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#festivals" data-offset="80">Back</a>
+                    </li>
+                </ul>
+
+                <!-- Manager Logout and Icon -->
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <i class="fas fa-user-secret"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+                        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                            <input hidden type="submit" value="Sign Out" />
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+     <!-- Navbar Festival Manager -->
+     <nav sec:authorize="hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')" class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
         <div class="container">
             <a class="navbar-brand" href="/">FVIV</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -97,53 +130,53 @@
         </div>
 
         <div class="form-group col-md-8">
-            <label class="col-form-label" for="startDate">Start</label>
+            <label class="col-form-label" for="startDate">Startdate</label>
             <input class="form-control" type="date" th:field="*{startDate}" required>
         </div>
 
         <div class="form-group col-md-8">
-            <label class="col-form-label" for="endDate">Ende</label>
+            <label class="col-form-label" for="endDate">Enddate</label>
             <input class="form-control" type="date" th:field="*{endDate}" required>
         </div>
 
 
         <div class="form-group col-md-8">
-            <label class="col-form-label" for="amountDaytickets">Anzahl Tagestickets</label>
+            <label class="col-form-label" for="amountDaytickets">Amount Daytickets</label>
             <input class="form-control" type="number" id="amountDaytickets" th:name="amountDaytickets"
                 th:value="${festival_form.ticketBuilder.amountDaytickets}" required>
         </div>
 
         <div class="form-group col-md-8">
-            <label class="col-form-label" for="amountCampingtickets">Anzahl Campingtickets</label>
+            <label class="col-form-label" for="amountCampingtickets">Amount Campingtickets</label>
             <input class="form-control" type="number" id="amountCampingtickets" th:name="amountCampingtickets"
                 th:value="${festival_form.ticketBuilder.amountCampingtickets}" required>
         </div>
 
         <div class="form-group col-md-8">
-            <label class="col-form-label" for="priceDayticket">Preis Tagesticket</label>
+            <label class="col-form-label" for="priceDayticket">Price Daytickets</label>
             <input class="form-control" type="number" id="priceDayticket" th:name="priceDayticket"
                 th:value="${festival_form.ticketBuilder.formattedPriceDayticket}" required>
         </div>
 
         <div class="form-group col-md-8">
-            <label class="col-form-label" for="priceCampingticket">Preis Campingticket</label>
+            <label class="col-form-label" for="priceCampingticket">Price Campingticket</label>
             <input class="form-control" type="number" id="priceCampingticket" th:name="priceCampingticket"
                 th:value="${festival_form.ticketBuilder.formattedPriceCampingticket}" required>
         </div>
 
         <div class="form-group col-md-8">
-            <label class="col-form-label" for="maxVisitors">maximale Besucher</label>
+            <label class="col-form-label" for="maxVisitors">max. Visitors</label>
             <input class="form-control" type="number" th:field="*{maxVisitors}" required>
         </div>
 
         <div class="form-group col-md-8">
-            <label class="col-form-label" for="sellingTickets">Tickets verfügbar</label>
+            <label class="col-form-label" for="sellingTickets">Tickets available</label>
             <input class="form-control" type="checkbox" th:field="*{sellingTickets}">
         </div>
 
         <input class="btn btn-dark" type="submit" value="ok">
 
-        <a id="deleteLink" th:onclick="'deleteFestival(' + ${festival_form.id} + ')'" href="#">Festival löschen</a>
+        <a  class="btn btn-red" id="deleteLink" th:onclick="'deleteFestival(' + ${festival_form.id} + ')'" href="#">Delete</a>
     </form>
 
 </body>
