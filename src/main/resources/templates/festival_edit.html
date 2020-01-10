@@ -12,25 +12,6 @@
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
     <title>Edit Festival</title>
 
-    <style>
-        #festivalEditForm {
-            width: 50%;
-            margin: 40px 0 75px 150px;
-            border: 1px solid #ced4da;
-            border-radius: .25rem;
-            padding-bottom: 20px;
-        }
-
-        input.btn-dark {
-            margin-left: 15px;
-        }
-
-        #deleteLink {
-            float: right;
-            margin-right: 20px;
-        }
-    </style>
-
     <script>
         function deleteFestival(id) {
             var result = confirm("Festival wirklich löschen?");
@@ -44,107 +25,129 @@
 
 <body>
 
-    <!-- Navbar Festival Manager -->
-    <nav sec:authorize="hasRole('FESTIVAL_MANAGER')" class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="/">FVIV</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+
+    <section
+        sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
+
+        <!--  NavBar -->
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a href="/" class="navbar-brand">
+                <h3 class="mb-0">FVIV</h3>
+            </a>
+            <ul class="navbar-nav mr-auto smooth-scroll">
+                <li class="nav-item">
+                    <a href="/#festivals" class="nav-link">Back</a>
+                </li>
+            </ul>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto smooth-scroll">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/" data-offset="80">Back</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#festivals" data-offset="80">See All Festivals</a>
-                    </li>
-                </ul>
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-user-secret"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                        <input hidden type="submit" value="Sign Out" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
 
-                <!-- FestivalManager Logout and Icon -->
-                <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="fas fa-user-secret"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
-                        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                            <input hidden type="submit" value="Sign Out" />
-                        </form>
-                    </li>
-                </ul>
+        <section class="d-flex align-items-center" id="showcase"></section>
+        <div class="container my-5">
+            <h3> Edit Festival</h3>
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-10">
+
+                        <form id="festivalEditForm" th:action="@{/festival/edit}" th:object="${festival_form}"
+                            method="POST">
+                            <input type="hidden" th:field="*{id}">
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label" for="name">Name</label>
+                                <input class="form-control" type="text" th:field="*{name}" required>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label" for="location">Location</label>
+                                <select class="form-control" th:field="*{location}">
+                                    <option th:each="location : ${locations}"
+                                        th:selected="${festival_form.location == location.name}"
+                                        th:text="${location.name}" th:value="${location.name}"></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label" for="startDate">Startdate</label>
+                                <input class="form-control" type="date" th:field="*{startDate}" required>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label" for="endDate">Enddate</label>
+                                <input class="form-control" type="date" th:field="*{endDate}" required>
+                            </div>
+
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label" for="amountDaytickets">Amount Daytickets</label>
+                                <input class="form-control" type="number" id="amountDaytickets"
+                                    th:name="amountDaytickets"
+                                    th:value="${festival_form.ticketBuilder.amountDayticketsInt}" required>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label" for="amountCampingtickets">Amount Campingtickets</label>
+                                <input class="form-control" type="number" id="amountCampingtickets"
+                                    th:name="amountCampingtickets"
+                                    th:value="${festival_form.ticketBuilder.amountCampingticketsInt}" required>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label" for="priceDayticket">Price Daytickets</label>
+                                <input class="form-control" type="number" id="priceDayticket" th:name="priceDayticket"
+                                    th:value="${festival_form.ticketBuilder.formattedPriceDayticket}" required>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label" for="priceCampingticket">Price Campingticket</label>
+                                <input class="form-control" type="number" id="priceCampingticket"
+                                    th:name="priceCampingticket"
+                                    th:value="${festival_form.ticketBuilder.formattedPriceCampingticket}" required>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label" for="maxVisitors">max. Visitors</label>
+                                <input class="form-control" type="number" th:field="*{maxVisitors}" required>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="col-form-label" for="sellingTickets">Tickets available</label>
+                                <input class="form-control" type="checkbox" th:field="*{sellingTickets}">
+                            </div>
+                            <input class="btn btn-dark" type="submit" value="ok">
+                    </div>
+
+
+                    <div class="form-group col-md-8">
+                        <a href="/#festivals" class="btn btn-outline-danger" role="button">Cancel</a>
+                        <a class="btn btn-red" id="deleteLink"
+                            th:onclick="'deleteFestival(' + ${festival_form.id} + ')'" href="#">Delete</a>
+                    </div>
+
+
+                    </form>
+
+                </div>
             </div>
         </div>
-    </nav>
-
-
-    <form id="festivalEditForm" th:action="@{/festival/edit}" th:object="${festival_form}" method="POST">
-        <input type="hidden" th:field="*{id}">
-
-        <div class="form-group col-md-8">
-            <label class="col-form-label" for="name">Name</label>
-            <input class="form-control" type="text" th:field="*{name}" required>
         </div>
 
-        <div class="form-group col-md-8">
-            <label class="col-form-label" for="location">Location</label>
-            <select class="form-control" th:field="*{location}" >
-                <option th:each="location : ${locations}" th:selected="${festival_form.location == location.name}" th:text="${location.name}" th:value="${location.name}"></option>
-            </select>
-        </div>
-
-        <div class="form-group col-md-8">
-            <label class="col-form-label" for="startDate">Start</label>
-            <input class="form-control" type="date" th:field="*{startDate}" required>
-        </div>
-
-        <div class="form-group col-md-8">
-            <label class="col-form-label" for="endDate">Ende</label>
-            <input class="form-control" type="date" th:field="*{endDate}" required>
-        </div>
-
-
-        <div class="form-group col-md-8">
-            <label class="col-form-label" for="amountDaytickets">Anzahl Tagestickets</label>
-            <input class="form-control" type="number" id="amountDaytickets" th:name="amountDaytickets"
-                th:value="${festival_form.ticketBuilder.amountDaytickets}" required>
-        </div>
-
-        <div class="form-group col-md-8">
-            <label class="col-form-label" for="amountCampingtickets">Anzahl Campingtickets</label>
-            <input class="form-control" type="number" id="amountCampingtickets" th:name="amountCampingtickets"
-                th:value="${festival_form.ticketBuilder.amountCampingtickets}" required>
-        </div>
-
-        <div class="form-group col-md-8">
-            <label class="col-form-label" for="priceDayticket">Preis Tagesticket</label>
-            <input class="form-control" type="number" id="priceDayticket" th:name="priceDayticket"
-                th:value="${festival_form.ticketBuilder.formattedPriceDayticket}" required>
-        </div>
-
-        <div class="form-group col-md-8">
-            <label class="col-form-label" for="priceCampingticket">Preis Campingticket</label>
-            <input class="form-control" type="number" id="priceCampingticket" th:name="priceCampingticket"
-                th:value="${festival_form.ticketBuilder.formattedPriceCampingticket}" required>
-        </div>
-
-        <div class="form-group col-md-8">
-            <label class="col-form-label" for="maxVisitors">maximale Besucher</label>
-            <input class="form-control" type="number" th:field="*{maxVisitors}" required>
-        </div>
-
-        <div class="form-group col-md-8">
-            <label class="col-form-label" for="sellingTickets">Tickets verfügbar</label>
-            <input class="form-control" type="checkbox" th:field="*{sellingTickets}">
-        </div>
-
-        <input class="btn btn-dark" type="submit" value="ok">
-
-        <a id="deleteLink" th:onclick="'deleteFestival(' + ${festival_form.id} + ')'" href="#">Festival löschen</a>
-    </form>
+    </section>
 
 </body>
 

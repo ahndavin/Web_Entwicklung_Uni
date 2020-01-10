@@ -39,22 +39,41 @@
 </head>
 
 <body>
-    <nav sec:authorize="hasRole('MANAGER')" class="navbar navbar-expand-md navbar-dark">
-        <a href="/" class="navbar-brand">
-            <h3 class="mb-0">HOME</h3>
-        </a>
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a th:href="@{{name}(name=${sender})}" class="nav-link">SINGLE MESSAGE</a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{{name}?multimessage=true (name=${sender})}" class="nav-link active">GROUP MESSAGE
+    <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
 
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a href="/" class="navbar-brand">
+                <h3 class="mb-0">FVIV</h3>
+            </a>
+            <ul class="navbar-nav mr-auto smooth-scroll">
+                <li class="nav-item">
+                    <a th:href="@{{name}(name=${sender})}" class="nav-link">Single Message</a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{{name}?multimessage=true (name=${sender})}" class="nav-link active">Group Message
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/#staff" class="nav-link">Back</a>
+            </li>
+        </ul>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item">
+            <a class="nav-link">
+                <i class="fas fa-user-secret"></i>
+            </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                <input hidden type="submit" value="Sign Out" />
+            </form>
+            </li>
+        </ul>
     </nav>
 
 
@@ -62,7 +81,7 @@
     <br>
     <div class="container text-center">
 
-<form method="post" role="form" class="ui form" id="form" th:action="@{/sendMessage}" th:object="${form}">
+    <form method="post" role="form" class="ui form" id="form" th:action="@{/sendMessage}" th:object="${form}">
         <div class="field">
 
             <label for="sender"> </label>
@@ -104,6 +123,8 @@
     </div>
 
 </div>
+    </section>
+
 
  <!--  JQuery  -->
  <script type="text/javascript" rel="script" th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>

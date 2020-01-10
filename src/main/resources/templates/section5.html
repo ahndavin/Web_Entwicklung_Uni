@@ -123,6 +123,201 @@
 
     <!-- Section 5 MANAGER -->
 
+    <!-- Section All Accounts -->
+    <hr>
+    <section id="staff" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
+      <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+        <strong> Existing Accounts </strong>
+      </h3>
+
+      <table class="table table-bordered">
+        <thead class="black white-text">
+          <tr>
+            <th>NAME</th>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>ROLES</th>
+            <th>HOURLY WAGE</th>
+            <th>HOURS WORKED</th>
+            <th>FESTIVAL</th>
+            <th>DELETE</th>
+            <th>CHANGE PASSWORD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <th:block th:each="account:${accountList}">
+            <tr>
+              <td th:text="${account.getUserAccount().username}"></td>
+              <td th:text="${account.firstName}"></td>
+              <td th:text="${account.lastName}"></td>
+              <td th:text="${account.getUserAccount().roles.toList()}"></td>
+              <td th:text="${account.getHourlyWageWithoutNull()}"></td>
+              <td th:text="${account.getWorkedHoursWithoutNull()}"></td>
+              <td th:text="${account.festivalNameWithoutNull}"></td>
+              <td>
+                <form th:action="@{deleteAccount/{name}(name=${account.getUserAccount().username})}" method="get">
+                  <a type="submit" th:href="@{deleteAccount/{name}(name=${account.getUserAccount().username})}"
+                    th:text="#{deleteAccount}" class="btn btn-red">
+                  </a>
+                </form>
+              </td>
+              <td>
+                <form th:action="@{changePassword/{name}(name=${account.getUserAccount().username})}" method="get">
+                  <a type="submit" th:href="@{changePassword/{name}(name=${account.getUserAccount().username})}"
+                    th:text="#{change.password}" class="btn btn-green">
+                  </a>
+                </form>
+              </td>
+        </tbody>
+
+
+      </table>
+
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAccount">
+        Create Account
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="createAccountModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="createAccountModal">Create an Account</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="accountAddForm" th:action="@{/createAccount}" th:object="${form}" method="POST">
+
+                <div class="field">
+                  <label for="usrName">Username</label><br />
+                  <input id="usrName" name="usrName" th:field="*{usrName}" th:errorclass="fieldError" type="text"
+                    required="required" />
+                </div>
+
+                <div class="field">
+                  <label th:text="#{createAccount.password}" for="password">password</label><br />
+                  <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
+                    required="required" />
+                </div>
+
+                <div class="field">
+                  <label for="firstName">First Name</label><br />
+                  <input id="firstName" name="firstName" th:field="*{firstName}" th:errorclass="fieldError" type="text"
+                    required="required" />
+                </div>
+
+                <div class="field">
+                  <label for="lastName">Last Name</label><br />
+                  <input id="lastName" name="lastName" th:field="*{lastName}" th:errorclass="fieldError" type="text"
+                    required="required" />
+                </div>
+
+                <div class="field">
+                  <label th:text="#{createAccount.festivalManager}" for="festivalManager">Festival Manager</label>
+                  <input id="festivalManager" name="festivaManager" th:field="*{festivalManager}"
+                    th:errorclass="fieldError" type="checkbox" />
+                </div>
+
+                <div class="field">
+                  <label th:text="#{createAccount.catering}" for="catering">catering</label>
+                  <input id="catering" name="catering" th:field="*{catering}" th:errorclass="fieldError"
+                    type="checkbox" />
+                </div>
+
+                <div class="field">
+                  <label th:text="#{createAccount.security}" for="security">Security</label>
+                  <input id="security" name="security" th:field="*{security}" th:errorclass="fieldError"
+                    type="checkbox" />
+                </div>
+
+                <div class="field">
+                  <label th:text="#{createAccount.ticketSalesman}" for="ticketSalesman">Ticket Salesman</label>
+                  <input id="ticketSalesman" name="ticketSalesman" th:field="*{ticketSalesman}"
+                    th:errorclass="fieldError" type="checkbox" />
+                </div>
+
+                <input class="btn btn-dark" type="submit" value="Create">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- Section All Accounts -->
+
+      <!-- Section Msg System Accounts -->
+
+
+      <section id="staff" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')"></section>
+      <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+        <strong> Message System </strong>
+      </h3>
+      <div class="container">
+
+        <table class="table table-bordered">
+          <thead class="black white-text">
+            <tr>
+              <th>NAME</th>
+              <th>MESSAGE SEND</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <th:block th:each="message : ${messageManagement.findBySender(Account)}">
+              <tr>
+                <td th:text="${message.receiver.getUserAccount().username}"></td>
+                <td th:text="${message.message}"></td>
+              </tr>
+            </th:block>
+          </tbody>
+        </table>
+        <form th:action="@{sendMessage/{name}(name=${Account.getUserAccount().username})}" method=" get">
+          <a type="submit" th:href="@{sendMessage/{name}(name=${Account.getUserAccount().username})}"
+            th:text="${'Send new Message'}" class="btn btn-primary">
+          </a>
+        </form>
+        <hr>
+      </div>
+    </section>
+    <!-- Section Msg System Accounts -->
+
+    <!-- Section Currently Online -->
+
+    <section id="messages" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
+      <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+        <strong>Online Accounts </strong>
+      </h3>
+      <div class="container">
+
+        <table class="table table-bordered">
+          <thead class="black white-text">
+            <tr>
+              <th>CURRENTLY ONLINE</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            <th:block th:each="account : ${accountManager.getUsersFromSessionRegistry()}">
+              <tr>
+                <td th:text="${account}"></td>
+              </tr>
+            </th:block>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <!-- Section Currently Online -->
+
+
+    </section>
+
+
     <!-- Section 5 CATERING -->
 
     <!-- Section 5 SECURITY -->

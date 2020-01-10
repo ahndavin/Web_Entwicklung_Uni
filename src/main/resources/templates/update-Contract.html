@@ -4,9 +4,9 @@
 <head>
 	<!--  BOOTSTRAP STUFF  -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-		  integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-		  integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
 	<link rel="stylesheet" href="css/style.css" />
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
@@ -15,49 +15,50 @@
 
 <body>
 
-<!--  START HERE  -->
+	<!--  START HERE  -->
 
-<!--  NavBar -->
-<nav class="navbar navbar-expand-md navbar-dark">
-	<a href="/" class="navbar-brand">
-		<h3 class="mb-0">FVIV FESTIVAL</h3>
-	</a>
-	<button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="mainNavbar">
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<a href="/" class="nav-link">Home</a>
-			</li>
-			<li class="nav-item">
-				<a href="/contracts/create" class="nav-link active">Update an Account</a>
-			</li>
-		</ul>
-	</div>
-</nav>
+	<!--  NavBar -->
+	<nav class="navbar navbar-expand-md navbar-dark">
+		<a href="/" class="navbar-brand">
+			<h3 class="mb-0">FVIV FESTIVAL</h3>
+		</a>
+		<button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="mainNavbar">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a href="/" class="nav-link">Home</a>
+				</li>
+				<li class="nav-item">
+					<a href="/contracts/create" class="nav-link active">Update an Account</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-<!--  Overlay -->
-<section class="d-flex align-items-center" id="showcase">
-	<div id="overlay"></div>
-	<div id="header" class="container text-white text-center">
-		<h3 class="display-5 mb-0">The Amazing Account Site</h3>
-		<h1 class="display-3">Updating an Account huh?</h1>
-		<p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
+	<!--  Overlay -->
+	<section class="d-flex align-items-center" id="showcase">
+		<div id="overlay"></div>
+		<div id="header" class="container text-white text-center">
+			<h3 class="display-5 mb-0">The Amazing Account Site</h3>
+			<h1 class="display-3">Updating an Account huh?</h1>
+			<p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
 
-	</div>
-</section>
-<section>
-	<div class="container my-5">
-		<h3> Update Contract!</h3>
-		<div class="card">
-			<div class="card-body">
-				<div class="col-md-8">
-					<form action="#" th:action="@{/contracts/update/{id}(id=${contract.id})}" th:object="${contract}" method="post">
-						<div class="row">
-							<div class="form-group col-md-6">
-								<label for="name" class="col-form-label">Name</label> <input type="text" th:field="*{name}"
-									class="form-control" id="name" placeholder="Name"> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+		</div>
+	</section>
+	<section>
+		<div class="container my-5">
+			<h3> Update Contract!</h3>
+			<div class="card">
+				<div class="card-body">
+					<div class="col-md-8">
+						<form action="#" th:action="@{/contracts/update/{id}(id=${contract.id})}" th:object="${contract}"
+							method="post">
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="name" class="col-form-label">Name</label> <input type="text" th:field="*{name}"
+										class="form-control" id="name" placeholder="Name"> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
 									class="text-danger"></span>
 							</div>
 							<div class="form-group col-md-8">

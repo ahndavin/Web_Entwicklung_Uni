@@ -29,7 +29,7 @@ public class EconomicController {
     }
 
     // GetMapping
-    @PreAuthorize("hasRole('MANAGER')")
+    @PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') ")
     @GetMapping(path = "/accountancy")
     public String goToAccountancy(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result,
             Model model) {
@@ -41,11 +41,11 @@ public class EconomicController {
 
         Festival festival = festivalOptinal.get();
 
-	
+
         model.addAttribute("entrylist", economicManager.getAll(festival));
         model.addAttribute("sumRevenues", economicManager.getRevenues(festival));
         model.addAttribute("sumExpenses", economicManager.getExpenses(festival));
         model.addAttribute("sumAll", economicManager.getSum(festival));
 		return "accountancy";
-	} 
+	}
 }

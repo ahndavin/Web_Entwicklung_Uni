@@ -38,8 +38,8 @@
 
 
   <!-- Manager Intro Section -->
-  <div th:fragment="usersection" sec:authorize="hasRole('MANAGER')" id=" home" class="view jarallax"
-    data-jarallax='{"speed": 0.2}'
+  <div th:fragment="usersection" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')" id=" home"
+    class="view jarallax" data-jarallax='{"speed": 0.2}'
     style="background-image: url(https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);">
     <div class="mask rgba-black-strong">
       <div class="container h-100 d-flex justify-content-center align-items-center mt-5">
@@ -56,8 +56,8 @@
   </div>
 
   <!-- FestivalManager Intro Section -->
-  <div th:fragment="usersection" sec:authorize="hasRole('FESTIVAL_MANAGER')" id=" home" class="view jarallax"
-    data-jarallax='{"speed": 0.2}'
+  <div th:fragment="usersection" sec:authorize="hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')"
+    id=" home" class="view jarallax" data-jarallax='{"speed": 0.2}'
     style="background-image: url(https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);">
     <div class="mask rgba-black-strong">
       <div class="container h-100 d-flex justify-content-center align-items-center mt-5">
@@ -75,8 +75,8 @@
 
 
   <!-- Catering Intro Section -->
-  <div th:fragment="usersection" sec:authorize="hasRole('CATERING')" id=" home" class="view jarallax"
-    data-jarallax='{"speed": 0.2}'
+  <div th:fragment="usersection" sec:authorize="hasAuthority('CATERING') or hasRole('CATERING')" id=" home"
+    class="view jarallax" data-jarallax='{"speed": 0.2}'
     style="background-image: url(https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);">
     <div class="mask rgba-black-strong">
       <div class="container h-100 d-flex justify-content-center align-items-center mt-5">
@@ -94,8 +94,8 @@
 
 
   <!-- Security Intro Section -->
-  <div th:fragment="usersection" sec:authorize="hasRole('SECURITY')" id=" home" class="view jarallax"
-    data-jarallax='{"speed": 0.2}'
+  <div th:fragment="usersection" sec:authorize="hasAuthority('SECURITY') or hasRole('SECURITY')" id=" home"
+    class="view jarallax" data-jarallax='{"speed": 0.2}'
     style="background-image: url(https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);">
     <div class="mask rgba-black-strong">
       <div class="container h-100 d-flex justify-content-center align-items-center mt-5">
@@ -113,8 +113,8 @@
 
 
   <!-- TICKET_SALESMAN Intro Section -->
-  <div th:fragment="usersection" sec:authorize="hasRole('TICKET_SALESMAN')" id=" home" class="view jarallax"
-    data-jarallax='{"speed": 0.2}'
+  <div th:fragment="usersection" sec:authorize="hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')"
+    id=" home" class="view jarallax" data-jarallax='{"speed": 0.2}'
     style="background-image: url(https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);">
     <div class="mask rgba-black-strong">
       <div class="container h-100 d-flex justify-content-center align-items-center mt-5">

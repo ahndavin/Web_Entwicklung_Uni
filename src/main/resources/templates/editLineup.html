@@ -17,63 +17,89 @@
 
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
-  		var currentURL = "@{" + location.pathname + "}";
-  		var s = document.getElementById("contract");
-  	    var selectedOption = s.options[s.selectedIndex].value;
+    var currentURL = "@{" + location.pathname + "}";
+    var s = document.getElementById("contract");
+    var selectedOption = s.options[s.selectedIndex].value;
+
+    function deleteLineup(id) {
+      var result = confirm("Lineup wirklich löschen?");
+
+      if (result) {
+        location.href = location.pathname + "/delete";
+      }
+    }
   </script>
   <!--  NavBar -->
+  <section
+    sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
+  </section>
   <nav class="navbar navbar-expand-md navbar-dark">
     <a href="/" class="navbar-brand">
-      <h3 class="mb-0">FVIV FESTIVAL</h3>
+      <h3 class="mb-0">FVIV</h3>
     </a>
+    <ul class="navbar-nav mr-auto smooth-scroll">
+      <li class="nav-item">
+        <a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()} + '/stage'}"
+          class="nav-link">Back</a>
+      </li>
+    </ul>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a th:href="@{'/location/' + ${location.getName()}}" class="nav-link ">Overview of Location</a>
-        </li>
-        <li class="nav-item">
-          <a th:href="@{'/location/' + ${location.getName()} + '/area'}" class="nav-link">See all existing Areas</a>
-        </li>
-        <li class="nav-item">
-          <a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()} + '/stage'}" class="nav-link">See all existing Stages</a>
-        </li>
-      </ul>
-    </div>
+    <ul class="navbar-nav nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="fas fa-user-secret"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+          <input hidden type="submit" value="Sign Out" />
+        </form>
+      </li>
+    </ul>
   </nav>
-
   <!--  Overlay -->
-  <section class="d-flex align-items-center" id="showcase">
+  <section class="d-flex align-items-center" id="showcase2">
     <div id="overlay"></div>
     <div id="header" class="container text-white text-center">
-      <h3 class="display-5 mb-0">Creating the awesome Stage?!</h3>
-      <h1 class="display-3">Where should it be?</h1>
-      <p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
-
+      <h1 class="text-center dark-grey-text font-weight-bold mb-5 pt-3">
+        <strong>Edit Lineup</strong>
+      </h1>
     </div>
   </section>
+  <br>
+  <br>
+
 
   <!--  ImputField -->
   <section>
-    <div id="wrapper" class="container text-center">
+    <div id="wrapper" class="container text-center card">
+      <br>
       <h1 class="mb-3 mt-5">Edit Lineup</h1>
       <form method="POST" th:action="${currentURL}" th:object="${lineup}">
-      	<label for="date">date</label>
-        <input type="text" required="required" th:field="*{date}" class="form-control"/>
+        <label for="festival">Festival : </label>
+        <select id="festival" name="festival" required="required" class="festival">
+          <option th:each="festival : ${festivalList}" th:text="${festival.getName()}"
+            th:value="${festival.getName()}" />
+        </select><br />
+        <label for="contract">Artist : </label>
+        <select id="contract" name="contract" class="contract">
+          <option th:each="contract : ${contractList}" th:text="${contract.getArtist()}" th:value="${contract}" />
+        </select><br />
+        <label for="date">Date</label>
+        <input type="text" required="required" th:field="*{date}" class="form-control" />
         <br />
-        <label for="contract">Artist</label><br/>
-        <select id="contract" name="contract" required="required" class="contract">
-			<option th:each="contract : ${contractList}" th:text="${contract.getArtist()}" th:value="${contract}"/>
-		</select>
-		<br />
-		<br />		
-		
-		<input type="hidden" name="contract" th:value="${selectOption}"/>
-		<button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">Cancel</button>
-        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Edit Lineup</button>
+        <a class="btn btn-danger" id="deleteLink" th:onclick="'deleteLineup(' + ${lineup.getId()} + ')'" href="#">Delete
+          Lineup</a>
+        <br />
+        <br />
+        <input type="hidden" name="contract" th:value="${selectOption}" />
+        <button type="button" onclick="goBack()" class="btn btn-danger text-light">Cancel</button>
+        <button type="submit" class="btn btn-success text-light">Edit Lineup</button>
       </form>
+      <br>
     </div>
   </section>
   <br>
@@ -91,9 +117,9 @@
     crossorigin="anonymous"></script>
 
   <script>
-  	function goBack() {
-	    window.history.back();
-	}
+    function goBack() {
+      window.history.back();
+    }
     // Get the current year for the copyright
     $("#year").text(new Date().getFullYear());
   </script>

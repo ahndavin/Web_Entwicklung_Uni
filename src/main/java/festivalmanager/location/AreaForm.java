@@ -1,12 +1,7 @@
 package festivalmanager.location;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
-public class Area {
-	private @Id @GeneratedValue long id;
+public class AreaForm {
+	private long id;
 	private long locationId;
 	private String zone;
 	private boolean blocked;
@@ -14,18 +9,6 @@ public class Area {
 	private Integer maxVisitors;
 	private Integer maxStages;
 	private Type type;
-	
-	@SuppressWarnings("unused")
-	private Area() {}
-	
-	public Area(String zone, Integer maxVisitors, Integer maxStages, Type type) {
-		this.zone = zone;
-		this.maxVisitors = maxVisitors;
-		this.maxStages = maxStages;
-		this.blocked = false;
-		this.currVisitors = 0;
-		this.type = type;
-	}
 	
 	public long getId() {
 		return id;
@@ -53,19 +36,6 @@ public class Area {
 	
 	public boolean getStatus() {
 		return blocked;
-	}
-	
-	public boolean toggleLock() {
-		blocked = !blocked;
-		
-		return blocked;
-	}
-	
-	public Integer countVisitors(Integer visitors) {
-		if(currVisitors + visitors < 0)
-			return null;
-		
-		return currVisitors += visitors;
 	}
 	
 	public Integer getCurrVisitors() {
@@ -100,7 +70,7 @@ public class Area {
 		return this.type = type;
 	}
 	
-	public String toString() {
-		return zone;
+	public Area toArea() {
+		return new Area(zone, maxVisitors, maxStages, type);
 	}
 }

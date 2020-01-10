@@ -70,6 +70,13 @@ body {
 	min-height: 500px;
 	position: relative;
   }
+
+  #showcase2{
+    background: url("https://images.unsplash.com/photo-1492269682833-cd80f8a20b08?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80") bottom center / cover no-repeat;
+    min-height: 500px;
+    position: relative;
+  }
+
   
   #showcase h1{
 	line-height: 1;

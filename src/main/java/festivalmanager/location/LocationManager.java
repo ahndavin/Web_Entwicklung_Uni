@@ -3,8 +3,8 @@ package festivalmanager.location;
 import java.util.List;
 import java.util.LinkedList;
 
-import festivalmanager.festival.Festival;
 import festivalmanager.contract.*;
+import festivalmanager.festival.Festival;
 
 import org.springframework.stereotype.Service;
 import org.springframework.data.util.Streamable;
@@ -19,8 +19,8 @@ public class LocationManager {
 
  	public LocationManager(	LocationRepository locationRepository, AreaRepository areaRepository,
 							StageRepository stageRepository, LineupRepository lineupRepository,
-							ContractsRepository contractsRepository)
- 	{
+							ContractsRepository contractsRepository) {
+ 		
  		this.locationRepository = locationRepository;
  		this.areaRepository = areaRepository;
  		this.stageRepository = stageRepository;
@@ -32,22 +32,47 @@ public class LocationManager {
 	public Location save(Location location) {
 		return locationRepository.save(location);
 	}
+	
+	public Location update(LocationForm locationForm, long locationId) {
+		Location location = findById(locationId);
+		Location editedLocation= locationForm.toLocation();
+		
+		editedLocation.setId(location.getId());
+		editedLocation.setStatus(location.getStatus());
+		editedLocation.setCurrVisitors(location.getCurrVisitors());
+		
+		return save(editedLocation);
+	}
 
 	public void deleteLocationById(long id) {
 		locationRepository.deleteById(id);
+	}
+	
+	public Location findById(long id) {
+		int i = 0;
+		List<Location> locations = findAllLocations();
+		
+		while(i < locations.size()) {
+			if(locations.get(i).getId() == id)
+				break;
+			
+			i++;
+		}
+		
+		return locationRepository.findById(locations.get(i).getId()).get();
 	}
 
 	public Location findByName(String name) {
 		int i = 0;
 		List<Location> locations = findAllLocations();
-
+		
 		while(i < locations.size()) {
 			if(locations.get(i).getName().equals(name))
 				break;
 
 			i++;
 		}
-
+		
 		return locationRepository.findById(locations.get(i).getId()).get();
 	}
 
@@ -60,9 +85,34 @@ public class LocationManager {
 	public Area save(Area area){
 		return areaRepository.save(area);
 	}
+	
+	public Area update(Location location, AreaForm areaForm, long areaId) {
+		Area area = findById(location, areaId);
+		Area editedArea = areaForm.toArea();
+		
+		editedArea.setId(area.getId());
+		editedArea.setLocationId(area.getLocationId());
+		editedArea.setCurrVisitors(area.getCurrVisitors());
+		
+		return save(editedArea);
+	}
 
 	public void deleteAreaById(long id) {
 		areaRepository.deleteById(id);
+	}
+	
+	public Area findById(Location location, long id) {
+		int i = 0;
+		List<Area> areas = findAllAreas(location);
+
+		while(i < areas.size()) {
+			if(areas.get(i).getId() == id)
+				break;
+
+			i++;
+		}
+
+		return areaRepository.findById(areas.get(i).getId()).get();
 	}
 
 	public Area findByName(Location location, String name) {
@@ -94,11 +144,35 @@ public class LocationManager {
 	public Stage save(Stage stage){
 		return stageRepository.save(stage);
 	}
+	
+	public Stage update(Area area, StageForm stageForm, long stageId) {
+		Stage stage = findById(area, stageId);
+		Stage editedStage = stageForm.toStage();
+		
+		editedStage.setId(stage.getId());
+		editedStage.setAreaId(stage.getAreaId());
+		
+		return save(editedStage);
+	}
 
 	public void deleteStageById(long id) {
 		stageRepository.deleteById(id);
 	}
 
+	public Stage findById(Area area, long id) {
+		int i = 0;
+		List<Stage> stages = findAllStages(area);
+
+		while(i < stages.size()) {
+			if(stages.get(i).getId() == id)
+				break;
+
+			i++;
+		}
+
+		return stageRepository.findById(stages.get(i).getId()).get();
+	}
+	
 	public Stage findByName(Area area, String name) {
 		int i = 0;
 		List<Stage> stages = findAllStages(area);
@@ -129,6 +203,18 @@ public class LocationManager {
 	//--------Lineup--------
 	public Lineup save(Lineup lineup){
 		return lineupRepository.save(lineup);
+	}
+	
+	public Lineup update(Stage stage, LineupForm lineupForm, long lineupId) {
+		Lineup lineup = findById(stage, lineupId);
+		Lineup editedLineup = lineupForm.toLineup();
+		
+		editedLineup.setId(lineup.getId());
+		editedLineup.setStageId(lineup.getStageId());
+		editedLineup.setArtist(lineup.getArtist());
+		editedLineup.festival = lineup.festival;
+		
+		return save(editedLineup);
 	}
 
 	public void deleteLineupById(long id) {
@@ -164,5 +250,9 @@ public class LocationManager {
 
 	public Streamable<Contract> findByName() {
 		return contractsRepository.findAll();
+	}
+	
+	public Iterable<Festival> findFestivals() {
+		return LocationController.getFestivalManager().findAll();
 	}
 }

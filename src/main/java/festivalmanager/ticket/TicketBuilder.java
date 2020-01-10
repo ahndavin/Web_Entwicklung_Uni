@@ -40,6 +40,10 @@ public class TicketBuilder {
 		return amountDaytickets;
 	}
 
+	public int getAmountDayticketsInt() {
+		return amountDaytickets.getAmount().intValue();
+	}
+
 	public void setAmountDaytickets(Quantity dayticketAmount) {
 		this.amountDaytickets = dayticketAmount;
 	}
@@ -58,6 +62,10 @@ public class TicketBuilder {
 
 	public Quantity getAmountCampingtickets() {
 		return amountCampingticket;
+	}
+
+	public int getAmountCampingticketsInt() {
+		return amountCampingticket.getAmount().intValue();
 	}
 
 	public void setAmountCampingtickets(Quantity campingticketAmount) {

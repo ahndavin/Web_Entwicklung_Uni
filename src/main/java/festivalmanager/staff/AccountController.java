@@ -54,7 +54,7 @@ class 	AccountController {
 			return "redirect:/";
 		}
 
-		//@PreAuthorize("hasRole('MANAGER')")
+		@PreAuthorize("hasRole('MANAGER') or hasAuthority('MANAGER')" )
 		@GetMapping("/createAccount")
 		String createAccount(Model model, CreationForm form, Errors result) {
 			model.addAttribute("form", form);
@@ -62,7 +62,7 @@ class 	AccountController {
 			return "createAccount";
 		}
 
-		@PreAuthorize("hasRole('MANAGER')")
+		@PreAuthorize("hasRole('MANAGER') or hasAuthority('MANAGER')" )
 		@GetMapping("/allAccounts")
 		String allAccounts(Model model){
 			model.addAttribute("accountList", accountManager.findAll());
@@ -97,10 +97,10 @@ class 	AccountController {
 		String changePasswordPost( @LoggedIn UserAccount account, @Valid changePasswordForm form, Model model){
 			accountManager.changePassword(account, form);
 
-			return "redirect:/";
+			return "redirect:/#staff";
 		}
 
-		@PreAuthorize("hasRole('MANAGER')")
+		@PreAuthorize("hasRole('MANAGER') or hasAuthority('MANAGER')")
 		@GetMapping("/changePassword/{name}")
 		String changePasswordByUsername(Model model, changePasswordForm form, @PathVariable String name){
 			model.addAttribute("form", form);
@@ -114,15 +114,15 @@ class 	AccountController {
 
 			accountManager.changePassword(userAccounts.findByUsername(name).get(), form);
 			LOG.info("changing password for " + name);
-			return "redirect:/allAccounts";
+			return "redirect:/#staff";
 		}
 
 
-
+		@PreAuthorize("hasRole('MANAGER') or hasAuthority('MANAGER')" )
 		@GetMapping("/deleteAccount/{name}")
 		String deleteAccount(Model model, @PathVariable String name){
 			accountManager.deleteAccount(accountManager.findByUserAccount(userAccounts.findByUsername(name).get()).get());
-			return "redirect:/#accounts";
+			return "redirect:/#staff";
 		}
 
 		@GetMapping("/sendMessage/{name}")
@@ -142,7 +142,7 @@ class 	AccountController {
 		@PostMapping("/sendMessage")
 		String sendMessagePost(Model model, @Valid @ModelAttribute("form") MessageForm form){
 			accountManager.sendMessage(form);
-			return "redirect:/";
+			return "redirect:/#staff";
 		}
 
 }

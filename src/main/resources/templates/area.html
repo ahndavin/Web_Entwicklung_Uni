@@ -16,100 +16,98 @@
 <body>
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
-  	function goToCreateArea() {
-		var currURL = location.pathname
-		currURL = currURL.replace("/area", "/createArea");
-		location.href = currURL;
-	}
+    function goToCreateArea() {
+      var currURL = location.pathname
+      currURL = currURL.replace("/area", "/createArea");
+      location.href = currURL;
+    }
   </script>
-  <!--  NavBar -->
-  <nav class="navbar navbar-expand-md navbar-dark">
-    <a href="/" class="navbar-brand">
-      <h3 class="mb-0">FVIV FESTIVAL</h3>
-    </a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ml-auto">
+
+  <section
+    sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
+
+    <!--  NavBar -->
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <a href="/" class="navbar-brand">
+        <h3 class="mb-0">FVIV</h3>
+      </a>
+      <ul class="navbar-nav mr-auto smooth-scroll">
         <li class="nav-item">
-          <a th:href="@{'/location/' + ${location.getName()}}" class="nav-link ">Overview of Location</a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link active">See all existing Areas</a>
+          <a href="/location" class="nav-link">Back</a>
         </li>
       </ul>
-    </div>
-  </nav>
-
-  <!--  Overlay -->
-  <section class="d-flex align-items-center" id="showcase">
-    <div id="overlay"></div>
-    <div id="header" class="container text-white text-center">
-      <h3 class="display-5 mb-0">Amazing Location here!</h3>
-      <h1 class="display-3">For real! This Location is glorious!!</h1>
-      <p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
-    </div>
-  </section>
-
-  
-  <div id="wrapper" class="container">
-    <h1 class="text-center mb-05">Current Areas</h1>
-    <div class="container text-center">
-      <ul class="list-group" th:each="area : ${areaList}">
-      			<h3 th:text="'Area: ' + ${area.getZone()}"></h3>
-				
-				<li class="list-group-item">
-					<label for="type"><b>Type: </b></label>
-					<label th:text="${area.getType()}"></label>
-				</li>
-				
-				<li class="list-group-item">
-					<form method="get" th:action="@{'/location/' + ${location.getName()} + '/area/changeStatus'}">
-						<label for="blocked"><b>Blocked: </b></label>
-						<input type="hidden" name="area" th:value="${area}"/>
-						<button id="btn__" type="submit" th:text="${area.getStatus()}"></button>
-		      		</form>
-				</li>
-				
-				<li class="list-group-item">
-					<label for="currVisitors"><b>Current Visitors: </b></label>
-					<label th:text="${area.getCurrVisitors()}"></label>
-				</li>
-				
-				<li class="list-group-item">
-					<label for="maxVisitors"><b>Maximum Visitors: </b></label>
-					<label th:text="${area.getMaxVisitors()}"></label>
-				</li>
-				
-				<li th:if="${area.getMaxStages()!=null}" class="list-group-item">
-					<label for="maxStages"><b>Maximum Stages: </b></label>
-					<label th:text="${area.getMaxStages()}"></label>
-				</li>
-				
-				<li class="list-group-item">
-					<button id="btn_" class="btn btn-lg btn-dark">
-						<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}}" class="text-light">Edit Area</a>
-	      			</button>
-					<button th:if="${area.getMaxStages()!=null}" id="btn_" class="btn btn-lg btn-dark">
-	       		 		<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage'" class="text-light">View Stages</a>
-	      			</button>
-				</li>
-				<br>
-				<br>
-			</ul>
-    </div>
-  </div>
-  <br>
-  <section class="d-flex align-items-center mb-02">
-    <div id="header" class="container text-white text-center">
-      <button id="btn" class="btn btn-lg btn-dark">
-        <a href="#" onclick="goToCreateArea()" class="text-light">Create a new Area</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
       </button>
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-user-secret"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+          <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Sign Out" />
+          </form>
+        </li>
+      </ul>
+    </nav>
+    <!--  Overlay -->
+    <section class="d-flex align-items-center" id="showcase2">
+      <div id="overlay"></div>
+      <div id="header" class="container text-white text-center">
+        <h1 class="text-center dark-grey-text font-weight-bold mb-5 pt-3">
+          <strong>All Areas</strong>
+        </h1>
+      </div>
+    </section>
+
+
+
+    <div id="wrapper" class="container">
+      <h1 class="text-center mb-05">Current Areas</h1>
+      <div class="container text-center">
+        <ul class="list-group" th:each="area : ${areaList}">
+          <h3 th:text="'Area: ' + ${area.getZone()}"></h3>
+
+          <li class="list-group-item">
+            <label for="type"><b>Type: </b></label>
+            <label th:text="${area.getType()}"></label>
+          </li>
+
+          <li class="list-group-item">
+            <form method="get" th:action="@{'/location/' + ${location.getName()} + '/area/changeStatus'}">
+              <label for="blocked"><b>Blocked: </b></label>
+              <input type="hidden" name="area" th:value="${area}" />
+              <button id="btn__" type="submit" th:text="${area.getStatus()}"></button>
+              <button id="btn_" class="btn btn-success">
+                <a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getId()}}"
+                  class="text-light">Edit Area</a>
+              </button>
+              <button th:if="${area.getMaxStages()!=null}" id="btn_" class="btn btn-dark">
+                <a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage'"
+                  class="text-light">View Stages</a>
+              </button>
+          </li>
+          <br>
+          <br>
+        </ul>
+      </div>
     </div>
+    <br>
+    <section class="d-flex align-items-center mb-02">
+      <div id="header" class="container text-white text-center">
+        <button class="btn btn-primary">
+          <a href="#" onclick="goToCreateArea()" class="text-light">Create a new Area</a>
+        </button>
+      </div>
+    </section>
+    <br>
+    <br>
   </section>
-  <br>
-  <br>
+
+
 
 
 

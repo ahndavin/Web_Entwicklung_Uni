@@ -166,127 +166,85 @@
 
     <!-- Section 2 Manager -->
 
-    <section id="accounts" sec:authorize="hasAuthority('MANAGER')">
-      <table class="table table-bordered">
-        <thead class="black white-text">
-          <tr>
-            <th>NAME</th>
-            <th>FIRST NAME</th>
-            <th>LAST NAME</th>
-            <th>ROLES</th>
-            <th>HOURLY WAGE</th>
-            <th>HOURS WORKED</th>
-            <th>FESTIVAL</th>
-            <th>DELETE</th>
-            <th>CHANGE PASSWORD</th>
-          </tr>
-        </thead>
-        <tbody>
-          <th:block th:each="account:${accountList}">
-            <tr>
-              <td th:text="${account.getUserAccount().username}"></td>
-              <td th:text="${account.firstName}"></td>
-              <td th:text="${account.lastName}"></td>
-              <td th:text="${account.getUserAccount().roles.toList()}"></td>
-              <td th:text="${account.getHourlyWageWithoutNull()}"></td>
-              <td th:text="${account.getWorkedHoursWithoutNull()}"></td>
-              <td th:text="${account.festivalNameWithoutNull}"></td>
-              <td>
-                <form th:action="@{deleteAccount/{name}(name=${account.getUserAccount().username})}" method="get">
-                  <a type="submit" th:href="@{deleteAccount/{name}(name=${account.getUserAccount().username})}"
-                    th:text="#{deleteAccount}" class="btn btn-red">
-                  </a>
-                </form>
-              </td>
-              <td>
-                <form th:action="@{changePassword/{name}(name=${account.getUserAccount().username})}" method="get">
-                  <a type="submit" th:href="@{changePassword/{name}(name=${account.getUserAccount().username})}"
-                    th:text="#{change.password}" class="btn btn-green">
-                  </a>
-                </form>
-              </td>
-        </tbody>
+    <!-- Ticket Sell -->
+    <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')" id="tickets" class="mt-5 mb-5">
 
+      <!-- Section heading -->
+      <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+        <strong>Ticket Sale and Festivalspecific Accountancy</strong>
+      </h3>
 
-      </table>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
-        Create Account
-      </button>
+      <!--Grid row-->
+      <div class="row features-small pt-4">
 
-      <!-- Modal -->
-      <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="createAccountModal"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="createAccountModal">Create an Account</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="accountAddForm" th:action="@{/createAccount}" th:object="${form}" method="POST">
+        <!--Grid column-->
 
-                <div class="field">
-                  <label for="usrName">Username</label><br />
-                  <input id="usrName" name="usrName" th:field="*{usrName}" th:errorclass="fieldError" type="text"
-                    required="required" />
-                </div>
+        <!-- Card -->
+        <div class="card" th:each="festival : ${festivals}">
 
-                <div class="field">
-                  <label th:text="#{createAccount.password}" for="password">password</label><br />
-                  <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
-                    required="required" />
-                </div>
+          <!-- Card content -->
+          <div class="card-body">
 
-                <div class="field">
-                  <label for="firstName">First Name</label><br />
-                  <input id="firstName" name="firstName" th:field="*{firstName}" th:errorclass="fieldError" type="text"
-                    required="required" />
-                </div>
+            <!-- Title -->
+            <h4 class="font-weight-bold indigo-text text-center">
+              <strong td th:text="${festival.name}"></strong> <br>
+            </h4>
+            <h6 class="mb-3 font-weight-bold dark-grey-text text-center" th:text="${festival.startDate}">
+              Festival1.startdate</h6>
 
-                <div class="field">
-                  <label for="lastName">Last Name</label><br />
-                  <input id="lastName" name="lastName" th:field="*{lastName}" th:errorclass="fieldError" type="text"
-                    required="required" />
-                </div>
+            <!-- Text -->
 
-                <div class="field">
-                  <label th:text="#{createAccount.festivalManager}" for="festivalManager">Festival Manager</label>
-                  <input id="festivalManager" name="festivaManager" th:field="*{festivalManager}"
-                    th:errorclass="fieldError" type="checkbox" />
-                </div>
+            <h5 class="text-center">Available / Price</h5>
+            <h5 class="text-center"
+              th:text="${'' + festival.ticketBuilder.amountDaytickets} + ' / ' + ${festival.ticketBuilder.priceDayticket}">
+            </h5>
+            <form method="post" role="form" class="ui form" name="form" th:action="@{/ticketDay}">
+              <input type="hidden" th:value="${festival.getId()}" name="id" />
+              <input type="hidden" value="DAYTICKET" name="sort_str" />
+              <div class="text-center">
+                <button onclick="return confirm('Was the ticket paid for?');" class="btn btn-primary">Sell
+                  Dayticket</button>
+              </div>
+            </form>
+            <br>
+            <hr>
+            <h5 class="text-center">Available / Price</h5>
+            <h5 class="text-center"
+              th:text="${festival.ticketBuilder.amountCampingtickets} + ' / ' + ${festival.ticketBuilder.priceCampingticket}">
+            </h5>
+            <form method="post" role="form" class="ui form" name="form" th:action="@{/ticketCamping}">
+              <input type="hidden" th:value="${festival.getId()}" name="id" />
+              <input type="hidden" value="CAMPINGTICKET" name="sort_str" />
+              <div class="text-center">
+                <button onclick="return confirm('Was the ticket paid for?');" class="btn btn-primary">Sell
+                  Campingticket</button>
+              </div>
+            </form>
+            <hr>
+            <form method="get" role="form" class="ui form" name="form" th:action="@{/accountancy}">
+              <input type="hidden" th:value="${festival.getId()}" name="id" />
+              <div class="text-center">
+                <button type="submit" class="btn btn-green">
+                  <strong>See Accountancy</strong>
+                </button>
+              </div>
 
-                <div class="field">
-                  <label th:text="#{createAccount.catering}" for="catering">catering</label>
-                  <input id="catering" name="catering" th:field="*{catering}" th:errorclass="fieldError"
-                    type="checkbox" />
-                </div>
-
-                <div class="field">
-                  <label th:text="#{createAccount.security}" for="security">Security</label>
-                  <input id="security" name="security" th:field="*{security}" th:errorclass="fieldError"
-                    type="checkbox" />
-                </div>
-
-                <div class="field">
-                  <label th:text="#{createAccount.ticketSalesman}" for="ticketSalesman">Ticket Salesman</label>
-                  <input id="ticketSalesman" name="ticketSalesman" th:field="*{ticketSalesman}"
-                    th:errorclass="fieldError" type="checkbox" />
-                </div>
-
-                <input class="btn btn-dark" type="submit" value="Create">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-              </form>
-            </div>
+            </form>
           </div>
+
         </div>
+        <!-- Card -->
+        <br>
+        <hr>
+
       </div>
+      <!--Grid row-->
+
     </section>
+    <!-- Ticket Sell -->
 
     <!-- Section 2 Festival Manager -->
-    <section id="festivals" sec:authorize="hasRole('FESTIVAL_MANAGER')">
+    <section id="festivals" sec:authorize="hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
         <strong>All Festivals</strong>
       </h3>
@@ -346,7 +304,11 @@
 
 
     <!-- Section 2 Catering -->
+<<<<<<< HEAD
     <section id="schedule" class="my-5" sec:authorize="hasRole('CATERING')">
+=======
+    <section id="schedule" class="my-5" sec:authorize="hasAuthority('CATERING') or hasRole('CATERING')">
+>>>>>>> develop
 
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-5 wow fadeIn" data-wow-delay="0.2s">
         <strong>Event Schedule Festival1.Name + Festival1.startdate</strong>
@@ -490,7 +452,11 @@
     </section>
 
     <!-- Section 2 SECURITY -->
+<<<<<<< HEAD
     <section id="schedule" class="my-5" sec:authorize="hasRole('SECURITY')">
+=======
+    <section id="schedule" class="my-5" sec:authorize="hasAuthority('SECURITY') or hasRole('SECURITY')">
+>>>>>>> develop
 
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-5 wow fadeIn" data-wow-delay="0.2s">
         <strong>Event Schedule Festival1.Name + Festival1.startdate</strong>
@@ -635,7 +601,11 @@
     </section>
 
     <!-- Section 2 TICKET_SALESMAN -->
+<<<<<<< HEAD
     <section id="schedule" class="my-5" sec:authorize="hasRole('TICKET_SALESMAN')">
+=======
+    <section id="schedule" class="my-5" sec:authorize="hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')">
+>>>>>>> develop
 
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-5 wow fadeIn" data-wow-delay="0.2s">
         <strong>Event Schedule Festival1.Name + Festival1.startdate</strong>

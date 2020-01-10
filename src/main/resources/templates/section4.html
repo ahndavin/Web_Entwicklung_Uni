@@ -21,30 +21,22 @@
 
     <!-- Section 4 MANAGER -->
 
+    <div class="container" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
+      <hr>
+      <section id="inventory" class="mt-5 mb-5">
 
-    <br>
-    <div class="container">
-      <section id="messages" sec:authorize="hasRole('MANAGER')">
-        <table class="table table-bordered">
-          <thead class="black white-text">
-            <tr>
-              <th>CURRENTLY ONLINE</th>
+        <!-- Section heading -->
+        <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+          <strong>Down below you can go to the Inventory containing every Item, which can be sold on a specific
+            Festival</strong>
+        </h3>
+        <div class="text-center">
+          <a href="/inventory" class="btn btn-primary">See Inventory</a>
+        </div>
 
-            </tr>
-          </thead>
-          <tbody>
 
-            <th:block th:each="account : ${accountManager.getUsersFromSessionRegistry()}">
-              <tr>
-                <td th:text="${account}"></td>
-              </tr>
-            </th:block>
-          </tbody>
-        </table>
       </section>
     </div>
-
-
     <!-- Section 4 FESTIVAL_MANAGER -->
 
     <!-- Section 4 CATERING -->

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import festivalmanager.festival.Festival;
 import festivalmanager.festival.FestivalIdForm;
 
 @Controller
@@ -32,41 +31,28 @@ public class TicketController {
 
 	//PostMapping
 	@PostMapping(path = "/ticketCamping")
-	 	public String buyCampingticket2(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
-
-		Festival festival = ticketManagement.findById(festivalIdForm.getId());
+	public String buyCampingticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
 		if(result.hasErrors()){
 			return "welcome";
 		} else{
-			if(ticketManagement.dayTicketIsAvailable(festivalIdForm.getSort(), festival) && festivalIdForm.getSort() == Sort.DAYTICKET){
-				ticketManagement.buyDayticket(festival);
-			}
-			if(ticketManagement.campingTicketIsAvailable(festivalIdForm.getSort(), festival) && festivalIdForm.getSort() == Sort.CAMPINGTICKET){
-				ticketManagement.buyCampingticket(festival);
-			}
+			ticketManagement.buyTicket(festivalIdForm);
 		}
 
-		model.addAttribute("festivallist", ticketManagement.findAll());
-		return "redirect:/#ticketsell	";
+	model.addAttribute("festivallist", ticketManagement.findAll());
+	return "redirect:/#tickets	";
 	}
 
 
 	@PostMapping(path = "/ticketDay")
-	public String buyDayticket3(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
-		Festival festival = ticketManagement.findById(festivalIdForm.getId());
-		if(result.hasErrors()){
-			return "welcome";
-		} else{
-			if(ticketManagement.dayTicketIsAvailable(festivalIdForm.getSort(), festival) && festivalIdForm.getSort() == Sort.DAYTICKET){
-				ticketManagement.buyDayticket(festival);
-			}
-			if(ticketManagement.campingTicketIsAvailable(festivalIdForm.getSort(), festival) && festivalIdForm.getSort() == Sort.CAMPINGTICKET){
-				ticketManagement.buyCampingticket(festival);
-			}
-		}
+	public String buyDayticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
+	if(result.hasErrors()){
+		return "welcome";
+	} else{
+		ticketManagement.buyTicket(festivalIdForm);
+	}
 
-		model.addAttribute("festivallist", ticketManagement.findAll());
-		return "redirect:/#ticketsell";
+	model.addAttribute("festivallist", ticketManagement.findAll());
+	return "redirect:/#tickets";
 	}
 
 }

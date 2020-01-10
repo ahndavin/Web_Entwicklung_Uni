@@ -116,7 +116,7 @@ public class FestivalController {
 	/**
 	 * add a new festival
 	 */
-	@PreAuthorize("hasRole('FESTIVAL_MANAGER') or hasRole('MANAGER')")
+	@PreAuthorize("hasAuthority('FESTIVAL_MANAGER') or hasAuthority('MANAGER') or hasRole('MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("/festival/add")
 	String addFestival(Model model) {
 		model.addAttribute("festival_form", new FestivalForm());
@@ -154,7 +154,11 @@ public class FestivalController {
 	 *
 	 * @param festivalId: id of the festival
 	 */
+<<<<<<< HEAD
 	@PreAuthorize("hasRole('FESTIVAL_MANAGER') or hasRole('MANAGER')")
+=======
+	@PreAuthorize("hasAuthority('FESTIVAL_MANAGER') or hasAuthority('MANAGER') or hasRole('MANAGER') or hasRole('FESTIVAL_MANAGER')")
+>>>>>>> develop
 	@GetMapping("/festival/{festivalName}-{festivalId}/edit")
 	String editFestival(@PathVariable long festivalId, Model model) {
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
@@ -168,7 +172,7 @@ public class FestivalController {
 		if(festival.getDate()[Festival.START_DATE].getTime() < new Date().getTime()) {
 			return "redirect:/#festivals";
 		}
-		
+
 		model.addAttribute("festival_form", festival);
 		model.addAttribute("locations", locations.findAllLocations());
 
@@ -188,7 +192,7 @@ public class FestivalController {
 
 		Festival festival = festivalForm.toFestival();
 
-		if (!errors.hasErrors()) {
+		if (!errors.hasErrors() && !festival.hasErrors()) {
 			result = festivals.update(festival) != null;
 		}
 
