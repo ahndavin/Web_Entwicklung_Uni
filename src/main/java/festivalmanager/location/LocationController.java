@@ -24,8 +24,8 @@ import festivalmanager.festival.FestivalManager;
 public class LocationController {
 	private final LocationManager locationManager;
 	private static FestivalManager festivalManager;
-	boolean hasEntity = false;
-
+	boolean hasEntity, hasFestival = false;
+	
 	@SuppressWarnings("static-access")
 	public LocationController(LocationManager locationManager, FestivalManager festivalManager){
 		Assert.notNull(locationManager, "Location must not be null!");
@@ -85,6 +85,12 @@ public class LocationController {
 				break;
 			}
 		}
+		for(Festival festival : festivalManager.findAll()) {
+			if(festival.getLocation() == location.getName()) {
+				hasFestival = !hasFestival;
+				break;
+			}
+		}
 		
 		model.addAttribute("location", location);
 
@@ -98,16 +104,24 @@ public class LocationController {
 		Location location = locationManager.findById(Long.parseLong(locationIdAsString));
 		String goTo = "/location";
 		
-		if(!hasEntity) {
+		if(!hasFestival && !hasEntity) {
 			locationManager.deleteLocationById(location.getId());
 		}
-		else {
+		else if(hasFestival) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			hasEntity = false;
+			out.println("<script>alert('Es gibt Festival an diesem Location!'); location.href=' " + goTo + " ';</script>");
+			out.flush();
+		}		
+		else if(hasEntity) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			hasEntity = false;
 			out.println("<script>alert('Es gibt Area an diesem Location!'); location.href=' " + goTo + " ';</script>");
 			out.flush();
 		}
+		
 		
 		return "redirect:/location";
 	}
