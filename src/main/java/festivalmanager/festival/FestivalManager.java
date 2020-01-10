@@ -6,12 +6,15 @@ import festivalmanager.inventory.InventoryManager;
 import festivalmanager.inventory.Item;
 import festivalmanager.location.Location;
 import festivalmanager.location.LocationManager;
+import festivalmanager.staff.AccountManager;
+import festivalmanager.staff.MessageForm;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
@@ -24,16 +27,19 @@ public class FestivalManager {
 	private final InventoryManager inventory;
 	private final LocationManager locations;
 	private final EconomicManager economics;
+	private final AccountManager accounts;
 
 	public FestivalManager(FestivalRepository festivalRepository,
 						   InventoryManager inventory,
 						   LocationManager locations,
-						   EconomicManager economics) {
+						   EconomicManager economics,
+						   @Lazy AccountManager accounts) {
 
 		this.festivalRepository = festivalRepository;
 		this.inventory = inventory;
 		this.locations = locations;
 		this.economics = economics;
+		this.accounts = accounts;
 	}
 
 	public Iterable<Festival> findAll() {
@@ -181,7 +187,12 @@ public class FestivalManager {
 				return;
 
 			} else if(newQuantity.isLessThan(((Item) item.getProduct()).getMinimalQuantity())) {
-				// TODO send msg
+				accounts.sendMessage(new MessageForm(
+						"MANAGER",
+						"MANAGER",
+						null,
+						"Quantity for item " + item.getProduct().getName() + " at festival " + festival.getName() + " is below minimal quantity."
+				));
 			}
 
 			economics.add(
