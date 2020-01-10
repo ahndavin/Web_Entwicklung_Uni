@@ -171,7 +171,7 @@
 
       <!-- Section heading -->
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
-        <strong>Ticket Sale</strong>
+        <strong>Ticket Sale and Festivalspecific Accountancy</strong>
       </h3>
 
       <!--Grid row-->
@@ -217,10 +217,22 @@
                 <button onclick="return confirm('Was the ticket paid for?');" class="btn btn-primary">Sell Campingticket</button>
               </div>
             </form>
+            <hr>
+            <form method="get" role="form" class="ui form" name="form" th:action="@{/accountancy}">
+              <input type="hidden" th:value="${festival.getId()}" name="id" />
+              <div class="text-center">
+                 <button type="submit" class="btn btn-green">
+                <strong>See Accountancy</strong>
+              </button>
+              </div>
+             
+            </form>
           </div>
 
         </div>
         <!-- Card -->
+        <br>
+        <hr>
 
       </div>
       <!--Grid row-->
