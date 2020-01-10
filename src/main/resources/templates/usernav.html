@@ -71,7 +71,7 @@
     </nav>
 
     <!-- Navbar Manager -->
-    <nav sec:authorize="hasAuthority('MANAGER')" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+    <nav sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="/">FVIV</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -79,18 +79,21 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto smooth-scroll">
+          <ul class="navbar-nav mr-auto smooth-scroll"> 
             <li class="nav-item">
-              <a class="nav-link" href="#accountancy" data-offset="80">Festival Accountancy</a>
+              <a class="nav-link" href="#festivals" data-offset="40">Festivals</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#accounts" data-offset="80">Accounts</a>
+              <a class="nav-link" href="#tickets" data-offset="80">Tickets</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#tickets" data-offset="40">Manager Stuff3</a>
+              <a class="nav-link" href="#economics" data-offset="80">Economics</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#faq" data-offset="40">Manager Stuff4</a>
+              <a class="nav-link" href="#inventory" data-offset="40">Inventory</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#staff" data-offset="40">Staff</a>
             </li>
           </ul>
 
@@ -113,7 +116,7 @@
     </nav>
 
     <!-- Navbar Festival Manager -->
-    <nav sec:authorize="hasAuthority('FESTIVAL_MANAGER')"
+    <nav sec:authorize="hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')"
       class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="/">FVIV</a>
@@ -152,7 +155,7 @@
     </nav>
 
     <!-- Navbar Catering -->
-    <nav sec:authorize="hasAuthority('CATERING')"
+    <nav sec:authorize="hasAuthority('CATERING') or hasRole('CATERING')"
       class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="/">FVIV</a>
@@ -195,7 +198,7 @@
     </nav>
 
     <!-- Navbar SECURITY -->
-    <nav sec:authorize="hasAuthority('SECURITY')"
+    <nav sec:authorize="hasAuthority('SECURITY') or hasRole('SECURITY')"
       class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="/">FVIV</a>
@@ -239,7 +242,7 @@
     </nav>
 
     <!-- Navbar TICKET_SALESMAN -->
-    <nav sec:authorize="hasAuthority('TICKET_SALESMAN')"
+    <nav sec:authorize="hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')"
       class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="/">FVIV</a>

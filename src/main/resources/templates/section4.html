@@ -24,7 +24,7 @@
 
     <br>
     <div class="container">
-      <section id="messages" sec:authorize="hasAuthority('MANAGER')">
+      <section id="messages" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
         <table class="table table-bordered">
           <thead class="black white-text">
             <tr>
