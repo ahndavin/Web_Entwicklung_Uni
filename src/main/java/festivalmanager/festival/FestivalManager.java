@@ -49,6 +49,10 @@ public class FestivalManager {
 	}
 
 	public Festival save(Festival festival) {
+		if(festival.hasErrors()) {
+			return null;
+		}
+
 		Iterable<Location> locationList = locations.findAllLocations();
 
 		boolean foundLocation = false;

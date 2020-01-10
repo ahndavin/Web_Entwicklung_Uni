@@ -188,7 +188,7 @@ public class FestivalController {
 
 		Festival festival = festivalForm.toFestival();
 
-		if (!errors.hasErrors()) {
+		if (!errors.hasErrors() && !festival.hasErrors()) {
 			result = festivals.update(festival) != null;
 		}
 
