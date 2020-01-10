@@ -110,7 +110,7 @@ public class LocationController {
 		else if(hasFestival) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			hasEntity = false;
+			hasFestival = false;
 			out.println("<script>alert('Es gibt Festival an diesem Location!'); location.href=' " + goTo + " ';</script>");
 			out.flush();
 		}		

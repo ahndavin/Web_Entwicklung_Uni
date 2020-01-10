@@ -90,10 +90,10 @@
 		<li class="list-group-item">
 			<button id="btn_" class="btn btn-lg btn-dark">
 				<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getId()}}" class="text-light">Edit Area</a>
-	    			</button>
+	    	</button>
 			<button th:if="${area.getMaxStages()!=null}" id="btn_" class="btn btn-lg btn-dark">
-	     		 		<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage'" class="text-light">View Stages</a>
-	    			</button>
+	     		<a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()}} + '/stage'" class="text-light">View Stages</a>
+	    	</button>
 		</li>
 		<br>
 		<br>
