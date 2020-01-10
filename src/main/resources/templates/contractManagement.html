@@ -57,7 +57,7 @@
             <div class="card-body">
                 <div th:switch="${contract}" class="container my-5">
                     <p class="my-5">
-                        <a href="/contracts/create" class="btn btn-dark"><i class="fas fa-user-plus ml-2"> Add Contract</i></a>
+                        <a href="/contracts/create" class="btn btn-primary"><i class="fas fa-user-plus ml-2"> Add Contract</i></a>
                     </p>
                     <div class="col-md-10">
                         <h2 th:case="null">No Contracts yet!</h2>
@@ -87,7 +87,7 @@
                                     <td th:text="${contract.workinghours}"></td>
                                     <td th:text="${contract.workerswage}"></td>
 
-                                    <td><a th:href="@{/contracts/edit/{id}(id=${contract.id})}" onclick="return confirm('Are you sure you want to edit the Contract?');" class="btn btn-green"><i
+                                    <td><a th:href="@{/contracts/edit/{id}(id=${contract.id})}" onclick="return confirm('Are you sure you want to edit the Contract?');" class="btn btn-success"><i
                                             class="fas fa-user-edit ml-2"></i></a></td>
                                     <td><a th:href="@{/contracts/delete/{id}(id=${contract.id})}"  onclick="return confirm('Are you sure you want to remove the Contract?');" class="btn btn-warning"><i
                                             class="fas fa-user-times ml-2"></i></a></td>

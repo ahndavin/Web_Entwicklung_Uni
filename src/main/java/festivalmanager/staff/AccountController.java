@@ -97,7 +97,7 @@ class 	AccountController {
 		String changePasswordPost( @LoggedIn UserAccount account, @Valid changePasswordForm form, Model model){
 			accountManager.changePassword(account, form);
 
-			return "redirect:/";
+			return "redirect:/#staff";
 		}
 
 		@PreAuthorize("hasRole('MANAGER') or hasAuthority('MANAGER')")
