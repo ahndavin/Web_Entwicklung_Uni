@@ -29,7 +29,7 @@ public class EconomicController {
     }
 
     // GetMapping
-    @PreAuthorize("hasAuthority('MANAGER')")
+    @PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') ")
     @GetMapping(path = "/accountancy")
     public String goToAccountancy(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result,
             Model model) {
