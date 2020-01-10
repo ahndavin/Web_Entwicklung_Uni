@@ -19,8 +19,8 @@ public class LocationManager {
 
  	public LocationManager(	LocationRepository locationRepository, AreaRepository areaRepository,
 							StageRepository stageRepository, LineupRepository lineupRepository,
-							ContractsRepository contractsRepository)
- 	{
+							ContractsRepository contractsRepository) {
+ 		
  		this.locationRepository = locationRepository;
  		this.areaRepository = areaRepository;
  		this.stageRepository = stageRepository;

@@ -1,7 +1,9 @@
 package festivalmanager.location;
 
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import com.google.common.collect.Lists;
 
@@ -22,6 +24,7 @@ import festivalmanager.festival.FestivalManager;
 public class LocationController {
 	private final LocationManager locationManager;
 	private static FestivalManager festivalManager;
+	boolean hasEntity = false;
 
 	@SuppressWarnings("static-access")
 	public LocationController(LocationManager locationManager, FestivalManager festivalManager){
@@ -34,6 +37,7 @@ public class LocationController {
 		return festivalManager;
 	}
 
+	//---------------------------------------Location------------------------------------------
 	@GetMapping("/location")
 	public String locationManagement(Model model) {
 		List<Location> locations = locationManager.findAllLocations();
@@ -71,22 +75,41 @@ public class LocationController {
 	//@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/location/{location}/editLocation")
 	public String editLocation(Model model, @PathVariable("location") String locationIdAsString) {
-		boolean hasArea = false;
 		long locationId = Long.parseLong(locationIdAsString);
 		Location location = locationManager.findById(locationId);
 		List<Area> areas = locationManager.findAllAreas(location);
 		
 		for(Area area : areas) {
 			if(area.getLocationId() == location.getId()) {
-				hasArea = !hasArea;
+				hasEntity = !hasEntity;
 				break;
 			}
 		}
 		
-		model.addAttribute("hasArea", hasArea);
 		model.addAttribute("location", location);
 
 		return "editLocation";
+	}
+	
+	@GetMapping("/location/{location}/editLocation/delete")
+	public String deleteLocation(	@PathVariable("location") String locationIdAsString,
+									HttpServletResponse response) throws Exception {
+		
+		Location location = locationManager.findById(Long.parseLong(locationIdAsString));
+		String goTo = "/location";
+		
+		if(!hasEntity) {
+			locationManager.deleteLocationById(location.getId());
+		}
+		else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			hasEntity = false;
+			out.println("<script>alert('Es gibt Area an diesem Location!'); location.href=' " + goTo + " ';</script>");
+			out.flush();
+		}
+		
+		return "redirect:/location";
 	}
 
 	@GetMapping("/location/{location}")
@@ -101,17 +124,9 @@ public class LocationController {
 
 		return "detailLocation";
 	}
+	//-----------------------------------------------------------------------------------------
 	
-	@GetMapping("/location/{location}/editLocation/delete")
-	public String deleteLocation(@PathVariable("location") String locationIdAsString) {
-		long locationId = Long.parseLong(locationIdAsString);
-		Location location = locationManager.findById(locationId);
-		
-		locationManager.deleteLocationById(location.getId());
-
-		return "redirect:/location";
-	}
-	
+	//-----------------------------------------Area--------------------------------------------
 	@GetMapping("/location/{location}/area")
 	public String areaManagement(Model model, @PathVariable("location") String locationName) {
 		Location location = locationManager.findByName(locationName);
@@ -175,9 +190,16 @@ public class LocationController {
 					@PathVariable("location") String locationName,
 					@PathVariable("area") String areaIdAsString) {
 		
-		long areaId = Long.parseLong(areaIdAsString);
 		Location location = locationManager.findByName(locationName);
-		Area area = locationManager.findById(location, areaId);
+		Area area = locationManager.findById(location, Long.parseLong(areaIdAsString));
+		List<Stage> stages = locationManager.findAllStages(area);
+		
+		for(Stage stage : stages) {
+			if(stage.getAreaId() == area.getId()) {
+				hasEntity = !hasEntity;
+				break;
+			}
+		}
 		
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
@@ -187,16 +209,31 @@ public class LocationController {
 	
 	@GetMapping("/location/{location}/area/{area}/delete")
 	public String deleteArea(	@PathVariable("location") String locationName,
-								@PathVariable("area") String areaName) {
+								@PathVariable("area") String areaIdAsString,
+								HttpServletResponse response) throws Exception {
 		
 		Location location = locationManager.findByName(locationName);
-		Area area = locationManager.findByName(location, areaName);
+		Area area = locationManager.findById(location, Long.parseLong(areaIdAsString));
 		
-		locationManager.deleteAreaById(area.getId());
+		String goTo = "/location/" + location.getName() + "/area";
+		
+		if(!hasEntity) {
+			locationManager.deleteAreaById(area.getId());
+		}
+		else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			hasEntity = false;
+			out.println("<script>alert('Es gibt Stages an diesem Area!'); location.href=' " + goTo + " ';</script>");
+			out.flush();
+		}
+		
 
 		return "redirect:/location/" + location.getName() + "/area";
 	}
-
+	//-----------------------------------------------------------------------------------------
+	
+	//-----------------------------------------Stage-------------------------------------------
 	@GetMapping("/location/{location}/area/{area}/stage")
 	public String stageManagement(	Model model,
 									@PathVariable("location") String locationName,
@@ -261,11 +298,18 @@ public class LocationController {
 							@PathVariable("area") String areaName,
 							@PathVariable("stage") String stageIdAsString) {
 		
-		long stageId = Long.parseLong(stageIdAsString);
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
-		Stage stage = locationManager.findById(area, stageId);
-
+		Stage stage = locationManager.findById(area, Long.parseLong(stageIdAsString));
+		List<Lineup> lineups = locationManager.findAllLineups(stage);
+		
+		for(Lineup lineup : lineups) {
+			if(lineup.getStageId() == stage.getId()) {
+				hasEntity = !hasEntity;
+				break;
+			}
+		}
+		
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
 		model.addAttribute("stage", stage);
@@ -276,17 +320,30 @@ public class LocationController {
 	@GetMapping("/location/{location}/area/{area}/stage/{stage}/delete")
 	public String deleteStage(	@PathVariable("location") String locationName,
 								@PathVariable("area") String areaName,
-								@PathVariable("stage") String stageName) {
+								@PathVariable("stage") String stageIdAsString,
+								HttpServletResponse response) throws Exception {
 		
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
-		Stage stage = locationManager.findByName(area, stageName);
-
-		locationManager.deleteStageById(stage.getId());
+		Stage stage = locationManager.findById(area, Long.parseLong(stageIdAsString));
+		String goTo = "/location/" + location.getName() + "/area/" + area.getZone() + "/stage";
+		
+		if(!hasEntity) {
+			locationManager.deleteStageById(stage.getId());
+		}
+		else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			hasEntity = false;
+			out.println("<script>alert('Es gibt Lineup an diesem Stage!'); location.href=' " + goTo + " ';</script>");
+			out.flush();
+		}
 
 		return "redirect:/location/" + location.getName() + "/area/" + area.getZone() + "/stage";
 	}
+	//-----------------------------------------------------------------------------------------
 	
+	//----------------------------------------Lineup-------------------------------------------
 	@GetMapping("/location/{location}/area/{area}/stage/{stage}/lineup")
 	public String detailLineup(	Model model,
 								@PathVariable("location") String locationName,
@@ -396,7 +453,7 @@ public class LocationController {
 
 		return "editLineup";
 	}
-	
+
 	@GetMapping("/location/{location}/area/{area}/stage/{stage}/lineup/{lineup}/delete")
 	public String deleteLineup(	@PathVariable("location") String locationName,
 								@PathVariable("area") String areaName,
@@ -412,4 +469,5 @@ public class LocationController {
 
 		return "redirect:/location/" + location.getName() + "/area/" + area.getZone() + "/stage/" + stage.getName() + "/lineup";
 	}
+	//-----------------------------------------------------------------------------------------
 }
