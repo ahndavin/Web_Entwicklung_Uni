@@ -18,7 +18,32 @@
   <!--  START HERE  -->
 
   <!--  NavBar -->
-  <nav th:include="usernav :: usernavigation"></nav>
+  <nav class="navbar navbar-expand-md navbar-dark" >
+    <a href="/" class="navbar-brand">
+      <h3 class="mb-0">FVIV</h3>
+    </a>
+    <ul class="navbar-nav mr-auto smooth-scroll">
+      <li class="nav-item">
+        <a href="/#tickets" class="nav-link">Back to Ticketsell</a>
+      </li>
+    </ul>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-user-secret"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+          <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Sign Out" />
+          </form>
+        </li>
+      </ul>
+  </nav>
 
   <!--  Overlay -->
   <section class="d-flex align-items-center" id="showcase">
