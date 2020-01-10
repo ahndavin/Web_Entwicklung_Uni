@@ -226,6 +226,7 @@
             <th class="text-center">EDIT</th>
             <th class="text-center">FESTIVAL INVENTORY</th>
             <th class="text-center">CONTRACTS</th>
+            <th class="text-center">CATERING</th>
           </tr>
         </thead>
         <tbody>
@@ -260,6 +261,13 @@
                 </div>
 
               </form>
+            </td>
+            <td>
+              <div class="text-center">
+                <a th:href="${'/festival/' + festival.id + '/buy'}" class="btn btn-green">
+                  <i class="fas fa-pizza-slice"></i>
+                </a>
+              </div>
             </td>
           </tr>
         </tbody>
