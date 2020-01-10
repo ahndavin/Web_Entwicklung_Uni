@@ -11,6 +11,44 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
   <title>Festival Inventory</title>
+
+  <style>
+    #editContainer {
+      width: 70%;
+      margin: 60px auto;
+    }
+
+    #edit-ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .edit-li {
+      margin-bottom: 10px;
+    }
+
+    .edit-left-spacer {
+      margin-left: 50px;
+    }
+
+    .edit-form-element {
+      float: left;
+      font-size: 1em;
+      width: 200px;
+    }
+
+    .availableInfo {
+      text-align: center;
+    }
+
+    #add-item-form {
+      margin-top: 150px;
+    }
+
+    #inner-navigation {
+      margin-top: 200px;
+    }
+  </style>
 </head>
 
 <body>
@@ -49,27 +87,27 @@
             <input type="hidden" name="festivalId" th:value="${festivalId}">
             <input type="hidden" name="itemId" th:value="${inventoryItem.key}">
 
-            <label class="col-form-label" th:text="${stock.findById(inventoryItem.key).get().product.name}"></label>
-            <input class="form-control" type="number" name="quantity" th:value="${inventoryItem.value}">
-            <p class="availableInfo" th:text="${stock.findById(inventoryItem.key).get().quantity} + ' more available'">
+            <label class="col-form-label edit-form-element" th:text="${stock.findById(inventoryItem.key).get().product.name}"></label>
+            <input class="form-control edit-form-element edit-left-spacer" type="number" name="quantity" th:value="${inventoryItem.value}">
+            <p class="availableInfo col-form-label edit-form-element edit-left-spacer" th:text="${stock.findById(inventoryItem.key).get().quantity} + ' more available'">
             </p>
 
-            <input class="btn btn-dark" type="submit" value="Save">
+            <input class="btn btn-dark edit-left-spacer" type="submit" value="Save">
           </form>
         </li>
       </ul>
 
-      <form th:if="${stock.findAllExcept(festivalInventory.keySet()).iterator().hasNext()}"
+      <form id="add-item-form" th:if="${stock.findAllExcept(festivalInventory.keySet()).iterator().hasNext()}"
         th:action="@{/festival/inventory/edit}" method="POST">
         <input type="hidden" name="festivalId" th:value="${festivalId}">
 
-        <select class="col-form-label" name="itemId">
+        <select class="col-form-label edit-form-element" name="itemId">
           <option th:each="item : ${stock.findAllExcept(festivalInventory.keySet())}"
             th:text="${item.product.name + ' (' + item.quantity + ')'}" th:value="${item.id}"></option>
         </select>
-        <input class="form-control" id="addQuantity" type="number" name="quantity" min="0">
+        <input class="form-control edit-form-element edit-left-spacer" id="addQuantity" type="number" name="quantity" min="0">
 
-        <input class="btn btn-dark" type="submit" value="add">
+        <input class="btn btn-dark edit-left-spacer" type="submit" value="add">
       </form>
 
       <div id="inner-navigation">
