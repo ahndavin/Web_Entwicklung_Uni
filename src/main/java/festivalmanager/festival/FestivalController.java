@@ -154,11 +154,7 @@ public class FestivalController {
 	 *
 	 * @param festivalId: id of the festival
 	 */
-<<<<<<< HEAD
-	@PreAuthorize("hasRole('FESTIVAL_MANAGER') or hasRole('MANAGER')")
-=======
 	@PreAuthorize("hasAuthority('FESTIVAL_MANAGER') or hasAuthority('MANAGER') or hasRole('MANAGER') or hasRole('FESTIVAL_MANAGER')")
->>>>>>> develop
 	@GetMapping("/festival/{festivalName}-{festivalId}/edit")
 	String editFestival(@PathVariable long festivalId, Model model) {
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
