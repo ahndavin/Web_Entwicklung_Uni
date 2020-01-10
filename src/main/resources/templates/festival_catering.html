@@ -14,17 +14,45 @@
     <!-- Basic CSS with Thymeleaf -->
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
     <!-- Material Design Bootstrap -->
-    <link th:href="@{/resources/css/mdb.min.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/resources/css/timeline.min.css}">
     <link th:href="@{/resources/css/addons-pro/chat.css}" rel="stylesheet">
     <style>
         html,
         body,
-        header,
         .view.jarallax {
             height: 100%;
             min-height: 100%;
 
+        }
+
+        .event-lp .navbar {
+            background-color: #000 !important;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12) !important;
+        }
+
+        #sell-headline {
+            margin-bottom: 50px;
+        }
+
+        #availableItems {
+            margin: 100px auto;
+            width: 70%;
+        }
+
+        .sell-form-item {
+            width: 200px;
+            float: left;
+        }
+
+        .sell-form-item input {
+            padding: 3px;
+        }
+        .sell-form-item p, .sell-form-item label {
+            margin: 5px 0;
+        }
+
+        .availableItems {
+            text-align: center;
         }
     </style>
 </head>
@@ -32,128 +60,58 @@
 <body class="event-lp">
 
     <!-- Navigation & Intro -->
-    <header>
+    <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
 
         <!-- Userspecific Navbar -->
-        <nav th:replace="usernav :: usernavigation"></nav>
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a href="/" class="navbar-brand">
+                <h3 class="mb-0">FVIV</h3>
+            </a>
+            <ul class="navbar-nav mr-auto smooth-scroll">
+                <li class="nav-item">
+                    <a href="/#festivals" class="nav-link">Back to Festivals</a>
+                </li>
+            </ul>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-user-secret"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                        <input hidden type="submit" value="Sign Out" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
 
+        <!-- Main content -->
+        <main>
+            <div id="availableItems">
+                <h3 id="sell-headline" th:text="${'Sell items for festival ' + festival.name}"></h3>
+                <form th:each="item : ${festivalInventory}" th:action="@{/festival/buy}" method="post">
+                    <input type="hidden" name="festivalId" th:value="${festival.id}">
+                    <input type="hidden" name="itemId" th:value="${item.key}">
 
-        <!-- Intro Section -->
-        <div th:replace="userintro :: usersection"></div>
-
-    </header>
-
-
-    <!-- Main content -->
-    <main>
-        <div id="availableItems">
-            <form th:each="item : ${festivalInventory}" th:action="@{/festival/buy}" method="post">
-                <input type="hidden" name="festivalId" th:value="${festival.id}">
-                <input type="hidden" name="itemId" th:value="${item.key}">
-
-                <div class="inventoryItem">
-                    <p th:text="${inventory.findById(item.key).get().product.name}"></p>
-                    <input type="number" name="amount" min="0" th:max="${item.value}">
-                    <p th:text="${item.value}"></p>
-                </div>
-
-                <input class="btn btn-dark" type="submit">
-            </form>
-        </div>
-    </main>
-    <!-- Main content -->
-
-    <!--Footer-->
-    <footer class="page-footer black text-center text-md-left pt-0">
-
-        <!--Footer Links-->
-        <div class="container">
-
-            <!--Grid row-->
-            <div class="row pt-5 mb-3 text-center d-flex justify-content-center">
-
-                <!--Grid column-->
-                <div class="col-md-2 mb-3">
-                    <h6 class="text-uppercase font-weight-bold">
-                        <a href="#!">About us</a>
-                    </h6>
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-md-2 mb-3">
-                    <h6 class="text-uppercase font-weight-bold">
-                        <a href="#!">Help</a>
-                    </h6>
-                </div>
-                <!--Grid column-->
-
-
-            </div>
-            <!--Grid row-->
-
-            <hr class="rgba-white-light" style="margin: 0 15%;">
-
-            <!--Grid row-->
-            <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
-
-                <!--Grid column-->
-                <div class="col-md-8 col-12 mt-5">
-                    <p style="line-height: 1.7rem">Some funky FVIV Festivals Stuff goes here!</p>
-
-                </div>
-                <!--Grid column-->
-
-            </div>
-            <!--Grid row-->
-
-            <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
-
-            <!--Grid row-->
-            <div class="row pb-3">
-
-                <!--Grid column-->
-                <div class="col-md-12">
-
-                    <div class="footer-socials mb-5 flex-center">
-                        <!--Facebook-->
-                        <a class="p-2 m-2 fa-lg fb-ic" href="https://www.facebook.com/FVIV-Events-109983937178291/">
-                            <i class="fab fa-facebook-f fa-lg white-text mr-md-4"> </i>
-                        </a>
-                        <!--Twitter-->
-                        <a class="p-2 m-2 fa-lg tw-ic" href="https://twitter.com/EventsFviv">
-                            <i class="fab fa-twitter fa-lg white-text mr-md-4"> </i>
-                        </a>
-                        <!--Google +-->
-                        <a class="p-2 m-2 fa-lg gplus-ic" href="https://www.google.com/intl/de/gmail/about/#">
-                            <i class="fab fa-google-plus-g fa-lg white-text mr-md-4"> </i>
-                        </a>
-                        <!--Instagram-->
-                        <a class="p-2 m-2 fa-lg ins-ic" href="https://www.instagram.com/fviv.events/">
-                            <i class=" fab fa-instagram fa-lg white-text mr-md-4"> </i>
-                        </a>
+                    <div class="inventoryItem">
+                        <label class="sell-form-item" th:text="${inventory.findById(item.key).get().product.name}"></label>
+                        <input class="form-control sell-form-item" type="number" name="amount" min="1" th:max="${item.value}">
+                        <p class="availableItems sell-form-item" th:text="${item.value}"></p>
                     </div>
-                </div>
-                <!--Grid column-->
+
+                    <input class="btn btn-dark" type="submit" value="sell">
+                </form>
             </div>
-            <!--Grid row-->
+        </main>
+        <!-- Main content -->
+    </section>
 
-        </div>
-        <!--/Footer Links-->
 
-        <!--Copyright-->
-        <div class="footer-copyright py-3 text-center">
-            <div class="container-fluid">
-                © 2020 Copyright: <a href="https://fviv-festivals.com/" target="_blank"> FVIV-Festivals.com </a>
-            </div>
-        </div>
-        <!--/Copyright-->
-
-    </footer>
-    <!--/Footer-->
-
-    <!--  Timer  -->
-    <script type="text/javascript" rel="script" th:src="@{/resources/js/timer.js}"></script>
     <!--  JQuery  -->
     <script type="text/javascript" rel="script" th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
     <!--  Bootstrap tooltips  -->
