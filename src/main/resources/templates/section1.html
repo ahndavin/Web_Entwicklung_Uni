@@ -213,71 +213,70 @@
       </h3>
 
       <!--Table-->
-  
-              <table  class="table table-bordered">
-                <thead class="black white-text">
-                  <tr>
-                    <th class="text-center">NAME</th>
-                    <th class="text-center">LOCATION</th>
-                    <th class="text-center">STARTDATE</th>
-                    <th class="text-center">ENDDATE</th>
-                    <th class="text-center">MAX. VISITORS</th>
-                    <th class="text-center">SELLING TICKLETS</th>
-                    <th class="text-center">EDIT</th>
-                    <th class="text-center">FESTIVAL INVENTORY</th>
-                    <th class="text-center">CONTRACTS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="festival : ${festivals}">
-                    <td th:text="${festival.name}" class="text-center"></td>
-                    <td class="text-center" >
-                      <a th:href="${'/location/' + festival.location}" th:text="${festival.location}" class="text-primary" ></a>
-                    </td>
-                    <td th:text="${festival.startDate}" class="text-center"></td>
-                    <td th:text="${festival.endDate}" class="text-center"></td>
-                    <td th:text="${festival.maxVisitors}" class="text-center"></td>
-                    <td th:text="${festival.sellingTickets}" class="text-center"></td>
-                    <td>
-                      <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/edit'}" class="btn btn-green">
-                        <i class="fas fa-user-edit ml-2"></i></a>
 
-                    </td>
-                    <td>
-                      <div class="text-center">
-                         <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}"
-                        class="btn btn-green">
-                        <i class="fas fa-archive"></i>
-                      </a>
-                      </div>
-                     </td>
-                    <td>
-                      <form method="get" role="form" class="ui form" name="form" th:action="@{/contracts/list}">
-                        <input type="hidden" th:value="${festival.getId()}" name="id" />
-                        <div class="text-center">
-                          <button type="submit" class="btn btn-green">
-                          <i class="fas fa-address-book"></i>
-                        </button>
-                        </div>
-                        
-                      </form>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+      <table class="table table-bordered">
+        <thead class="black white-text">
+          <tr>
+            <th class="text-center">NAME</th>
+            <th class="text-center">LOCATION</th>
+            <th class="text-center">STARTDATE</th>
+            <th class="text-center">ENDDATE</th>
+            <th class="text-center">MAX. VISITORS</th>
+            <th class="text-center">SELLING TICKLETS</th>
+            <th class="text-center">EDIT</th>
+            <th class="text-center">FESTIVAL INVENTORY</th>
+            <th class="text-center">CONTRACTS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="festival : ${festivals}">
+            <td th:text="${festival.name}" class="text-center"></td>
+            <td class="text-center">
+              <a th:href="${'/location/' + festival.location}" th:text="${festival.location}" class="text-primary"></a>
+            </td>
+            <td th:text="${festival.startDate}" class="text-center"></td>
+            <td th:text="${festival.endDate}" class="text-center"></td>
+            <td th:text="${festival.maxVisitors}" class="text-center"></td>
+            <td th:text="${festival.sellingTickets}" class="text-center"></td>
+            <td>
+              <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/edit'}" class="btn btn-green">
+                <i class="fas fa-user-edit ml-2"></i></a>
+
+            </td>
+            <td>
+              <div class="text-center">
+                <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}" class="btn btn-green">
+                  <i class="fas fa-archive"></i>
+                </a>
+              </div>
+            </td>
+            <td>
+              <form method="get" role="form" class="ui form" name="form" th:action="@{/contracts/list}">
+                <input type="hidden" th:value="${festival.getId()}" name="id" />
+                <div class="text-center">
+                  <button type="submit" class="btn btn-green">
+                    <i class="fas fa-address-book"></i>
+                  </button>
+                </div>
+
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       <!-- See all Festivals -->
-        <!-- Create a new Festival -->
+      <!-- Create a new Festival -->
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
         Create Festivals
       </button>
 
-      <a href="/location" class="btn btn-primary"> 
+      <a href="/location" class="btn btn-primary">
         See all Locations
       </a>
-      
-     
+
+
 
       <!-- Modal -->
       <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="createFestivalModal"
@@ -345,7 +344,7 @@
                   <input class="form-control" type="checkbox" th:field="*{sellingTickets}">
                 </div>
 
-                <input class="btn btn-dark" type="submit" value="Create" >
+                <input class="btn btn-dark" type="submit" value="Create">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
               </form>
@@ -359,7 +358,8 @@
     </section>
 
     <!-- Section1 FestivalManager -->
-    <section sec:authorize="hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')" id="createFestival" class="mt-5 mb-5">
+    <section sec:authorize="hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')" id="createFestival"
+      class="mt-5 mb-5">
 
       <!-- Create Festival -->
       <!-- Button trigger modal -->
@@ -442,7 +442,7 @@
         </div>
       </div>
       <!-- Create Festival -->
-      
+
 
     </section>
 
@@ -548,7 +548,8 @@
     </section>
 
     <!-- Section 1 TICKET_SALESMAN -->
-    <section sec:authorize="hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')" id="ticketsell" class="mt-5 mb-5">
+    <section sec:authorize="hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')" id="ticketsell"
+      class="mt-5 mb-5">
 
       <!-- Section heading -->
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">

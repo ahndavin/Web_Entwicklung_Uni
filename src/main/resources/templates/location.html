@@ -17,88 +17,90 @@
 
   <!--  START HERE  -->
 
-  <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
+  <section
+    sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
 
     <!--  NavBar -->
-        <nav class="navbar navbar-expand-md navbar-dark" >
-          <a href="/" class="navbar-brand">
-            <h3 class="mb-0">FVIV</h3>
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <a href="/" class="navbar-brand">
+        <h3 class="mb-0">FVIV</h3>
+      </a>
+      <ul class="navbar-nav mr-auto smooth-scroll">
+        <li class="nav-item">
+          <a href="/createLocation" class="nav-link">Create new Location</a>
+        </li>
+        <li class="nav-item">
+          <a href="/#festivals" class="nav-link">Back</a>
+        </li>
+      </ul>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-user-secret"></i>
           </a>
-          <ul class="navbar-nav mr-auto smooth-scroll">
-            <li class="nav-item">
-              <a href="/createLocation" class="nav-link">Create new Location</a>
-            </li>
-            <li class="nav-item">
-              <a href="/#festivals" class="nav-link">Back</a>
-            </li>
-          </ul>
-          <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            <ul class="navbar-nav nav-flex-icons">
-              <li class="nav-item">
-                <a class="nav-link">
-                  <i class="fas fa-user-secret"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
-                <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                  <input hidden type="submit" value="Sign Out" />
-                </form>
-              </li>
-            </ul>
-        </nav>
-         <!--  Overlay -->
-            <section class="d-flex align-items-center" id="showcase2">
-              <div id="overlay"></div>
-              <div id="header" class="container text-white text-center">
-                <h1 class="text-center dark-grey-text font-weight-bold mb-5 pt-3">
-                  <strong>All Locations</strong>
-                </h1>
-              </div>
-            </section>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+          <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Sign Out" />
+          </form>
+        </li>
+      </ul>
+    </nav>
+    <!--  Overlay -->
+    <section class="d-flex align-items-center" id="showcase2">
+      <div id="overlay"></div>
+      <div id="header" class="container text-white text-center">
+        <h1 class="text-center dark-grey-text font-weight-bold mb-5 pt-3">
+          <strong>All Locations</strong>
+        </h1>
+      </div>
+    </section>
 
-            
-            <div id="wrapper" class="container">
-              <h1 class="text-center mb-05">Current Locations</h1>
-              <div class="container text-center">
-                <ul class="list-group" th:each="location : ${locationList}">
-                  <h3 th:text="${location.getName()} "></h3>
-                  <li class="list-group-item">
-                    <a th:href="@{/location/{name}(name=${location.getName()})}">
-                      <img class="thumbnail"
-                        th:src="@{/resources/img/location/thumbnail/{image}.jpg(image=${location.getName()})}"
-                        width="100%" height="100%"/>
-                    </a>
-                  </li>
-                  <li class="list-group-item">
-                    <label for="address"></label>
-                    <label th:text="${location.getAddress()}"></label>
-                  </li>
-                  <li class="list-group-item">
-                    <div  class="container text-white text-center">
-                      <button class="btn btn-success">
-                        <a class="text-light" th:href="@{'/location/' + ${location.getId()} + '/editLocation'}">Edit Location</a>
-                      </button>
-                    </div>
-                  </li>
-                  <br>
-                  <br>
-                </ul>
-              </div>
+
+    <div id="wrapper" class="container">
+      <h1 class="text-center mb-05">Current Locations</h1>
+      <div class="container text-center">
+        <ul class="list-group" th:each="location : ${locationList}">
+          <h3 th:text="${location.getName()} "></h3>
+          <li class="list-group-item">
+            <a th:href="@{/location/{name}(name=${location.getName()})}">
+              <img class="thumbnail"
+                th:src="@{/resources/img/location/thumbnail/{image}.jpg(image=${location.getName()})}" width="100%"
+                height="100%" />
+            </a>
+          </li>
+          <li class="list-group-item">
+            <label for="address"></label>
+            <label th:text="${location.getAddress()}"></label>
+          </li>
+          <li class="list-group-item">
+            <div class="container text-white text-center">
+              <button class="btn btn-success">
+                <a class="text-light" th:href="@{'/location/' + ${location.getId()} + '/editLocation'}">Edit
+                  Location</a>
+              </button>
             </div>
-            <br>
-            <br>
-            <section class="d-flex align-items-center mb-02">
-              <div id="header" class="container text-white text-center">
-                <button class="btn btn-primary">
-                  <a class="text-light" href="/createLocation">Create a new Location</a>
-                </button>
-              </div>
-            </section>
-            <br>
-            <br>
+          </li>
+          <br>
+          <br>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <br>
+    <section class="d-flex align-items-center mb-02">
+      <div id="header" class="container text-white text-center">
+        <button class="btn btn-primary">
+          <a class="text-light" href="/createLocation">Create a new Location</a>
+        </button>
+      </div>
+    </section>
+    <br>
+    <br>
   </section>
 
 

@@ -39,15 +39,15 @@
 </head>
 
 <body>
-    <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')" >
+    <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
 
-        <nav class="navbar navbar-expand-md navbar-dark" >
-        <a href="/" class="navbar-brand">
-        <h3 class="mb-0">FVIV</h3>
-        </a>
-        <ul class="navbar-nav mr-auto smooth-scroll">
-            <li class="nav-item">
-                <a th:href="@{{name}(name=${sender})}" class="nav-link">Single Message</a>
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a href="/" class="navbar-brand">
+                <h3 class="mb-0">FVIV</h3>
+            </a>
+            <ul class="navbar-nav mr-auto smooth-scroll">
+                <li class="nav-item">
+                    <a th:href="@{{name}(name=${sender})}" class="nav-link">Single Message</a>
             </li>
             <li class="nav-item">
                 <a th:href="@{{name}?multimessage=true (name=${sender})}" class="nav-link active">Group Message

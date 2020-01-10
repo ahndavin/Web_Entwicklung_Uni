@@ -123,12 +123,12 @@
 
     <!-- Section 5 MANAGER -->
 
-     <!-- Section All Accounts -->
-     <hr>
-     <section id="staff" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
-     <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
-      <strong> Existing Accounts </strong>
-    </h3>
+    <!-- Section All Accounts -->
+    <hr>
+    <section id="staff" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
+      <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+        <strong> Existing Accounts </strong>
+      </h3>
 
       <table class="table table-bordered">
         <thead class="black white-text">
@@ -248,7 +248,7 @@
         </div>
       </div>
       <hr>
-       <!-- Section All Accounts -->
+      <!-- Section All Accounts -->
 
       <!-- Section Msg System Accounts -->
 
@@ -258,61 +258,61 @@
         <strong> Message System </strong>
       </h3>
       <div class="container">
-        
-          <table class="table table-bordered">
-            <thead class="black white-text">
+
+        <table class="table table-bordered">
+          <thead class="black white-text">
+            <tr>
+              <th>NAME</th>
+              <th>MESSAGE SEND</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <th:block th:each="message : ${messageManagement.findBySender(Account)}">
               <tr>
-                <th>NAME</th>
-                <th>MESSAGE SEND</th>
+                <td th:text="${message.receiver.getUserAccount().username}"></td>
+                <td th:text="${message.message}"></td>
               </tr>
-            </thead>
-            <tbody>
-  
-              <th:block th:each="message : ${messageManagement.findBySender(Account)}">
-                <tr>
-                  <td th:text="${message.receiver.getUserAccount().username}"></td>
-                  <td th:text="${message.message}"></td>
-                </tr>
-              </th:block>
-            </tbody>
-          </table>
-          <form th:action="@{sendMessage/{name}(name=${Account.getUserAccount().username})}" method=" get">
-            <a type="submit" th:href="@{sendMessage/{name}(name=${Account.getUserAccount().username})}"
-              th:text="${'Send new Message'}" class="btn btn-primary">
-            </a>
-          </form>
+            </th:block>
+          </tbody>
+        </table>
+        <form th:action="@{sendMessage/{name}(name=${Account.getUserAccount().username})}" method=" get">
+          <a type="submit" th:href="@{sendMessage/{name}(name=${Account.getUserAccount().username})}"
+            th:text="${'Send new Message'}" class="btn btn-primary">
+          </a>
+        </form>
         <hr>
       </div>
     </section>
-      <!-- Section Msg System Accounts -->
+    <!-- Section Msg System Accounts -->
 
-      <!-- Section Currently Online -->
+    <!-- Section Currently Online -->
 
-      <section id="messages" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
+    <section id="messages" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
         <strong>Online Accounts </strong>
       </h3>
       <div class="container">
-        
-          <table class="table table-bordered">
-            <thead class="black white-text">
+
+        <table class="table table-bordered">
+          <thead class="black white-text">
+            <tr>
+              <th>CURRENTLY ONLINE</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            <th:block th:each="account : ${accountManager.getUsersFromSessionRegistry()}">
               <tr>
-                <th>CURRENTLY ONLINE</th>
-  
+                <td th:text="${account}"></td>
               </tr>
-            </thead>
-            <tbody>
-  
-              <th:block th:each="account : ${accountManager.getUsersFromSessionRegistry()}">
-                <tr>
-                  <td th:text="${account}"></td>
-                </tr>
-              </th:block>
-            </tbody>
-          </table>
+            </th:block>
+          </tbody>
+        </table>
       </div>
     </section>
-      <!-- Section Currently Online -->
+    <!-- Section Currently Online -->
 
 
     </section>

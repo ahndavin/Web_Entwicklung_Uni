@@ -189,7 +189,8 @@
             <h4 class="font-weight-bold indigo-text text-center">
               <strong td th:text="${festival.name}"></strong> <br>
             </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text text-center" th:text="${festival.startDate}">Festival1.startdate</h6>
+            <h6 class="mb-3 font-weight-bold dark-grey-text text-center" th:text="${festival.startDate}">
+              Festival1.startdate</h6>
 
             <!-- Text -->
 
@@ -201,7 +202,8 @@
               <input type="hidden" th:value="${festival.getId()}" name="id" />
               <input type="hidden" value="DAYTICKET" name="sort_str" />
               <div class="text-center">
-                <button onclick="return confirm('Was the ticket paid for?');" class="btn btn-primary">Sell Dayticket</button>
+                <button onclick="return confirm('Was the ticket paid for?');" class="btn btn-primary">Sell
+                  Dayticket</button>
               </div>
             </form>
             <br>
@@ -214,18 +216,19 @@
               <input type="hidden" th:value="${festival.getId()}" name="id" />
               <input type="hidden" value="CAMPINGTICKET" name="sort_str" />
               <div class="text-center">
-                <button onclick="return confirm('Was the ticket paid for?');" class="btn btn-primary">Sell Campingticket</button>
+                <button onclick="return confirm('Was the ticket paid for?');" class="btn btn-primary">Sell
+                  Campingticket</button>
               </div>
             </form>
             <hr>
             <form method="get" role="form" class="ui form" name="form" th:action="@{/accountancy}">
               <input type="hidden" th:value="${festival.getId()}" name="id" />
               <div class="text-center">
-                 <button type="submit" class="btn btn-green">
-                <strong>See Accountancy</strong>
-              </button>
+                <button type="submit" class="btn btn-green">
+                  <strong>See Accountancy</strong>
+                </button>
               </div>
-             
+
             </form>
           </div>
 

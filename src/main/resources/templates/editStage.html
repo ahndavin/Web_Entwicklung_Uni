@@ -17,70 +17,71 @@
 
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
-  		var currentURL = "@{" + location.pathname + "}";
-  		function deleteStage(id) {
-            var result = confirm("Stage wirklich löschen?");
+    var currentURL = "@{" + location.pathname + "}";
+    function deleteStage(id) {
+      var result = confirm("Stage wirklich löschen?");
 
-            if (result) {
-                location.href = location.pathname + "/delete";
-            }
-        }
+      if (result) {
+        location.href = location.pathname + "/delete";
+      }
+    }
   </script>
-    <nav class="navbar navbar-expand-md navbar-dark" >
-      <a href="/" class="navbar-brand">
-        <h3 class="mb-0">FVIV</h3>
-      </a>
-      <ul class="navbar-nav mr-auto smooth-scroll">
-        <li class="nav-item">
-          <a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()} + '/stage'}" class="nav-link">Back</a>
-        </li>
-      </ul>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a class="nav-link">
-              <i class="fas fa-user-secret"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
-            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-              <input hidden type="submit" value="Sign Out" />
-            </form>
-          </li>
-        </ul>
-    </nav>
-     <!--  Overlay -->
-        <section class="d-flex align-items-center" id="showcase2">
-          <div id="overlay"></div>
-          <div id="header" class="container text-white text-center">
-            <h1 class="text-center dark-grey-text font-weight-bold mb-5 pt-3">
-              <strong>Edit Stage</strong>
-            </h1>
-          </div>
-        </section>
-        <br>
-        <br>
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <a href="/" class="navbar-brand">
+      <h3 class="mb-0">FVIV</h3>
+    </a>
+    <ul class="navbar-nav mr-auto smooth-scroll">
+      <li class="nav-item">
+        <a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()} + '/stage'}"
+          class="nav-link">Back</a>
+      </li>
+    </ul>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="fas fa-user-secret"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+          <input hidden type="submit" value="Sign Out" />
+        </form>
+      </li>
+    </ul>
+  </nav>
+  <!--  Overlay -->
+  <section class="d-flex align-items-center" id="showcase2">
+    <div id="overlay"></div>
+    <div id="header" class="container text-white text-center">
+      <h1 class="text-center dark-grey-text font-weight-bold mb-5 pt-3">
+        <strong>Edit Stage</strong>
+      </h1>
+    </div>
+  </section>
+  <br>
+  <br>
 
   <!--  ImputField -->
   <section>
     <div id="wrapper" class="container text-center card">
       <h1 class="mb-3 mt-5">Edit Stage</h1>
       <form method="POST" th:action="${currentURL}" th:object="${stage}">
-      	<label for="name">Name</label>
-        <input type="text" required="required" th:field="*{name}" class="form-control"/>
+        <label for="name">Name</label>
+        <input type="text" required="required" th:field="*{name}" class="form-control" />
         <br />
-        <label for="outsideView">Lineup Poster</label><br/>
-        <input type="file" th:field="*{poster}" name="poster" accept="image/*"/>
+        <label for="outsideView">Lineup Poster</label><br />
+        <input type="file" th:field="*{poster}" name="poster" accept="image/*" />
         <br />
         <br />
         <a id="deleteLink" th:onclick="'deleteStage(' + ${stage.getId()} + ')'" href="#">Stage löschen</a>
         <br />
         <br />
-        
-        <button id="btn" type="button"onclick="goBack()" class="btn btn-lg btn-dark text-light">Cancel</button>
+
+        <button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">Cancel</button>
         <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Edit Stage</button>
       </form>
     </div>
@@ -100,9 +101,9 @@
     crossorigin="anonymous"></script>
 
   <script>
-  	function goBack() {
-	    window.history.back();
-	}
+    function goBack() {
+      window.history.back();
+    }
     // Get the current year for the copyright
     $("#year").text(new Date().getFullYear());
   </script>

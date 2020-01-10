@@ -14,80 +14,80 @@
 </head>
 
 <body>
-    <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER') ">
-        <nav class="navbar navbar-expand-md navbar-dark" >
-            <a href="/" class="navbar-brand">
-              <h3 class="mb-0">FVIV</h3>
-            </a>
-            <ul class="navbar-nav mr-auto smooth-scroll">
-              <li class="nav-item">
-                <a href="/#tickets" class="nav-link">Back to Ticketsell</a>
-              </li>
-            </ul>
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-              <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item">
-                  <a class="nav-link">
-                    <i class="fas fa-user-secret"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
-                  <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                    <input hidden type="submit" value="Sign Out" />
-                  </form>
-                </li>
-              </ul>
-          </nav>
-        <div id="editContainer">
-        <ul id="edit-ul">
-            <li class="edit-li" th:each="inventoryItem : ${festivalInventory}">
-                <form th:action="@{/festival/inventory/edit}" method="POST">
-                    <input type="hidden" name="festivalId" th:value="${festivalId}">
-                    <input type="hidden" name="itemId" th:value="${inventoryItem.key}">
-
-                    <label class="col-form-label"
-                        th:text="${stock.findById(inventoryItem.key).get().product.name}"></label>
-                    <input class="form-control" type="number" name="quantity" th:value="${inventoryItem.value}">
-                    <p class="availableInfo"
-                        th:text="${stock.findById(inventoryItem.key).get().quantity} + ' more available'"></p>
-
-                    <input class="btn btn-dark" type="submit" value="Save">
-                </form>
-            </li>
-        </ul>
-
-        <form th:if="${stock.findAllExcept(festivalInventory.keySet()).iterator().hasNext()}"
-            th:action="@{/festival/inventory/edit}" method="POST">
+  <section
+    sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER') ">
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <a href="/" class="navbar-brand">
+        <h3 class="mb-0">FVIV</h3>
+      </a>
+      <ul class="navbar-nav mr-auto smooth-scroll">
+        <li class="nav-item">
+          <a href="/#tickets" class="nav-link">Back to Ticketsell</a>
+        </li>
+      </ul>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-user-secret"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+          <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Sign Out" />
+          </form>
+        </li>
+      </ul>
+    </nav>
+    <div id="editContainer">
+      <ul id="edit-ul">
+        <li class="edit-li" th:each="inventoryItem : ${festivalInventory}">
+          <form th:action="@{/festival/inventory/edit}" method="POST">
             <input type="hidden" name="festivalId" th:value="${festivalId}">
+            <input type="hidden" name="itemId" th:value="${inventoryItem.key}">
 
-            <select class="col-form-label" name="itemId">
-                <option th:each="item : ${stock.findAllExcept(festivalInventory.keySet())}"
-                    th:text="${item.product.name + ' (' + item.quantity + ')'}" th:value="${item.id}"></option>
-            </select>
-            <input class="form-control" id="addQuantity" type="number" name="quantity" min="0">
+            <label class="col-form-label" th:text="${stock.findById(inventoryItem.key).get().product.name}"></label>
+            <input class="form-control" type="number" name="quantity" th:value="${inventoryItem.value}">
+            <p class="availableInfo" th:text="${stock.findById(inventoryItem.key).get().quantity} + ' more available'">
+            </p>
 
-            <input class="btn btn-dark" type="submit" value="add">
-        </form>
+            <input class="btn btn-dark" type="submit" value="Save">
+          </form>
+        </li>
+      </ul>
 
-        <div id="inner-navigation">
-            <a class="btn btn-dark back-button" href="./">Back</a>
-        </div>
+      <form th:if="${stock.findAllExcept(festivalInventory.keySet()).iterator().hasNext()}"
+        th:action="@{/festival/inventory/edit}" method="POST">
+        <input type="hidden" name="festivalId" th:value="${festivalId}">
+
+        <select class="col-form-label" name="itemId">
+          <option th:each="item : ${stock.findAllExcept(festivalInventory.keySet())}"
+            th:text="${item.product.name + ' (' + item.quantity + ')'}" th:value="${item.id}"></option>
+        </select>
+        <input class="form-control" id="addQuantity" type="number" name="quantity" min="0">
+
+        <input class="btn btn-dark" type="submit" value="add">
+      </form>
+
+      <div id="inner-navigation">
+        <a class="btn btn-dark back-button" href="./">Back</a>
+      </div>
     </div>
-    </section>
+  </section>
 
-    <!-- BOOTSTRAP SCRIPTS -->
+  <!-- BOOTSTRAP SCRIPTS -->
   <script src="http://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-  crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-  integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-  crossorigin="anonymous"></script>
-    
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
 </body>
 
 </html>

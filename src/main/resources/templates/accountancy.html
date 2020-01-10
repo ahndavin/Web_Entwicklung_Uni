@@ -20,141 +20,141 @@
 
   <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
     <!--  NavBar -->
-      <nav class="navbar navbar-expand-md navbar-dark" >
-        <a href="/" class="navbar-brand">
-          <h3 class="mb-0">FVIV</h3>
-        </a>
-        <ul class="navbar-nav mr-auto smooth-scroll">
-          <li class="nav-item">
-            <a href="/#tickets" class="nav-link">Back to Ticketsell</a>
-          </li>
-        </ul>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-          <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item">
-              <a class="nav-link">
-                <i class="fas fa-user-secret"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
-              <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                <input hidden type="submit" value="Sign Out" />
-              </form>
-            </li>
-          </ul>
-      </nav>
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <a href="/" class="navbar-brand">
+        <h3 class="mb-0">FVIV</h3>
+      </a>
+      <ul class="navbar-nav mr-auto smooth-scroll">
+        <li class="nav-item">
+          <a href="/#tickets" class="nav-link">Back to Ticketsell</a>
+        </li>
+      </ul>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-user-secret"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+          <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Sign Out" />
+          </form>
+        </li>
+      </ul>
+    </nav>
 
-      <!--  Overlay -->
-      <section class="d-flex align-items-center" id="showcase">
-        <div id="overlay"></div>
-        <div id="header" class="container text-white text-center">
-          <h3 class="display-5 mb-0">Ticket Site</h3>
-          <h1 class="display-3">All the sold tickets so far!</h1>
-        
+    <!--  Overlay -->
+    <section class="d-flex align-items-center" id="showcase">
+      <div id="overlay"></div>
+      <div id="header" class="container text-white text-center">
+        <h3 class="display-5 mb-0">Ticket Site</h3>
+        <h1 class="display-3">All the sold tickets so far!</h1>
 
-        </div>
-      </section>
-      <br>
-      <br>
-      <!--  Table, which lists the accountancy data -->
-      <div class="container card">
-        <div class="three wide column"></div>
-        <div class="ten wide column" style="padding-top: 50px">
 
-          <h4 class="ui dividing header">Accountancy</h4>
-          <table width=100% height=100%>
+      </div>
+    </section>
+    <br>
+    <br>
+    <!--  Table, which lists the accountancy data -->
+    <div class="container card">
+      <div class="three wide column"></div>
+      <div class="ten wide column" style="padding-top: 50px">
+
+        <h4 class="ui dividing header">Accountancy</h4>
+        <table width=100% height=100%>
+          <tr>
+            <td width=40%>
+              <!-- Left part -->
+              <table class="ui celled table">
+                <thead>
+                  <tr>
+                    <th>Expenses</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody th:remove="all-but-first">
+                  <tr th:each="accountancyEntry : ${entrylist}" th:if="${accountancyEntry.isExpense()}">
+                    <td th:text="${accountancyEntry.description}">Beschreibung</td>
+                    <td th:text="${accountancyEntry.value}">Betrag</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+            <td width=40%>
+              <!-- Right part-->
+
+              <table class="ui celled table">
+                <thead>
+                  <tr>
+                    <th>Revenues</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody th:remove="all-but-first">
+                  <tr th:each="accountancyEntry : ${entrylist}" th:if="${accountancyEntry.isRevenue()}">
+                    <td th:text="${accountancyEntry.description}">Beschreibung</td>
+                    <td th:text="${accountancyEntry.value}">Betrag</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <br>
+
+        <!-- Summaries-->
+
+        <table width=100% height=100%>
+          <tr>
+            <td width=40%>
+              <!-- Left part -->
+
+              <table class="ui celled table">
+                <thead>
+                  <tr>
+                    <th>Sum of Expenses: </th>
+                    <th th:text="${sumExpenses}"></th>
+                  </tr>
+                </thead>
+              </table>
+            </td>
+            <td width=40%>
+              <!-- Right part-->
+
+              <table class="ui celled table">
+                <thead>
+                  <tr>
+                    <th>Sum of Revenues: </th>
+                    <th th:text="${sumRevenues}"></th>
+                  </tr>
+                </thead>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <table class="ui celled table">
+          <thead>
             <tr>
-              <td width=40%>
-                <!-- Left part -->
-                <table class="ui celled table">
-                  <thead>
-                    <tr>
-                      <th>Expenses</th>
-                      <th>Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody th:remove="all-but-first">
-                    <tr th:each="accountancyEntry : ${entrylist}" th:if="${accountancyEntry.isExpense()}">
-                      <td th:text="${accountancyEntry.description}">Beschreibung</td>
-                      <td th:text="${accountancyEntry.value}">Betrag</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-              <td width=40%>
-                <!-- Right part-->
-
-                <table class="ui celled table">
-                  <thead>
-                    <tr>
-                      <th>Revenues</th>
-                      <th>Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody th:remove="all-but-first">
-                    <tr th:each="accountancyEntry : ${entrylist}" th:if="${accountancyEntry.isRevenue()}">
-                      <td th:text="${accountancyEntry.description}">Beschreibung</td>
-                      <td th:text="${accountancyEntry.value}">Betrag</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
+              <th>Sum: </th>
+              <th th:text="${sumAll}"></th>
             </tr>
-          </table>
-          <br>
-          <br>
+          </thead>
+        </table>
 
-          <!-- Summaries-->
+      </div>
 
-          <table width=100% height=100%>
-            <tr>
-              <td width=40%>
-                <!-- Left part -->
-                
-                <table class="ui celled table">
-                  <thead>
-                    <tr>
-                      <th>Sum of Expenses: </th>
-                      <th th:text="${sumExpenses}"></th>
-                    </tr>
-                  </thead>
-                </table>
-              </td>
-              <td width=40%>
-                <!-- Right part-->
-
-                <table class="ui celled table">
-                  <thead>
-                    <tr>
-                      <th>Sum of Revenues: </th>
-                      <th th:text="${sumRevenues}"></th>
-                    </tr>
-                  </thead>
-                </table>
-              </td>
-            </tr>
-          </table>
-
-          <table class="ui celled table">
-            <thead>
-              <tr>
-                <th>Sum: </th>
-                <th th:text="${sumAll}"></th>
-              </tr>
-            </thead>
-          </table>
-          
-        </div>
-        
-        </div>
-           <br>
-          <br>
+    </div>
+    <br>
+    <br>
 
   </section>
-  
+
 
   <!-- BOOTSTRAP SCRIPTS -->
   <script src="http://code.jquery.com/jquery-3.3.1.min.js"

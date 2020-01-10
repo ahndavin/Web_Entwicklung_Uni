@@ -4,61 +4,63 @@
 <head>
 	<!--  BOOTSTRAP STUFF  -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-		  integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-		  integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
 	<link rel="stylesheet" href="css/style.css" />
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
 	<title>Create a Contract</title>
 </head>
+
 <body>
 
-<!--  START HERE  -->
+	<!--  START HERE  -->
 
-<!--  Overlay -->
+	<!--  Overlay -->
 
-<section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
+	<section
+		sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
 
-	<!--  NavBar -->
-		<nav class="navbar navbar-expand-md navbar-dark" >
+		<!--  NavBar -->
+		<nav class="navbar navbar-expand-md navbar-dark">
 			<a href="/" class="navbar-brand">
-			<h3 class="mb-0">FVIV</h3>
+				<h3 class="mb-0">FVIV</h3>
 			</a>
 			<ul class="navbar-nav mr-auto smooth-scroll">
-			<li class="nav-item">
-				<a href="/#festivals" class="nav-link">Back</a>
-			</li>
+				<li class="nav-item">
+					<a href="/#festivals" class="nav-link">Back</a>
+				</li>
 			</ul>
 			<button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-			<span class="navbar-toggler-icon"></span>
+				<span class="navbar-toggler-icon"></span>
 			</button>
 			<ul class="navbar-nav nav-flex-icons">
 				<li class="nav-item">
-				<a class="nav-link">
-					<i class="fas fa-user-secret"></i>
-				</a>
+					<a class="nav-link">
+						<i class="fas fa-user-secret"></i>
+					</a>
 				</li>
 				<li class="nav-item">
-				<a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
-				<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-					<input hidden type="submit" value="Sign Out" />
-				</form>
+					<a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+					<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+						<input hidden type="submit" value="Sign Out" />
+					</form>
 				</li>
 			</ul>
 		</nav>
 
-  <section class="d-flex align-items-center" id="showcase"></section>
-	<div class="container my-5">
-		<h3> Add Contract</h3>
-		<div class="card">
-			<div class="card-body">
-				<div class="col-md-10">
-					<form action="#" th:action="@{/contracts/add}" th:object="${contract}" method="post">
-						<div class="row">
-							<div class="form-group col-md-8">
-								<label for="name" class="col-form-label">Contractname</label> <input type="text" th:field="*{name}"
-																									 class="form-control" id="name" placeholder="Name"> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+		<section class="d-flex align-items-center" id="showcase"></section>
+		<div class="container my-5">
+			<h3> Add Contract</h3>
+			<div class="card">
+				<div class="card-body">
+					<div class="col-md-10">
+						<form action="#" th:action="@{/contracts/add}" th:object="${contract}" method="post">
+							<div class="row">
+								<div class="form-group col-md-8">
+									<label for="name" class="col-form-label">Contractname</label> <input type="text" th:field="*{name}"
+										class="form-control" id="name" placeholder="Name"> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
 																																							  class="text-danger"></span>
 							</div>
 							<div class="form-group col-md-8">
