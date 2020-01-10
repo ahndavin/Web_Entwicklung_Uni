@@ -27,7 +27,7 @@ public class FestivalInitializer implements DataInitializer {
 			return;
 		}
 
-		Festival f = festivals.save(new Festival("Abriss", "Dresden", "2020-03-20","2019-03-22", 100, 50, 20, 40, 2, true));
+		Festival f = festivals.save(new Festival("Abriss", "Dresden", "2020-03-20","2020-03-22", 100, 50, 20, 40, 2, true));
 
 		festivals.updateInventoryItem(f, inventory.findAll().iterator().next().getId(), Quantity.of(7));
 
