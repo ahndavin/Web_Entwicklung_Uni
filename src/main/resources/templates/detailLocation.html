@@ -17,31 +17,38 @@
 
 <body>
   <!--  START HERE  -->  
+  <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
+
   <!--  NavBar -->
-  <nav class="navbar navbar-expand-md navbar-dark">
+  <nav class="navbar navbar-expand-md navbar-dark" >
     <a href="/" class="navbar-brand">
-      <h3 class="mb-0">FVIV FESTIVAL</h3>
+      <h3 class="mb-0">FVIV</h3>
     </a>
+    <ul class="navbar-nav mr-auto smooth-scroll">
+      <li class="nav-item">
+        <a href="/location" class="nav-link">Back</a>
+      </li>
+    </ul>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ml-auto">
-      	<li class="nav-item">
-          <a th:href="@{'/location'}" class="nav-link">See all existing Locations</a>
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-user-secret"></i>
+          </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link active">Overview of Location</a>
-        </li>
-        <li class="nav-item">
-          <a th:href="@{'/location/' + ${location.getName()} + '/area'}" class="nav-link">See all existing Areas</a>
+          <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+          <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Sign Out" />
+          </form>
         </li>
       </ul>
-    </div>
   </nav>
 
   <!--  Overlay -->
-  <section class="d-flex align-items-center" id="showcase" >
+  <section class="d-flex align-items-center" id="showcase2" >
     <div id="overlay"></div>
     <div id="header" class="container text-white text-center">
       <h1 th:text="${location.getName()}" class="display-3"></h1>
@@ -51,10 +58,9 @@
 
   <!--  3 Row Column -->
   <section>
-    <div class="container text-center">
-      <h2 class="mt-4">Yoo, Plan-team, go ahead and get some Bands in here!</h2>
+    <div class="container text-center ">
       <div class="row mt-5">
-        <div class="col-md-4">
+        <div class="col-md-4 card">
           <h3><b>Information</b></h3>
           </br>
 		  <li class="list-group-item">
@@ -83,7 +89,7 @@
 		  </li>
         </div>
         
-        <div class="col-md-4">
+        <div class="col-md-4" >
           <a th:href="@{'/location/' + ${location.getName()} + '/area'}">
           	<img class="ground_plan" th:src="@{/resources/img/location/ground_plan/{image}.jpg(image=${location.getName()})}" width="100%" height="100%">
           </a>
@@ -92,15 +98,13 @@
         
         
         
-        <div class="col-md-4">
-          <h3><b>Festivals</b></h3>
+        <div class="col-md-4 card">
+          <h3><b>Festivals in this Location</b></h3>
           </br>
           
           <ul th:if="${festival.getLocation()==location.getName()}" class="list-group" th:each="festival : ${festivalList}">
 	          <li class="list-group-item">
-                  <a th:href="${'/festival/' + festival.name + '-' + festival.id}">
                       <label th:text="${festival.name}"></label>
-                  </a>
 			  </li>
 		  </ul>
         </div>
@@ -112,6 +116,7 @@
     </br>
     </br>
     </br>
+  </section>
   </section>
 
 

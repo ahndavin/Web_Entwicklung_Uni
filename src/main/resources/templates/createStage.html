@@ -19,43 +19,48 @@
   <script type="text/javascript" language="javascript">
   		var currentURL = "@{" + location.pathname + "}";
   </script>
-  <!--  NavBar -->
-  <nav class="navbar navbar-expand-md navbar-dark">
+  <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')"></section>
+  <nav class="navbar navbar-expand-md navbar-dark" >
     <a href="/" class="navbar-brand">
-      <h3 class="mb-0">FVIV FESTIVAL</h3>
+      <h3 class="mb-0">FVIV</h3>
     </a>
+    <ul class="navbar-nav mr-auto smooth-scroll">
+      <li class="nav-item">
+        <a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()} + '/stage'}" class="nav-link">Back</a>
+      </li>
+    </ul>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav nav-flex-icons">
         <li class="nav-item">
-          <a th:href="@{'/location/' + ${location.getName()}}" class="nav-link ">Overview of Location</a>
+          <a class="nav-link">
+            <i class="fas fa-user-secret"></i>
+          </a>
         </li>
         <li class="nav-item">
-          <a th:href="@{'/location/' + ${location.getName()} + '/area'}" class="nav-link">See all existing Areas</a>
-        </li>
-        <li class="nav-item">
-          <a th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()} + '/stage'}" class="nav-link">See all existing Stages</a>
+          <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+          <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Sign Out" />
+          </form>
         </li>
       </ul>
-    </div>
   </nav>
+   <!--  Overlay -->
+      <section class="d-flex align-items-center" id="showcase2">
+        <div id="overlay"></div>
+        <div id="header" class="container text-white text-center">
+          <h1 class="text-center dark-grey-text font-weight-bold mb-5 pt-3">
+            <strong>Create Stage</strong>
+          </h1>
+        </div>
+      </section>
+      <br>
+      <br>
 
-  <!--  Overlay -->
-  <section class="d-flex align-items-center" id="showcase">
-    <div id="overlay"></div>
-    <div id="header" class="container text-white text-center">
-      <h3 class="display-5 mb-0">Creating the awesome Stage?!</h3>
-      <h1 class="display-3">Where should it be?</h1>
-      <p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
-
-    </div>
-  </section>
-
-  <!--  ImputField -->
+  <!--  InputField -->
   <section>
-    <div id="wrapper" class="container text-center">
+    <div id="wrapper" class="container text-center card">
       <h1 class="mb-3 mt-5">Create Stage</h1>
       <form method="POST" th:action="${currentURL}" th:object="${stage}">
       	<label for="name">Name</label>
@@ -66,13 +71,15 @@
         <br />
         <br />
         
-        <button id="btn" type="button" onclick="goBack()" class="btn btn-lg btn-dark text-light">Cancel</button>
-        <button id="btn" type="submit" class="btn btn-lg btn-dark text-light">Create Stage</button>
+        <button  type="button" onclick="goBack()" class="btn btn-danger text-light">Cancel</button>
+        <button  type="submit" class="btn btn-primary text-light">Create Stage</button>
       </form>
+      <br>
     </div>
   </section>
   <br>
   <br>
+  </section>
 
 
   <!-- BOOTSTRAP SCRIPTS -->
