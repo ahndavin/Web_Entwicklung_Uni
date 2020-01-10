@@ -16,37 +16,39 @@
 
 <!--  START HERE  -->
 
-<!--  NavBar -->
-<nav class="navbar navbar-expand-md navbar-dark">
-	<a href="/" class="navbar-brand">
-		<h3 class="mb-0">FVIV FESTIVAL</h3>
-	</a>
-	<button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="mainNavbar">
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<a href="/" class="nav-link">Home</a>
-			</li>
-			<li class="nav-item">
-				<a href="/contracts/create" class="nav-link active">Create a Contract</a>
-			</li>
-		</ul>
-	</div>
-</nav>
-
 <!--  Overlay -->
-<section class="d-flex align-items-center" id="showcase">
-	<div id="overlay"></div>
-	<div id="header" class="container text-white text-center">
-		<h3 class="display-5 mb-0">The Amazing Account Site</h3>
-		<h1 class="display-3">Creating an Account huh?</h1>
-		<p class="lead d-none d-md-block">Some random lorem Ipsum here! </p>
 
-	</div>
-</section>
-<section>
+<section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
+
+	<!--  NavBar -->
+		<nav class="navbar navbar-expand-md navbar-dark" >
+			<a href="/" class="navbar-brand">
+			<h3 class="mb-0">FVIV</h3>
+			</a>
+			<ul class="navbar-nav mr-auto smooth-scroll">
+			<li class="nav-item">
+				<a href="/#festivals" class="nav-link">Back</a>
+			</li>
+			</ul>
+			<button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<ul class="navbar-nav nav-flex-icons">
+				<li class="nav-item">
+				<a class="nav-link">
+					<i class="fas fa-user-secret"></i>
+				</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+				<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+					<input hidden type="submit" value="Sign Out" />
+				</form>
+				</li>
+			</ul>
+		</nav>
+
+  <section class="d-flex align-items-center" id="showcase"></section>
 	<div class="container my-5">
 		<h3> Add Contract</h3>
 		<div class="card">
@@ -122,6 +124,7 @@
 			</div>
 		</div>
 	</div>
+
 </section>
 
 </body>

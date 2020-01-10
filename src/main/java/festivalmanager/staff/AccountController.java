@@ -114,7 +114,7 @@ class 	AccountController {
 
 			accountManager.changePassword(userAccounts.findByUsername(name).get(), form);
 			LOG.info("changing password for " + name);
-			return "redirect:/#accounts";
+			return "redirect:/#staff";
 		}
 
 
@@ -122,7 +122,7 @@ class 	AccountController {
 		@GetMapping("/deleteAccount/{name}")
 		String deleteAccount(Model model, @PathVariable String name){
 			accountManager.deleteAccount(accountManager.findByUserAccount(userAccounts.findByUsername(name).get()).get());
-			return "redirect:/#accounts";
+			return "redirect:/#staff";
 		}
 
 		@GetMapping("/sendMessage/{name}")
@@ -142,7 +142,7 @@ class 	AccountController {
 		@PostMapping("/sendMessage")
 		String sendMessagePost(Model model, @Valid @ModelAttribute("form") MessageForm form){
 			accountManager.sendMessage(form);
-			return "redirect:/";
+			return "redirect:/#staff";
 		}
 
 }
