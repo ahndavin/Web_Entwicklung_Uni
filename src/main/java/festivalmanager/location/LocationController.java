@@ -62,27 +62,8 @@ public class LocationController {
 	@PostMapping("/location/{location}/editLocation")
 	public String editLocation(	@ModelAttribute("location") @Valid LocationForm locationForm,
 								@PathVariable("location") String locationIdAsString) {
-		long locationId = Long.parseLong(locationIdAsString);
-		Location editedLocation= locationForm.toLocation();
-		Location location = locationManager.findById(locationId);		//locationId = 6
 		
-		System.out.println(location.getId());							//6
-		
-		editedLocation.setId(locationId);
-		editedLocation.setStatus(location.getStatus());
-		editedLocation.setCurrVisitors(location.getCurrVisitors());
-		
-		System.out.println(editedLocation.getId());						//6
-		
-		locationManager.deleteLocationById(locationId);					//altes Location gelöscht
-		
-		System.out.println(locationManager.findAllLocations().size());	//0
-		System.out.println(editedLocation.getId());			 			//6
-		
-		locationManager.save(editedLocation);							//neues Location save
-		
-		System.out.println(locationManager.findAllLocations().size());	//1
-		System.out.println(locationManager.findAllLocations().get(0).getId());	//13  Hier muss 6 kommen!
+		locationManager.update(locationForm, Long.parseLong(locationIdAsString));
 		
 		return "redirect:/location";
 	}
@@ -122,38 +103,27 @@ public class LocationController {
 	}
 	
 	@GetMapping("/location/{location}/editLocation/delete")
-	public String deleteLocation(@PathVariable("location") String locationIdAsString) throws Exception {
+	public String deleteLocation(@PathVariable("location") String locationIdAsString) {
 		long locationId = Long.parseLong(locationIdAsString);
 		Location location = locationManager.findById(locationId);
 		
 		locationManager.deleteLocationById(location.getId());
 
 		return "redirect:/location";
-	}	
-	
-//	@GetMapping("/location/{location}/area")
-//	public String areaManagement(Model model, @PathVariable("location") String locationName) {
-//		Location location = locationManager.findByName(locationName);
-//		System.out.println(location.getId());
-//		List<Area> areas = locationManager.findAllAreas(location);
-//		
-//		model.addAttribute("location", location);
-//		model.addAttribute("areaList", areas);
-//
-//		return "area";
-//	}
+	}
 	
 	@GetMapping("/location/{location}/area")
 	public String areaManagement(Model model, @PathVariable("location") String locationName) {
-		List<Area> areas = locationManager.findAllAreas(locationManager.findByName(locationName));
+		Location location = locationManager.findByName(locationName);
+		List<Area> areas = locationManager.findAllAreas(location);
 		
-		model.addAttribute("location", locationManager.findByName(locationName));
+		model.addAttribute("location", location);
 		model.addAttribute("areaList", areas);
 
 		return "area";
 	}
 
-	//@PreAuthorize("hasAuthority('MANAGER')")					왜 갑자기 안 되는거냐
+	//@PreAuthorize("hasAuthority('MANAGER')")
 	@GetMapping("/location/{location}/area/changeStatus")
 	public String changeAreaStatus(	@PathVariable("location") String locationName,
 									@RequestParam("area") String areaName) {
@@ -162,7 +132,6 @@ public class LocationController {
 		Area area = locationManager.findByName(location, areaName);
 
 		area.toggleLock();
-		locationManager.deleteAreaById(area.getId());
 		locationManager.save(area);
 
 		return "redirect:";
@@ -190,13 +159,12 @@ public class LocationController {
 	}
 
 	@PostMapping("/location/{location}/area/{area}")
-	String editArea(@ModelAttribute("area") @Valid Area area,
+	String editArea(@ModelAttribute("area") @Valid AreaForm areaForm,
 					@PathVariable("location") String locationName,
-					@PathVariable("area") String areaName) {
+					@PathVariable("area") String areaIdAsString) {
 		
-//		System.out.println(area.getZone());
-//		locationManager.deleteAreaById(area.getId());
-//		locationManager.save(area);
+		Location location = locationManager.findByName(locationName);
+		locationManager.update(location, areaForm, Long.parseLong(areaIdAsString));
 
 		return "redirect:";
 	}
@@ -205,10 +173,11 @@ public class LocationController {
 	@GetMapping("/location/{location}/area/{area}")
 	String editArea(Model model,
 					@PathVariable("location") String locationName,
-					@PathVariable("area") String areaName) {
+					@PathVariable("area") String areaIdAsString) {
 		
+		long areaId = Long.parseLong(areaIdAsString);
 		Location location = locationManager.findByName(locationName);
-		Area area = locationManager.findByName(location, areaName);
+		Area area = locationManager.findById(location, areaId);
 		
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
@@ -274,22 +243,28 @@ public class LocationController {
 	}
 
 	@PostMapping("/location/{location}/area/{area}/stage/{stage}")
-	public String editStage(@ModelAttribute("stage") @Valid Stage stage,
+	public String editStage(@ModelAttribute("stage") @Valid StageForm stageForm,
 							@PathVariable("location") String locationName,
-							@PathVariable("area") String areaName) {
-		//TODO
-		return "redirect:stage";
+							@PathVariable("area") String areaName,
+							@PathVariable("stage") String stageIdAsString) {
+		
+		Location location = locationManager.findByName(locationName);
+		Area area = locationManager.findByName(location, areaName);
+		locationManager.update(area, stageForm, Long.parseLong(stageIdAsString));
+		
+		return "redirect:";
 	}
 
 	@GetMapping("/location/{location}/area/{area}/stage/{stage}")
 	public String editStage(Model model,
 							@PathVariable("location") String locationName,
 							@PathVariable("area") String areaName,
-							@PathVariable("stage") String stageName) {
+							@PathVariable("stage") String stageIdAsString) {
 		
+		long stageId = Long.parseLong(stageIdAsString);
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
-		Stage stage = locationManager.findByName(area, stageName);
+		Stage stage = locationManager.findById(area, stageId);
 
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
@@ -370,8 +345,8 @@ public class LocationController {
 		
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
-		List<Contract> contracts = locationManager.findByName().toList();
 		List<Festival> festivals = Lists.newArrayList(locationManager.findFestivals().iterator());
+		List<Contract> contracts = locationManager.findByName().toList();
 		
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
@@ -381,15 +356,21 @@ public class LocationController {
 
 		return "createLineup";
 	}
-
+	
 	@PostMapping("/location/{location}/area/{area}/stage/{stage}/lineup/{lineup}")
-	public String editLineup(	@Valid Lineup lineup,
+	public String editLineup(	@Valid LineupForm lineupForm,
 								@RequestParam("contract") String contract,
 								@PathVariable("location") String locationName,
 								@PathVariable("area") String areaName,
-								@PathVariable("stage") String stageName) {
-		//TODO
-		return "redirect:lineup";
+								@PathVariable("stage") String stageName,
+								@PathVariable("lineup") String lineupIdAsString) {
+		Location location = locationManager.findByName(locationName);
+		Area area = locationManager.findByName(location, areaName);
+		Stage stage = locationManager.findByName(area, stageName);
+		
+		locationManager.update(stage, lineupForm, Long.parseLong(lineupIdAsString));
+		
+		return "redirect:";
 	}
 
 	@GetMapping("/location/{location}/area/{area}/stage/{stage}/lineup/{lineup}")
@@ -402,13 +383,15 @@ public class LocationController {
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
 		Stage stage = locationManager.findByName(area, stageName);
-		long lineupId = Long.parseLong(lineupIdAsString);
-		Lineup lineup = locationManager.findById(stage, lineupId);
+		Lineup lineup = locationManager.findById(stage, Long.parseLong(lineupIdAsString));
+		List<Festival> festivals = Lists.newArrayList(locationManager.findFestivals().iterator());
 		List<Contract> contracts = locationManager.findByName().toList();
 
 		model.addAttribute("location", location);
 		model.addAttribute("area", area);
+		model.addAttribute("stage", stage);
 		model.addAttribute("lineup", lineup);
+		model.addAttribute("festivalList", festivals);
 		model.addAttribute("contractList", contracts);
 
 		return "editLineup";
@@ -423,8 +406,7 @@ public class LocationController {
 		Location location = locationManager.findByName(locationName);
 		Area area = locationManager.findByName(location, areaName);
 		Stage stage = locationManager.findByName(area, stageName);
-		long lineupId = Long.parseLong(lineupIdAsString);
-		Lineup lineup = locationManager.findById(stage, lineupId);
+		Lineup lineup = locationManager.findById(stage, Long.parseLong(lineupIdAsString));
 		
 		locationManager.deleteLineupById(lineup.getId());
 

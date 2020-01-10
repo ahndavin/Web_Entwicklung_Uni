@@ -63,7 +63,7 @@
 	    <ul class="list-group" th:each="lineup : ${lineupList}">
 			<li class="list-group-item">
 				<ul class="list-group">
-	      			<h5 th:text="'Festival: ' + ${lineup.getFestival()}"></h5>
+	      			<h5 th:text="'Festival: ' + ${lineup.getFestival().getName()}"></h5>
 	      			<h5 th:text="'Artist: ' + ${lineup.getArtist()}"></h5>
 	      			<h5 th:text="'Date: ' + ${lineup.getDate()}"></h5>
 	      			<button>

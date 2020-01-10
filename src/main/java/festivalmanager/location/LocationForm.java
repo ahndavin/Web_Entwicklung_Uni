@@ -84,8 +84,6 @@ public class LocationForm {
 	}
 	
 	public Location toLocation() {
-		Location location = new Location(name, address, price, maxVisitors, thumbnail, groundPlan);
-
-		return location;
+		return new Location(name, address, price, maxVisitors, thumbnail, groundPlan);
 	}
 }
