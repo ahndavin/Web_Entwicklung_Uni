@@ -112,38 +112,6 @@
 
     <!-- Section 3 MANAGER -->
 
-    <br>
-    <div class="container">
-      <hr>
-      <section id="staff" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
-        <table class="table table-bordered">
-          <thead class="black white-text">
-            <tr>
-              <th>NAME</th>
-              <th>MESSAGE SEND</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <th:block th:each="message : ${messageManagement.findBySender(Account)}">
-              <tr>
-                <td th:text="${message.receiver.getUserAccount().username}"></td>
-                <td th:text="${message.message}"></td>
-              </tr>
-            </th:block>
-          </tbody>
-        </table>
-        <form th:action="@{sendMessage/{name}(name=${Account.getUserAccount().username})}" method=" get">
-          <a type="submit" th:href="@{sendMessage/{name}(name=${Account.getUserAccount().username})}"
-            th:text="${'Send new Message'}" class="btn btn-primary">
-          </a>
-        </form>
-      </section>
-      <hr>
-    </div>
-
-
-
     <!-- Section 3 FESTIVAL_MANAGER -->
 
     <!-- Section 3 CATERING -->

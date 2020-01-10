@@ -21,30 +21,6 @@
 
     <!-- Section 4 MANAGER -->
 
-
-    <br>
-    <div class="container">
-      <section id="messages" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
-        <table class="table table-bordered">
-          <thead class="black white-text">
-            <tr>
-              <th>CURRENTLY ONLINE</th>
-
-            </tr>
-          </thead>
-          <tbody>
-
-            <th:block th:each="account : ${accountManager.getUsersFromSessionRegistry()}">
-              <tr>
-                <td th:text="${account}"></td>
-              </tr>
-            </th:block>
-          </tbody>
-        </table>
-      </section>
-    </div>
-
-
     <!-- Section 4 FESTIVAL_MANAGER -->
 
     <!-- Section 4 CATERING -->

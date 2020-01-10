@@ -39,7 +39,7 @@ public class TicketController {
 		}
 
 	model.addAttribute("festivallist", ticketManagement.findAll());
-	return "redirect:/#ticketsell	";
+	return "redirect:/#tickets	";
 	}
 
 
@@ -52,7 +52,7 @@ public class TicketController {
 	}
 
 	model.addAttribute("festivallist", ticketManagement.findAll());
-	return "redirect:/#ticketsell";
+	return "redirect:/#tickets";
 	}
 
 }
