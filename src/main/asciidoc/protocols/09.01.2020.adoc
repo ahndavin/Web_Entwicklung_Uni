@@ -1,0 +1,146 @@
+= Protokoll Gruppe 26
+
+Treffen am 09.01.2020
+
+Ort:      Caspar-David-Friedrich-Straße 19 +
+Beginn:   16:45 Uhr +
+Ende:     18:05 Uhr
+
+__Schriftführer:__ Tobias Neubauer
+
+*Nächstes Treffen:* +
+16.01.2020, 16:40 Uhr, Caspar-David-Friedrich-Straße 19
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Tom Morgenstern (Kunde/Tutor)
+- Marcus Fiedler (Scrum Master)
+- Davin Ahn
+- Igor Macevic
+- Jonas Hönisch
+- Tobias Neubauer (Schriftführer)
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen +
+
+_FINALE ABGABE: 19.01._ + 
+Bewertungen bekommen wir vor der Abschlusspräsentation noch. +
+Sollte man das Projekt forken und auf öffentlich stellen, dann als Uniprojekt unter MIT-Lizenz kennzeichnen.
+
+=== Anmerkungen zum aktuellen Stand des Codes
+- Probleme mit den Berechtigungen: Manager soll alles können (gut sowohl zum Testen, als auch zum Vorführen). Das ist bis morgen zu fixen, sonst folgt Verwarnung.
+- nächste Woche: Test Coverage muss 60% sein, schaffen wir >80%, können wir noch eine bessere Note schaffen
+- Persistenz muss nicht aktiviert werden, es drohen Fehler mit Tests
+- Dublications <1%
+- Sämtliche Forms müssen so ergänzt werden, dass bei Geldeingaben auch die Währung in Klammern dabei steht
+- Locations müssen einen Preis haben
+- Locations nur dann löschbar, wenn kein Festival besagte Location nutzt
+- Lager soll automatische Nachricht an Manager schicken, sobald minimaler Lagerbestand eines Items erreicht ist
+- Kundenwunsch! (bis Montag)
+- Lineups sollen festivalspezifisch sein
+- Entwicklerdoku aktualisieren
+- keine Kann-Kriterien anfangen
+- Controller testen mit "ExtendedModelMap" von Spring, evtl. siehe videoshop
+- Footer ausblenden, wenn man angemeldet ist
+- Readme bearbeiten
+
+=== Bemerkungen zur Abschlusspräsentation
+_Jeder muss was machen!_
+
+*10 Minuten Theorie* +
+wenig technische Details +
+eventuell ein Package-Diagramm +
+Probleme und Herausforderungen ansprechen +
+
+*10 Minuten Programmvorführung* +
+Locations, Items, Accounts, ... schon vorher erstellen +
+Bugs vermeiden +
+Ablaufplan schreiben +
+Rollenspiel oder ein Sprecher +
+
+*10 Minuten Fragen* +
+Z.B. Was wir gelernt haben, wie wir die Frameworks fanden,...
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|1   |guestbook Erweiterung      |geschlossen      |-
+|2   |Prototyp Pflichtenheft     |geschlossen      |-
+|3   |Videoshop Erweiterung      |geschlossen      |-
+|4   |Entwickler Dokumentation   |geschlossen      |-
+|5   |Test Plan                  |geschlossen      |-
+|6   |Prototyp                   |geschlossen      |-
+|8   |Zwischenpräsentation       |geschlossen      |-
+|11   |Accountancy-Verknüpfung im TicketManagement |geschlossen |-
+|12   |Login                     |geschlossen      |-
+|13   |Logout                    |geschlossen      |-
+|14   |Account erstellen         |geschlossen      |-
+|15   |(Graphische) Festival-Darstellung   |geschlossen |-
+|16   |Festival anlegen          |geschlossen      |-
+|23   |Line-Up erstellen         |geschlossen      |-
+|24   |Line-Up anzeigen          |geschlossen      |-
+|25   |Angebot einholen          |geschlossen      |-
+|29   |Lagerbestand einsehen     |geschlossen      |-
+|30   |Produkte nachbestellen    |geschlossen      |-
+|31   |Produkt hinzufügen zum Lager  |geschlossen  |-
+|32   |Mindestbestand festlegen  |geschlossen      |- 
+|33   |Nachrichten einsehen      |geschlossen      |-        
+|34   |Nachrichten versenden     |geschlossen      |-       
+|35   |Ticketpreis anpassen      |geschlossen      |-
+|37   |Ticket verkaufen          |geschlossen      |-
+|40   |Personal zuordnen         |geschlossen      |-
+|44   |Betriebswirtschaftliche Daten anzeigen   |geschlossen      |-
+|46   |Product abrechnen         |geschlossen      |-
+|47   |Kostenaufstellung         |geschlossen      |- 
+|53   |Dopplung, vgl. 37         |geschlossen      |-
+|55   |Manager als Singleton     |geschlossen      |-
+|===
+
+
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel                      |Beschreibung        |Verantwortlicher |Status
+|7     |Entwickler-Doku aktuell halten   |-             |Wir alle         |offen
+|9     |Zweisprachigkeit           |-                   |Wir alle         |offen
+|10     |Tickets ausdrucken        |PDF-Umwandlung      |Tobias Neubauer         |offen
+|17     |Lageplan anzeigen   |Visualisierung des Fesitval-Geländes                   |Davin Ahn         |offen
+|18     |Bereiche anpassen   |Funktionen und Struktur einzelner Bereiche abändern   |Davin Ahn         |offen
+|19     |Bereiche sperren   |Einzelne Bereiche müssen gesperrt werden können                   |Davin Ahn         |offen
+|20     |Bühnenpositionen ändern   |-                   |Davin Ahn         |offen
+|21     |Toilettenbestückung ändern   |-                   |Davin Ahn         |offen
+|22     |Catering-Stände anpassen   |Speisekarte muss abgeändert werden können                  |Jonas Hönisch (?)   |offen
+|26     |Angebot annehmen   |-                  |Igor Macevic         |offen
+|27     |Bühnenbelegung abrufen   |Aktuelle Bühnenbelegung für alle Bühnen einsehen      |Davin Ahn         |offen
+|28     |Besucherzahlen abrufen   |Ins Festival integrieren?    |Jonas Hönisch?         |offen
+|36     |Festival freigeben   |Ticketfreigabe starten                  |Jonas Hönisch         |offen
+|38     |Tickets drucken   |-                   |Tobias Neubauer         |offen
+|39     |Personal mieten   |-                   |Marcus Fiedler         |offen
+|41     |Personal abrechnen   |-                   |Marcus Fiedler, Tobias Neubauer         |offen
+|42     |Veranstaltungsleiter abrechnen   |-                   |Marcus Fiedler, Tobias Neubauer         |offen
+|43     |Gegenstände mieten   | und somit ins Lager einpflegen?                  |Jonas Hönisch?         |offen
+|45     |Aktive Accounts anzeigen   |-                   |Marcus Fiedler         |offen
+|48     |Account-Berechtigungen ändern   |OPTIONAL                   |Marcus Fiedler         |offen
+|49     |Übersicht über Nutzeraccounts   |OPTIONAL                  |Marcus Fiedler         |offen
+|50     |Ausbau des Nachrichtensystems   |-                   |Marcus Fiedler         |offen
+|51     |Tickets kontrollieren   |-                   |Tobias Neubauer         |offen
+|52     |Firmenlogo   |-                   |Wir alle         |offen
+|54     |Accountancy als PDF   |-                   |Tobias Neubauer         |offen
+|56     |Alle Packages mit Accountancy verbinden   |-                   |Wir alle         |offen
+|===
+
+== To-Do bis zum nächsten Treffen:
+- Es sollte alles fertig sein!
+- Umsetzen aller Muss-Kriterien in Back- und Frontend
+- Tests schreiben, Klassen testen
+- Sonarqube und Jenkins Beschwerden korrigieren
