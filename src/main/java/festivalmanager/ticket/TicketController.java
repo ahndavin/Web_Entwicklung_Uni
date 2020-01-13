@@ -94,6 +94,6 @@ public class TicketController {
 			out.flush();
 		}
 		
-		return "redirect:";
+		return "redirect:/";
 	}
 }

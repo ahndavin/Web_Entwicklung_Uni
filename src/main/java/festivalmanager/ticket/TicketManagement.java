@@ -21,8 +21,7 @@ public class TicketManagement{
     private final LocationManager locationManager;
 
     public TicketManagement(FestivalManager festivalManager,
-    						DayticketRepository dayticketRepository,
-    						CampingticketRepository campingticketRepository,
+    						TicketRepository ticketRepository,
     						EconomicManager economicManager,
     						LocationManager locationManager){
 		Assert.notNull(festivalManager, "FestivalManager must not be null!");
@@ -96,26 +95,15 @@ public class TicketManagement{
     }
 
     public Ticket checkTicket(String festival, String sort_str, Long id){
-        if(sort_str.equals("Campingticket")){
-            Campingticket ticket = campingticketRepository.findById(id).isPresent() ? campingticketRepository.findById(id).get() : null;
-            if(ticket != null) {
-            	if(!ticket.getUsed()) {
-            		ticket.setUsed(true);
-            		locationManager.findByName(festivalManager.findByName(festival).getLocation()).setCurrVisitors(1);
-            	}
-            	campingticketRepository.save(ticket);
+        Ticket ticket = ticketRepository.findById(id).isPresent() ? ticketRepository.findById(id).get() : null;
+        if(ticket != null) {
+            if(!ticket.getUsed()) {
+                ticket.setUsed(true);
+                System.out.println(festival);
+                locationManager.findByName(festivalManager.findByName(festival).getLocation()).setCurrVisitors(1);
             }
-            return ticket;
-        } else{
-            Dayticket ticket = dayticketRepository.findById(id).isPresent() ? dayticketRepository.findById(id).get() : null;
-            if(ticket != null) {
-            	if(!ticket.getUsed()) {
-            		ticket.setUsed(true);
-            		locationManager.findByName(festivalManager.findByName(festival).getLocation()).setCurrVisitors(1);
-            	}
-            	dayticketRepository.save(ticket);
-            }
-            return ticket;
+            ticketRepository.save(ticket);
         }
+        return ticket;
     }
 }
