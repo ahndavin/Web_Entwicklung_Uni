@@ -1,5 +1,8 @@
 package festivalmanager.ticket;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import festivalmanager.festival.FestivalIdForm;
 
@@ -60,5 +64,33 @@ public class TicketController {
 	model.addAttribute("festivallist", ticketManagement.findAll());
 	return "redirect:/ticket";
 	}
-
+	
+	@PostMapping(path = "/checkTicket")
+	public String checkTicket(	@RequestParam("festival") String festival,
+								@RequestParam("sort") String sort_str,
+								@RequestParam("id") String id_str,
+								HttpServletResponse response) throws Exception {
+		Ticket ticket = ticketManagement.checkTicket(festival, sort_str, Long.parseLong(id_str));
+		
+		if(ticket == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('Ticket does not exist.'); location.href='/';</script>");
+			out.flush();
+		}
+		else if(ticket.getUsed()) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('This ticket has already been used.'); location.href='/';</script>");
+			out.flush();
+		}
+		else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('Welcome!'); location.href='/';</script>");
+			out.flush();
+		}
+		
+		return "redirect:";
+	}
 }

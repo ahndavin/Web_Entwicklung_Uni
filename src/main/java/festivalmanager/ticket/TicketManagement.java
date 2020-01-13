@@ -9,6 +9,7 @@ import festivalmanager.economics.EconomicManager;
 import festivalmanager.festival.Festival;
 import festivalmanager.festival.FestivalIdForm;
 import festivalmanager.festival.FestivalManager;
+import festivalmanager.location.LocationManager;
 
 @Service
 @Transactional
@@ -18,9 +19,13 @@ public class TicketManagement{
     private final CampingticketRepository campingticketRepository;
     private final EconomicManager economicManager;
     private final FestivalManager festivalManager;
+    private final LocationManager locationManager;
 
     public TicketManagement(FestivalManager festivalManager, 
-    DayticketRepository dayticketRepository, CampingticketRepository campingticketRepository, EconomicManager economicManager){
+    						DayticketRepository dayticketRepository,
+    						CampingticketRepository campingticketRepository,
+    						EconomicManager economicManager,
+    						LocationManager locationManager){
 		Assert.notNull(festivalManager, "FestivalManager must not be null!");
 		Assert.notNull(dayticketRepository, "TagesticketRepository must not be null!");
 		Assert.notNull(campingticketRepository, "CampingticketRepository must not be null!");
@@ -30,6 +35,7 @@ public class TicketManagement{
         this.dayticketRepository = dayticketRepository;
         this.campingticketRepository = campingticketRepository;
         this.economicManager = economicManager;
+        this.locationManager = locationManager;
     }
 
     public Iterable<Festival> findAll() {
@@ -89,13 +95,27 @@ public class TicketManagement{
         return ticket;
     }
 
-    public boolean checkTicket(String sort_str, Long id){
+    public Ticket checkTicket(String festival, String sort_str, Long id){
         if(sort_str.equals("Campingticket")){
             Campingticket ticket = campingticketRepository.findById(id).isPresent() ? campingticketRepository.findById(id).get() : null;
-            return ticket.getUsed();    
+            if(ticket != null) {
+            	if(!ticket.getUsed()) {
+            		ticket.setUsed(true);
+            		locationManager.findByName(festivalManager.findByName(festival).getLocation()).setCurrVisitors(1);
+            	}
+            	campingticketRepository.save(ticket);
+            }
+            return ticket;
         } else{
             Dayticket ticket = dayticketRepository.findById(id).isPresent() ? dayticketRepository.findById(id).get() : null;
-            return ticket.getUsed();    
+            if(ticket != null) {
+            	if(!ticket.getUsed()) {
+            		ticket.setUsed(true);
+            		locationManager.findByName(festivalManager.findByName(festival).getLocation()).setCurrVisitors(1);
+            	}
+            	dayticketRepository.save(ticket);
+            }
+            return ticket;
         }
     }
 }
