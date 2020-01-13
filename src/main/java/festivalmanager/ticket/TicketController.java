@@ -28,6 +28,12 @@ public class TicketController {
 		model.addAttribute("festivallist", ticketManagement.findAll());
 		return "ticketManagement";
 	}
+	@GetMapping(path = "/ticket")
+
+	public String ticketPrint(Model model){
+		model.addAttribute("festivallist", ticketManagement.findAll());
+		return "ticket";
+	}
 
 	//PostMapping
 	@PostMapping(path = "/ticketCamping")
@@ -39,7 +45,7 @@ public class TicketController {
 		}
 
 	model.addAttribute("festivallist", ticketManagement.findAll());
-	return "redirect:/#tickets	";
+	return "redirect:/ticket";
 	}
 
 
@@ -52,7 +58,7 @@ public class TicketController {
 	}
 
 	model.addAttribute("festivallist", ticketManagement.findAll());
-	return "redirect:/#tickets";
+	return "redirect:/ticket";
 	}
 
 }
