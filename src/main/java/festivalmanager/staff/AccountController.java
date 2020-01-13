@@ -134,6 +134,8 @@ class 	AccountController {
 
 			model.addAttribute("form", form);
 			model.addAttribute("sender", name);
+			model.addAttribute("accountList", accountManager.findAll());
+			model.addAttribute("accountManager", accountManager);
 
 			return "/sendMessage"  ;
 

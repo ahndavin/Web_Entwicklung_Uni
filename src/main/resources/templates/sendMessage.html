@@ -91,7 +91,10 @@
 
         <div class="field" th:if="!${multimessage}">
             <label  for="receiver">RECEIVER</label><br/>
-            <input id="receiver" name="receiver" th:field="*{receiver}" th:errorclass="fieldError" type="text" required="required"/>
+            <select th:field="*{receiver}">
+                <option th:each="account : ${accountList}" th:text="${account.getUserAccount().username}" th:value="${account.getUserAccount().username}">
+                </option>
+              </select>
         </div>
         <br/>
         <fieldset th:if="${multimessage}" th:field="*{role}">
