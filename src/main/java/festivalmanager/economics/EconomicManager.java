@@ -11,15 +11,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import festivalmanager.festival.Festival;
+import festivalmanager.festival.FestivalManager;
 
 @Service
 @Transactional
 public class EconomicManager{
 
     private final Accountancy accountency;
+    private final FestivalManager festivalManager;
 
-    public EconomicManager(Accountancy accountency) {
+    public EconomicManager(Accountancy accountency, FestivalManager festivalManager) {
         this.accountency = accountency;
+        this.festivalManager = festivalManager;
     }
 
 	public void add(int amount, String description, Festival festival){
@@ -71,5 +74,13 @@ public class EconomicManager{
         sum = sum.add(getRevenues(festival));
         sum = sum.add(getExpenses(festival));
         return sum;
+    }
+
+    public MonetaryAmount getOverallSum(){
+        MonetaryAmount amount = Money.of(0, "EUR");
+        for(Festival festival : festivalManager.findAll()){
+            amount.add(getSum(festival));
+        }
+    return amount;
     }
 }
