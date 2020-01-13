@@ -3,23 +3,28 @@ package festivalmanager.location;
 import festivalmanager.contract.Contract;
 import festivalmanager.festival.Festival;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Lineup {
 	private @Id @GeneratedValue long id;
 	private long stageId;
-	private String date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime date;
 	protected @OneToOne Festival festival;
 	private @OneToOne Contract contract;
 
 	@SuppressWarnings("unused")
 	private Lineup() {}
 	
-	public Lineup(String date) {
+	public Lineup(LocalDateTime date) {
 		this.date = date;
 	}
 	
@@ -39,11 +44,11 @@ public class Lineup {
 		return this.stageId = stageId;
 	}
 	
-	public String getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 	
-	public String setDate(String date) {
+	public LocalDateTime setDate(LocalDateTime date) {
 		return this.date = date;
 	}
 	

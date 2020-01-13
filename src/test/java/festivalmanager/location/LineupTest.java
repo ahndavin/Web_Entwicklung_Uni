@@ -2,35 +2,36 @@ package festivalmanager.location;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import festivalmanager.contract.Contract;
 
 @SpringBootTest
-public class LineupTest{
-
+public class LineupTest{	
     @Test
-    public void checkAllTheGetters(){
-        Lineup lineup = new Lineup("01.12.2020");
+    public void checkAllTheGetters() {
+        Lineup lineup = new Lineup(LocalDateTime.of(2015, 4, 17, 23, 47, 5));
 
-        assertEquals("01.12.2020", lineup.getDate());
+        assertEquals(LocalDateTime.of(2015, 4, 17, 23, 47, 5), lineup.getDate());
     }
 
     @Test
     public void checkAllTheSetters(){
-        Lineup lineup = new Lineup("12.02.2020");
+        Lineup lineup = new Lineup(LocalDateTime.of(2015, 4, 17, 23, 47, 5));
 
-        lineup.setDate("12.12.2020");
+        lineup.setDate(LocalDateTime.of(2020, 12, 17, 23, 47, 5));
         lineup.setStageId(1234567890);
 
-        assertEquals("12.12.2020", lineup.getDate());
+        assertEquals(LocalDateTime.of(2020, 12, 17, 23, 47, 5), lineup.getDate());
         assertEquals(1234567890, lineup.getStageId());
     }
 
     @Test
     public void shouldDealWithContracts(){
-        Lineup lineup = new Lineup("12.02.2020");
+        Lineup lineup = new Lineup(LocalDateTime.of(2020, 12, 17, 23, 47, 5));
         Contract contract = new Contract("contract", "artist", 100, false, 10, 13, 22);
 
         lineup.setArtist(contract);
