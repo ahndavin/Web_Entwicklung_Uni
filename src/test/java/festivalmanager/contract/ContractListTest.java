@@ -13,6 +13,7 @@ public class ContractListTest{
     private ContractList contractList= new ContractList();
 
     private Contract contract = new Contract("contract", "artist", 100, false, 10, 13, 22);
+    private Contract contract2 = new Contract("contract2", "artist2", 100, false, 10, 13, 22);
 
     @Test
     public void shouldCreateContractList(){
@@ -32,6 +33,7 @@ public class ContractListTest{
         else{
             contractList.add(contract);
         }
+        contractList.add(contract2);
         contractList.delete(contract);
         assertFalse(contractList.getList().contains(contract));
     }

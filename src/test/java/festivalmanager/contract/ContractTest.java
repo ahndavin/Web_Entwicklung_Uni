@@ -46,5 +46,9 @@ public class ContractTest{
     public void shouldCalculateOverallCost(){
         assertEquals(contract.totalCost(), contract.getPrice() + contract.getWorkinghours() * contract.getWorkerswage() * contract.getTechnicianscount());
     }
-    
+
+    @Test
+    public void shouldGiveBackString(){
+        assertEquals(contract.getArtist(), contract.toString());
+    }
 }
