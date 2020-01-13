@@ -111,14 +111,14 @@ public class LocationController {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			hasFestival = false;
-			out.println("<script>alert('Es gibt Festival an diesem Location!'); location.href=' " + goTo + " ';</script>");
+			out.println("<script>alert('There is a Festival planned on this location'); location.href=' " + goTo + " ';</script>");
 			out.flush();
 		}		
 		else if(hasEntity) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			hasEntity = false;
-			out.println("<script>alert('Es gibt Area an diesem Location!'); location.href=' " + goTo + " ';</script>");
+			out.println("<script>alert('There is an Area created on this location'); location.href=' " + goTo + " ';</script>");
 			out.flush();
 		}
 		
@@ -238,7 +238,7 @@ public class LocationController {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			hasEntity = false;
-			out.println("<script>alert('Es gibt Stages an diesem Area!'); location.href=' " + goTo + " ';</script>");
+			out.println("<script>alert('>There is a Stage on this Area!'); location.href=' " + goTo + " ';</script>");
 			out.flush();
 		}
 		
@@ -349,7 +349,7 @@ public class LocationController {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			hasEntity = false;
-			out.println("<script>alert('Es gibt Lineup an diesem Stage!'); location.href=' " + goTo + " ';</script>");
+			out.println("<script>alert('There is a Lineup organized on this Stage!'); location.href=' " + goTo + " ';</script>");
 			out.flush();
 		}
 
