@@ -79,7 +79,7 @@
             <h5 th:text="'Artist: ' + ${lineup.getArtist()}"></h5>
             <h5 th:text="'Date: ' + ${lineup.getDate()}"></h5>
             <button class="btn btn-success text-light">
-              <a
+              <a class= "text-light"
                 th:href="@{'/location/' + ${location.getName()} + '/area/' + ${area.getZone()} + '/stage/' + ${stage.getName()} + '/lineup/' + ${lineup.getId()}}">Edit
                 Lineup</a>
             </button>
