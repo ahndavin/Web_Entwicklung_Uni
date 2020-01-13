@@ -394,12 +394,17 @@ public class LocationController {
 		contract = contract.substring(0, contract.length()-1);
 		
 		for(Festival fest : festivals) {
-			if(fest.getName().equals(festival)) {}
+			if(fest.getName().equals(festival)) {
 				lineup.festival = fest;
+				break;
+			}
+				
 		}
 		for(Contract cont : contracts) {
-			if(cont.getArtist().equals(contract))
+			if(cont.getArtist().equals(contract)) {
 				lineup.setArtist(cont);
+				break;
+			}
 		}
 		lineup.setStageId(stage.getId());
 		
@@ -430,6 +435,7 @@ public class LocationController {
 	
 	@PostMapping("/location/{location}/area/{area}/stage/{stage}/lineup/{lineup}")
 	public String editLineup(	@Valid LineupForm lineupForm,
+								@RequestParam("festival") String festival,
 								@RequestParam("contract") String contract,
 								@PathVariable("location") String locationName,
 								@PathVariable("area") String areaName,
@@ -439,7 +445,7 @@ public class LocationController {
 		Area area = locationManager.findByName(location, areaName);
 		Stage stage = locationManager.findByName(area, stageName);
 		
-		locationManager.update(stage, lineupForm, Long.parseLong(lineupIdAsString));
+		locationManager.update(stage, lineupForm, Long.parseLong(lineupIdAsString), festival, contract);
 		
 		return "redirect:";
 	}

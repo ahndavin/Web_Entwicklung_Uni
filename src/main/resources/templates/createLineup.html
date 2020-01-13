@@ -75,15 +75,14 @@
       <form method="POST" th:action="${currentURL}" th:object="${lineup}">
         <label for="festival">Festival : </label>
         <select id="festival" name="festival" required="required" class="festival">
-          <option th:each="festival : ${festivalList}" th:text="${festival.getName()}"
-            th:value="${festival.getName()}" />
+          <option th:each="festival : ${festivalList}" th:text="${festival.getName()}" th:value="${festival.getName()}" />
         </select><br />
         <label for="contract">Artist : </label>
         <select id="contract" name="contract" class="contract">
           <option th:each="contract : ${contractList}" th:text="${contract.getArtist()}" th:value="${contract}" />
         </select><br />
-        <label for="date">Date</label>
-        <input type="text" required="required" th:field="*{Date}" class="form-control" />
+        <label for="date">Date : </label>
+        <input type="datetime-local" required="required" th:field="*{Date}"/>
         <br />
         <br />
         <br />
@@ -99,7 +98,6 @@
   </section>
   <br>
   <br>
-  </section>
 
 
   <!-- BOOTSTRAP SCRIPTS -->

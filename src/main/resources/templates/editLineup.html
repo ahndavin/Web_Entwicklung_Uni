@@ -18,8 +18,11 @@
   <!--  START HERE  -->
   <script type="text/javascript" language="javascript">
     var currentURL = "@{" + location.pathname + "}";
-    var s = document.getElementById("contract");
-    var selectedOption = s.options[s.selectedIndex].value;
+    
+    var f = document.getElementById("festival");
+    var selectedFestival = f.options[f.selectedIndex].value;
+    var a = document.getElementById("contract");
+    var selectedArtist = a.options[a.selectedIndex].value;
 
     function deleteLineup(id) {
       var result = confirm("Lineup wirklich löschen?");
@@ -95,7 +98,9 @@
           Lineup</a>
         <br />
         <br />
-        <input type="hidden" name="contract" th:value="${selectOption}" />
+        
+        <input type="hidden" id="festival" name="festival" th:value="${selectedFestival}" />
+        <input type="hidden" id="contract" name="contract" th:value="${selectedContract}" />
         <button type="button" onclick="goBack()" class="btn btn-danger text-light">Cancel</button>
         <button type="submit" class="btn btn-success text-light">Edit Lineup</button>
       </form>

@@ -7,6 +7,9 @@ import festivalmanager.contract.*;
 import festivalmanager.festival.Festival;
 
 import org.springframework.stereotype.Service;
+
+import com.google.common.collect.Lists;
+
 import org.springframework.data.util.Streamable;
 
 @Service
@@ -205,14 +208,31 @@ public class LocationManager {
 		return lineupRepository.save(lineup);
 	}
 	
-	public Lineup update(Stage stage, LineupForm lineupForm, long lineupId) {
+	public Lineup update(Stage stage, LineupForm lineupForm, long lineupId, String festival, String contract) {
 		Lineup lineup = findById(stage, lineupId);
 		Lineup editedLineup = lineupForm.toLineup();
+		List<Festival> festivals = Lists.newArrayList(findFestivals().iterator());
+		festival = festival.substring(0, festival.length()-1);
+		List<Contract> contracts = findByName().toList();
+		contract = contract.substring(0, contract.length()-1);
+		
+		for(Festival fest : festivals) {
+			if(fest.getName().equals(festival)) {
+				editedLineup.festival = fest;
+				break;
+			}
+				
+		}
+		for(Contract cont : contracts) {
+			if(cont.getArtist().equals(contract)) {
+				editedLineup.setArtist(cont);
+				break;
+			}
+		}
+		
 		
 		editedLineup.setId(lineup.getId());
 		editedLineup.setStageId(lineup.getStageId());
-		editedLineup.setArtist(lineup.getArtist());
-		editedLineup.festival = lineup.festival;
 		
 		return save(editedLineup);
 	}
