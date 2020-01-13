@@ -7,6 +7,7 @@ import java.util.List;
 import org.javamoney.moneta.Money;
 import org.salespointframework.accountancy.Accountancy;
 import org.salespointframework.accountancy.AccountancyEntry;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,7 @@ public class EconomicManager{
     private final Accountancy accountency;
     private final FestivalManager festivalManager;
 
-    public EconomicManager(Accountancy accountency, FestivalManager festivalManager) {
+    public EconomicManager(Accountancy accountency, @Lazy FestivalManager festivalManager) {
         this.accountency = accountency;
         this.festivalManager = festivalManager;
     }
