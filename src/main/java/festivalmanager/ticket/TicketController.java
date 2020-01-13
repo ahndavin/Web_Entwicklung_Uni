@@ -8,6 +8,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import festivalmanager.festival.FestivalIdForm;
@@ -28,24 +29,22 @@ public class TicketController {
 		model.addAttribute("festivallist", ticketManagement.findAll());
 		return "ticketManagement";
 	}
-	@GetMapping(path = "/ticket")
-
-	public String ticketPrint(Model model){
-		model.addAttribute("festivallist", ticketManagement.findAll());
-		return "ticket";
-	}
 
 	//PostMapping
 	@PostMapping(path = "/ticketCamping")
 	public String buyCampingticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
 		if(result.hasErrors()){
 			return "welcome";
-		} else{
-			ticketManagement.buyTicket(festivalIdForm);
 		}
-
-	model.addAttribute("festivallist", ticketManagement.findAll());
-	return "redirect:/ticket";
+		Ticket ticket = ticketManagement.buyTicket(festivalIdForm);
+		
+		model.addAttribute("festivalName", ticket.getFestival().getName());
+		model.addAttribute("festivalStart", ticket.getFestival().getStartDate());
+		model.addAttribute("festivalEnd", ticket.getFestival().getEndDate());
+		model.addAttribute("ticketType", ticket.getSort());
+		model.addAttribute("id", ticket.getId());
+		model.addAttribute("price", ticket.getPrice());
+		return "ticket";
 	}
 
 
@@ -53,12 +52,16 @@ public class TicketController {
 	public String buyDayticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
 	if(result.hasErrors()){
 		return "welcome";
-	} else{
-		ticketManagement.buyTicket(festivalIdForm);
 	}
-
-	model.addAttribute("festivallist", ticketManagement.findAll());
-	return "redirect:/ticket";
+	Ticket ticket = ticketManagement.buyTicket(festivalIdForm);
+	
+	model.addAttribute("festivalName", ticket.getFestival().getName());
+	model.addAttribute("festivalStart", ticket.getFestival().getStartDate());
+	model.addAttribute("festivalEnd", ticket.getFestival().getEndDate());
+	model.addAttribute("ticketType", ticket.getSort());
+	model.addAttribute("id", ticket.getId());
+	model.addAttribute("price", ticket.getPrice());
+	return "ticket";
 	}
 
 }
