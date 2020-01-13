@@ -500,7 +500,54 @@
       <!-- Section description -->
       <p class="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.3s">
         Troll The Security!.</p>
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn">
+			<strong>Check Ticket</strong>
+		</h3>
+		<form id="checkTicket" th:action="@{/checkTicket}" method="POST" class="form-group col-md-8">
+			<div class="form-group col-md-8">
+				<label class="col-form-label" for="festival">Festival</label>
+				<select class="form-control" >
+					<option th:each="festival : ${festivals}" th:text="${festival.name}" th:value="${festival.name}"></option>
+				</select>
+			</div>
+			<div class="form-group col-md-8">
+				<label class="col-form-label" for="type">Type</label><br />
+				<label class="box-radio-input">
+				<input type="radio"	name="chk" value="Campingticket"><span>Camping Ticket</span></label>
+				<label class="box-radio-input">
+				<input type="radio" name="chk" value="Dayticket"><span>Day Ticket</span></label>
+			</div>
+			<div class="form-group col-md-8">
+				<label class="col-form-label" for="id">ID</label>
+				<input class="form-control" type="number" id="id" name="id" required>
+			</div>
+			
+			<input type="hidden" id="festival" name="festival" th:value="${selectedFestival}"/>
+        	<input type="hidden" id="sort" name="sort" th:value="${selectedSort}"/>
+			<input class="btn btn-dark" type="submit" value="Check Ticket">
+		</form>
+      
+      
+      
+      
+      
+      
+      
+	  
+	  
+	  
       <!--Grid row-->
       <div class="row features-small pt-4">
 
@@ -611,6 +658,11 @@
     </section>
 
   </div>
+  <script type="text/javascript" language="javascript">
+    var f = document.getElementById("festival");
+    var selectedFestival = f.options[f.selectedIndex].value;
+   	var selectedSort = &('input:radio[name=chk]:checked').val();
+  </script>
 </body>
 
 </html>

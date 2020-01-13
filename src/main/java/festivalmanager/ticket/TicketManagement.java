@@ -9,6 +9,7 @@ import festivalmanager.economics.EconomicManager;
 import festivalmanager.festival.Festival;
 import festivalmanager.festival.FestivalIdForm;
 import festivalmanager.festival.FestivalManager;
+import festivalmanager.location.LocationManager;
 
 @Service
 @Transactional
@@ -17,16 +18,21 @@ public class TicketManagement{
     private final TicketRepository ticketRepository;
     private final EconomicManager economicManager;
     private final FestivalManager festivalManager;
+    private final LocationManager locationManager;
 
-    public TicketManagement(FestivalManager festivalManager, 
-    TicketRepository ticketRepository, EconomicManager economicManager){
+    public TicketManagement(FestivalManager festivalManager,
+    						DayticketRepository dayticketRepository,
+    						CampingticketRepository campingticketRepository,
+    						EconomicManager economicManager,
+    						LocationManager locationManager){
 		Assert.notNull(festivalManager, "FestivalManager must not be null!");
 		Assert.notNull(ticketRepository, "TicketRepository must not be null!");
 		Assert.notNull(economicManager, "EconomicManager must not be null!");
-        
+
         this.festivalManager = festivalManager;
         this.ticketRepository = ticketRepository;
         this.economicManager = economicManager;
+        this.locationManager = locationManager;
     }
 
     public Iterable<Festival> findAll() {
@@ -38,7 +44,7 @@ public class TicketManagement{
     }
 
       public boolean dayTicketIsAvailable(Sort sort, Festival festival){
-        if(festival.isSellingTickets() != false && sort == Sort.DAYTICKET && 
+        if(festival.isSellingTickets() != false && sort == Sort.DAYTICKET &&
         festival.getTicketBuilder().getAmountDaytickets().isGreaterThan(Quantity.NONE)){
             return true;
         }
@@ -46,7 +52,7 @@ public class TicketManagement{
     }
 
     public boolean campingTicketIsAvailable(Sort sort, Festival festival){
-        if(festival.isSellingTickets() != false && sort == Sort.CAMPINGTICKET && 
+        if(festival.isSellingTickets() != false && sort == Sort.CAMPINGTICKET &&
         festival.getTicketBuilder().getAmountCampingtickets().isGreaterThan(Quantity.NONE)){
             return true;
         }
@@ -64,7 +70,7 @@ public class TicketManagement{
             Ticket ticket = buyCampingticket(festival);
             return ticket;
         }
-        return null;      
+        return null;
     }
 
     public Dayticket buyDayticket(Festival festival){
@@ -89,12 +95,27 @@ public class TicketManagement{
         return ticket;
     }
 
-    public boolean checkTicket(String sort_str, Long id){
-        Ticket ticket = ticketRepository.findById(id).isPresent() ? ticketRepository.findById(id).get() : null;
-        return ticket.getUsed();
-    }
-
-    public Ticket findByIdTicket(Long id){
-        return ticketRepository.findById(id).get();
+    public Ticket checkTicket(String festival, String sort_str, Long id){
+        if(sort_str.equals("Campingticket")){
+            Campingticket ticket = campingticketRepository.findById(id).isPresent() ? campingticketRepository.findById(id).get() : null;
+            if(ticket != null) {
+            	if(!ticket.getUsed()) {
+            		ticket.setUsed(true);
+            		locationManager.findByName(festivalManager.findByName(festival).getLocation()).setCurrVisitors(1);
+            	}
+            	campingticketRepository.save(ticket);
+            }
+            return ticket;
+        } else{
+            Dayticket ticket = dayticketRepository.findById(id).isPresent() ? dayticketRepository.findById(id).get() : null;
+            if(ticket != null) {
+            	if(!ticket.getUsed()) {
+            		ticket.setUsed(true);
+            		locationManager.findByName(festivalManager.findByName(festival).getLocation()).setCurrVisitors(1);
+            	}
+            	dayticketRepository.save(ticket);
+            }
+            return ticket;
+        }
     }
 }
