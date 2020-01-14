@@ -75,26 +75,20 @@ public class TicketController {
 		festival = festival.substring(0, festival.length()-1);
 		Ticket ticket = ticketManagement.checkTicket(festival, sort_str, Long.parseLong(id_str));
 		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		if(ticket == null) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
 			out.println("<script>alert('Ticket does not exist.'); location.href='/';</script>");
-			out.flush();
 		}
 		else if(ticket.getUsed()) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
 			out.println("<script>alert('This ticket has already been used.'); location.href='/';</script>");
-			out.flush();
 		}
 		else {
 			ticketManagement.setTicketStatus(ticket);
-            
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
 			out.println("<script>alert('Welcome!'); location.href='/';</script>");
-			out.flush();
 		}
+		out.flush();
 		
 		return "redirect:/";
 	}
