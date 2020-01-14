@@ -1,12 +1,14 @@
 package festivalmanager.location;
 
+import java.time.LocalDateTime;
+
 import festivalmanager.contract.Contract;
 import festivalmanager.festival.Festival;
 
 public class LineupForm {
 	private long id;
 	private long stageId;
-	private String date;
+	private LocalDateTime date;
 	protected Festival festival;
 	private Contract contract;
 
@@ -26,11 +28,11 @@ public class LineupForm {
 		return this.stageId = stageId;
 	}
 	
-	public String getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 	
-	public String setDate(String date) {
+	public LocalDateTime setDate(LocalDateTime date) {
 		return this.date = date;
 	}
 	

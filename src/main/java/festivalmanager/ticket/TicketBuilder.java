@@ -4,6 +4,8 @@ import org.javamoney.moneta.Money;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 
+import festivalmanager.festival.Festival;
+
 import javax.persistence.*;
 
 @Embeddable
@@ -52,10 +54,6 @@ public class TicketBuilder {
 		return priceDayticket;
 	}
 
-	public Number getFormattedPriceDayticket() {
-		return priceDayticket.getNumber();
-	}
-
 	public void setPriceDayticket(Money dayticketPrice) {
 		this.priceDayticket = dayticketPrice;
 	}
@@ -76,19 +74,15 @@ public class TicketBuilder {
 		return priceCampingticket;
 	}
 
-	public Number getFormattedPriceCampingticket() {
-		return priceCampingticket.getNumber();
-	}
-
 	public void setPriceCampingticket(Money campingticketPrice) {
 		this.priceCampingticket = campingticketPrice;
 	}
 
-	public Campingticket createCampingticket() {
-		return new Campingticket(String.valueOf(id), priceCampingticket);
+	public Campingticket createCampingticket(Festival festival) {
+		return new Campingticket(String.valueOf(id), priceCampingticket, festival);
 	}
 
-	public Dayticket createDayticket() {
-		return new Dayticket(String.valueOf(id), priceDayticket);
+	public Dayticket createDayticket(Festival festival) {
+		return new Dayticket(String.valueOf(id), priceDayticket, festival);
 	}
 }

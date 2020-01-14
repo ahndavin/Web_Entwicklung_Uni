@@ -7,19 +7,23 @@ import java.util.List;
 import org.javamoney.moneta.Money;
 import org.salespointframework.accountancy.Accountancy;
 import org.salespointframework.accountancy.AccountancyEntry;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import festivalmanager.festival.Festival;
+import festivalmanager.festival.FestivalManager;
 
 @Service
 @Transactional
 public class EconomicManager{
 
     private final Accountancy accountency;
+    private final FestivalManager festivalManager;
 
-    public EconomicManager(Accountancy accountency) {
+    public EconomicManager(Accountancy accountency, @Lazy FestivalManager festivalManager) {
         this.accountency = accountency;
+        this.festivalManager = festivalManager;
     }
 
 	public void add(int amount, String description, Festival festival){
@@ -36,8 +40,6 @@ public class EconomicManager{
     public void addEntry(AccountancyEntry entry, Festival festival){
         accountency.add(entry);
         festival.getEconomicList().add(entry);
-
-		// TODO: possibility to add entry without linking a festival
     }
 
     public List<AccountancyEntry> getAll(Festival festival){
@@ -71,5 +73,13 @@ public class EconomicManager{
         sum = sum.add(getRevenues(festival));
         sum = sum.add(getExpenses(festival));
         return sum;
+    }
+
+    public MonetaryAmount getOverallSum(){
+        MonetaryAmount amount = Money.of(0, "EUR");
+        for(Festival festival : festivalManager.findAll()){
+            amount.add(getSum(festival));
+        }
+    return amount;
     }
 }

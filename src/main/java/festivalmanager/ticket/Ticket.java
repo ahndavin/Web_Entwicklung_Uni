@@ -1,8 +1,12 @@
 package festivalmanager.ticket;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import festivalmanager.festival.Festival;
 
 @Entity
 public class Ticket{
@@ -12,10 +16,15 @@ public class Ticket{
     private javax.money.MonetaryAmount price;
     protected Sort sort;
     private boolean used = false;
+    @OneToOne(cascade = {CascadeType.ALL}) private Festival festival;
 
-    public Ticket(String name, javax.money.MonetaryAmount price){
+    @SuppressWarnings("unused")
+    public Ticket(){}
+
+    public Ticket(String name, javax.money.MonetaryAmount price, Festival festival){
         this.name = name;
         this.price = price;
+        this.festival = festival;
     }
 
     public String getName(){
@@ -36,6 +45,10 @@ public class Ticket{
 
     public boolean getUsed(){
         return this.used;
+    }
+
+    public Festival getFestival(){
+        return this.festival;
     }
 
     public void setUsed(boolean used){

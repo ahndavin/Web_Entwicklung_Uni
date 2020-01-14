@@ -96,7 +96,7 @@
 
           <!-- Stage를 눌렀을 때만 보이게 할 것 -->
           <label for="maxStages">Max Stages</label>
-          <input type="number" th:field="*{maxStages}" class="form-control" />
+          <input type="number" th:field="*{maxStages}" placeholder="Do not enter anything if this area is not a stage" class="form-control" />
           <br />
           <a id="deleteLink" th:onclick="'deleteArea(' + ${area.getId()} + ')'" href="#">Area löschen</a>
           <br />

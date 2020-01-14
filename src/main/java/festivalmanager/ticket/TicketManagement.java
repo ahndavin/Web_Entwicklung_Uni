@@ -9,27 +9,29 @@ import festivalmanager.economics.EconomicManager;
 import festivalmanager.festival.Festival;
 import festivalmanager.festival.FestivalIdForm;
 import festivalmanager.festival.FestivalManager;
+import festivalmanager.location.LocationManager;
 
 @Service
 @Transactional
 public class TicketManagement{
 
-    private final DayticketRepository dayticketRepository;
-    private final CampingticketRepository campingticketRepository;
+    private final TicketRepository ticketRepository;
     private final EconomicManager economicManager;
     private final FestivalManager festivalManager;
+    private final LocationManager locationManager;
 
-    public TicketManagement(FestivalManager festivalManager, 
-    DayticketRepository dayticketRepository, CampingticketRepository campingticketRepository, EconomicManager economicManager){
+    public TicketManagement(FestivalManager festivalManager,
+    						TicketRepository ticketRepository,
+    						EconomicManager economicManager,
+    						LocationManager locationManager){
 		Assert.notNull(festivalManager, "FestivalManager must not be null!");
-		Assert.notNull(dayticketRepository, "TagesticketRepository must not be null!");
-		Assert.notNull(campingticketRepository, "CampingticketRepository must not be null!");
+		Assert.notNull(ticketRepository, "TicketRepository must not be null!");
 		Assert.notNull(economicManager, "EconomicManager must not be null!");
-        
+
         this.festivalManager = festivalManager;
-        this.dayticketRepository = dayticketRepository;
-        this.campingticketRepository = campingticketRepository;
+        this.ticketRepository = ticketRepository;
         this.economicManager = economicManager;
+        this.locationManager = locationManager;
     }
 
     public Iterable<Festival> findAll() {
@@ -38,10 +40,10 @@ public class TicketManagement{
 
     public Festival findById(Long id) {
         return festivalManager.findById(id).isPresent() ? festivalManager.findById(id).get() : null;
-      }
+    }
 
       public boolean dayTicketIsAvailable(Sort sort, Festival festival){
-        if(festival.isSellingTickets() != false && sort == Sort.DAYTICKET && 
+        if(festival.isSellingTickets() != false && sort == Sort.DAYTICKET &&
         festival.getTicketBuilder().getAmountDaytickets().isGreaterThan(Quantity.NONE)){
             return true;
         }
@@ -49,7 +51,7 @@ public class TicketManagement{
     }
 
     public boolean campingTicketIsAvailable(Sort sort, Festival festival){
-        if(festival.isSellingTickets() != false && sort == Sort.CAMPINGTICKET && 
+        if(festival.isSellingTickets() != false && sort == Sort.CAMPINGTICKET &&
         festival.getTicketBuilder().getAmountCampingtickets().isGreaterThan(Quantity.NONE)){
             return true;
         }
@@ -57,14 +59,17 @@ public class TicketManagement{
 
     }
 
-    public void buyTicket(FestivalIdForm festivalIdForm){
+    public Ticket buyTicket(FestivalIdForm festivalIdForm){
         Festival festival = findById(festivalIdForm.getId());
         if(dayTicketIsAvailable(festivalIdForm.getSort(), festival) && festivalIdForm.getSort() == Sort.DAYTICKET){
-            buyDayticket(festival);
+            Ticket ticket = buyDayticket(festival);
+            return ticket;
         }
         if(campingTicketIsAvailable(festivalIdForm.getSort(), festival) && festivalIdForm.getSort() == Sort.CAMPINGTICKET){
-            buyCampingticket(festival);
-        }      
+            Ticket ticket = buyCampingticket(festival);
+            return ticket;
+        }
+        return null;
     }
 
     public Dayticket buyDayticket(Festival festival){
@@ -73,8 +78,8 @@ public class TicketManagement{
         economicManager.add(festival.getTicketBuilder().getPriceDayticket(), "Day Ticket", festival);
 
         festival.getTicketBuilder().setAmountDaytickets(newQuantity);
-        Dayticket ticket = festival.getTicketBuilder().createDayticket();
-        dayticketRepository.save(ticket);
+        Dayticket ticket = festival.getTicketBuilder().createDayticket(festival);
+        ticketRepository.save(ticket);
         return ticket;
     }
 
@@ -84,18 +89,28 @@ public class TicketManagement{
         economicManager.add(festival.getTicketBuilder().getPriceCampingticket(), "Camping Ticket", festival);
 
         festival.getTicketBuilder().setAmountCampingtickets(newQuantity);
-        Campingticket ticket = festival.getTicketBuilder().createCampingticket();
-        campingticketRepository.save(ticket);
+        Campingticket ticket = festival.getTicketBuilder().createCampingticket(festival);
+        ticketRepository.save(ticket);
         return ticket;
     }
 
-    public boolean checkTicket(String sort_str, Long id){
-        if(sort_str.equals("Campingticket")){
-            Campingticket ticket = campingticketRepository.findById(id).isPresent() ? campingticketRepository.findById(id).get() : null;
-            return ticket.getUsed();    
-        } else{
-            Dayticket ticket = dayticketRepository.findById(id).isPresent() ? dayticketRepository.findById(id).get() : null;
-            return ticket.getUsed();    
+    public Ticket checkTicket(String festival, String sort_str, Long id){
+        Ticket ticket = ticketRepository.findById(id).isPresent() ? ticketRepository.findById(id).get() : null;
+
+        if(ticket != null) {
+        	System.out.println(ticket.getSort().toString());
+        	if(!(ticket.getFestival().getName().equals(festival)) || !(ticket.getSort().toString().equals(sort_str)))
+            	ticket = null;
         }
+        
+        return ticket;
+    }
+    
+    public Ticket setTicketStatus(Ticket ticket){
+    	locationManager.findByName(ticket.getFestival().getLocation()).countVisitors(1);
+        ticket.setUsed(true);
+        ticketRepository.save(ticket);
+        
+        return ticket;
     }
 }
