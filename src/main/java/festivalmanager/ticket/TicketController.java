@@ -88,7 +88,7 @@ public class TicketController {
 			out.flush();
 		}
 		else {
-			ticketManagement.setTicketStatus(ticket, festival);
+			ticketManagement.setTicketStatus(ticket);
             
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

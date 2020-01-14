@@ -106,8 +106,8 @@ public class TicketManagement{
         return ticket;
     }
     
-    public Ticket setTicketStatus(Ticket ticket, String festival){
-    	locationManager.findByName(festivalManager.findByName(festival).getLocation()).countVisitors(1);
+    public Ticket setTicketStatus(Ticket ticket){
+    	locationManager.findByName(ticket.getFestival().getLocation()).countVisitors(1);
         ticket.setUsed(true);
         ticketRepository.save(ticket);
         
