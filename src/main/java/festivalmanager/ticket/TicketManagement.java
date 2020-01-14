@@ -96,13 +96,21 @@ public class TicketManagement{
 
     public Ticket checkTicket(String festival, String sort_str, Long id){
         Ticket ticket = ticketRepository.findById(id).isPresent() ? ticketRepository.findById(id).get() : null;
+
         if(ticket != null) {
-            if(!ticket.getUsed()) {
-                ticket.setUsed(true);
-                locationManager.findByName(festivalManager.findByName(festival).getLocation()).countVisitors(1);
-            }
-            ticketRepository.save(ticket);
+        	System.out.println(ticket.getSort().toString());
+        	if(!(ticket.getFestival().getName().equals(festival)) || !(ticket.getSort().toString().equals(sort_str)))
+            	ticket = null;
         }
+        
+        return ticket;
+    }
+    
+    public Ticket setTicketStatus(Ticket ticket, String festival){
+    	locationManager.findByName(festivalManager.findByName(festival).getLocation()).countVisitors(1);
+        ticket.setUsed(true);
+        ticketRepository.save(ticket);
+        
         return ticket;
     }
 }
