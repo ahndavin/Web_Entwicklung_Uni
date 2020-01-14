@@ -11,7 +11,6 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -54,18 +53,18 @@ public class TicketController {
 
 	@PostMapping(path = "/ticketDay")
 	public String buyDayticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
-	if(result.hasErrors()){
-		return "welcome";
-	}
-	Ticket ticket = ticketManagement.buyTicket(festivalIdForm);
-	
-	model.addAttribute("festivalName", ticket.getFestival().getName());
-	model.addAttribute("festivalStart", ticket.getFestival().getStartDate());
-	model.addAttribute("festivalEnd", ticket.getFestival().getEndDate());
-	model.addAttribute("ticketType", ticket.getSort());
-	model.addAttribute("id", ticket.getId());
-	model.addAttribute("price", ticket.getPrice());
-	return "ticket";
+		if(result.hasErrors()){
+			return "welcome";
+		}
+		Ticket ticket = ticketManagement.buyTicket(festivalIdForm);
+		
+		model.addAttribute("festivalName", ticket.getFestival().getName());
+		model.addAttribute("festivalStart", ticket.getFestival().getStartDate());
+		model.addAttribute("festivalEnd", ticket.getFestival().getEndDate());
+		model.addAttribute("ticketType", ticket.getSort());
+		model.addAttribute("id", ticket.getId());
+		model.addAttribute("price", ticket.getPrice());
+		return "ticket";
 	}
 	
 	@PostMapping(path = "/checkTicket")
