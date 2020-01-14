@@ -53,25 +53,26 @@ public class TicketController {
 
 	@PostMapping(path = "/ticketDay")
 	public String buyDayticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
-	if(result.hasErrors()){
-		return "welcome";
-	}
-	Ticket ticket = ticketManagement.buyTicket(festivalIdForm);
-	
-	model.addAttribute("festivalName", ticket.getFestival().getName());
-	model.addAttribute("festivalStart", ticket.getFestival().getStartDate());
-	model.addAttribute("festivalEnd", ticket.getFestival().getEndDate());
-	model.addAttribute("ticketType", ticket.getSort());
-	model.addAttribute("id", ticket.getId());
-	model.addAttribute("price", ticket.getPrice());
-	return "ticket";
+		if(result.hasErrors()){
+			return "welcome";
+		}
+		Ticket ticket = ticketManagement.buyTicket(festivalIdForm);
+		
+		model.addAttribute("festivalName", ticket.getFestival().getName());
+		model.addAttribute("festivalStart", ticket.getFestival().getStartDate());
+		model.addAttribute("festivalEnd", ticket.getFestival().getEndDate());
+		model.addAttribute("ticketType", ticket.getSort());
+		model.addAttribute("id", ticket.getId());
+		model.addAttribute("price", ticket.getPrice());
+		return "ticket";
 	}
 	
 	@PostMapping(path = "/checkTicket")
 	public String checkTicket(	@RequestParam("festival") String festival,
-								@RequestParam("sort") String sort_str,
+								@RequestParam("ticketType") String sort_str,
 								@RequestParam("id") String id_str,
 								HttpServletResponse response) throws Exception {
+		festival = festival.substring(0, festival.length()-1);
 		Ticket ticket = ticketManagement.checkTicket(festival, sort_str, Long.parseLong(id_str));
 		
 		if(ticket == null) {
@@ -87,6 +88,8 @@ public class TicketController {
 			out.flush();
 		}
 		else {
+			ticketManagement.setTicketStatus(ticket);
+            
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('Welcome!'); location.href='/';</script>");

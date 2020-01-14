@@ -518,16 +518,16 @@
 		<form id="checkTicket" th:action="@{/checkTicket}" method="POST" class="form-group col-md-8">
 			<div class="form-group col-md-8">
 				<label class="col-form-label" for="festival">Festival</label>
-				<select class="form-control" >
+				<select id="festival" name="festival" class="form-control" >
 					<option th:each="festival : ${festivals}" th:text="${festival.name}" th:value="${festival.name}"></option>
 				</select>
 			</div>
 			<div class="form-group col-md-8">
 				<label class="col-form-label" for="type">Type</label><br />
 				<label class="box-radio-input">
-				<input type="radio"	name="chk" value="Campingticket"><span>Camping Ticket</span></label>
+				<input type="radio" id="ticketTyp" name="ticketType" value="DAYTICKET"><span>Day Ticket</span></label>
 				<label class="box-radio-input">
-				<input type="radio" name="chk" value="Dayticket"><span>Day Ticket</span></label>
+				<input type="radio" id="ticketTyp" name="ticketType" value="CAMPINGTICKET"><span>Camping Ticket</span></label>
 			</div>
 			<div class="form-group col-md-8">
 				<label class="col-form-label" for="id">ID</label>
@@ -535,7 +535,6 @@
 			</div>
 			
 			<input type="hidden" id="festival" name="festival" th:value="${selectedFestival}"/>
-        	<input type="hidden" id="sort" name="sort" th:value="${selectedSort}"/>
 			<input class="btn btn-dark" type="submit" value="Check Ticket">
 		</form>
       
@@ -661,7 +660,6 @@
   <script type="text/javascript" language="javascript">
     var f = document.getElementById("festival");
     var selectedFestival = f.options[f.selectedIndex].value;
-   	var selectedSort = ('input:radio[name=chk]:checked').val();
   </script>
 </body>
 

@@ -85,7 +85,17 @@ public class FestivalManager {
 			}
 		}
 
-		return festivalRepository.save(festival);
+		Festival savedFestival = festivalRepository.save(festival);
+
+		if(festival.getId() == 0) {
+			economics.add(
+					locations.findByName(festival.getLocation()).getPrice(),
+					"booked location",
+					savedFestival
+			);
+		}
+
+		return festivalRepository.save(savedFestival);
 	}
 
 	public Festival update(Festival festival) {
