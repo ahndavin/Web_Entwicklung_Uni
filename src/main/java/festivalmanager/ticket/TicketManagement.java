@@ -99,8 +99,7 @@ public class TicketManagement{
         if(ticket != null) {
             if(!ticket.getUsed()) {
                 ticket.setUsed(true);
-                System.out.println(festival);
-                locationManager.findByName(festivalManager.findByName(festival).getLocation()).setCurrVisitors(1);
+                locationManager.findByName(festivalManager.findByName(festival).getLocation()).countVisitors(1);
             }
             ticketRepository.save(ticket);
         }
