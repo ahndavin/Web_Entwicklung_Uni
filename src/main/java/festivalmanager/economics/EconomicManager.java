@@ -40,8 +40,6 @@ public class EconomicManager{
     public void addEntry(AccountancyEntry entry, Festival festival){
         accountency.add(entry);
         festival.getEconomicList().add(entry);
-
-		// TODO: possibility to add entry without linking a festival
     }
 
     public List<AccountancyEntry> getAll(Festival festival){
