@@ -2,15 +2,13 @@ package festivalmanager.festival;
 
 import festivalmanager.inventory.InventoryManager;
 import festivalmanager.location.LocationManager;
-import festivalmanager.staff.Account;
-import festivalmanager.staff.AccountManager;
-import festivalmanager.staff.CreationForm;
-import festivalmanager.staff.MessageManager;
+import festivalmanager.staff.*;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
+import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -269,11 +267,31 @@ public class FestivalController {
 		return "redirect:/festival/" + festival.getName() + "-" + festivalId + "/inventory/edit/";
 	}
 
-	@GetMapping("/festival/{festivalId}/delete")
-	String deleteFestival(@PathVariable long festivalId) {
+	@PostMapping("/festival/delete")
+	String deleteFestival(@RequestParam long festivalId, @RequestParam String deleteReason) {
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
 
-		festivalOptional.ifPresent(festival -> festivals.delete(festival));
+		if(festivalOptional.isPresent()) {
+			Festival festival = festivalOptional.get();
+
+			Streamable<Account> accounts = accountManager.findAll();
+
+			for(Account account : accounts) {
+				if(!account.getFestivalNameWithoutNull().equals(festival.getName()) &&
+				   !account.getUserAccount().getUsername().equals("MANAGER")) {
+					continue;
+				}
+
+				accountManager.sendMessage(new MessageForm(
+						"MANAGER",
+						account.getUserAccount().getUsername(),
+						null,
+						"deleted festival " + festival.getName()
+				));
+			}
+
+			festivals.delete(festival);
+		}
 
 		return "redirect:/#festivals";
 	}
