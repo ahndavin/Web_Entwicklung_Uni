@@ -53,14 +53,14 @@
 
 <body>
   <section
-    sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER') ">
+    sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER') or hasAuthority('CATERING') or hasRole('CATERING')">
     <nav class="navbar navbar-expand-md navbar-dark">
       <a href="/" class="navbar-brand">
         <h3 class="mb-0">FVIV</h3>
       </a>
       <ul class="navbar-nav mr-auto smooth-scroll">
         <li class="nav-item">
-          <a href="/#festivals" class="nav-link">Back to Festivals</a>
+          <a href="../" class="nav-link">Back</a>
         </li>
       </ul>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
@@ -80,16 +80,25 @@
         </li>
       </ul>
     </nav>
-    <div id="editContainer">
-      <ul id="edit-ul">
+
+    <div class="container card" id="editContainer">
+      <br>
+      <ul id="edit-ul" class="text-center">
+        <h2>
+          <strong>Currently in the Inventory</strong>
+        </h2>
+        <br>
         <li class="edit-li" th:each="inventoryItem : ${festivalInventory}">
           <form th:action="@{/festival/inventory/edit}" method="POST">
             <input type="hidden" name="festivalId" th:value="${festivalId}">
             <input type="hidden" name="itemId" th:value="${inventoryItem.key}">
 
-            <label class="col-form-label edit-form-element" th:text="${stock.findById(inventoryItem.key).get().product.name}"></label>
-            <input class="form-control edit-form-element edit-left-spacer" type="number" name="quantity" th:value="${inventoryItem.value}">
-            <p class="availableInfo col-form-label edit-form-element edit-left-spacer" th:text="${stock.findById(inventoryItem.key).get().quantity} + ' more available'">
+            <label class="col-form-label edit-form-element"
+              th:text="${stock.findById(inventoryItem.key).get().product.name}"></label>
+            <input class="form-control edit-form-element edit-left-spacer" type="number" name="quantity"
+              th:value="${inventoryItem.value}">
+            <p class="availableInfo col-form-label edit-form-element edit-left-spacer"
+              th:text="${stock.findById(inventoryItem.key).get().quantity} + ' more available'">
             </p>
 
             <input class="btn btn-dark edit-left-spacer" type="submit" value="Save">
@@ -97,21 +106,23 @@
         </li>
       </ul>
 
-      <form id="add-item-form" th:if="${stock.findAllExcept(festivalInventory.keySet()).iterator().hasNext()}"
-        th:action="@{/festival/inventory/edit}" method="POST">
-        <input type="hidden" name="festivalId" th:value="${festivalId}">
+      <div class=" text-center">
+        <br>
+        <form id="add-item-form" th:if="${stock.findAllExcept(festivalInventory.keySet()).iterator().hasNext()}"
+          th:action="@{/festival/inventory/edit}" method="POST">
+          <input type="hidden" name="festivalId" th:value="${festivalId}">
 
-        <select class="col-form-label edit-form-element" name="itemId">
-          <option th:each="item : ${stock.findAllExcept(festivalInventory.keySet())}"
-            th:text="${item.product.name + ' (' + item.quantity + ')'}" th:value="${item.id}"></option>
-        </select>
-        <input class="form-control edit-form-element edit-left-spacer" id="addQuantity" type="number" name="quantity" min="0">
+          <select class="col-form-label form-element">
+            <option th:each="item : ${stock.findAllExcept(festivalInventory.keySet())}"
+              th:text="${item.product.name + ' (' + item.quantity + ')'}" th:value="${item.id}"></option>
+          </select>
+          <input class="col-form-label" type="number" name="quantity" min="0">
 
-        <input class="btn btn-dark edit-left-spacer" type="submit" value="add">
-      </form>
-
-      <div id="inner-navigation">
-        <a class="btn btn-dark back-button" href="./">Back</a>
+          <input class="btn btn-primary edit" type="submit" value="add">
+          <a class="btn btn-danger back-button text-center" href="../">Back</a>
+          <br>
+        </form>
+        <br>
       </div>
     </div>
   </section>
