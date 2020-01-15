@@ -85,11 +85,13 @@ public class FestivalManager {
 			}
 		}
 
+		long idBeforeSaving = festival.getId();
+
 		Festival savedFestival = festivalRepository.save(festival);
 
-		if(festival.getId() == 0) {
+		if(idBeforeSaving == 0) {
 			economics.add(
-					locations.findByName(festival.getLocation()).getPrice(),
+					locations.findByName(festival.getLocation()).getPrice()*-1,
 					"booked location",
 					savedFestival
 			);
