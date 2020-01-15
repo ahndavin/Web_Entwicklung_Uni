@@ -55,5 +55,3 @@ public class Ticket{
         this.used = used;
     }
 }
-
-//TODO Implement possibility to check tickets within the frontend
