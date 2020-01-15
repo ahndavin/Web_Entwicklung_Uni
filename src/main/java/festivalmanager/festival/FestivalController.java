@@ -259,14 +259,14 @@ public class FestivalController {
 		Festival festival = festivalOptional.get();
 
 		if(quantity.equals("")) {
-			return "redirect:/festival/" + festival.getName() + "-" + festivalId + "/inventory/edit";
+			return "redirect:/festival/" + festival.getName() + "-" + festivalId + "/inventory/edit/";
 		}
 
 		long quantityParsed = Long.parseLong(quantity);
 
 		Festival result = festivals.updateInventoryItem(festival, itemId, Quantity.of(quantityParsed));
 
-		return "redirect:/festival/" + festival.getName() + "-" + festivalId + "/inventory/edit";
+		return "redirect:/festival/" + festival.getName() + "-" + festivalId + "/inventory/edit/";
 	}
 
 	@GetMapping("/festival/{festivalId}/delete")
