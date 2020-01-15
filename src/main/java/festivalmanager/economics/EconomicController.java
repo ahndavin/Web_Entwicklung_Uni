@@ -53,9 +53,7 @@ public class EconomicController {
 	String festivals(Model model , FestivalIdForm festivalIdForm) {
 
 		model.addAttribute("festivals", festivalManager.findAll());
-			model.addAttribute("economicManager", economicManager);
-
-
+		model.addAttribute("economicManager", economicManager);
 
 		return "totalAccountancy";
 	}
