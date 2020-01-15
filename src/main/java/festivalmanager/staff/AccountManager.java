@@ -141,6 +141,7 @@ public class AccountManager {
 
 
 	public void deleteAccount(Account account){
+		userAccounts.delete(account.getUserAccount());
 		accounts.delete(account);
 		LOG.info("deleting " + account.getUserAccount().getUsername());
 	}
