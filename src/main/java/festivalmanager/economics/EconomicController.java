@@ -1,9 +1,11 @@
 package festivalmanager.economics;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
+import festivalmanager.festival.*;
 import festivalmanager.festival.FestivalManager;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -41,10 +43,24 @@ public class EconomicController {
 
         Festival festival = festivalOptinal.get();
 
-        model.addAttribute("entrylist", economicManager.getAll(festival));
+		model.addAttribute("festivals", festivalManager.findAllSortedByDate());
         model.addAttribute("sumRevenues", economicManager.getRevenues(festival));
         model.addAttribute("sumExpenses", economicManager.getExpenses(festival));
         model.addAttribute("sumAll", economicManager.getSum(festival));
 		return "accountancy";
-	} 
+
+
+	}
+
+	@GetMapping("/totalAccountancy")
+	String festivals(Model model , FestivalIdForm festivalIdForm) {
+
+		model.addAttribute("festivals", festivalManager.findAll());
+			model.addAttribute("economicManager", economicManager);
+
+
+
+		return "totalAccountancy";
+	}
+
 }

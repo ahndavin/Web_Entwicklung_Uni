@@ -78,7 +78,7 @@ public class EconomicManager{
     public MonetaryAmount getOverallSum(){
         MonetaryAmount amount = Money.of(0, "EUR");
         for(Festival festival : festivalManager.findAll()){
-            amount.add(getSum(festival));
+            amount = amount.add(getSum(festival));
         }
     return amount;
     }
