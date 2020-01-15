@@ -78,6 +78,14 @@ public class TicketBuilder {
 		this.priceCampingticket = campingticketPrice;
 	}
 
+	public int getFormattedPriceDayticket() {
+		return priceDayticket.getNumber().intValueExact();
+	}
+
+	public int getFormattedPriceCampingticket() {
+		return priceDayticket.getNumber().intValueExact();
+	}
+
 	public Campingticket createCampingticket(Festival festival) {
 		return new Campingticket(String.valueOf(id), priceCampingticket, festival);
 	}
