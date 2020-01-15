@@ -33,7 +33,7 @@ public class EconomicControllerTest<FestivalRepository> extends AbstractIntegrat
         Festival festival = new Festival( "test", "Dresden", "2030-01-01", "2030-01-01", 100, 100, 50, 100, 1000, true);
         festivalManager.save(festival);
         FestivalIdForm festivalIdForm = new FestivalIdForm(festival.getId(), "CAMPINGTICKET");
-
+        
         assertThatExceptionOfType(AuthenticationException.class) 
         .isThrownBy(() -> economicController.goToAccountancy(festivalIdForm, errors, new ExtendedModelMap()));
     }
@@ -44,7 +44,7 @@ public class EconomicControllerTest<FestivalRepository> extends AbstractIntegrat
         Festival festival = new Festival( "test", "Dresden", "2030-01-01", "2030-01-01", 100, 100, 50, 100, 1000, true);
         festivalManager.save(festival);
         FestivalIdForm festivalIdForm = new FestivalIdForm(festival.getId(), "CAMPINGTICKET");
-
+        
         ExtendedModelMap modelMap = new ExtendedModelMap();
         economicController.goToAccountancy(festivalIdForm, errors, modelMap);
 
@@ -52,5 +52,19 @@ public class EconomicControllerTest<FestivalRepository> extends AbstractIntegrat
         assertNotNull(modelMap.get("sumRevenues"));
         assertNotNull(modelMap.get("sumExpenses"));
         assertNotNull(modelMap.get("sumAll"));
+    }
+
+    @Test
+    @WithMockUser(roles = "MANAGER")
+    public void shouldGiveBackTotalAccountancy(){
+        Festival festival = new Festival( "test", "Dresden", "2030-01-01", "2030-01-01", 100, 100, 50, 100, 1000, true);
+        festivalManager.save(festival);
+        FestivalIdForm festivalIdForm = new FestivalIdForm(festival.getId(), "CAMPINGTICKET");
+        
+        ExtendedModelMap modelMap = new ExtendedModelMap();
+        economicController.festivals(modelMap, festivalIdForm);
+
+        assertNotNull(modelMap.get("festivals"));
+        assertNotNull(modelMap.get("economicManager"));
     }
 }
