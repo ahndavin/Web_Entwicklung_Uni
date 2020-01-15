@@ -41,10 +41,23 @@ public class EconomicController {
 
         Festival festival = festivalOptinal.get();
 
-        model.addAttribute("entrylist", economicManager.getAll(festival));
+		model.addAttribute("entrylist", economicManager.getAll(festival));
+		model.addAttribute("festivals", festivalManager.findAllSortedByDate());
         model.addAttribute("sumRevenues", economicManager.getRevenues(festival));
         model.addAttribute("sumExpenses", economicManager.getExpenses(festival));
         model.addAttribute("sumAll", economicManager.getSum(festival));
 		return "accountancy";
+    }
+
+	@GetMapping("/totalAccountancy")
+	String festivals(Model model , FestivalIdForm festivalIdForm) {
+
+		model.addAttribute("festivals", festivalManager.findAll());
+			model.addAttribute("economicManager", economicManager);
+
+
+
+		return "totalAccountancy";
 	}
+
 }

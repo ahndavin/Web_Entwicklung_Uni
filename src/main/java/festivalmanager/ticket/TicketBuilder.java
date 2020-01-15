@@ -30,7 +30,8 @@ public class TicketBuilder {
 
 	public TicketBuilder(){}
 
-	public TicketBuilder(long id, int amountDaytickets , int amountCampingticket, double priceDayticket, double priceCampingticket) {
+	public TicketBuilder(long id, int amountDaytickets , int amountCampingticket, 
+						double priceDayticket, double priceCampingticket) {
 		this.id = id;
 		this.amountDaytickets = Quantity.of(amountDaytickets, Metric.UNIT);
 		this.amountCampingticket = Quantity.of(amountCampingticket, Metric.UNIT);
@@ -76,6 +77,14 @@ public class TicketBuilder {
 
 	public void setPriceCampingticket(Money campingticketPrice) {
 		this.priceCampingticket = campingticketPrice;
+	}
+
+	public int getFormattedPriceDayticket() {
+		return priceDayticket.getNumber().intValueExact();
+	}
+
+	public int getFormattedPriceCampingticket() {
+		return priceDayticket.getNumber().intValueExact();
 	}
 
 	public Campingticket createCampingticket(Festival festival) {

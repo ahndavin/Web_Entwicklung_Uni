@@ -18,7 +18,8 @@
   <!--  START HERE  -->
 
 
-  <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')">
+  <section
+    sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')">
     <!--  NavBar -->
     <nav class="navbar navbar-expand-md navbar-dark">
       <a href="/" class="navbar-brand">
@@ -58,127 +59,126 @@
       </div>
     </section>
     <br>
-    <br>
     <div id="div_print">
 
-         <!--  Ticket as a Table Form -->
-        <div class="container card">
+      <!--  Ticket as a Table Form -->
+      <div class="container card">
         <div class="three wide column"></div>
         <div class="ten wide column" style="padding-top: 50px">
 
-            <h4 class="ui dividing header" th:text="${'TICKET FOR FESTIVAL: ' + festivalName}"> </h4>
-            <table width=100% height=100%>
+          <h4 class="ui dividing header text-center" th:text="${'TICKET FOR FESTIVAL: ' + festivalName}"> </h4>
+          <br>
+          <table width=100% height=100%>
             <tr>
-                <td width=40%>
+              <td width=40%>
                 <!-- Left part -->
                 <table class="ui celled table">
-                    <thead>
+                  <thead>
                     <tr>
-                        <th>FESTIVAL STARTDATE</th>
-                        <th>FESTIVAL ENDDATE</th>
+                      <th>FESTIVAL STARTDATE</th>
+                      <th>FESTIVAL ENDDATE</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                  </thead>
+                  <tbody>
                     <tr>
-                        <td th:text="${festivalStart}" >Placeholder</td>
-                        <td th:text="${festivalEnd}" >Placeholder</td>
+                      <td th:text="${festivalStart}">Placeholder</td>
+                      <td th:text="${festivalEnd}">Placeholder</td>
                     </tr>
-                    </tbody>
+                  </tbody>
                 </table>
-                </td>
-                <td width=40%>
+              </td>
+              <td width=40%>
                 <!-- Right part-->
 
                 <table class="ui celled table">
-                    <thead>
+                  <thead>
                     <tr>
-                        <th>TICKET TYPE</th>
+                      <th>TICKET TYPE</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                  </thead>
+                  <tbody>
                     <tr>
-                        <td th:text="${ticketType}"></td>
+                      <td th:text="${ticketType}"></td>
                     </tr>
-                    </tbody>
+                  </tbody>
                 </table>
-                </td>
+              </td>
             </tr>
-            </table>
-            <br>
-            <br>
+          </table>
+          <br>
+          <br>
 
-            <!-- Summaries-->
+          <!-- Summaries-->
 
-            <table width=100% height=100%>
+          <table width=100% height=100%>
             <tr>
-                <td width=40%>
+              <td width=40%>
                 <!-- Left part -->
 
                 <table class="ui celled table">
-                    <thead>
+                  <thead>
                     <tr>
-                        <th>Mark on Entry: </th>
-                        <th></th>
+                      <th>Mark on Entry: </th>
+                      <th></th>
                     </tr>
-                    </thead>
+                  </thead>
                 </table>
-                </td>
-                <td width=40%>
+              </td>
+              <td width=40%>
                 <!-- Right part-->
 
                 <table class="ui celled table">
-                    <thead>
+                  <thead>
                     <tr>
-                        <th>Unique TicketID: </th>
-                        <th th:text="${id}"></th>
+                      <th>Unique TicketID: </th>
+                      <th th:text="${id}"></th>
                     </tr>
-                    </thead>
+                  </thead>
                 </table>
-                </td>
+              </td>
             </tr>
-            </table>
+          </table>
 
-            <table class="ui celled table">
+          <table class="ui celled table">
             <thead>
-                <tr>
+              <tr>
                 <th>Price: </th>
                 <th th:text="${price}"> Placeholder </th>
-                </tr>
+              </tr>
             </thead>
-            </table>
+          </table>
 
         </div>
 
-        </div>
-        <br>
-        <br>
+      </div>
+      <br>
+      <br>
     </div>
-   
-    <div class="wrapper container">
-        <input name="b_print" type="button" class="ipt" onClick="printdiv('div_print');" value=" Print ">
+
+    <div class="wrapper container text-center">
+      <input name="b_print" type="button" class="ipt btn btn-success" onClick="printdiv('div_print');" value=" Print ">
 
       <br>
       <br>
     </div>
-    
+
 
   </section>
 
 
   <!-- Print SCRIPTS -->
   <script language="javascript">
-    function printdiv(printpage)
-    {
-    var headstr = "<html><head><title></title></head><body>";
-    var footstr = "</body>";
-    var newstr = document.all.item(printpage).innerHTML;
-    var oldstr = document.body.innerHTML;
-    document.body.innerHTML = headstr+newstr+footstr;
-    window.print();
-    document.body.innerHTML = oldstr;
-    return false;
+    function printdiv(printpage) {
+      var headstr = "<html><head><title></title></head><body>";
+      var footstr = "</body>";
+      var newstr = document.all.item(printpage).innerHTML;
+      var oldstr = document.body.innerHTML;
+      document.body.innerHTML = headstr + newstr + footstr;
+      window.print();
+      document.body.innerHTML = oldstr;
+      return false;
     }
-    </script>
+  </script>
   <!-- BOOTSTRAP SCRIPTS -->
   <script src="http://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

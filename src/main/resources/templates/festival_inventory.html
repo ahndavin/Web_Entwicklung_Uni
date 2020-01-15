@@ -50,126 +50,60 @@
 
 <body>
     <!-- Navigation & Intro -->
-    <section>
-
-        <!-- Userspecific Navbar -->
-        <!-- Navbar Manager -->
-        <nav sec:authorize="hasAuthority('MANAGER')"
-            class="navbar navbar-expand-md navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="/">FVIV</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto smooth-scroll">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/" data-offset="80">Back</a>
-                        </li>
-                    </ul>
-                    <!-- Manager Logout and Icon  -->
-                    <ul class="navbar-nav nav-flex-icons">
-                        <li class="nav-item">
-                            <a class="nav-link">
-                                <i class="fas fa-user-secret"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript: document.logoutForm.submit()"
-                                data-offset="80">Logout</a>
-                            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                                <input hidden type="submit" value="Sign Out" />
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Userspecific Navbar -->
+    <section
+        sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER') or hasAuthority('CATERING') or hasRole('CATERING')">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a href="/" class="navbar-brand">
+                <h3 class="mb-0">FVIV</h3>
+            </a>
+            <ul class="navbar-nav mr-auto smooth-scroll">
+                <li class="nav-item">
+                    <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory/edit/'}" class="
+                        nav-link">Edit Inventory</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#festivals" class="nav-link">Back</a>
+                </li>
+            </ul>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-user-secret"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                        <input hidden type="submit" value="Sign Out" />
+                    </form>
+                </li>
+            </ul>
         </nav>
 
-        <!-- Navbar Festival Manager -->
-        <nav sec:authorize="hasAuthority('FESTIVAL_MANAGER')"
-            class="navbar navbar-expand-md navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="/">FVIV</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto smooth-scroll">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/" data-offset="80">Back</a>
-                        </li>
-                    </ul>
-
-                    <!-- FestivalManager Logout and Icon -->
-                    <ul class="navbar-nav nav-flex-icons">
-                        <li class="nav-item">
-                            <a class="nav-link">
-                                <i class="fas fa-user-secret"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript: document.logoutForm.submit()"
-                                data-offset="80">Logout</a>
-                            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                                <input hidden type="submit" value="Sign Out" />
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Navbar Catering -->
-        <nav sec:authorize="hasAuthority('CATERING')"
-            class="navbar navbar-expand-md navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="/">FVIV</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto smooth-scroll">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/" data-offset="40">Back</a>
-                        </li>
-                    </ul>
-
-                    <!-- Catering Logout and Icon  -->
-                    <ul class="navbar-nav nav-flex-icons">
-                        <li class="nav-item">
-                            <a class="nav-link">
-                                <i class="fas fa-utensils"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript: document.logoutForm.submit()"
-                                data-offset="80">Logout</a>
-                            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                                <input hidden type="submit" value="Sign Out" />
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div id="inventoryContainer">
-            <p>Current Inventory</p>
+        <div class="container card" id="inventoryContainer">
+            <br>
+            <h2 class="text-center">
+                <strong>Current Inventory</strong>
+            </h2>
 
             <ul style="list-style: none;">
                 <li th:each="inventoryItem: ${festival.inventory}">
-                    <p th:text="${inventoryItem.value + 'x ' + stock.findById(inventoryItem.key).get().product.name}"></p>
+                    <p th:text="${inventoryItem.value + 'x ' + stock.findById(inventoryItem.key).get().product.name}">
+                    </p>
                 </li>
+
+                <a class="btn btn-success " id="editInventoryLink"
+                    th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory/edit/'}">Edit
+                    Inventory</a>
             </ul>
         </div>
 
         <div id="inner-navigation">
-            <a id="editInventoryLink"
-                th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory/edit/'}">Edit Inventory</a>
+
         </div>
     </section>
 

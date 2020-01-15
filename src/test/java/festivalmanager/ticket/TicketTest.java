@@ -25,6 +25,7 @@ public class TicketTest {
         assertEquals(Money.of(20, "EUR"), ticket.getPrice());
         assertEquals(Sort.CAMPINGTICKET, ticket.getSort());
         assertEquals(false, ticket.getUsed());
+        assertEquals(festival, ticket.getFestival());
         assertNotNull(ticket.getId());
     }
 
@@ -37,6 +38,7 @@ public class TicketTest {
         assertEquals(Money.of(3, "EUR"), ticket.getPrice());
         assertEquals(Sort.DAYTICKET, ticket.getSort());
         assertEquals(false, ticket.getUsed());
+        assertEquals(festival, ticket.getFestival());
         assertNotNull(ticket.getId());
     }
 

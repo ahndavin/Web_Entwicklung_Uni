@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -27,6 +28,7 @@ public class TicketController {
 	}
 
 	//GetMapping
+	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')")
 	@GetMapping(path = "/ticketManagement")
 	public String ticketOverview(Model model){
 		model.addAttribute("festivallist", ticketManagement.findAll());
@@ -34,25 +36,19 @@ public class TicketController {
 	}
 
 	//PostMapping
+	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')")
 	@PostMapping(path = "/ticketCamping")
-	public String buyCampingticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
-		if(result.hasErrors()){
-			return "welcome";
-		}
-		Ticket ticket = ticketManagement.buyTicket(festivalIdForm);
-		
-		model.addAttribute("festivalName", ticket.getFestival().getName());
-		model.addAttribute("festivalStart", ticket.getFestival().getStartDate());
-		model.addAttribute("festivalEnd", ticket.getFestival().getEndDate());
-		model.addAttribute("ticketType", ticket.getSort());
-		model.addAttribute("id", ticket.getId());
-		model.addAttribute("price", ticket.getPrice());
-		return "ticket";
+	public String buyCampticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
+		return buyTicket(festivalIdForm, result, model);
 	}
 
-
+	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')")
 	@PostMapping(path = "/ticketDay")
 	public String buyDayticket(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
+		return buyTicket(festivalIdForm, result, model);
+	}
+
+	public String buyTicket(FestivalIdForm festivalIdForm, Errors result, Model model){
 		if(result.hasErrors()){
 			return "welcome";
 		}
@@ -65,8 +61,10 @@ public class TicketController {
 		model.addAttribute("id", ticket.getId());
 		model.addAttribute("price", ticket.getPrice());
 		return "ticket";
+
 	}
 	
+	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('SECURITY') or hasRole('SECURITY')")
 	@PostMapping(path = "/checkTicket")
 	public String checkTicket(	@RequestParam("festival") String festival,
 								@RequestParam("ticketType") String sort_str,
@@ -80,11 +78,9 @@ public class TicketController {
 		
 		if(ticket == null) {
 			out.println("<script>alert('Ticket does not exist.'); location.href='/';</script>");
-		}
-		else if(ticket.getUsed()) {
+		} else if(ticket.getUsed()) {
 			out.println("<script>alert('This ticket has already been used.'); location.href='/';</script>");
-		}
-		else {
+		} else {
 			ticketManagement.setTicketStatus(ticket);
 			out.println("<script>alert('Welcome!'); location.href='/';</script>");
 		}

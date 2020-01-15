@@ -61,7 +61,7 @@ public class TicketManagement{
 
     public Ticket buyTicket(FestivalIdForm festivalIdForm){
         Festival festival = findById(festivalIdForm.getId());
-        if(dayTicketIsAvailable(festivalIdForm.getSort(), festival) && festivalIdForm.getSort() == Sort.DAYTICKET){
+        if(dayTicketIsAvailable(festivalIdForm.getSort(), festival)&&festivalIdForm.getSort()==Sort.DAYTICKET){
             Ticket ticket = buyDayticket(festival);
             return ticket;
         }
@@ -98,9 +98,8 @@ public class TicketManagement{
         Ticket ticket = ticketRepository.findById(id).isPresent() ? ticketRepository.findById(id).get() : null;
 
         if(ticket != null) {
-        	System.out.println(ticket.getSort().toString());
-        	if(!(ticket.getFestival().getName().equals(festival)) || !(ticket.getSort().toString().equals(sort_str)))
-            	ticket = null;
+        	if(!(ticket.getFestival().getName().equals(festival)) || !(ticket.getSort().toString().equals(sort_str))){
+            	ticket = null;}
         }
         
         return ticket;
