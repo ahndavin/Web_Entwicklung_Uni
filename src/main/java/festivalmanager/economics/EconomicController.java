@@ -43,6 +43,7 @@ public class EconomicController {
 
         Festival festival = festivalOptinal.get();
 
+		model.addAttribute("entrylist", economicManager.getAll(festival));
 		model.addAttribute("festivals", festivalManager.findAllSortedByDate());
         model.addAttribute("sumRevenues", economicManager.getRevenues(festival));
         model.addAttribute("sumExpenses", economicManager.getExpenses(festival));
