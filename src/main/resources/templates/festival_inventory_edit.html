@@ -81,13 +81,13 @@
       </ul>
     </nav>
 
-    <div class="container card" id="editContainer">
+    <div class="container card text-center" id="editContainer">
       <br>
-      <ul id="edit-ul" class="text-center">
-        <h2>
-          <strong>Currently in the Inventory</strong>
-        </h2>
-        <br>
+      <h2 class="text-center">
+        <strong>Current Inventory</strong>
+      </h2>
+      <br>
+      <ul id="edit-ul">
         <li class="edit-li" th:each="inventoryItem : ${festivalInventory}">
           <form th:action="@{/festival/inventory/edit}" method="POST">
             <input type="hidden" name="festivalId" th:value="${festivalId}">
@@ -106,24 +106,21 @@
         </li>
       </ul>
 
-      <div class=" text-center">
-        <br>
-        <form id="add-item-form" th:if="${stock.findAllExcept(festivalInventory.keySet()).iterator().hasNext()}"
-          th:action="@{/festival/inventory/edit}" method="POST">
-          <input type="hidden" name="festivalId" th:value="${festivalId}">
+      <form id="add-item-form" th:if="${stock.findAllExcept(festivalInventory.keySet()).iterator().hasNext()}"
+        th:action="@{/festival/inventory/edit}" method="POST">
+        <input type="hidden" name="festivalId" th:value="${festivalId}">
 
-          <select class="col-form-label form-element">
-            <option th:each="item : ${stock.findAllExcept(festivalInventory.keySet())}"
-              th:text="${item.product.name + ' (' + item.quantity + ')'}" th:value="${item.id}"></option>
-          </select>
-          <input class="col-form-label" type="number" name="quantity" min="0">
+        <select class="col-form-label form-element" name="itemId">
+          <option th:each="item : ${stock.findAllExcept(festivalInventory.keySet())}"
+            th:text="${item.product.name + ' (' + item.quantity + ')'}" th:value="${item.id}"></option>
+        </select>
+        <input class="col-form-label" id="addQuantity" type="number" name="quantity" min="0">
 
-          <input class="btn btn-primary edit" type="submit" value="add">
-          <a class="btn btn-danger back-button text-center" href="../">Back</a>
-          <br>
-        </form>
-        <br>
-      </div>
+        <input class="btn btn-primary edit" type="submit" value="add">
+        <a class="btn btn-danger back-button text-center" href="../">Back</a>
+      </form>
+      <br>
+    </div>
     </div>
   </section>
 
