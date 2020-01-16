@@ -62,8 +62,9 @@ public class Area {
 	}
 	
 	public Integer countVisitors(Integer visitors) {
-		if(currVisitors + visitors < 0)
+		if(currVisitors + visitors < 0){
 			return null;
+		}
 		
 		return currVisitors += visitors;
 	}

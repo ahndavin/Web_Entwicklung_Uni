@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import festivalmanager.contract.Contract;
+import festivalmanager.festival.Festival;
 
 @SpringBootTest
 public class LineupTest{	
@@ -21,12 +22,17 @@ public class LineupTest{
     @Test
     public void checkAllTheSetters(){
         Lineup lineup = new Lineup(LocalDateTime.of(2015, 4, 17, 23, 47, 5));
+        Festival festival = new Festival( "test", "Dresden", "2030-01-01", "2030-01-01", 100, 100, 50, 100, 1000, true);
 
         lineup.setDate(LocalDateTime.of(2020, 12, 17, 23, 47, 5));
         lineup.setStageId(1234567890);
+        lineup.setId(1111);
+        lineup.setFestival(festival);
 
         assertEquals(LocalDateTime.of(2020, 12, 17, 23, 47, 5), lineup.getDate());
         assertEquals(1234567890, lineup.getStageId());
+        assertEquals(1111, lineup.getId());
+        assertEquals(festival, lineup.getFestival());
     }
 
     @Test
@@ -38,5 +44,4 @@ public class LineupTest{
 
         assertEquals(contract, lineup.getArtist());
     }
-
 }

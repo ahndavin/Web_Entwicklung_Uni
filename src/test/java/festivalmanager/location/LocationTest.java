@@ -42,5 +42,16 @@ public class LocationTest {
 		assertEquals("img4", location.getGroundPlan());
 		assertEquals(true, location.getStatus());
 		assertEquals(110, location.getCurrVisitors());
+		assertEquals(1111, location.setId(1111));
+		assertEquals(true, location.setStatus(true));
+		assertEquals(1, location.setCurrVisitors(1));
 	}
+
+	@Test
+	public void shouldToggleLocked(){
+		boolean locked = location.toggleBook();
+		location.toggleBook();
+		assertEquals(locked, location.toggleBook());
+	}
+
 }
