@@ -25,6 +25,8 @@ public class TicketBuilderTest{
         assertEquals(Money.of(50, "EUR"), ticketBuilder.getPriceCampingticket());
         assertEquals(100, ticketBuilder.getAmountDayticketsInt());
         assertEquals(50, ticketBuilder.getAmountCampingticketsInt());
+        assertEquals(20, ticketBuilder.getFormattedPriceDayticket());
+        assertEquals(20, ticketBuilder.getFormattedPriceCampingticket());
     }
 
     @Test

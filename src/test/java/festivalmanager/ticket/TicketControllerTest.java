@@ -100,7 +100,7 @@ public class TicketControllerTest<FestivalRepository> extends AbstractIntegratio
         try {
             ticketController.checkTicket("test", "CAMPINGTICKET", ticket.getId().toString(), response);
         } catch (Exception e) {
-            
+            // TODO
             e.printStackTrace();
         }
     }
