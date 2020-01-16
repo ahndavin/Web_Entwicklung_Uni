@@ -5,11 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class ContractListTest{
 
+    @Autowired ContractsRepository contractsRepository;
     private ContractList contractList= new ContractList();
 
     private Contract contract = new Contract("contract", "artist", 100, false, 10, 13, 22);
@@ -28,14 +30,13 @@ public class ContractListTest{
 
     @Test
     public void shouldDeleteEntryFromContractList(){
-        if(contractList.getList().contains(contract)){
-        }
-        else{
-            contractList.add(contract);
-        }
+        contractList.add(contract);
+        contractsRepository.save(contract);
         contractList.add(contract2);
+        contractsRepository.save(contract2);
         contractList.delete(contract);
         assertFalse(contractList.getList().contains(contract));
+        assertTrue(contractList.getList().contains(contract2));
     }
 
     @Test

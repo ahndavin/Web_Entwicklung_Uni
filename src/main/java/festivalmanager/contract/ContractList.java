@@ -10,31 +10,31 @@ import javax.persistence.OneToMany;
 public class ContractList {
 
     @OneToMany
-    private List<Contract> contractList;
+    private List<Contract> list;
 
     public ContractList(){
-        contractList = new ArrayList<>();
+        list = new ArrayList<>();
     }
 
     public List<Contract> getList(){
-        return contractList;
+        return list;
     }
 
     public void add(Contract contract){
-        contractList.add(contract);
+        list.add(contract);
     }
 
 	public void delete(Contract delete) {
 
         List<Contract> contractList2 = new ArrayList<>();
-        for(Contract contract : contractList){
+        for(Contract contract : list){
             if(contract.getId() != delete.getId()){
                 contractList2.add(contract);
             }
         }
-        contractList = contractList2;
+        list = contractList2;
 	}
 	public int size(){
-    	return contractList.size();
+    	return list.size();
 	}
 }

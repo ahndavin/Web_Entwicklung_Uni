@@ -3,6 +3,7 @@ package festivalmanager.contract;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,17 +33,20 @@ public class ContractController {
 	private Festival festivalForCreation;
 
 	@Autowired
-	public ContractController(ContractsRepository contractsRepository, EconomicManager economicManager, FestivalManager festivalManager) {
+	public ContractController(ContractsRepository contractsRepository, 
+	                          EconomicManager economicManager, FestivalManager festivalManager) {
 		this.contractsRepository = contractsRepository;
 		this.economicManager = economicManager;
 		this.festivalManager = festivalManager;
 	}
 
+	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("create")
 	public String showSignUpForm(Contract contract) {
 		return "createContract";
 	}
 
+	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("list")
 	public String showUpdateForm(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result, Model model){
 		festivalForCreation = festivalManager.findById(festivalIdForm.getId()).get();
@@ -55,6 +59,7 @@ public class ContractController {
 		return "contractManagement";
 	}
 
+	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@PostMapping("add")
 	public String addContract(@Valid @ModelAttribute Contract contract, BindingResult result, Model model) {
 		Optional<Festival> festivalOptional = festivalManager.findById(festivalForCreation.getId());
@@ -75,6 +80,7 @@ public class ContractController {
 		return "redirect:/#festivals";
 	}
 
+	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("edit/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
 		Contract contract = contractsRepository.findById(id)
@@ -83,8 +89,10 @@ public class ContractController {
 		return "update-Contract";
 	}
 
+	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@PostMapping("update/{id}")
-	public String updateContract(@PathVariable("id") long id, @Valid Contract contract, BindingResult result, Model model) {
+	public String updateContract(@PathVariable("id") long id, @Valid Contract contract, 
+	                              BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			contract.setId(id);
 			return "update-Contract";
@@ -95,6 +103,7 @@ public class ContractController {
 		return "redirect:/#festivals";
 	}
 
+	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("delete/{id}")
 	public String deleteContract(@PathVariable("id") long id, Model model) {
 		Contract contract = contractsRepository.findById(id)
