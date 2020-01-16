@@ -580,21 +580,14 @@
     </section>
 
     <!-- Section 1 TICKET_SALESMAN -->
-<<<<<<< HEAD
-    <section sec:authorize="hasRole('TICKET_SALESMAN')" id="ticketsell" class="mt-5 mb-5">
-=======
-    <section sec:authorize="hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')" id="ticketsell"
-      class="mt-5 mb-5">
->>>>>>> develop
+    <section sec:authorize="hasRole('TICKET_SALESMAN') or hasAuthority('TICKET_SALESMAN')" id="ticketsell" class="mt-5 mb-5">
 
       <!-- Section heading -->
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
-        <strong>Upcoming events</strong>
+        <strong>Sell Tickes for Upcoming Events events</strong>
       </h3>
 
       <!-- Section description -->
-      <p class="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.3s">
-        Troll The Ticket Salesman!.</p>
 
       <!--Grid row-->
       <div class="row features-small pt-4">
