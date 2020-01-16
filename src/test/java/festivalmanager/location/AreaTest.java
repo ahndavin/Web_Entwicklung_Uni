@@ -8,10 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class AreaTest {
 
+	Area area = new Area("zone", 12, 3, Type.PARK);
+
 	@Test
 	public void checkAllTheGetters(){
-		Area area = new Area("zone", 12, 3, Type.PARK);
-
 		assertEquals("zone", area.getZone());
 		assertEquals(12, area.getMaxVisitors());
 		assertEquals(3, area.getMaxStages());
@@ -22,8 +22,6 @@ public class AreaTest {
 
 	@Test
 	public void checkAllTheSetters(){
-		Area area = new Area("Zone", 3, 12, Type.CAMPING);
-
 		area.setLocationId(1111);
 		area.setZone("enoZ");
 		area.toggleLock();
@@ -39,5 +37,24 @@ public class AreaTest {
 		assertEquals(1, area.getMaxStages());
 		assertEquals(Type.CATERING, area.getType());
 		assertEquals(true, area.getStatus());
+		assertEquals(12, area.setId(12));
+		assertEquals(12, area.setCurrVisitors(12));
+	}
+
+	@Test
+	public void shouldToggleLocked(){
+		boolean locked = area.toggleLock();
+		area.toggleLock();
+		assertEquals(locked, area.toggleLock());
+	}
+
+	@Test
+	public void shouldReturnNullWhenVisitorsAreLessThanZero(){
+		assertEquals(area.countVisitors(-4), null);
+	}
+
+	@Test
+	public void shouldGiveBackZone(){
+		assertEquals(area.getZone(), area.toString());
 	}
 }

@@ -56,9 +56,9 @@ public class Lineup {
 		return festival;
 	}
 	
-//	public Festival setFestival(Festival festival) {
-//		return this.festival = festival;
-//	} 
+	public Festival setFestival(Festival festival) {
+		return this.festival = festival;
+	} 
 //	이것만 추가하면 org.springframework.validation.BindException 에러 나옴. 그래서 그냥 festival 변수를 protected로 바꿈.
 	
 	public Contract getArtist() {
