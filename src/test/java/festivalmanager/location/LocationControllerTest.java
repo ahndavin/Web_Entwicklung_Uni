@@ -1,6 +1,5 @@
 package festivalmanager.location;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -11,15 +10,10 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.ui.ExtendedModelMap;
-import org.springframework.validation.Errors;
 
 import festivalmanager.AbstractIntegrationTests;
 import festivalmanager.festival.Festival;
-import festivalmanager.festival.FestivalIdForm;
 import festivalmanager.festival.FestivalManager;
 
 @SpringBootTest
@@ -203,7 +197,8 @@ public class LocationControllerTest<FestivalRepository> extends AbstractIntegrat
         assertNotNull(model.get("area"));
     }
 
-    /*@Test
+    /*
+    @Test
     public void shouldEditAreaPost(){
         Location location = new Location("test1", "Portugal", 1000, 33, "img1", "img2");
         locationManager.save(location);
@@ -213,5 +208,37 @@ public class LocationControllerTest<FestivalRepository> extends AbstractIntegrat
         String id = ((Long) area.getId()).toString();
 
         assertNotNull(locationController.editArea(areaForm, location.getName(), id));
+    } 
+
+    @Test
+    public void shouldEditAreaGet(){
+        Location location = new Location("BLA", "Portugal", 1000, 33, "img1", "img2");
+        locationManager.save(location);
+        Area area = new Area("zone", 12, 3, Type.PARK);
+        locationManager.save(area);
+        Stage stage = new Stage("Bühne", "img");
+        locationManager.save(stage);
+        String id = ((Long) area.getId()).toString();
+        ExtendedModelMap model = new ExtendedModelMap();
+
+        locationController.editArea(model, location.getName(), id);
+
+        assertNotNull(model.get("location"));
+        assertNotNull(model.get("area"));
+    } 
+
+    @Test
+    public void shouldGetStageManagement(){
+        ExtendedModelMap model = new ExtendedModelMap();
+        Location location = new Location("1111", "1111", 1000, 33, "img1", "img2");
+        locationManager.save(location);
+        Area area = new Area("1222", 12, 3, Type.PARK);
+        locationManager.save(area);
+
+        locationController.stageManagement(model, location.getName(), area.getZone());
+        
+        assertNotNull(model.get("location"));
+        assertNotNull(model.get("area"));
+        assertNotNull(model.get("stageList"));
     } */
 }
