@@ -32,7 +32,8 @@ public class ContractController {
 	private Festival festivalForCreation;
 
 	@Autowired
-	public ContractController(ContractsRepository contractsRepository, EconomicManager economicManager, FestivalManager festivalManager) {
+	public ContractController(ContractsRepository contractsRepository, 
+	                          EconomicManager economicManager, FestivalManager festivalManager) {
 		this.contractsRepository = contractsRepository;
 		this.economicManager = economicManager;
 		this.festivalManager = festivalManager;
@@ -84,7 +85,8 @@ public class ContractController {
 	}
 
 	@PostMapping("update/{id}")
-	public String updateContract(@PathVariable("id") long id, @Valid Contract contract, BindingResult result, Model model) {
+	public String updateContract(@PathVariable("id") long id, @Valid Contract contract, 
+	                              BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			contract.setId(id);
 			return "update-Contract";
