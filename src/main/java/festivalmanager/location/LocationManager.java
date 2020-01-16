@@ -56,9 +56,9 @@ public class LocationManager {
 		List<Location> locations = findAllLocations();
 		
 		while(i < locations.size()) {
-			if(locations.get(i).getId() == id)
+			if(locations.get(i).getId() == id){
 				break;
-			
+			}			
 			i++;
 		}
 		
@@ -70,9 +70,9 @@ public class LocationManager {
 		List<Location> locations = findAllLocations();
 		
 		while(i < locations.size()) {
-			if(locations.get(i).getName().equals(name))
+			if(locations.get(i).getName().equals(name)){
 				break;
-
+			}
 			i++;
 		}
 		
@@ -109,9 +109,9 @@ public class LocationManager {
 		List<Area> areas = findAllAreas(location);
 
 		while(i < areas.size()) {
-			if(areas.get(i).getId() == id)
+			if(areas.get(i).getId() == id){
 				break;
-
+			}
 			i++;
 		}
 
@@ -123,8 +123,9 @@ public class LocationManager {
 		List<Area> areas = areaRepository.findAll();
 
 		for(i = 0; i < areas.size(); i++) {
-			if((areas.get(i).getLocationId() == location.getId()) && (areas.get(i).getZone().equals(name)))
+			if((areas.get(i).getLocationId() == location.getId()) && (areas.get(i).getZone().equals(name))){
 				break;
+			}
 		}
 
 		return areaRepository.findAll().get(i);
@@ -135,8 +136,9 @@ public class LocationManager {
 		List<Area> allAreas = areaRepository.findAll();
 
 		for(Area area : allAreas) {
-			if(area.getLocationId() == location.getId())
+			if(area.getLocationId() == location.getId()){
 				allAreasInLocation.add(area);
+			}
 		}
 
 		return allAreasInLocation;
@@ -167,9 +169,9 @@ public class LocationManager {
 		List<Stage> stages = findAllStages(area);
 
 		while(i < stages.size()) {
-			if(stages.get(i).getId() == id)
+			if(stages.get(i).getId() == id){
 				break;
-
+			}
 			i++;
 		}
 
@@ -181,9 +183,9 @@ public class LocationManager {
 		List<Stage> stages = findAllStages(area);
 
 		while(i < stages.size()) {
-			if(stages.get(i).getName().equals(name))
+			if(stages.get(i).getName().equals(name)){
 				break;
-
+			}
 			i++;
 		}
 
@@ -195,8 +197,9 @@ public class LocationManager {
 		List<Stage> stages = stageRepository.findAll();
 
 		for(Stage stage : stages) {
-			if(stage.getAreaId() == area.getId())
+			if(stage.getAreaId() == area.getId()){
 				allStagesInArea.add(stage);
+			}
 		}
 
 		return allStagesInArea;
@@ -246,9 +249,9 @@ public class LocationManager {
 		List<Lineup> lineups = findAllLineups(stage);
 
 		while(i < lineups.size()) {
-			if(lineups.get(i).getId() == id)
+			if(lineups.get(i).getId() == id){
 				break;
-
+			}
 			i++;
 		}
 
@@ -260,8 +263,9 @@ public class LocationManager {
 		List<Lineup> lineups = lineupRepository.findAll();
 
 		for(Lineup lineup : lineups) {
-			if(lineup.getStageId() == stage.getId())
+			if(lineup.getStageId() == stage.getId()){
 				allLineupForStage.add(lineup);
+			}
 		}
 
 		return allLineupForStage;

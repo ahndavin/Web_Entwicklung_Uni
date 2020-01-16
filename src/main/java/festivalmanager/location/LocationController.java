@@ -106,15 +106,13 @@ public class LocationController {
 		
 		if(!hasFestival && !hasEntity) {
 			locationManager.deleteLocationById(location.getId());
-		}
-		else if(hasFestival) {
+		} else if(hasFestival) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			hasFestival = false;
 			out.println("<script>alert('There is a Festival planned on this location'); location.href=' " + goTo + " ';</script>");
 			out.flush();
-		}		
-		else if(hasEntity) {
+		} else if(hasEntity) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			hasEntity = false;
@@ -233,8 +231,7 @@ public class LocationController {
 		
 		if(!hasEntity) {
 			locationManager.deleteAreaById(area.getId());
-		}
-		else {
+		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			hasEntity = false;
@@ -344,8 +341,7 @@ public class LocationController {
 		
 		if(!hasEntity) {
 			locationManager.deleteStageById(stage.getId());
-		}
-		else {
+		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			hasEntity = false;
