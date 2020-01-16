@@ -108,6 +108,7 @@ public class FestivalManager {
 
 			festival.editPlan().addAll(f.editPlan());
 			festival.editInventory().putAll(f.editInventory());
+			festival.getEconomicList().addAll(f.getEconomicList());
 			festival.getContractList().getList().addAll(f.getContractList().getList());
 
 			return save(festival);
