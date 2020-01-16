@@ -197,27 +197,27 @@ public class LocationControllerTest<FestivalRepository> extends AbstractIntegrat
         assertNotNull(model.get("area"));
     }
 
-    /*
+    
     @Test
     public void shouldEditAreaPost(){
         Location location = new Location("test1", "Portugal", 1000, 33, "img1", "img2");
-        locationManager.save(location);
+        locationController.addLocation(location);
         Area area = new Area("zone", 12, 3, Type.PARK);
-        locationManager.save(area);
+        locationController.addArea(area, location.getName());
         AreaForm areaForm = new AreaForm("zone", 12, 3, Type.STAGE);
         String id = ((Long) area.getId()).toString();
 
         assertNotNull(locationController.editArea(areaForm, location.getName(), id));
     } 
-
+    
     @Test
     public void shouldEditAreaGet(){
         Location location = new Location("BLA", "Portugal", 1000, 33, "img1", "img2");
-        locationManager.save(location);
+        locationController.addLocation(location);
         Area area = new Area("zone", 12, 3, Type.PARK);
-        locationManager.save(area);
+        locationController.addArea(area, location.getName());
         Stage stage = new Stage("Bühne", "img");
-        locationManager.save(stage);
+        locationController.addStage(stage, location.getName(), area.getZone());
         String id = ((Long) area.getId()).toString();
         ExtendedModelMap model = new ExtendedModelMap();
 
@@ -226,19 +226,19 @@ public class LocationControllerTest<FestivalRepository> extends AbstractIntegrat
         assertNotNull(model.get("location"));
         assertNotNull(model.get("area"));
     } 
-
+    
     @Test
     public void shouldGetStageManagement(){
         ExtendedModelMap model = new ExtendedModelMap();
         Location location = new Location("1111", "1111", 1000, 33, "img1", "img2");
-        locationManager.save(location);
+        locationController.addLocation(location);
         Area area = new Area("1222", 12, 3, Type.PARK);
-        locationManager.save(area);
+        locationController.addArea(area, location.getName());
 
         locationController.stageManagement(model, location.getName(), area.getZone());
         
         assertNotNull(model.get("location"));
         assertNotNull(model.get("area"));
         assertNotNull(model.get("stageList"));
-    } */
+    }
 }
