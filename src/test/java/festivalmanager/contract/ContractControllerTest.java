@@ -90,4 +90,41 @@ public class ContractControllerTest<FestivalRepository> extends AbstractIntegrat
     public void shouldGiveBackAllContracts(){
         assertNotNull(contractController.getContracts());
     }
+
+    @Test
+    @WithMockUser(roles = "MANAGER")
+    public void shouldDeleteContract(){
+        Festival festival = new Festival( "test", "Dresden", "2030-01-01", "2030-01-01", 100, 100, 50, 100, 1000, true);
+        festivalManager.save(festival);
+        FestivalIdForm festivalIdForm = new FestivalIdForm(festival.getId(), "CAMPINGTICKET");
+
+        Contract contract1 = new Contract("contract1", "artist", 100, false, 10, 13, 22);
+        Contract contract2 = new Contract("contract2", "artist", 100, false, 10, 13, 22);
+        contractRepository.save(contract1);
+        contractRepository.save(contract2);
+        ExtendedModelMap model1 = new ExtendedModelMap();
+        ExtendedModelMap model2 = new ExtendedModelMap();
+
+        contractController.showUpdateForm(festivalIdForm, errors, model1);
+        contractController.deleteContract(contract2.getId(), model2);
+
+        assertNotNull(model2.get("contract"));
+    }
+
+    @Test
+    @WithMockUser(roles = "MANAGER")
+    public void shouldAddContract(){
+        Festival festival = new Festival( "test", "Dresden", "2030-01-01", "2030-01-01", 100, 100, 50, 100, 1000, true);
+        festivalManager.save(festival);
+        FestivalIdForm festivalIdForm = new FestivalIdForm(festival.getId(), "CAMPINGTICKET");
+        
+        Contract contract2 = new Contract("contract2", "artist", 100, false, 10, 13, 22);
+        contractRepository.save(contract2);
+        ExtendedModelMap model1 = new ExtendedModelMap();
+        ExtendedModelMap model2 = new ExtendedModelMap();
+
+        contractController.showUpdateForm(festivalIdForm, errors, model1);
+
+        assertEquals(contractController.addContract(contract2, result, model2), "redirect:/#festivals");
+    }
 }
