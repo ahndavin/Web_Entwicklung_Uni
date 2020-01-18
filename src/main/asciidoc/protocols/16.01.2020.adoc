@@ -1,0 +1,57 @@
+= Protokoll Gruppe 26
+
+Treffen am 16.01.2020
+
+Ort:      APB +
+Beginn:   16:50 Uhr +
+Ende:     18:30 Uhr
+
+__Schriftführer:__ Tobias Neubauer
+
+*Nächstes Treffen:* +
+21.01.2020, Abschlusspräsentation
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Tom Morgenstern (Kunde/Tutor)
+- Marcus Fiedler (Scrum Master)
+- Davin Ahn
+- Igor Macevic
+- Jonas Hönisch
+- Tobias Neubauer (Schriftführer)
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen +
+
+- bewerben, wenn wir nächstes Jahr Tutor sein wollen
+- Repository forken ist okey, persönliche Daten rausnehmen (asciidoc-Ordner löschen), Repository neu inizialisieren, damit die Commits gelöscht sind und angeben, dass es Co-Autoren gab
+
+_FINALE ABGABE: 19.01._ + 
+Es zählt der Stand auf dem master branch, Samstag 20 Uhr. 
+
+=== Anmerkungen zum aktuellen Stand des Codes
+- Dublications passen
+- Test Coverage passt, Note etwa 3
+- Drucken funktioniert
+- Ticket drucken: Barcode oder QR-Code?
+- Festivalname fehlt in der Druckansicht der Accountancy
+- Personal zu Festival zuordnen klappt noch nicht
+- Javadoc!
+- Logo
+- Readme bearbeiten
+
+=== Bemerkungen zur Abschlusspräsentation
+- Zeiteinhaltung
+- Gäste sind erlaubt
+- die ersten 10 Minuten: Wie es bei uns gelaufen ist, Aufgabenverteilung, Design Patterns, Frameworks, ...
+- Am Anfang vorstellen
+- Einschreiben über Jexam
+
+
+
+== To-Do bis zur Präsentation:
+- Time Recording nachtragen
+- Entwickler Doku aktuell halten
+- asciidoc -> evaluations -> evaluation_sheet_NAME.adoc ausfüllen
+- KEINE Anwenderdoku

@@ -60,16 +60,16 @@
 <body class="event-lp">
 
     <!-- Navigation & Intro -->
-    <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
+    <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER') or hasAuthority('CATERING') or hasRole('CATERING')" >
 
         <!-- Userspecific Navbar -->
-        <nav class="navbar navbar-expand-md navbar-dark">
+        <nav sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')" class="navbar navbar-expand-md navbar-dark">
             <a href="/" class="navbar-brand">
                 <h3 class="mb-0">FVIV</h3>
             </a>
             <ul class="navbar-nav mr-auto smooth-scroll">
                 <li class="nav-item">
-                    <a href="/#festivals" class="nav-link">Back to Festivals</a>
+                    <a href="/#festivals" class="nav-link">Back</a>
                 </li>
             </ul>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
@@ -90,22 +90,53 @@
             </ul>
         </nav>
 
+        <!-- Userspecific Navbar -->
+        <nav sec:authorize="hasAuthority('CATERING') or hasRole('CATERING')" class="navbar navbar-expand-md navbar-dark">
+            <a href="/" class="navbar-brand">
+                <h3 class="mb-0">FVIV</h3>
+            </a>
+            <ul class="navbar-nav mr-auto smooth-scroll">
+                <li class="nav-item">
+                    <a href="/#inventory" class="nav-link">Back</a>
+                </li>
+            </ul>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+             <!-- Catering Logout and Icon  -->
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                <a class="nav-link">
+                    <i class="fas fa-utensils"></i>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="javascript: document.logoutForm.submit()" data-offset="80">Logout</a>
+                <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                    <input hidden type="submit" value="Sign Out" />
+                </form>
+                </li>
+            </ul>
+        </nav>
+
         <!-- Main content -->
         <main>
-            <div id="availableItems">
-                <h3 id="sell-headline" th:text="${'Sell items for festival ' + festival.name}"></h3>
-                <form th:each="item : ${festivalInventory}" th:action="@{/festival/buy}" method="post">
+            <div class="container text-center card" id="availableItems">
+                <br>
+                <h3 id="sell-headline" th:text="${'Sell items for Festival: ' + festival.name}"></h3>
+                <form class="text-center" th:each="item : ${festivalInventory}" th:action="@{/festival/buy}" method="post">
                     <input type="hidden" name="festivalId" th:value="${festival.id}">
                     <input type="hidden" name="itemId" th:value="${item.key}">
 
-                    <div class="inventoryItem">
+                    <div class="inventoryItem text-center">
                         <label class="sell-form-item" th:text="${inventory.findById(item.key).get().product.name}"></label>
                         <input class="form-control sell-form-item" type="number" name="amount" min="1" th:max="${item.value}">
                         <p class="availableItems sell-form-item" th:text="${item.value}"></p>
                     </div>
 
-                    <input class="btn btn-dark" type="submit" value="sell">
+                    <input class="btn btn-success" type="submit" value="sell">
                 </form>
+                <br>
             </div>
         </main>
         <!-- Main content -->

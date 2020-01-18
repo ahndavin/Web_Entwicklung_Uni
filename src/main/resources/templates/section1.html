@@ -198,11 +198,13 @@
           <!--Grid column-->
 
 
-
+          
         </div>
         <!--Grid row-->
+        
 
     </section>
+    
 
     <!-- Section1 Manager -->
     <section sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')" id="festivals" class="mt-5 mb-5">
@@ -456,126 +458,107 @@
 
 
     <!-- Section 1 Catering -->
-    <section sec:authorize="hasAuthority('CATERING') or hasRole('CATERING')" id="inventory" class="mt-5 mb-5">
-      <!-- Section heading -->
-      <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
-        <strong>Edit Inventory of given Festivals</strong>
-      </h3>
+      <!-- Ticket Sell -->
+      <section sec:authorize="hasAuthority('CATERING') or hasRole('CATERING')" id="inventory" class="mt-5 mb-5">
 
-      <!--Grid row-->
+        <!-- Section heading -->
+        <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+          <strong>Down below you can Edit the Inventory of eachgiven Festival</strong>
+        </h3>
+  
+       <!--Grid row-->
       <div class="row features-small pt-4">
 
         <!--Grid column-->
-        <div class="col-md-4 mb-4" th:each="festival : ${festivals}">
-          <div class="col-1 col-md-2 float-left">
-          </div>
-          <div class="col-10 col-md-9 col-lg-10 float-right">
+
+        <!-- Card -->
+        <div class="card" th:each="festival : ${festivals}">
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
             <h4 class="font-weight-bold indigo-text text-center">
               <strong td th:text="${festival.name}"></strong> <br>
+            </h4>
+            <h6 class="mb-3 font-weight-bold dark-grey-text text-center" th:text="${festival.startDate}">
+              Festival1.startdate</h6>
+
+            <!-- Text -->
+            <h4 class="font-weight-bold indigo-text text-center">
+              <br>
+              <hr>
+              <p>Go to the Inventory</p>
               <a th:href="${'/festival/' + festival.name + '-' + festival.id + '/inventory'}" class="btn btn-green">
                 <i class="fas fa-archive"></i>
               </a>
             </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text text-center" th:text="${festival.startDate}">
-              Festival1.startdate</h6>
-            <p class="grey-text font-small text-center">Festival Information down Below. (Maybe Lineup.. etc </p>
-
+            <form method="post" role="form" class="ui form" name="form" th:action="@{/ticketDay}">
+              <input type="hidden" th:value="${festival.getId()}" name="id" />
+              <input type="hidden" value="DAYTICKET" name="sort_str" />
+            </form>
+            <hr>
+            <br>
+            <h4 class="font-weight-bold indigo-text text-center" td th:text="${'Sell on: ' + festival.name}"></h4>
+            <div class="text-center">
+              <a th:href="${'/festival/' + festival.id + '/buy'}" class="btn btn-green">
+                <i class="fas fa-pizza-slice"></i>
+              </a>
+            </div>
           </div>
+
         </div>
+        <!-- Card -->
+        <br>
+        <hr>
 
       </div>
       <!--Grid row-->
-
-    </section>
+  
+      </section>
+      <!-- Ticket Sell -->
 
     <!-- Section 1 SECURITY -->
-    <section sec:authorize="hasAuthority('SECURITY') or hasRole('SECURITY')" id="features" class="mt-5 mb-5">
-      <!-- Section heading -->
-      <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
-        <strong>Upcoming events</strong>
-      </h3>
-      <!-- Section description -->
-      <p class="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.3s">
-        Troll The Security!.</p>		
+    <section sec:authorize="hasAuthority('SECURITY') or hasRole('SECURITY')" id="features" class="mt-5 mb-5">	
 		
 		<h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn">
 			<strong>Check Ticket</strong>
-		</h3>
-		<form id="checkTicket" th:action="@{/checkTicket}" method="POST" class="form-group col-md-8">
-			<div class="form-group col-md-8">
-				<label class="col-form-label" for="festival">Festival</label>
-				<select id="festival" name="festival" class="form-control" >
-					<option th:each="festival : ${festivals}" th:text="${festival.name}" th:value="${festival.name}"></option>
-				</select>
-			</div>
-			<div class="form-group col-md-8">
-				<label class="col-form-label" for="type">Type</label><br />
-				<label class="box-radio-input">
-				<input type="radio" id="ticketTyp" name="ticketType" value="DAYTICKET"><span>Day Ticket</span></label>
-				<label class="box-radio-input">
-				<input type="radio" id="ticketTyp" name="ticketType" value="CAMPINGTICKET"><span>Camping Ticket</span></label>
-			</div>
-			<div class="form-group col-md-8">
-				<label class="col-form-label" for="id">ID</label>
-				<input class="form-control" type="number" id="id" name="id" required>
-			</div>
-			
-			<input type="hidden" id="festival" name="festival" th:value="${selectedFestival}"/>
-			<input class="btn btn-dark" type="submit" value="Check Ticket">
-		</form>
+    </h3>
+    <div class="container card text-center">
+      <form id="checkTicket" th:action="@{/checkTicket}" method="POST">
+            <div class="text-center">
+              <br>
+              <label class="text-center" for="festival">
+                <strong class="text-center">Festival</strong>
+              </label>
+              <br>
+              <select id="festival" name="festival" class="text-center" >
+                <option  class="text-center" th:each="festival : ${festivals}" th:text="${festival.name}" th:value="${festival.name}"></option>
+              </select>
+            </div>
+            <div class="text-center" >
+              <br>
+              <label class="col-form-label" for="type">
+                <strong>Type</strong>
+              </label><br />
+              <label class="box-radio-input">
+              <input type="radio" id="ticketTyp" name="ticketType" value="DAYTICKET"><span>Day Ticket</span></label>
+              <label class="box-radio-input">
+              <input type="radio" id="ticketTyp" name="ticketType" value="CAMPINGTICKET"><span>Camping Ticket</span></label>
+            </div>
+            <div class="form-group">
+              <label for="id">ID</label>
+              <input type="number" id="id" name="id" required>
+            </div>
+            
+            <input type="hidden" id="festival" name="festival" th:value="${selectedFestival}"/>
+            <input class="btn btn-dark" type="submit" value="Check Ticket">
+            </form>
+            <br>
+    </div>
+		
       
       
-      <!--Grid row-->
-      <div class="row features-small pt-4">
-
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-          <div class="col-1 col-md-2 float-left">
-            <i class="far fa-calendar-alt indigo-text fa-2x"></i>
-          </div>
-          <div class="col-10 col-md-9 col-lg-10 float-right">
-            <h4 class="font-weight-bold indigo-text">
-              <strong>Festival1.name</strong>
-            </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text">Festival1.startdate</h6>
-            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc )</p>
-          </div>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-          <div class="col-1 col-md-2 float-left">
-            <i class="far fa-calendar-alt indigo-text fa-2x"></i>
-          </div>
-          <div class="col-10 col-md-9 col-lg-10 float-right">
-            <h4 class="font-weight-bold indigo-text">
-              <strong>Festival2.name</strong>
-            </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text">Festival2.startdate</h6>
-            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc )</p>
-          </div>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-          <div class="col-1 col-md-2 float-left">
-            <i class="far fa-calendar-alt indigo-text fa-2x"></i>
-          </div>
-          <div class="col-10 col-md-9 col-lg-10 float-right">
-            <h4 class="font-weight-bold indigo-text">
-              <strong>Festival3.name</strong>
-            </h4>
-            <h6 class="mb-3 font-weight-bold dark-grey-text">Festival3.startdate</h6>
-            <p class="grey-text font-small">Festival Information down Below. (Maybe Lineup.. etc )</p>
-          </div>
-        </div>
-        <!--Grid column-->
-
-
-      </div>
-      <!--Grid row-->
 
     </section>
 
