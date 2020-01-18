@@ -1,3 +1,3 @@
 = FVIV GmbH
 
-image::/src/main/resources/static/resources/img/fviv.svg["Logo", 100%, 100%, pdfwidth=100%, align=center]
+image::/src/main/resources/static/resources/img/fviv_black.svg["Logo", 100%, 100%, pdfwidth=100%, align=center]
