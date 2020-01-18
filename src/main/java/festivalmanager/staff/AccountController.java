@@ -34,16 +34,12 @@ class 	AccountController {
 		private ActiveAccountsStore activeAccountsStore;
 
 
-
-
-
 		AccountController(AccountManager accountManager, UserAccountManager userAccounts, MessageManager messageManagement){
 			Assert.notNull(accountManager, "kickstart.account.AccountManager must be not null");
 			this.accountManager = accountManager;
 			this.userAccounts = userAccounts;
 			this.messageManagement = messageManagement;
 		}
-
 
 		@PostMapping("/createAccount")
 		String createAccountNew(@Valid @ModelAttribute("form") CreationForm form, Model model, Errors result){

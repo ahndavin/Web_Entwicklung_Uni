@@ -27,6 +27,9 @@ import java.util.stream.Stream;
 
 import static org.salespointframework.core.Currencies.EURO;
 
+/**
+ * Implementation of business logic related to {@link Account}s
+ */
 @Service
 @Transactional
 public class AccountManager {
@@ -43,17 +46,18 @@ public class AccountManager {
 	private final ApplicationEventPublisher publisher;
 	private final FestivalManager festivalManager;
 
-
-
 	@Autowired
 	private SessionRegistry sessionRegistry;
 
-
-
-
 	private static final Logger LOG = LoggerFactory.getLogger(AccountManager.class);
 
-
+	/**
+	 * 	Creates a new {@link #AccountManager} with given {@link AccountRepository}, {@link UserAccountManager}, {@link FestivalManager} and {@link ApplicationEventPublisher}
+	 * @param accounts Repository for all existing accounts, must not be null
+	 * @param userAccounts must not be null
+	 * @param publisher publisher for the MessageEvent
+	 * @param festivalManager must not be null
+	 */
 	AccountManager(AccountRepository accounts, UserAccountManager userAccounts, ApplicationEventPublisher publisher, FestivalManager festivalManager) {
 
 		Assert.notNull(accounts, "kickstart.account.AccountRepository must not be null");
@@ -65,6 +69,12 @@ public class AccountManager {
 		this.festivalManager = festivalManager;
 	}
 
+	/**
+	 * this method creates a new {@link Account}
+	 * @param form the {@link CreationForm} with the necessary data, must not be null
+	 * @param result errors created by submitting the form
+	 * @return return new {@link Account} with the data of the form
+	 */
 	public Account createAccount(CreationForm form, Errors result) {
 
 		Assert.notNull(form, "Registration form must not be null!");
@@ -109,21 +119,39 @@ public class AccountManager {
 		}
 	}
 
+	/**
+	 * this method changes the password for an {@link Account}
+	 * @param account the account whose password is to be changed
+	 * @param form the {@link changePasswordForm} providing the new password
+	 */
 	public void changePassword(UserAccount account, changePasswordForm form) {
 
 		var password = UnencryptedPassword.of(form.getNewPassword());
 		userAccounts.changePassword(account, UnencryptedPassword.of(form.getNewPassword()));
 	}
 
+	/**
+	 * method for finding all existing {@link Account} in the {@link AccountRepository}
+	 * @return returns all existing accounts
+	 */
 	public Streamable<Account> findAll() {
 		return accounts.findAll();
 	}
 
+	/**
+	 * this method finds all {@link Account}s connected to a {@link Festival}
+	 * @param festival the festival whose accounts are to be found
+	 * @return returns a stream of all connected accounts
+	 */
 	public Stream<Account> findAllByFestival(Festival festival) {
 		LOG.info(festival.toString());
 		return findAll().filter(a -> a.getFestival() != null).filter(a -> a.getFestival().equals(festival)).stream();
 	}
 
+	/**
+	 * this method sends a {@link Message} defined by the data in the {@link MessageForm}
+	 * @param form form providing all the data for the message
+	 */
 	public void sendMessage(MessageForm form){
 
 		LOG.info(form.getRole());
@@ -145,22 +173,38 @@ public class AccountManager {
 		}
 	}
 
-
+	/**
+	 * this methods deletes an {@link Account}
+	 * @param account account to be deleted
+	 */
 	public void deleteAccount(Account account){
 		userAccounts.delete(account.getUserAccount());
 		accounts.delete(account);
 		LOG.info("deleting " + account.getUserAccount().getUsername());
 	}
-	
+
+	/**
+	 * this methods finds the {@link Account} connected to an provided {@link UserAccount}
+	 * @param userAccount provides the UserAccount
+	 * @return return the connected Account intance
+	 */
 	public Optional<Account> findByUserAccount(UserAccount userAccount) {
 		return accounts.findByUserAccount(userAccount);
 	}
 
+	/**
+	 * this methods finds all {@link Account}s with a specified {@link Role}
+	 * @param role the role to be searched
+	 * @return returns a stream of all accounts with he specified role
+	 */
 	public Stream<Account> findByRole(Role role){
 		return findAll().stream().filter(acc -> acc.getUserAccount().getRoles().toSet().contains(role));
 	}
 
-
+	/**
+	 * this method is for finding all currently logged in users
+	 * @return returns the username of all currently active {@link Account}s
+	 */
 	public List<String> getUsersFromSessionRegistry() {
 		return sessionRegistry.getAllPrincipals().stream()
 				.filter(u -> !sessionRegistry.getAllSessions(u, false).isEmpty())
