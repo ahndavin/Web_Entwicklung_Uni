@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import static org.salespointframework.core.Currencies.EURO;
 
 @Component
-@Order(10)
+@Order(50)
 public class StaffDataInitializer implements DataInitializer{
 
 	private static final Logger LOG = LoggerFactory.getLogger(StaffDataInitializer.class);
