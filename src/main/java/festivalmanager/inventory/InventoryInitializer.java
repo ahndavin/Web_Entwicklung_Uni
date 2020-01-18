@@ -13,6 +13,11 @@ public class InventoryInitializer implements DataInitializer {
 	private Catalog<Item> catalog;
 	private InventoryManager inventory;
 
+	/**
+	 *
+	 * @param catalog: Catalog object
+	 * @param inventory: InventoryManager object
+	 */
 	public InventoryInitializer(Catalog<Item> catalog, InventoryManager inventory) {
 		this.catalog = catalog;
 		this.inventory = inventory;
