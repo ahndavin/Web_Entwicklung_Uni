@@ -161,7 +161,7 @@ public class AccountManager {
 
 
 	public List<String> getUsersFromSessionRegistry() {
-		List<String> newReeeturn = sessionRegistry.getAllPrincipals().stream()
+		return sessionRegistry.getAllPrincipals().stream()
 				.filter(u -> !sessionRegistry.getAllSessions(u, false).isEmpty())
 				.map(u -> ((UserDetails) u).getUsername())
 				.collect(Collectors.toList());
