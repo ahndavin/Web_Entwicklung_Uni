@@ -1,0 +1,36 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2019/20
+// Auch wenn der Bogen nicht anonymisiert ist, dürfen Sie gern Ihre Meinung offen kundtun.
+// Sowohl positive als auch negative Anmerkungen werden gern gesehen und zur stetigen Verbesserung genutzt.
+// Versuchen Sie in dieser Auswertung also stets sowohl Positives wie auch Negatives zu erwähnen.
+
+**Von:** Marcus Fiedler
+
+**Gruppe:** 26
+
+== Was habe ich gelernt?
+Ich habe gelernt aus einer wörtlichen Aufgabenstellung ein Gründgerüst für die Entwicklung einer Software zu entwickeln.
+Und diese dann Arbeitsteilig umzusetzen. Dadurch hat sich auch mein Verständnis von git vertieft. Ich habe auch die Grundstruktur von HTML gelernt sowie
+den grundsätzlichen Umgang mit Spring und Thymeleaf. Durch die Verwendung von externen Code und Code von Teammitgliedern hat sich auch
+mein Wissen bezüglich Java und verschiedener Java util Datentypen erweitert.
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Ich habe erlebt, dass meine Teammitgleider, die mit dem Code vertraut sing, häufig bessere und schnellere Hilfe als das Internet sind.
+Die Arbeit im Team war außerdem deutlich angenehmer allein schon aud dem Grund, dass man "Leidenskameraden" hat, die genau verstehen woran man gerade Scheitert.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+Ich habe gelernt meine Grundsätzliche Vorstellung des Models so anzupassen, dass sie gut durch im Framework vorhandene Klassen dargestellt werden können.
+Auch habe ich gelernt wie frustrierend Fehler sind, die Aufgrund von Missverstehen der Frameworkklassen enststehen.
+Genauso habe ich aber auch erlebt wie wunderbar Lösungen sein können, bei denen man denkt, dass sie sehr komplex und schwer umzusetzen sind, um dann erleichert zu realisieren,
+dass es bereits im Framework Lösungen gibt.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+Entfernen der CRC - methode.
+
+
+Die Sichtbarkeit der Vorlesung im vorangehenden Sommersemester erhöhen, ich weiß nicht ob die jedes Jahr sind, sollten sie dies nicht sein, dann mehr Vorlesungen zum Start des Praktikums.
+
+== Feedback für den Tutor
+Der Tutor war sehr nett und gelassen. Er hat das Praktikum für mich zu einem guten Erlbenis gemacht.
+
+== Sonstiges und Anmerkungen
+
