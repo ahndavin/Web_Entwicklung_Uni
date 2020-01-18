@@ -239,22 +239,23 @@
                          th:errorclass="fieldError" type="checkbox" />
                 </div>
                 <div class="field">
-                  <label th:text="#{createAccount.workedHours}" for="workedHours">Ticket Salesman</label>
+                  <label th:text="#{createAccount.workedHours}" for="workedHours"></label>
                   <input id="workedHours" name="workedHours" th:field="*{workedHours}"
                     th:errorclass="fieldError" type="number" />
                 </div>
 
                 <div class="field">
-                  <label th:text="#{createAccount.hourlyWage}" for="hourlyWage">Ticket Salesman</label>
+                  <label th:text="#{createAccount.hourlyWage}" for="hourlyWage"></label>
                   <input id="hourlyWage" name="hourlyWage" th:field="*{hourlyWage}"
                          th:errorclass="fieldError" type="number" />
                 </div>
-                <div class="field">
-                  <label th:text="#{createAccount.Festival}" for="Festival">Ticket Salesman</label>
-                  <input id="Festival" name="Festival" th:field="*{festival}"
-                         th:errorclass="fieldError" type="text" />
+                <div>
+                <select th:field="*{festival}">
+                  <label th:text="#{createAccount.Festival}"></label>
+                  <option th:each="festival : ${festivals}" th:text="${festival.getName()}" th:value="${festival.getName()}">
+                  </option>
+                </select>
                 </div>
-
                 <input class="btn btn-dark" type="submit" value="Create">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
