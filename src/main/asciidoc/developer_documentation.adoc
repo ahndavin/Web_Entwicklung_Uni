@@ -297,19 +297,26 @@ image:./models/design/Bausteinsicht_Location.svg[class design diagram - location
 
 === 5.1.7 Staff
 
-image::./models/design/Bausteinsicht_StaffManager.svg["StaffManager", 100%, 100%, pdfwidth=100%, align=center]
+image::./models/design/package_hell.png["StaffManager", 100%, 100%, pdfwidth=100%, align=center]
 
 [options="header"]
 |=== 
 |Klasse/Enumeration     		|Beschreibung
 |Account     				|Modelliert die Zugangsdaten und betriebswirtschaftlichen Daten der Mitarbeiter. Jeder Mitarbeiter entspricht einer Instanz.
 |AccountController    			|Nimmt Html request entgegen und gibt die Entsprechende Template zurück.
-|AccountDataInitializer               	|Initialisiert die Daten in der Datenbank.
 |AccountManager				|Ist die Klasse in der Accounts erstellt / verändert werden.
 |AccountRepository			|Ist die Datenbank zur Speicherung aller Accounts.
+|ActiveAccountsStore        |Speichert die Accounts die aktuell eingeloggt sind
+|changePasswordForm         |Ist das Formular, zur Änderung des Passworts eines Accounts
 |CreationForm 				|Ist das Formular, dass zur Erstellung neuer Accounts ausgefüllt werden muss.
-|Message				|Modelliert die Nachrichten zwischen zwei Accounts. 
-|Type 					|Beschreibt den Zustand der Nachricht ob versandt, empfangen u.ä..
+|Message                    |Modelliert die Nachrichten zwischen Accounts
+|MessageEvent               |Ist das Event welches ensteht beim versenden einer Nachricht
+|MessageEventListener       |Die Klasse empfängt die MessageEvents und verarbeitet sie
+|MessageForm                |Formular, dass zur Erstellung einer neuen Nachricht ausgefüllt werden muss.
+|MessageManager             |Die Klasse, die Alles zum Verwalten von Nachrichten händelt.
+|MessageRepository          |Datenbank zur Speicherung aller Nachrichten.
+|MessageState               |Zustand einer Nachricht.
+|StaffDataInitializer       |Initialisiert die Daten in der Datenbank für Accounts und Messages
 |===
 
 
