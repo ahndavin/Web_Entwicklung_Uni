@@ -14,6 +14,10 @@ import static org.salespointframework.core.Currencies.EURO;
 public class CatalogInitializer implements DataInitializer {
 	private Catalog<Item> catalog;
 
+	/**
+	 *
+	 * @param catalog: Catalog object
+	 */
 	public CatalogInitializer(Catalog<Item> catalog) {
 		this.catalog = catalog;
 	}

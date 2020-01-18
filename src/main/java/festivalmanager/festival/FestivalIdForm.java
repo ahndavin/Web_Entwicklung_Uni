@@ -10,25 +10,43 @@ public class FestivalIdForm {
     private final Long id;
     @NotNull
     private final Sort sort;
-  
-    public FestivalIdForm(Long id, String sort_str) {
+
+	/**
+	 *
+	 * @param id: festival id
+	 * @param sort_str: string representation of ticket sort
+	 */
+	public FestivalIdForm(Long id, String sort_str) {
       this.id = id;
       this.sort = stringToSort(sort_str);
     }
 
-    public Sort stringToSort(String string){
+	/**
+	 *
+	 * @param string: string representation of ticket sort
+	 * @return Sort object equivalent string parameter
+	 */
+	public Sort stringToSort(String string){
       if("CAMPINGTICKET".equals(string)){
         return Sort.CAMPINGTICKET;
       } else{
         return Sort.DAYTICKET;
       }
     }
-  
-    public Long getId() {
+
+	/**
+	 *
+	 * @return id of festival
+	 */
+	public Long getId() {
       return this.id;
     }
 
-    public Sort getSort() {
+	/**
+	 *
+	 * @return ticket sort of festival
+	 */
+	public Sort getSort() {
       return this.sort;
     }
   }

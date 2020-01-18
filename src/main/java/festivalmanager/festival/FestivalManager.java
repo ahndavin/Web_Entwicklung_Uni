@@ -1,6 +1,5 @@
 package festivalmanager.festival;
 
-import festivalmanager.contract.Contract;
 import festivalmanager.economics.EconomicManager;
 import festivalmanager.inventory.InventoryManager;
 import festivalmanager.inventory.Item;
@@ -9,9 +8,7 @@ import festivalmanager.location.LocationManager;
 import festivalmanager.staff.AccountManager;
 import festivalmanager.staff.MessageForm;
 import org.javamoney.moneta.Money;
-import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.InventoryItemIdentifier;
-import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.context.annotation.Lazy;
@@ -29,6 +26,14 @@ public class FestivalManager {
 	private final EconomicManager economics;
 	private final AccountManager accounts;
 
+	/**
+	 *
+	 * @param festivalRepository: FestivalRepository object
+	 * @param inventory: InventoryManager object
+	 * @param locations: LocationManager locations
+	 * @param economics: EconomicManager economics
+	 * @param accounts: AccountManager object
+	 */
 	public FestivalManager(FestivalRepository festivalRepository,
 						   InventoryManager inventory,
 						   LocationManager locations,
@@ -42,18 +47,37 @@ public class FestivalManager {
 		this.accounts = accounts;
 	}
 
+	/**
+	 *
+	 * @return iterable object containing all festivals
+	 */
 	public Iterable<Festival> findAll() {
 		return festivalRepository.findAll();
 	}
 
+	/**
+	 *
+	 * @param id: id of festival
+	 * @return optional object containing festival or nothing
+	 */
 	public Optional<Festival> findById(long id) {
 		return festivalRepository.findById(id);
 	}
 
+	/**
+	 *
+	 * @param name: name of festival
+	 * @return festival object with the given name or null
+	 */
 	public Festival findByName(String name) {
 		return festivalRepository.findByName(name);
 	}
 
+	/**
+	 *
+	 * @param festival: festival to be saved
+	 * @return updated festival object
+	 */
 	public Festival save(Festival festival) {
 		if(festival.hasErrors()) {
 			return null;
@@ -100,6 +124,11 @@ public class FestivalManager {
 		return festivalRepository.save(savedFestival);
 	}
 
+	/**
+	 *
+	 * @param festival: festival to be updated
+	 * @return updated festival object
+	 */
 	public Festival update(Festival festival) {
 		Optional<Festival> festivalOptional = festivalRepository.findById(festival.getId());
 
@@ -117,6 +146,13 @@ public class FestivalManager {
 		return null;
 	}
 
+	/**
+	 *
+	 * @param festival: festival to be edited
+	 * @param itemId: item to be edited
+	 * @param newQuantity: quantity to which item quantity is set to
+	 * @return updated festival object
+	 */
 	public Festival updateInventoryItem(Festival festival, InventoryItemIdentifier itemId, Quantity newQuantity) {
 		if(newQuantity.isLessThan(Quantity.NONE)) {
 			return null;
@@ -172,6 +208,12 @@ public class FestivalManager {
 		return save(festival);
 	}
 
+	/**
+	 *
+	 * @param festival: festival to be edited
+	 * @param itemId: item to be edited
+	 * @param quantity: quantity is bought
+	 */
 	public void buyInventoryItem(Festival festival, InventoryItemIdentifier itemId, Quantity quantity) {
 		Optional<UniqueInventoryItem> uniqueInventoryItemOptional = inventory.findById(itemId);
 
@@ -208,6 +250,10 @@ public class FestivalManager {
 		}
 	}
 
+	/**
+	 *
+	 * @return Iterable containing all festivals sorted by date
+	 */
 	public Iterable<Festival> findAllSortedByDate() {
 		List<Festival> festivalList = (List<Festival>) findAll();
 
@@ -224,10 +270,18 @@ public class FestivalManager {
 		return festivalList;
 	}
 
+	/**
+	 *
+	 * @param festival: festival that should be deleted
+	 */
 	public void delete(Festival festival) {
 		festivalRepository.delete(festival);
 	}
 
+	/**
+	 *
+	 * @return amount of stored festivals
+	 */
 	public long getCount() {
 		return festivalRepository.count();
 	}

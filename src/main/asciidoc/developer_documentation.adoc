@@ -15,15 +15,14 @@ wie die Bühnenpositionierung, Toilettenbestückung und Cateringstände, und es 
 In der nächsten Stufe muss das „Line-Up“ (_LineUp_) zusammengestellt werden. Dazu müssen Angebote bei verschiedenen Künstlern eingeholt werden. Anschließend werden aus diesen Angeboten Künstler ausgewählt und es muss ein Spielplan für jede Bühne erstellt werden.
 
 ==== Betriebswirtschaftliche Funktion
-Neben den genannten Künstlern ist weiteres Personal erforderlich, wie Sicherheitspersonal (_Security_) (mindestens einer pro 100 Besuchern), Bedienungen an den Cateringständen (_CateringPersonal_), Bühnentechniker (Anzahl wird durch die Band bestimmt), sowie ein Veranstaltungsleiter (_Manager_).
-Jede Arbeitskraft wird dabei auf Stundenbasis bezahlt (_ContractManager_).
+Neben den genannten Künstlern ist weiteres Personal erforderlich, wie Sicherheitspersonal (_Security_) (mindestens einer pro 100 Besuchern), Bedienungen an den Cateringständen (_Catering_), Bühnentechniker (Anzahl wird durch die Band bestimmt), sowie ein Veranstaltungsleiter (_Manager_).
 
-Zu jedem Zeitpunkt während der Planung muss der Planungsabteilung als auch dem Management eine automatische Kostenaufstellung (_EconomicManager_) zur Verfügung gestellt werden können, in der Kosten für Mieten, Gagen, Personal und Sonstigem aufgelistet und aggregiert werden.
+Zu jedem Zeitpunkt während der Planung muss der Planungsabteilung als auch dem Management eine automatische Kostenaufstellung (_EconomicManager_) zur Verfügung gestellt werden können, in der Kosten für Mieten, Gagen, und Sonstigem aufgelistet und aggregiert werden.
 
 ==== Tickets
-Schon während der Planungsphase kann ein Event freigegeben werden, und es kann ein Kartenpreis festgelegt werden (_TicketManagement_). Es gibt dabei Camping-Tickets (_camping_), die das ganze Festival über gültig sind und Tageskarten (_dayticket_).
-Diese Tickets werden bis 3 Tage vor Veranstaltungsbeginn in den Filialen der „FVIV GmbH“ verkauft und danach nur noch an der Abendkasse. Es muss den Verkaufsmitarbeitern möglich sein, bei noch vorhandenen Tickets diese zu verkaufen (_saleTicket_) und auszudrucken (_print_).
-Auf jedes Ticket wird ein Barcode bzw. eine eindeutige Nummer (_ticket.number_) aufgedruckt, mit dem es dem Personal am Festivaleingang möglich ist, das Ticket auf Gültigkeit hin zu überprüfen und zu vermeiden, dass verschiedene Personen das Gelände mit derselben Karte betreten.
+Schon während der Planungsphase kann ein Event freigegeben werden, und es kann ein Kartenpreis festgelegt werden (_TicketManagement_). Es gibt dabei Camping-Tickets (_Sort.CAMPINGTICKET_), die das ganze Festival über gültig sind und Tageskarten (_Sort.DAYTICKET_).
+Diese Tickets werden bis 3 Tage vor Veranstaltungsbeginn in den Filialen der „FVIV GmbH“ verkauft und danach nur noch an der Abendkasse. Es muss den Verkaufsmitarbeitern möglich sein, bei noch vorhandenen Tickets diese zu verkaufen (_sellTicket_) und auszudrucken.
+Auf jedes Ticket wird ein Barcode bzw. eine eindeutige Nummer (_ticket.id_) aufgedruckt, mit dem es dem Personal am Festivaleingang möglich ist, das Ticket auf Gültigkeit hin zu überprüfen und zu vermeiden, dass verschiedene Personen das Gelände mit derselben Karte betreten.
 
 ==== Catering
 Eine weitere Nutzergruppe ist das Cateringpersonal, das sich an entsprechenden Terminals am Verkaufsstand mit gültigem Login (_Login_) anmeldet. Dort können Getränke und vorgefertigte Speisen ausgewählt und abgerechnet werden (_sellFood_). Dabei wird das Gekaufte vom verfügbaren Lagerbestand (_InventoryManager_) abgezogen.
@@ -198,7 +197,7 @@ image:./models/design/Package_Diagram.svg[package diagram]
 
 === 5.1.1 EconomicManager
 
-image::./models/design/Bausteinsicht_EconomicManager.PNG["Bausteinsicht EconomicManager", 100%, 100%, pdfwidth=100%, align=center]
+image::./models/design/Bausteinsicht_EconomicManager.png["Bausteinsicht EconomicManager", 100%, 100%, pdfwidth=100%, align=center]
 
 [options="header"]
 |=== 
@@ -210,7 +209,7 @@ image::./models/design/Bausteinsicht_EconomicManager.PNG["Bausteinsicht Economic
 
 === 5.1.2 TicketManagement
 
-image::./models/design/Bausteinsicht_TicketManager.PNG["Bausteinsicht TicketManager", 100%, 100%, pdfwidth=100%, align=center]
+image::./models/design/Bausteinsicht_TicketManager.png["Bausteinsicht TicketManager", 100%, 100%, pdfwidth=100%, align=center]
 
 [options="header"]
 |=== 
@@ -220,8 +219,8 @@ image::./models/design/Bausteinsicht_TicketManager.PNG["Bausteinsicht TicketMana
 |TicketManagement   |Das TicketManagement dient der Speicherung aller ausgegebenen Tickets, um einen späteren Ausdruck und die Kontrolle zu ermöglichen und das doppelte Verwenden einer Eintrittskarte zu verhindern.
 |Campingticket      |Das Ticket dient zum Erstellen einzelner, indvidueller Campingtickets
 |Dayticket          |Das Ticket dient zum Erstellen einzelner, indvidueller Tagestickets
-|CampingticketRepository |Das Repository dient zum Speichern der Campingtickets
-|DayticketRepository        |Das Repository dient zum Speichern der Tagstickets     
+|Ticket             |Allgemeine Form des Tickets mit allen benötigten Attributen
+|TicketRepository |Das Repository dient zum Speichern der Tickets
 |Sort               |Enumeration um das Ticket als DAYTICKET oder CAMPING zu kategorisieren und so Berechtigungen für die Besucher festzulegen.
 |EconomicManager    |Der Verkauf von Tickets ist eine Einnahmequelle, die Beträge werden in die Kosten/Ertrag-Übersicht übergeben.
 |===

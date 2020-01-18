@@ -31,7 +31,14 @@ public class FestivalController {
 	private final AccountManager accountManager;
 	private final MessageManager messageManager;
 
-
+	/**
+	 *
+	 * @param festivals: FestivalManager object
+	 * @param stock: InventoryManager object
+	 * @param accountManager: AccountManager object
+	 * @param locations: LocationManager object
+	 * @param messageManager: MessageManager object
+	 */
 	public FestivalController(FestivalManager festivals, InventoryManager stock, AccountManager accountManager, LocationManager locations, MessageManager messageManager) {
 		this.festivals = festivals;
 		this.stock = stock;
@@ -41,9 +48,10 @@ public class FestivalController {
 	}
 
 	/**
-	 * list all existing festivals
+	 *
+	 * @param model: model to inject data to template
+	 * @return name of template that should be display
 	 */
-
 	@GetMapping("/festivals")
 	String festivals(Model model) {
 		model.addAttribute("festivals", festivals.findAll());
@@ -51,6 +59,14 @@ public class FestivalController {
 		return "festivals";
 	}
 
+	/**
+	 *
+	 * @param model: model to inject data to template
+	 * @param form: form for creating a user
+	 * @param result: object that contains parsing errors if present
+	 * @param userAccount: userAccount abject if a user is logged in
+	 * @return name of template that should be display
+	 */
 	@GetMapping("/")
 	String everyThing(Model model , CreationForm form, Errors result, @LoggedIn Optional<UserAccount> userAccount) {
 		model.addAttribute("festivals", festivals.findAllSortedByDate());
@@ -74,6 +90,13 @@ public class FestivalController {
 		return "welcome";
 	}
 
+	/**
+	 *
+	 * @param festivalForm: filled out form with details about festival
+	 * @param errors: Errors object containing error messages if invalid data is passes
+	 * @param redirectAttributes: data to be added to request if errors where present
+	 * @return name of template that should be display
+	 */
 	@PostMapping("/")
 	String addFestivals(@ModelAttribute @Valid FestivalForm festivalForm, Errors errors,
 					   RedirectAttributes redirectAttributes) {
@@ -96,7 +119,9 @@ public class FestivalController {
 
 	/**
 	 *
-	 * @param festivalId: id of the festival, passed in the URL
+	 * @param festivalId: id of the festival
+	 * @param model: model to inject data to template
+	 * @return name of template that should be display
 	 */
 	@GetMapping("/festival/{festivalName}-{festivalId}")
 	String festival(@PathVariable long festivalId, Model model) {
@@ -112,7 +137,9 @@ public class FestivalController {
 	}
 
 	/**
-	 * add a new festival
+	 *
+	 * @param model: model to inject data to template
+	 * @return name of template that should be display
 	 */
 	@PreAuthorize("hasAuthority('FESTIVAL_MANAGER') or hasAuthority('MANAGER') or hasRole('MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("/festival/add")
@@ -125,9 +152,10 @@ public class FestivalController {
 
 	/**
 	 *
-	 * @param festivalForm: form the user filed with information about the new
-	 *                      festival
-	 * @param errors:       errors from validation of festival data
+	 * @param festivalForm: filled out form with details about festival
+	 * @param errors: Errors object containing error messages if invalid data is passes
+	 * @param redirectAttributes: data to be added to request if errors where present
+	 * @return name of template that should be display
 	 */
 	@PostMapping("/festival/add")
 	String addFestival(@ModelAttribute @Valid FestivalForm festivalForm, Errors errors,
@@ -151,6 +179,8 @@ public class FestivalController {
 	/**
 	 *
 	 * @param festivalId: id of the festival
+	 * @param model: model to inject data to template
+	 * @return name of template that should be display
 	 */
 	@PreAuthorize("hasAuthority('FESTIVAL_MANAGER') or hasAuthority('MANAGER') or hasRole('MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("/festival/{festivalName}-{festivalId}/edit")
@@ -175,8 +205,10 @@ public class FestivalController {
 
 	/**
 	 *
-	 * @param festivalForm: form with the new data
-	 * @param errors:       errors from validation of the festival data
+	 * @param festivalForm: filled out form with details about festival
+	 * @param errors: Errors object containing error messages if invalid data is passes
+	 * @param redirectAttributes: data to be added to request if errors where present
+	 * @return name of template that should be display
 	 */
 	@PostMapping("/festival/edit")
 	String editFestival(@ModelAttribute("festival_form") @Valid FestivalForm festivalForm, Errors errors,
@@ -199,14 +231,9 @@ public class FestivalController {
 
 	/**
 	 *
-	 * @param festivalForm: form with the new data
-	 * @param errors:       errors from validation of the festival data
-	 */
-
-
-	/**
-	 *
-	 * @param festivalId id of the festival
+	 * @param festivalId: id of the festival
+	 * @param model: model to inject data to template
+	 * @return name of template that should be display
 	 */
 	@GetMapping("/festival/{festivalName}-{festivalId}/inventory")
 	String festivalInventory(@PathVariable long festivalId, Model model) {
@@ -225,6 +252,12 @@ public class FestivalController {
 		return "festival_inventory";
 	}
 
+	/**
+	 *
+	 * @param festivalId: id of the festival
+	 * @param model: model to inject data to template
+	 * @return name of template that should be display
+	 */
 	@GetMapping("/festival/{festivalName}-{festivalId}/inventory/edit")
 	String editFestivalInventory(@PathVariable long festivalId, Model model) {
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
@@ -244,6 +277,13 @@ public class FestivalController {
 		return "festival_inventory_edit";
 	}
 
+	/**
+	 *
+	 * @param festivalId: id of the festival
+	 * @param itemId: id of the item
+	 * @param quantity: desired quantity
+	 * @return name of template that should be display
+	 */
 	@PostMapping("/festival/inventory/edit")
 	String editFestivalInventory(@RequestParam long festivalId, @RequestParam InventoryItemIdentifier itemId,
 			@RequestParam String quantity) {
@@ -267,6 +307,12 @@ public class FestivalController {
 		return "redirect:/festival/" + festival.getName() + "-" + festivalId + "/inventory/edit/";
 	}
 
+	/**
+	 *
+	 * @param festivalId: id of the festival
+	 * @param deleteReason: reason why the festival should be deleted
+	 * @return name of template that should be display
+	 */
 	@PostMapping("/festival/delete")
 	String deleteFestival(@RequestParam long festivalId, @RequestParam String deleteReason) {
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
@@ -289,6 +335,12 @@ public class FestivalController {
 		return "redirect:/#festivals";
 	}
 
+	/**
+	 *
+	 * @param model: model to inject data to template
+	 * @param festivalId: id of the festival
+	 * @return name of template that should be display
+	 */
 	@GetMapping("festival/{festivalId}/buy")
 	String buyItem(Model model, @PathVariable long festivalId) {
 		Optional<Festival> festivalOptional = festivals.findById(festivalId);
@@ -320,6 +372,13 @@ public class FestivalController {
 		return "festival_catering";
 	}
 
+	/**
+	 *
+	 * @param festivalId: id of the festival
+	 * @param itemId: id of the item
+	 * @param amount: amount to be bought
+	 * @return name of template that should be display
+	 */
 	@PostMapping("festival/buy")
 	String buyItem(@RequestParam long festivalId,
 				   @RequestParam InventoryItemIdentifier itemId,
