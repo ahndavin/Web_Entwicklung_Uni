@@ -92,6 +92,14 @@ public class Account {
 		}
 	}
 
+	public Festival getFestival() {
+		return festival;
+	}
+
+	public void setFestival(Festival festival) {
+		this.festival = festival;
+	}
+
 	public String getFestivalNameWithoutNull(){
 		if(this.festival == null){
 			return "not assigned";
