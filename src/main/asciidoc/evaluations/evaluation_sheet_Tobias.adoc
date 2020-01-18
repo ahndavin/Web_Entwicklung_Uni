@@ -1,0 +1,33 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2019/20
+// Auch wenn der Bogen nicht anonymisiert ist, dürfen Sie gern Ihre Meinung offen kundtun.
+// Sowohl positive als auch negative Anmerkungen werden gern gesehen und zur stetigen Verbesserung genutzt.
+// Versuchen Sie in dieser Auswertung also stets sowohl Positives wie auch Negatives zu erwähnen.
+
+**Von:**
+Tobias Neubauer
+
+**Gruppe:**
+26
+
+== Was habe ich gelernt?
+Ich habe gelernt, mich in gegebene Frameworks einzuarbeiten, Dokumentationen zu lesen und mich an den vorgefertigten Rahmen des Praktikums zu halten, sei es der Datenbank-Typ oder die Formatierung der Protokolle. Außerdem habe ich einiges über Teamarbeit und Arbeitsaufteilung gelernt.
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Ich bin sehr zufrieden mit meinem Team. Jeder einzelne hat seine Aufgaben sehr gut erledigt und wir haben uns sehr gut abgesprochen. Auch wenn es mal Probleme gab, dann haben wir uns gegenseitig geholfen. Jeder hat sich um seinen Teilbereich gekümmert und ohne Absprachen nicht einfach den Code der anderen verändert, was ich auch als sehr positiv empfunden habe. Was mich manchmal gestört hat und wo ich mich selbst aber nicht ausnehme, ist, dass manchmal Änderungen gepushed wurden, durch die das Programm nicht mehr kompiliert werden konnte, was dann die anderen Teammitglieder behindert hat.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+Prinzipiell finde ich das Framework Spring Boot sehr gut und praxisnah und auch sehr umfangreich, was natürlich sehr gut ist, aber auch sehr schwierig, sich einzuarbeiten in so begrenztem Rahmen (nur ein Semester, auch noch andere Lehrveranstaltungen, vorher noch nie benutzt). +
+Salespoint wurde in unserem Produkt auch verwendet. An manchen Stellen hat es Arbeit abgenommen (z.B. Accountancy), da wir die vorgefertigten Klassen einfach benutzen konnten. An manchen Stellen (z.B. Quantity) wurde dadurch das Programm aus meiner Sicht unnötig kompliziert. Man könnte das Problem einfach mit einem Integer lösen und es wäre einfach, den Wert zu setzen, auszulesen und zu verändern, oder man benutzt eine Quantität, wobei ich keinen spürbaren Vorteil dadurch hatte. +
+Ich fand gerade die Menge an Frameworks sehr schwierig. Wenn Probleme aufgetreten sind, dann gab es viele Möglichkeiten, wo man mit der Fehlersuche beginnen könnte. Mit hätte es geholfen, wenn die Menge etwas eingeschränkt wäre oder wir die Frameworks vorher schon einmal gesehen und benutzt hätten. Der Videoshop hat mir da sehr viel geholfen, die Einführungvorlesungen (auch die aus dem letzten Semester) leider weniger.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+Ich habe sehr viel gelernt durch dieses Praktikum. Durch die enorme Aufgabenfülle und die viele Zeit, die in dieses Projekt geflossen ist, konnte ich mir viel mitnehmen. Jedoch haben meine anderen Module sehr gelitten, da keine Zeit für Vor- und Nachbereitungen übrig blieb. Etwas *weniger Aufgabenumfang* und damit mehr Zeit für die Umsetzung oder andere Lehrveranstaltungen hätte mir sehr geholfen. Hier spielt vielleicht auch die Deadline-Setzung mit rein. Alle zwei Wochen musste irgendetwas fertig sein, was zu extremem Zeitdruck geführt hat, der gefühlt das gesamte Semester nicht aufgehört hat. +
+Als Ausgleich dazu fand ich es sehr gut, dass es keine *Note* auf das Modul gibt. Jedoch hätte es mich an manchen Stellen sicher motiviert, es besser umzusetzen. +
+Ich möchte auch noch etwas zu den *Dokumentationen* sagen. Wir mussten zu Beginn das Pflichenheft schreiben, um uns einen Aufbau und eine Struktur für unser Projekt zu überlegen, das finde ich gut. Jedoch direkt danach die Entwicker-Dokumentation zu schreiben, deren Inhalt sich oft mit dem Pflichenheft doppelt, den Sinn sehe ich nicht. Auch finde ich, dass uns an diesem Punkt etwas Erfahrung mit den Frameworks sehr geholfen hätte, damit wir wissen, was sie können und was wir davon brauchen. Würde man die Enwickler-Doku in der Mitte oder am Ende der Implementierungs-Phase ansetzen, dann wäre damit viele Korrekturen der Diagramme und Tabellen und viel Kopfschütteln wegen unnötiger Dopplung und anstrengendem Diagramme-malen erspart geblieben.
+
+== Feedback für den Tutor
+Unseren Tutor Tom Morgenstern fand ich sehr gut. Er hat uns gut angeleitet und einen guten Rahmen für das Projekt gegeben. Auch bei Problemen war er immer für uns da, hat Fristverlängerungen gewährt und hat uns gut zum Ziel gebracht. Unsere Treffen hatten eine sehr freundliche und nette Atmosphäre, weniger streng aber doch zielstrebig. Dennoch war er immer offen für eine Diskussion und hat auch unsere Meinungen beachtet. Selbst wenn Fragen offen geblieben sind, hat er im Tutorentreffen oder am Lehrstuhl nachgefragt oder sich selbst noch einmal für uns informiert. Auch seine Bewertungen finde ich fair. +
+Was ich etwas störend fand, das war, dass  die Aufgaben, die wir in den Gruppentreffen bekamen, sich manchmal geändert haben. In der einen Woche haben wir unsere Aufgaben besprochen und wie wir das angehen sollen und was wir alles beachten sollen, in der nächsten Woche waren die Anfoderungen ganz anders, da es sich vom letzten Jahr unterschied und das im Tutorentreffen dann erst besprochen wurde. Ich hätte es schön gefunden, wenn die Aufgabenstellung gleich bleibt und wir gleich die richtigen Infos bekommen hätten. Jedoch weiß ich nicht, welchen Anteil der Tutor alleine dabei hat.
+
+== Sonstiges und Anmerkungen
+Ich fände es auch schön, wenn so Rahmenbedingungen wie die Praktikumsordnung vor dem Praktikum feststehen würde und nicht erst im Laufe des Praktikums fertig festgesetzt werden.
