@@ -2,6 +2,9 @@ package festivalmanager.staff;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * this is a form for creating a new {@link Message}
+ */
 public class MessageForm  {
 
 	@NotEmpty
@@ -15,6 +18,13 @@ public class MessageForm  {
 
 	private String role;
 
+	/**
+	 * this provides the form with the necessary data
+	 * @param sender the sender
+	 * @param receiver the receiver
+	 * @param role the role for messages who are supposed to go to every person who belongs to one specific {@link org.salespointframework.useraccount.Role}
+	 * @param message the text literal
+	 */
 	public MessageForm(String sender, String receiver, String role, String message){
 		this.message = message;
 		this.sender = sender;

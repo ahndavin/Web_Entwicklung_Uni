@@ -7,6 +7,9 @@ import org.javamoney.moneta.Money;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * this is a form for creating a new {@link Account}
+ */
 public class CreationForm {
 
 		@NotEmpty(message = "{CreationForm.name.NotEmpty}")
@@ -35,6 +38,20 @@ public class CreationForm {
 
 		private String festival;
 
+	/**
+	 * the form provides following data
+	 * @param usrName the username
+	 * @param password the password
+	 * @param firstName the first name
+	 * @param lastName the last name
+	 * @param catering a boolean if true the account has the {@link org.salespointframework.useraccount.Role} 'CATERING'
+	 * @param security a boolean if true the account has the {@link org.salespointframework.useraccount.Role} 'SECURITY'
+	 * @param festivalManager a boolean if true the account has the {@link org.salespointframework.useraccount.Role} 'FESTIVALMANAGER'
+	 * @param ticketSalesman a boolean if true the account has the {@link org.salespointframework.useraccount.Role} 'TICKET_SALESMAN'
+	 * @param workedHours the hours worked by the person represented by the account, can be null
+	 * @param hourlyWage the hourly wage of the represented person, can be null
+	 * @param festival the festival to which the account belongs, can be null
+	 */
 		public CreationForm(String usrName, String password, String firstName, String lastName,
 							Boolean catering, Boolean security, Boolean festivalManager, Boolean ticketSalesman, Float workedHours, Float hourlyWage, String festival) {
 			this.usrName = usrName;
