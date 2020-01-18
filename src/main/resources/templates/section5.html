@@ -233,11 +233,26 @@
                   <input id="security" name="security" th:field="*{security}" th:errorclass="fieldError"
                     type="checkbox" />
                 </div>
-
                 <div class="field">
                   <label th:text="#{createAccount.ticketSalesman}" for="ticketSalesman">Ticket Salesman</label>
                   <input id="ticketSalesman" name="ticketSalesman" th:field="*{ticketSalesman}"
-                    th:errorclass="fieldError" type="checkbox" />
+                         th:errorclass="fieldError" type="checkbox" />
+                </div>
+                <div class="field">
+                  <label th:text="#{createAccount.workedHours}" for="workedHours">Ticket Salesman</label>
+                  <input id="workedHours" name="workedHours" th:field="*{workedHours}"
+                    th:errorclass="fieldError" type="number" />
+                </div>
+
+                <div class="field">
+                  <label th:text="#{createAccount.hourlyWage}" for="hourlyWage">Ticket Salesman</label>
+                  <input id="hourlyWage" name="hourlyWage" th:field="*{hourlyWage}"
+                         th:errorclass="fieldError" type="number" />
+                </div>
+                <div class="field">
+                  <label th:text="#{createAccount.Festival}" for="Festival">Ticket Salesman</label>
+                  <input id="Festival" name="Festival" th:field="*{festival}"
+                         th:errorclass="fieldError" type="text" />
                 </div>
 
                 <input class="btn btn-dark" type="submit" value="Create">

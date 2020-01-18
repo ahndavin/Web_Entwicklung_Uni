@@ -101,6 +101,7 @@ public class AccountManager {
 			}
 
 			Festival festival = null;
+			LOG.info("adding Accoung to " + form.getFestival());
 			if(form.getFestival() != null){
 				festival = festivalManager.findByName(form.getFestival());
 			}
