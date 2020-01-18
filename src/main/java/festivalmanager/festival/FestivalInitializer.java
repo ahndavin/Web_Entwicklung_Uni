@@ -16,11 +16,16 @@ public class FestivalInitializer implements DataInitializer {
 	private FestivalManager festivals;
 	private InventoryManager inventory;
 
+	/**
+	 *
+	 * @param festivals: FestivalManager object
+	 * @param inventory: InventoryManager inventory
+	 */
 	public FestivalInitializer(FestivalManager festivals, InventoryManager inventory) {
 		this.festivals = festivals;
 		this.inventory = inventory;
 	}
-
+	
 	@Override
 	public void initialize() {
 		if(festivals.findAll().iterator().hasNext()) {
