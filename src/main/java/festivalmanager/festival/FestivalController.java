@@ -274,19 +274,12 @@ public class FestivalController {
 		if(festivalOptional.isPresent()) {
 			Festival festival = festivalOptional.get();
 
-			Streamable<Account> accounts = accountManager.findAll();
-
-			for(Account account : accounts) {
-				if(!account.getFestivalNameWithoutNull().equals(festival.getName()) &&
-				   !account.getUserAccount().getUsername().equals("MANAGER")) {
-					continue;
-				}
-
+			for(Account account : accountManager.findAll()) {
 				accountManager.sendMessage(new MessageForm(
 						"MANAGER",
 						account.getUserAccount().getUsername(),
 						null,
-						"deleted festival " + festival.getName()
+						"deleted festival " + festival.getName() + ": " + deleteReason
 				));
 			}
 

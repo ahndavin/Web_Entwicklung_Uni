@@ -118,6 +118,11 @@ public class AccountManager {
 		return accounts.findAll();
 	}
 
+	public Stream<Account> findAllByFestival(Festival festival) {
+		LOG.info(festival.toString());
+		return findAll().filter(a -> a.getFestival() != null).filter(a -> a.getFestival().equals(festival)).stream();
+	}
+
 	public void sendMessage(MessageForm form){
 
 		LOG.info(form.getRole());
@@ -156,12 +161,10 @@ public class AccountManager {
 
 
 	public List<String> getUsersFromSessionRegistry() {
-		List<String> newReeeturn = sessionRegistry.getAllPrincipals().stream()
+		return sessionRegistry.getAllPrincipals().stream()
 				.filter(u -> !sessionRegistry.getAllSessions(u, false).isEmpty())
 				.map(u -> ((UserDetails) u).getUsername())
 				.collect(Collectors.toList());
-
-		return newReeeturn;
 	}
 }
 

@@ -1,6 +1,8 @@
 package festivalmanager.festival;
 
 import com.google.common.collect.Iterables;
+import festivalmanager.contract.ContractList;
+import festivalmanager.economics.EconomicList;
 import festivalmanager.inventory.InventoryManager;
 import festivalmanager.inventory.Item;
 import org.hibernate.Hibernate;
@@ -126,6 +128,11 @@ public class FestivalManagerTest {
 
 		Festival festival = festivals.save(festivalToSave);
 		festival.setName("other name than before");
+
+		festival.setEconomicList(new EconomicList());
+		festival.setContractList(new ContractList());
+		festival.getInventory().clear();
+		festival.editPlan().clear();
 
 		festivals.update(festival);
 
