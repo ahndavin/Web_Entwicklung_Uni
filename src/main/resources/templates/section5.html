@@ -120,11 +120,12 @@
       <!-- Grid row -->
 
     </section>
+    <hr>
 
     <!-- Section 5 MANAGER -->
 
     <!-- Section All Accounts -->
-    <hr>
+    
     <section id="staff" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
         <strong> Existing Accounts </strong>
@@ -252,8 +253,7 @@
 
       <!-- Section Msg System Accounts -->
 
-
-      <section id="staff" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')"></section>
+      <section id="staff" sec:authorize="hasAuthority('MANAGER') or hasRole('MANAGER')">
       <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
         <strong> Message System </strong>
       </h3>
@@ -317,14 +317,118 @@
 
     </section>
 
+    <!-- Section 5 FESTIVAL_MANAGER -->
+    <section id="messages" sec:authorize="hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')">
+      <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+        <strong> Message System </strong>
+      </h3>
+      <div class="container">
+  
+        <table class="table table-bordered">
+          <thead class="black white-text">
+            <tr>
+              <th>NAME</th>
+              <th>MESSAGE RECEIVED</th>
+            </tr>
+          </thead>
+          <tbody>
+  
+            <th:block th:each="message : ${messageManagement.findByReceiver(Account)}">
+              <tr>
+                <td th:text="${message.sender.getUserAccount().username}"></td>
+                <td th:text="${message.message}"></td>
+              </tr>
+            </th:block>
+          </tbody>
+        </table>
+        <hr>
+      </div>
+      </section>
 
     <!-- Section 5 CATERING -->
+    <section id="messages" sec:authorize="hasAuthority('CATERING') or hasRole('CATERING')">
+    <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+      <strong> Message System </strong>
+    </h3>
+    <div class="container">
+
+      <table class="table table-bordered">
+        <thead class="black white-text">
+          <tr>
+            <th>NAME</th>
+            <th>MESSAGE RECEIVED</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <th:block th:each="message : ${messageManagement.findByReceiver(Account)}">
+						<tr>
+							<td th:text="${message.sender.getUserAccount().username}"></td>
+							<td th:text="${message.message}"></td>
+						</tr>
+					</th:block>
+        </tbody>
+      </table>
+      <hr>
+    </div>
+    </section>
 
     <!-- Section 5 SECURITY -->
+    <section id="messages" sec:authorize="hasAuthority('SECURITY') or hasRole('SECURITY')">
+      <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+        <strong> Message System </strong>
+      </h3>
+      <div class="container">
+  
+        <table class="table table-bordered">
+          <thead class="black white-text">
+            <tr>
+              <th>NAME</th>
+              <th>MESSAGE RECEIVED</th>
+            </tr>
+          </thead>
+          <tbody>
+  
+            <th:block th:each="message : ${messageManagement.findByReceiver(Account)}">
+              <tr>
+                <td th:text="${message.sender.getUserAccount().username}"></td>
+                <td th:text="${message.message}"></td>
+              </tr>
+            </th:block>
+          </tbody>
+        </table>
+        <hr>
+      </div>
+      </section>
 
     <!-- Section 5 TICKET_SALESMAN -->
-
-  </div>
+    <section id="messages" sec:authorize="hasAuthority('TICKET_SALESMAN') or hasRole('TICKET_SALESMAN')">
+      <h3 class="text-center dark-grey-text font-weight-bold mb-5 pt-3 wow fadeIn" data-wow-delay="0.3s">
+        <strong> Message System </strong>
+      </h3>
+      <div class="container">
+  
+        <table class="table table-bordered">
+          <thead class="black white-text">
+            <tr>
+              <th>NAME</th>
+              <th>MESSAGE RECEIVED</th>
+            </tr>
+          </thead>
+          <tbody>
+  
+            <th:block th:each="message : ${messageManagement.findByReceiver(Account)}">
+              <tr>
+                <td th:text="${message.sender.getUserAccount().username}"></td>
+                <td th:text="${message.message}"></td>
+              </tr>
+            </th:block>
+          </tbody>
+        </table>
+        <hr>
+      </div>
+      </section>
+    
 </body>
 
 </html>
