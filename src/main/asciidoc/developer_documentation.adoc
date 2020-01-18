@@ -94,11 +94,7 @@ Die folgende (oder neuere) Maven-Version ist notwendig, um die Anwendung auszuf�
 
 Die folgende (oder neuere) Browser-Versionen sind notwendig, um die Anwendung auszuführen:
 
-* Internet Explorer / Edge 11.0
-* macOS Safari, Version 13.0.3
-* Firefox 70.0.1
 * Google Chrome 78.0.3904.70
-* Opera 64.0.3417.92
 
 === Vorgaben zum Betrieb des Software
 Dieser Abschnitt gibt einen Überblick darüber, wie das Produkt nach Fertigstellung und unter welchen Umständen verwendet werden soll.
@@ -163,8 +159,6 @@ Die Benutzeroberfläche unserer Applikation wird hauptsächlich über HTML und C
 Um das Programm weiterhin möglichst browserunspezifisch zu testen und die größtmögliche Flexibilität zu bieten, wird die Software für die folgenden Browsern optimiert: 
 
 * Google Chrome, Version 78.0.3904.97
-* Mozilla Firefox, Version 70.0.1
-* Apple Safari, Version 13.0.3
 
 ==== 4.3.4 Verwendung externer Frameworks
 
@@ -174,17 +168,17 @@ Um das Programm weiterhin möglichst browserunspezifisch zu testen und die grö�
 |Accountency |org.salespointframework.accountancy |EconomicManager
 |AccountencyEntry |org.salespointframework.accountancy |EconomicList, EconomicManager
 |Assert |org.springframework.util|EconomicController, TicketController, TicketManagementLocation, Staff
-|Catalog |org.salespointframework.catalog|Inventory, Location
-|CrudRepository |org.springframework.data.repository |CampingticketRepository, DayticketRepository, Festival, Staff
-|DataInitializer |org.salespointframework.core |Inventory, Staff
-|Errors |org.springframework.validation |EconomicController, TicketController, Staff
-|GetMapping |org.springframework.web.bind.annotation.GetMapping |EconomicController, TicketController
+|Catalog |org.salespointframework.catalog|Inventory
+|CrudRepository |org.springframework.data.repository |CampingticketRepository, DayticketRepository, Festival, Staff, Location
+|DataInitializer |org.salespointframework.core |Inventory, Staff, Location
+|Errors |org.springframework.validation |EconomicController, TicketController, Staff, Location
+|GetMapping |org.springframework.web.bind.annotation.GetMapping |EconomicController, TicketController, LocationController
 |Metric |org.salespointframework.quantity.Metric| TicketBuilder
 |Model |org.springframework.ui |EconomicController, TicketController, ContractManager, Inventory, Festival, Location, Staff
 |ModelAttribute |org.springframework.web.bind.annotation.ModelAttribute| EconomicController, TicketController
 |MonetaryAmount |javax.money.MonetaryAmount |EconomicManager
 |Money |org.javamoney.moneta.Money |EconomicManager, TicketBuilder
-|PostMapping |org.springframework.web.bind.annotation.PostMapping |TicketController
+|PostMapping |org.springframework.web.bind.annotation.PostMapping |TicketController, LocationController
 |Product |org.salespointframework.catalog |Inventory
 |Quantity |org.salespointframework.quantity |Inventory, TicketBuilder, TicketManagement
 |Role |org.salespointframework.useraccount |Staff
@@ -194,7 +188,7 @@ Um das Programm weiterhin möglichst browserunspezifisch zu testen und die grö�
 |UniqueInventoryItem |org.salespointframework.inventory |Inventory
 |UserAccount |org.salespointframework.useraccount |Staff
 |UserAccountManager |org.salespointframework.useraccount |Staff
-|Valid |javax.validation.Valid |EconomicController, TicketController
+|Valid |javax.validation.Valid |EconomicController, TicketController, LocationController
 |===
 
 == 5. Bausteinsicht
@@ -278,18 +272,27 @@ image:./models/design/Bausteinsicht_Location.svg[class design diagram - location
 [options="header"]
 |===
 |Klasse/Enumeration |Beschreibung
+|LocationController|Der LocationController dient zur Ausgabe aller notwendigen Daten an das Thymeleaf Template zur Einarbeitung der Daten in die notwendige HTML-Page.
+|LocationManager|Der LocationManager ist die Klasse in der Accounts erstellt / verändert werden.
+|LocationDataInitializer|Der LocationDataInitializer erstellt zum Beginn des Programmablaufs alle Festivals zu Testzwecken in der Datenbank.
 |Location   |Die Location fasst alle Areas zusammen und gibt dabei eine Übersicht über die Anzahl der Besucher, Bühnen, etc.
+|LocationForm|LocationForm ist das Formular, dass zur Erstellung neues Locations ausgefüllt werden muss.
+|LocationRepository|LocationRepository ist die Datenbank zur Speicherung aller Locations.
 |Area       |Areas sind einzelne Bestandteile einer Festival-Location, die verschiedene Funktionen (Type) einnehmen können.
+|AreaForm   |AreaForm ist das Formular, dass zur Erstellung neues Areas ausgefüllt werden muss.
+|AreaRepository|AreaRepository ist die Datenbank zur Speicherung aller Areas.
 |Stage      |Eine Stage ist eine Bühne mit individuellem Programm (Lineup), welches über diese Klasse auch verändert und eingesehen werden kann.
-|Layout     |Das Layout beinhaltet einen graphischen Grundriss des Festivalgeländes.
+|StageForm  |StageForm ist das Formular, dass zur Erstellung neues Stages ausgefüllt werden muss.
+|StageRepository|StageRepository ist die Datenbank zur Speicherung aller Stages.
+|Lineup   |Das Lineup enthält Festivals, Verträge sowie Daten und Zeiten. Lineup zeigt, wann und wer auf welchem Festival auftritt.
+|LineupForm|LineupForm ist das Formular, dass zur Erstellung neues Lineups ausgefüllt werden muss.
+|LineupRepository|LineupRepository ist die Datenbank zur Speicherung aller Lineups.
 |Type       |Der Type spezifiziert die Area und damit ihre Funktionen in der Location: +
  +
 - CAMPING: Ist ein Bereich für Zelte und andere Schlafmöglichkeiten. +
 - PARK: Dient zum Abstellen von Fahrzeugen, welche zur An- und Abreise verwendet werden. +
 - CATERING: In diesem Bereich werden Cateringstände aufgestellt, Essen und Getränke verkauft. +
 - STAGE: In diesem Bereich stehen eine oder mehrere Bühnen, auf denen die Künstler auftreten.
-|LocationManager   |Diese Klasse verwaltet mehrere Locations.
-|LocationController   |Controller-Klasse für Spring
 |===
 
 === 5.1.7 Staff
