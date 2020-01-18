@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * an {@link ApplicationListener} for the {@link MessageEvent} so that the messages can be received
+ */
 @Component
 public class MessageEventListener implements ApplicationListener<MessageEvent> {
 	private static final Logger LOG = LoggerFactory.getLogger(MessageEventListener.class);
