@@ -27,7 +27,7 @@ Summe der Arbeitsstunden pro Student:
 [option="headers"]
 |===
 |Davin Ahn |Marcus Fiedler |Jonas Hönisch |Igor Macevic |Tobias Neubauer
-|…    |…    |…    |…    |153,5      
+|…    |112    |…    |…    |153,5      
 |===
 
 Arbeitsstunden pro Woche pro Student:
@@ -35,7 +35,7 @@ Arbeitsstunden pro Woche pro Student:
 [option="headers"]
 |===
 |Davin Ahn |Marcus Fiedler |Jonas Hönisch |Igor Macevic |Tobias Neubauer
-|…    |…    |…    |…    |13      
+|…    |9,3    |…    |…    |13      
 |===
 
 Durchschnittliche Arbeitzeit aller Studenten pro Woche:
