@@ -1,0 +1,37 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2019/20
+// Auch wenn der Bogen nicht anonymisiert ist, dürfen Sie gern Ihre Meinung offen kundtun.
+// Sowohl positive als auch negative Anmerkungen werden gern gesehen und zur stetigen Verbesserung genutzt.
+// Versuchen Sie in dieser Auswertung also stets sowohl Positives wie auch Negatives zu erwähnen.
+
+**Von:**
+Igor Macevic
+
+**Gruppe:**
+26
+
+== Was habe ich gelernt?
+Durch das Projekt have ich gelernt keine Angst vor großen und vorallem komplexen Aufgaben Angst zu haben. Die Achtung der kleineren Details und vorallem die Fähigkeit, trotz teilweise unklaren Dokumentationen, die benötigte Funktionalität einzubinden. 
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Mein Team habe ich als sehr ehrgeizig und arbeitsbereit empfunden. Die Aufgaben wurden bereits früh zeitig gegliedert aber darauf wurde sich nicht bis zum Ende hin versteift, sondern jeder konnte dem anderen flexibel helfen. Teilweise kamen Pushes, durch die der jeweilige Branch nicht mehr funktioniert hat, weil vor dem Pushen weder Gefetched noch Gepulled wurde, was manchmal anstrengend war, aber das war das geringere Übel. 
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+Die Verwendung von Frameworks und Bibliotheken fande ich sehr gut und teilweise auch notwendig, da man nicht von ausgehen kann gerade bei einem Projekt solcher Fülle alle Klassen selber zu schreiben. Auch das SalesPoint Framework fande ich gut und leicht zu implementieren, da man sich bei dem Videoshop auch einige Ideen holen konnte.
+Was mich etwas stört, dass manche Funktionalität (zB SalesPoint Email ) mir weder von der Dokumentation, Auditorium noch von Oliver Girke erklärt werden konnten, sodass ich diese einbinden konnte. Dafür sind Dokumentationen meiner Meinung nach da und beim expliziten Erfragen sollte nicht einfach wieder auf die Dokumentation verwiesen werden, die im ersten Schritt schon versagt hat.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+
+Zunächst möchte ich sagen, dass mir das Praktikum bei vielen Dingen geholfen hat. Zunächst habe ich gelernt, wie man Code lesen kann, den ein anderer geschrieben hat. Insbesondere kann ich nun mit Dokumentationen deutlich besser umgehen und habe vor großen Codebases keine Angst mehr.
+Auch die Fülle der Files und Klassen zB im Videoshop Projekt hat mich erschlagen. Dies schränkt meine Fähigkeit kleinere Features zu implementieren nun nicht mehr ein.
+
+Teilweise fande ich die Fülle der Aufgaben dennoch sehr viel und wenn mit meiner Gruppe und meinem Tutor nicht ein Jackpot gezogen hätte, wüsste ich nicht wieviele Stunden mehr das Projekt benötigt hätte. 
+Beim nächsten Mal vielleicht etwas weniger Umfang und etwas mehr Tiefe anstatt von jedem Framework und jedem möglichen Feature nur eine einfache, teilweise statische Funktion einbauen zu können.
+
+== Feedback für den Tutor
+Unseren Tutor habe ich als sehr freundlich und bodenständig kennenlernen dürfen.
+Er hat sich immer sehr bemüht uns die Arbeit so gut es geht zu erklären und auch da wo er konnte Hilfestellung gegeben. Mit Problemen ist Tom sehr flexibel und studentenfreundlich umgegangen und hat dafür gesorgt, dass keiner im Projekt zurück bleibt oder sich selber durch „ nichts tun „ ausschließt. Öfters hat er die Leute ermuntert auch mehr mit Git umzugehen und alle Gitfeatures zu benutzen, was mir persönlich den Umgang mit der Software enorm beigebracht hat. 
+Auch die Möglichkeit die Treffen nicht steif und stressig in einem Lernraum, sondern bei Tom privat Zuhause abzuhalten zeigt, wie familiär die Arbeit mit ihm war.
+Auch wenn sich Tom schon geäußert hat, dass er sich nicht sicher ist, ob er den Tutorjob nächstes Jahr erneut umsetzen wird hoffe ich inständig genau das für die jetzigen Erstsemestler.
+
+== Sonstiges und Anmerkungen
+Als Sonstiges wäre nur zu sagen, dass ich es persönlich gerne hätte, dass es nicht nur ein „ bestanden „ oder „ nicht bestanden „ gibt, sondern eine klare Zensur auf die erbrachte Leistung kommt. Ich finde, wenn man sich so bemüht wie alle Gruppenmitglieder meiner Gruppe sollte sich das reflektiv mehr wiederspiegeln als ein „ bestanden „.
