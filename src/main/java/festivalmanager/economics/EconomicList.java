@@ -8,6 +8,11 @@ import javax.persistence.OneToMany;
 
 import org.salespointframework.accountancy.AccountancyEntry;
 
+	/**
+	 * The EconomicList is used to make AccountancyEntrys (Salespoint) specific to festivals
+     * Each festival has one EconomicList which contains all the economic data related to this festival
+	 */
+
 @Embeddable
 public class EconomicList {
 

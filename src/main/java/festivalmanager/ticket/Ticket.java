@@ -21,6 +21,14 @@ public class Ticket{
     @SuppressWarnings("unused")
     public Ticket(){}
 
+	/**
+	 * The Ticket represents the general form of a ticket, setting up everything to be used as day or camping ticket
+	 * @param name is an unique number, that will also be printed on the ticket
+     * @param price is the price per ticket
+     * @param festival is the festival the ticket gives you access t
+     * @param sort is either Sort.CAMPINGTICKET or Sort.DAYTICKET and defines the duration you are granted access to the festival
+	 */
+
     public Ticket(String name, javax.money.MonetaryAmount price, Festival festival){
         this.name = name;
         this.price = price;

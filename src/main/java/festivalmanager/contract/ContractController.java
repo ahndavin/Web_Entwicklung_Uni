@@ -40,11 +40,25 @@ public class ContractController {
 		this.festivalManager = festivalManager;
 	}
 
+	/**
+	 * Shows form to create a new contract
+	 * @param contract 
+	 * @return leads to the form where a new contract can be created
+	 */
+
 	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("create")
 	public String showSignUpForm(Contract contract) {
 		return "createContract";
 	}
+
+	/**
+	 * after klicking on a festival, this festival is set as "festivalForCreation" and an overview over the contract related to this festival is shown
+	 * @param festivalIdForm containing the id of the festival
+	 * @param result containing errors possibly
+	 * @param model the model to which the contracts are added to be listed on the next page
+	 * @return leads to the contract overview for one festival
+	 */
 
 	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("list")
@@ -58,6 +72,14 @@ public class ContractController {
 
 		return "contractManagement";
 	}
+
+	/**
+	 * creates new contract
+	 * @param contract the newly added contract
+	 * @param result containing possible errors
+	 * @param model 
+	 * @return to the festival overview
+	 */
 
 	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@PostMapping("add")
@@ -80,6 +102,13 @@ public class ContractController {
 		return "redirect:/#festivals";
 	}
 
+	/**
+	 * updates a contract when it was edited
+	 * @param id of contract
+	 * @param model to show the newly edited contract
+	 * @return back to the edited contract
+	 */
+
 	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("edit/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
@@ -88,6 +117,15 @@ public class ContractController {
 		model.addAttribute("contract", contract);
 		return "update-Contract";
 	}
+
+	/**
+	 * opens up the contract form and fill in the current values, so those can be edited
+	 * @param id of contract
+	 * @param contract containing the current information
+	 * @param result containing possible errors
+	 * @param model to show the current contract
+	 * @return leads to the edit-page of the contract filled with its current information
+	 */
 
 	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@PostMapping("update/{id}")
@@ -102,6 +140,13 @@ public class ContractController {
 		model.addAttribute("contract", contractsRepository.findAll());
 		return "redirect:/#festivals";
 	}
+
+	/**
+	 * deletes a contract
+	 * @param id of contract
+	 * @param model to add all the remaining contracts of the festival
+	 * @return list of remaining contracts
+	 */
 
 	@PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') or hasAuthority('FESTIVAL_MANAGER') or hasRole('FESTIVAL_MANAGER')")
 	@GetMapping("delete/{id}")

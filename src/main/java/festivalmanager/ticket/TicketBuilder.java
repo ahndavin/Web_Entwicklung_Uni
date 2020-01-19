@@ -30,6 +30,14 @@ public class TicketBuilder {
 
 	public TicketBuilder(){}
 
+	/**
+	 * 	The TicketBuilder is used to hold all the tickets related to one festival.
+	 * @param amountDaytickets quantity representing the amount of day tickets, that still can be sold
+	 * @param amountCampingticket quantity representing the amount of camping tickets, that still can be sold
+	 * @param priceDayticket price per day ticket
+	 * @param priceCampingticket price per camping ticket
+	 */
+
 	public TicketBuilder(long id, int amountDaytickets , int amountCampingticket, 
 						double priceDayticket, double priceCampingticket) {
 		this.id = id;

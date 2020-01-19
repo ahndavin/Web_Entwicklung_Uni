@@ -7,6 +7,11 @@ import javax.persistence.Embeddable;
 import javax.persistence.OneToMany;
 
 @Embeddable
+
+/**
+ * The contractList is used to bind Contracts to one festival
+ */
+
 public class ContractList {
 
     @OneToMany

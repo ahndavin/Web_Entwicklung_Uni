@@ -42,6 +42,13 @@ public class TicketManagement{
         return festivalManager.findById(id).isPresent() ? festivalManager.findById(id).get() : null;
     }
 
+    /**
+     * checks wheather there are day tickets available for sale for this festival
+     * @param sort checks if there are tickets of the relevant sort
+     * @param festival is the festival for which tickets should be sold
+     * @return true when tickets of this sort are still available, false when not
+     */
+
       public boolean dayTicketIsAvailable(Sort sort, Festival festival){
         if(festival.isSellingTickets() != false && sort == Sort.DAYTICKET &&
         festival.getTicketBuilder().getAmountDaytickets().isGreaterThan(Quantity.NONE)){
@@ -49,6 +56,13 @@ public class TicketManagement{
         }
         return false;
     }
+
+    /**
+     * checks wheather there are camping tickets available for sale for this festival
+     * @param sort checks if there are tickets of the relevant sort
+     * @param festival is the festival for which tickets should be sold
+     * @return true when tickets of this sort are still available, false when not
+     */
 
     public boolean campingTicketIsAvailable(Sort sort, Festival festival){
         if(festival.isSellingTickets() != false && sort == Sort.CAMPINGTICKET &&
@@ -58,6 +72,12 @@ public class TicketManagement{
         return false;
 
     }
+
+    /**
+     * orders a ticket after checking availability
+     * @param festivalIdForm contains the id of the relevant festival and the sort to create the right kind of ticket
+     * @return the created ticket
+     */
 
     public Ticket buyTicket(FestivalIdForm festivalIdForm){
         Festival festival = findById(festivalIdForm.getId());
@@ -72,6 +92,12 @@ public class TicketManagement{
         return null;
     }
 
+    /**
+     * creates the ticket, saves it to the repository, recalculates the availability and adds an entry to the accountancy
+     * @param festival is the festival that the ticket will be sold for
+     * @return the created ticket
+     */
+
     public Dayticket buyDayticket(Festival festival){
 		Quantity newQuantity = festival.getTicketBuilder().getAmountDaytickets().subtract(Quantity.of(1));
 
@@ -82,6 +108,12 @@ public class TicketManagement{
         ticketRepository.save(ticket);
         return ticket;
     }
+
+    /**
+     * creates the ticket, saves it to the repository, recalculates the availability and adds an entry to the accountancy
+     * @param festival is the festival that the ticket will be sold for
+     * @return the created ticket
+     */
 
     public Campingticket buyCampingticket(Festival festival){
         Quantity newQuantity = festival.getTicketBuilder().getAmountCampingtickets().subtract(Quantity.of(1));
@@ -94,6 +126,14 @@ public class TicketManagement{
         return ticket;
     }
 
+    /**
+     * checks wheather a ticket is already used or not
+     * @param festival name of the festival the ticket is meant for
+     * @param sort_str "CAMPINGTICKET" or "DAYTICKET"
+     * @param id is the unique id of the ticket
+     * @return the found ticket
+     */
+
     public Ticket checkTicket(String festival, String sort_str, Long id){
         Ticket ticket = ticketRepository.findById(id).isPresent() ? ticketRepository.findById(id).get() : null;
 
@@ -103,7 +143,13 @@ public class TicketManagement{
         
         return ticket;
     }
-    
+
+    /**
+     * marks a ticket as "used" so it cannot used twice
+     * @param ticket is the ticket which status needs to be changes
+     * @return the ticket
+     */
+
     public Ticket setTicketStatus(Ticket ticket){
     	locationManager.findByName(ticket.getFestival().getLocation()).countVisitors(1);
         ticket.setUsed(true);

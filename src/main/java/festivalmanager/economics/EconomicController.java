@@ -29,6 +29,12 @@ public class EconomicController {
     }
 
     // GetMapping
+
+    /**
+     * lists all the accountancy entrys for one festival
+     * @param festivalIdForm contains the id of the festival that it is about
+     */
+
     @PreAuthorize("hasAuthority('MANAGER') or hasRole('MANAGER') ")
     @GetMapping(path = "/accountancy")
     public String goToAccountancy(@Valid @ModelAttribute("form") FestivalIdForm festivalIdForm, Errors result,
@@ -49,6 +55,10 @@ public class EconomicController {
         model.addAttribute("sumAll", economicManager.getSum(festival));
 		return "accountancy";
     }
+
+    /**
+     * gives an overview over all festivals and their overallSum
+     */
 
 	@GetMapping("/totalAccountancy")
 	String festivals(Model model , FestivalIdForm festivalIdForm) {

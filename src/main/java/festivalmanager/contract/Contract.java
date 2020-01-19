@@ -39,6 +39,17 @@ public class Contract {
 
 		public Contract(){}
 
+	/**
+	 * @param name name of the contract, used to identify the contract in the frontend by the user
+	 * @param artist artist performing on stage, name of the band
+	 * @param price price for the artist alone
+	 * @param accepted contract is confirmed by the artist
+	 * @param technicianscount number of servicemen brought with the artist
+	 * @param workinghours number of hours worked by the servicemen per servicemen
+	 * @param workerswage amount of money one serviceman costs per hour
+	 * The total cost of a contract is calculated with contract.totalCost()
+	 */
+
 		public Contract(String name, String artist, int price, boolean accepted, int technicianscount,
 						int workinghours, int workerswage) {
 
