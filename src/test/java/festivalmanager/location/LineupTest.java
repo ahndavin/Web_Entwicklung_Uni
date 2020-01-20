@@ -27,7 +27,7 @@ public class LineupTest{
         lineup.setDate(LocalDateTime.of(2020, 12, 17, 23, 47, 5));
         lineup.setStageId(1234567890);
         lineup.setId(1111);
-        lineup.setFestival(festival);
+        lineup.festival = festival;
 
         assertEquals(LocalDateTime.of(2020, 12, 17, 23, 47, 5), lineup.getDate());
         assertEquals(1234567890, lineup.getStageId());

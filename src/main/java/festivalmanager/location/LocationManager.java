@@ -20,6 +20,14 @@ public class LocationManager {
 	private LineupRepository lineupRepository;
 	private ContractsRepository contractsRepository;
 
+	/**
+	 * Constructor to create LocationManager instances.
+	 * @param locationRepository
+	 * @param areaRepository
+	 * @param stageRepository
+	 * @param lineupRepository
+	 * @param contractsRepository
+	 */
  	public LocationManager(	LocationRepository locationRepository, AreaRepository areaRepository,
 							StageRepository stageRepository, LineupRepository lineupRepository,
 							ContractsRepository contractsRepository) {
@@ -32,10 +40,22 @@ public class LocationManager {
 	}
 
 	//--------Location--------
+ 	
+ 	/**
+	 * 
+	 * @param location
+	 * @return locationRepository
+	 */
 	public Location save(Location location) {
 		return locationRepository.save(location);
 	}
 	
+	/**
+	 * 
+	 * @param locationForm
+	 * @param locationId
+	 * @return locationRepository
+	 */
 	public Location update(LocationForm locationForm, long locationId) {
 		Location location = findById(locationId);
 		Location editedLocation= locationForm.toLocation();
@@ -47,10 +67,19 @@ public class LocationManager {
 		return save(editedLocation);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void deleteLocationById(long id) {
 		locationRepository.deleteById(id);
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return location 
+	 */
 	public Location findById(long id) {
 		int i = 0;
 		List<Location> locations = findAllLocations();
@@ -65,6 +94,11 @@ public class LocationManager {
 		return locationRepository.findById(locations.get(i).getId()).get();
 	}
 
+	/**
+	 * 
+	 * @param name
+	 * @return location 
+	 */
 	public Location findByName(String name) {
 		int i = 0;
 		List<Location> locations = findAllLocations();
@@ -79,16 +113,33 @@ public class LocationManager {
 		return locationRepository.findById(locations.get(i).getId()).get();
 	}
 
+	/**
+	 * 
+	 * @return all locations 
+	 */
 	public List<Location> findAllLocations() {
 		return locationRepository.findAll();
 	}
 	//----------------------
 
 	//--------Area--------
+	
+	/**
+	 * 
+	 * @param area
+	 * @return areaRepository
+	 */
 	public Area save(Area area){
 		return areaRepository.save(area);
 	}
 	
+	/**
+	 * 
+	 * @param location
+	 * @param areaForm
+	 * @param areaId
+	 * @return locationRepository
+	 */
 	public Area update(Location location, AreaForm areaForm, long areaId) {
 		Area area = findById(location, areaId);
 		Area editedArea = areaForm.toArea();
@@ -100,10 +151,20 @@ public class LocationManager {
 		return save(editedArea);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void deleteAreaById(long id) {
 		areaRepository.deleteById(id);
 	}
 	
+	/**
+	 * 
+	 * @param location
+	 * @param id
+	 * @return area 
+	 */
 	public Area findById(Location location, long id) {
 		int i = 0;
 		List<Area> areas = findAllAreas(location);
@@ -118,6 +179,12 @@ public class LocationManager {
 		return areaRepository.findById(areas.get(i).getId()).get();
 	}
 
+	/**
+	 * 
+	 * @param location
+	 * @param name
+	 * @return area 
+	 */
 	public Area findByName(Location location, String name) {
 		int i;
 		List<Area> areas = areaRepository.findAll();
@@ -131,6 +198,10 @@ public class LocationManager {
 		return areaRepository.findAll().get(i);
 	}
 
+	/**
+	 * 
+	 * @return all areas 
+	 */
 	public List<Area> findAllAreas(Location location) {
 		List<Area> allAreasInLocation = new LinkedList<Area>();
 		List<Area> allAreas = areaRepository.findAll();
@@ -146,10 +217,23 @@ public class LocationManager {
 	//----------------------
 
 	//--------Stage--------
+
+	/**
+	 * 
+	 * @param stage
+	 * @return stageRepository
+	 */
 	public Stage save(Stage stage){
 		return stageRepository.save(stage);
 	}
 	
+	/**
+	 * 
+	 * @param area
+	 * @param stageForm
+	 * @param stageId
+	 * @return stageRepository
+	 */
 	public Stage update(Area area, StageForm stageForm, long stageId) {
 		Stage stage = findById(area, stageId);
 		Stage editedStage = stageForm.toStage();
@@ -160,10 +244,20 @@ public class LocationManager {
 		return save(editedStage);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void deleteStageById(long id) {
 		stageRepository.deleteById(id);
 	}
 
+	/**
+	 * 
+	 * @param area
+	 * @param id
+	 * @return stage 
+	 */
 	public Stage findById(Area area, long id) {
 		int i = 0;
 		List<Stage> stages = findAllStages(area);
@@ -178,6 +272,12 @@ public class LocationManager {
 		return stageRepository.findById(stages.get(i).getId()).get();
 	}
 	
+	/**
+	 * 
+	 * @param area
+	 * @param name
+	 * @return stage 
+	 */
 	public Stage findByName(Area area, String name) {
 		int i = 0;
 		List<Stage> stages = findAllStages(area);
@@ -192,6 +292,10 @@ public class LocationManager {
 		return stageRepository.findById(stages.get(i).getId()).get();
 	}
 
+	/**
+	 * 
+	 * @return all stages
+	 */
 	public List<Stage> findAllStages(Area area) {
 		List<Stage> allStagesInArea = new LinkedList<Stage>();
 		List<Stage> stages = stageRepository.findAll();
@@ -207,10 +311,25 @@ public class LocationManager {
 	//----------------------
 
 	//--------Lineup--------
+
+	/**
+	 * 
+	 * @param lineup
+	 * @return lineupRepository
+	 */
 	public Lineup save(Lineup lineup){
 		return lineupRepository.save(lineup);
 	}
 	
+	/**
+	 * 
+	 * @param stage
+	 * @param lineupForm
+	 * @param lienupId
+	 * @param festival
+	 * @param contract
+	 * @return lineupRepository
+	 */
 	public Lineup update(Stage stage, LineupForm lineupForm, long lineupId, String festival, String contract) {
 		Lineup lineup = findById(stage, lineupId);
 		Lineup editedLineup = lineupForm.toLineup();
@@ -240,10 +359,20 @@ public class LocationManager {
 		return save(editedLineup);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void deleteLineupById(long id) {
 		lineupRepository.deleteById(id);
 	}
 
+	/**
+	 * 
+	 * @param stage
+	 * @param id
+	 * @return lineup 
+	 */
 	public Lineup findById(Stage stage, long id) {
 		int i = 0;
 		List<Lineup> lineups = findAllLineups(stage);
@@ -258,6 +387,10 @@ public class LocationManager {
 		return lineupRepository.findById(lineups.get(i).getId()).get();
 	}
 
+	/**
+	 * 
+	 * @return all lineups 
+	 */
 	public List<Lineup> findAllLineups(Stage stage) {
 		List<Lineup> allLineupForStage = new LinkedList<Lineup>();
 		List<Lineup> lineups = lineupRepository.findAll();
@@ -272,10 +405,18 @@ public class LocationManager {
 	}
 	//----------------------
 
+	/**
+	 * 
+	 * @return all contracts
+	 */
 	public Streamable<Contract> findByName() {
 		return contractsRepository.findAll();
 	}
 	
+	/**
+	 * 
+	 * @return all festivals
+	 */
 	public Iterable<Festival> findFestivals() {
 		return LocationController.getFestivalManager().findAll();
 	}

@@ -24,47 +24,86 @@ public class Lineup {
 	@SuppressWarnings("unused")
 	private Lineup() {}
 	
+	/**
+	 *
+	 * @param date : date of this lineup
+	 */
 	public Lineup(LocalDateTime date) {
 		this.date = date;
 	}
 	
+	/**
+	 *
+	 * @return lineup id
+	 */
 	public long getId() {
 		return id;
 	}
 	
+	/**
+	 *
+	 * @param id : The existing id will be changed to this id
+	 * @return area id
+	 */
 	public long setId(long id) {
 		return this.id = id;
 	}
 	
+	/**
+	 *
+	 * @return stage id
+	 */
 	public long getStageId() {
 		return stageId;
 	}
 	
+	/**
+	 *
+	 * @param stageId : The existing stage id will be changed to this stage id
+	 * @return stage id
+	 */
 	public long setStageId(long stageId) {
 		return this.stageId = stageId;
 	}
 	
+	/**
+	 *
+	 * @return date
+	 */
 	public LocalDateTime getDate() {
 		return date;
 	}
 	
+	/**
+	 *
+	 * @param date : The existing date will be changed to this date
+	 * @return date
+	 */
 	public LocalDateTime setDate(LocalDateTime date) {
 		return this.date = date;
 	}
 	
+	/**
+	 *
+	 * @return festival that has this lineup
+	 */
 	public Festival getFestival() {
 		return festival;
 	}
 	
-	public Festival setFestival(Festival festival) {
-		return this.festival = festival;
-	} 
-//	이것만 추가하면 org.springframework.validation.BindException 에러 나옴. 그래서 그냥 festival 변수를 protected로 바꿈.
-	
+	/**
+	 *
+	 * @return contract of an artist
+	 */
 	public Contract getArtist() {
 		return contract;
 	}
-	
+
+	/**
+	 *
+	 * @param contract : The existing contract will be changed to this contract
+	 * @return contract of an artist
+	 */
 	public Contract setArtist(Contract contract) {
 		return this.contract = contract;
 	}

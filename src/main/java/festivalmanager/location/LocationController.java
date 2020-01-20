@@ -26,6 +26,11 @@ public class LocationController {
 	private static FestivalManager festivalManager;
 	boolean hasEntity, hasFestival = false;
 	
+	/**
+	 * Constructor to create LocationController instances.
+	 * @param locationManager
+	 * @param festivalManager
+	 */
 	@SuppressWarnings("static-access")
 	public LocationController(LocationManager locationManager, FestivalManager festivalManager){
 		Assert.notNull(locationManager, "Location must not be null!");
