@@ -173,7 +173,7 @@ public class FestivalController {
 			redirectAttributes.addFlashAttribute("error", "Fehler beim erstellen des Festivals.");
 		}
 
-		return "redirect:/";
+		return "redirect:/#festivals";
 	}
 
 	/**
