@@ -28,7 +28,7 @@ public class LineupFormTest{
         lineupForm.setDate(LocalDateTime.of(2020, 12, 17, 23, 47, 5));
         lineupForm.setStageId(1234567890);
         lineupForm.setId(1111);
-        lineupForm.setFestival(festival);
+        lineupForm.festival = festival;
 
         assertEquals(LocalDateTime.of(2020, 12, 17, 23, 47, 5), lineupForm.getDate());
         assertEquals(1234567890, lineupForm.getStageId());

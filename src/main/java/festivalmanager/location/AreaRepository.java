@@ -7,5 +7,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AreaRepository extends CrudRepository<Area, Long> {
+
+    /**
+	 *
+	 * @return all areas
+	 */
     List<Area> findAll();
 }

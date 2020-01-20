@@ -7,5 +7,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LineupRepository extends CrudRepository<Lineup, Long> {
+
+    /**
+	 *
+	 * @return all lineups
+	 */
     List<Lineup> findAll();
 }
