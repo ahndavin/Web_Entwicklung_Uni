@@ -28,8 +28,10 @@ public class LocationManager {
 	 * @param lineupRepository
 	 * @param contractsRepository
 	 */
- 	public LocationManager(	LocationRepository locationRepository, AreaRepository areaRepository,
-							StageRepository stageRepository, LineupRepository lineupRepository,
+ 	public LocationManager(	LocationRepository locationRepository,
+	 						AreaRepository areaRepository,
+							StageRepository stageRepository,
+							LineupRepository lineupRepository,
 							ContractsRepository contractsRepository) {
  		
  		this.locationRepository = locationRepository;
